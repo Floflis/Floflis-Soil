@@ -37,9 +37,12 @@ echo "- Installing Floflis Soil as init program..."
 sudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/soil/flo-init
 sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
 
+echo "- Installing programs..."
+sudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
+
    echo "- Cleanning install, saving settings..."
    sudo rm /usr/lib/floflis/layers/soil/install.sh
-   sudo sed -i 's/soil/base/g' /usr/lib/floflis/config && sudo sed -i 's/core/soil/g' /usr/lib/floflis/config
+   sudo sed -i 's/soil/grass/g' /usr/lib/floflis/config && sudo sed -i 's/core/soil/g' /usr/lib/floflis/config
    echo "(✓) Floflis Core has been upgraded to Floflis Soil."
 else
    echo "(X) Floflis Core isn't found. Please install Floflis DNA before installing Floflis Soil."
