@@ -37,6 +37,25 @@ echo "- Installing Floflis Soil as init program..."
 sudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/soil/flo-init
 sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
 
+# Install Duniter Server:
+
+   if [ "$flofarch" = "amd64" ]; then
+      echo "With Duniter Server, you can create a blockchain for your region and earn UBI (Universal Basic Income)."
+      echo "Do you want to install Duniter Server? [Y/n]"
+      read instdunserv
+      case $instdunserv in
+         [nN])
+            echo "${ok}"
+            break ;;
+         [yY])
+            echo "Installing Duniter Server..."
+            sudo gdebi include/Duniter/duniter-server-v1.7.18-linux-x64.deb
+            break ;;
+         *)
+            echo "${invalid}" ;;
+esac
+fi
+
 echo "- Installing programs..."
 sudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
 
@@ -46,8 +65,8 @@ sudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-np
    echo "(✓) Floflis Core has been upgraded to Floflis Soil."
 else
    echo "(X) Floflis Core isn't found. Please install Floflis DNA before installing Floflis Soil."
-#   echo ""
-#   echo "Floflis DNA at IPFS:"
-#   echo "Normal version: https://gateway.pinata.cloud/ipfs/QmdweQW6FUjvMHCKSz5h7WpMifgzFvh2SFm9T4hiZ6rY4h"
-#   echo "Lite version: https://gateway.pinata.cloud/ipfs/QmXSiq2atUQeisoiV3PDisNP4LecBCNLv6p6nymvn6JyRL"
+   echo ""
+   echo "Floflis DNA at IPFS:"
+   echo "Normal version: https://gateway.pinata.cloud/ipfs/QmdweQW6FUjvMHCKSz5h7WpMifgzFvh2SFm9T4hiZ6rY4h"
+   echo "Lite version: https://gateway.pinata.cloud/ipfs/QmXSiq2atUQeisoiV3PDisNP4LecBCNLv6p6nymvn6JyRL"
 fi
