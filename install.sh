@@ -136,7 +136,7 @@ fi
 esac
 
 echo "- Installing programs..."
-$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
+$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs -y && npm i ipfs-npm -g
 
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/soil/install.sh
