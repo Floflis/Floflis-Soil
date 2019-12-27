@@ -56,6 +56,28 @@ sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
 esac
 fi
 
+# Install git-LFS:
+
+echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
+echo "Do you want to install git-LFS? [Y/n]"
+read insgit-lfs
+case $insgit-lfs in
+   [nN])
+      echo "${ok}"
+      break ;;
+   [yY])
+      echo "Installing git-LFS..."
+            if [ "$flofarch" = "386" ]; then
+         sudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         sudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+fi
+      break ;;
+   *)
+      echo "${invalid}" ;;
+esac
+
 echo "- Installing programs..."
 sudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
 
