@@ -87,8 +87,8 @@ fi
 
 echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
 echo "Do you want to install git-LFS? [Y/n]"
-read insgit-lfs
-case $insgit-lfs in
+read insgitlfs
+case $insgitlfs in
    [nN])
       echo "${ok}"
       break ;;
