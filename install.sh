@@ -78,6 +78,34 @@ fi
       echo "${invalid}" ;;
 esac
 
+# Install GSM:
+
+echo "Do you want to install support for GSM calls and 2G/3G/4G modems? [Y/n]"
+read instgsm
+case $instgsm in
+   [nN])
+      echo "${ok}"
+      break ;;
+   [yY])
+      echo "Installing GSM support..."
+            if [ "$flofarch" = "386" ]; then
+         sudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb
+         sudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb
+         sudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb
+         sudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         sudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb
+         sudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb
+         sudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb
+         sudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb
+fi
+      sudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb
+      break ;;
+   *)
+      echo "${invalid}" ;;
+esac
+
 echo "- Installing programs..."
 sudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
 
