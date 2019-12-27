@@ -14,6 +14,33 @@ case "${unameOutM}" in
     riscv64) flofarch="riscv64"
 esac
 
+# would detect fakeroot 
+#for path in ${LD_LIBRARY_PATH//:/ }; do
+#   if [[ "$path" == *libfakeroot ]]
+#      then
+#         echo "You're using fakeroot. Floflis won't work."
+#         exit
+#fi
+#done
+
+is_root=false
+
+if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
+   then
+      is_root=false
+   else
+      is_root=true
+fi
+
+may$maysudo=""
+
+if [ "$is_root" = "false" ]
+   then
+      may$maysudo=""
+   else
+      may$maysudo="$may$maysudo"
+fi
+
 cat << "EOF"
 -. .-.   .-. .-.   .-. .-.   .
   \   \ /   \   \ /   \   \ /
@@ -34,8 +61,8 @@ echo "- Detecting if Floflis Core is installed..."
 if [ -e /usr/lib/floflis/layers/core ]
 then
 echo "- Installing Floflis Soil as init program..."
-sudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/soil/flo-init
-sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
+$maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/soil/flo-init
+$maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
 # Install Duniter Server:
 
@@ -49,7 +76,7 @@ sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
             break ;;
          [yY])
             echo "Installing Duniter Server..."
-            sudo gdebi include/Duniter/duniter-server-v1.7.18-linux-x64.deb
+            $maysudo gdebi include/Duniter/duniter-server-v1.7.18-linux-x64.deb
             break ;;
          *)
             echo "${invalid}" ;;
@@ -68,10 +95,10 @@ case $insgit-lfs in
    [yY])
       echo "Installing git-LFS..."
             if [ "$flofarch" = "386" ]; then
-         sudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+         $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
 fi
       if [ "$flofarch" = "amd64" ]; then
-         sudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+         $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
 fi
       break ;;
    *)
@@ -89,29 +116,29 @@ case $instgsm in
    [yY])
       echo "Installing GSM support..."
             if [ "$flofarch" = "386" ]; then
-         sudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb
-         sudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb
-         sudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb
-         sudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb
+         $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb
+         $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb
+         $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb
+         $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb
 fi
       if [ "$flofarch" = "amd64" ]; then
-         sudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb
-         sudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb
-         sudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb
-         sudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb
+         $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb
+         $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb
+         $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb
+         $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb
 fi
-      sudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb
+      $maysudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb
       break ;;
    *)
       echo "${invalid}" ;;
 esac
 
 echo "- Installing programs..."
-sudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
+$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs && npm i ipfs-npm -g
 
    echo "- Cleanning install, saving settings..."
-   sudo rm /usr/lib/floflis/layers/soil/install.sh
-   sudo sed -i 's/soil/grass/g' /usr/lib/floflis/config && sudo sed -i 's/core/soil/g' /usr/lib/floflis/config
+   $maysudo rm /usr/lib/floflis/layers/soil/install.sh
+   $maysudo sed -i 's/soil/grass/g' /usr/lib/floflis/config && $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config
    echo "(✓) Floflis Core has been upgraded to Floflis Soil."
 else
    echo "(X) Floflis Core isn't found. Please install Floflis DNA before installing Floflis Soil."
