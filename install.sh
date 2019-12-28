@@ -66,6 +66,9 @@ echo "- Installing Floflis Soil as init program..."
 $maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/soil/flo-init
 $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
+echo "- Installing programs..."
+$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs -y && npm i ipfs-npm -g
+
 # Install Duniter Server:
 
    if [ "$flofarch" = "amd64" ]; then
@@ -134,9 +137,6 @@ fi
    *)
       echo "${invalid}" ;;
 esac
-
-echo "- Installing programs..."
-$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs -y && npm i ipfs-npm -g
 
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/soil/install.sh
