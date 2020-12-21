@@ -67,26 +67,26 @@ $maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-
 $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
 echo "- Installing programs..."
-$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs -y && npm i ipfs-npm -g
+$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs npm -y && npm i ipfs-npm -g
 
 # Install Duniter Server:
-
-   if [ "$flofarch" = "amd64" ]; then
-      echo "With Duniter Server, you can create a blockchain for your region and earn UBI (Universal Basic Income)."
-      echo "Do you want to install Duniter Server? [Y/n]"
-      read instdunserv
-      case $instdunserv in
-         [nN])
-            echo "${ok}"
-            break ;;
-         [yY])
-            echo "Installing Duniter Server..."
-            $maysudo gdebi include/Duniter/duniter-server-v1.7.18-linux-x64.deb
-            break ;;
-         *)
-            echo "${invalid}" ;;
-esac
-fi
+#
+#   if [ "$flofarch" = "amd64" ]; then
+#      echo "With Duniter Server, you can create a blockchain for your region and earn UBI (Universal Basic Income)."
+#      echo "Do you want to install Duniter Server? [Y/n]"
+#      read instdunserv
+#      case $instdunserv in
+#         [nN])
+#            echo "${ok}"
+#            break ;;
+#         [yY])
+#            echo "Installing Duniter Server..."
+#            $maysudo gdebi include/Duniter/duniter-server-v1.7.18-linux-x64.deb
+#            break ;;
+#         *)
+#            echo "${invalid}" ;;
+#esac
+#fi
 
 # Install git-LFS:
 
@@ -137,6 +137,10 @@ fi
    *)
       echo "${invalid}" ;;
 esac
+
+   echo "- Installing Floflis Fixer..."
+   $maysudo mv /usr/lib/floflis/layers/soil/fixer /usr/bin
+   $maysudo chmod 755 /usr/bin/fixer
 
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/soil/install.sh
