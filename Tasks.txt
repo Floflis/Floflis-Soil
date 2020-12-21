@@ -1,0 +1,4 @@
+- Play version's sound
+
+If Ubuntu, Flof disables modem to permit Android tethering
+Floflis Fixer app
