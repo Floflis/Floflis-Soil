@@ -138,6 +138,13 @@ fi
       echo "${invalid}" ;;
 esac
 
+   if [ -e /tmp/cubicmode ]; then
+      echo "Detected Cubic mode 🧚"
+      echo "Installing to-merge.sh..."
+      $maysudo sh ./to-merge.sh
+      echo "Done (to-merge.sh)"
+fi
+
    echo "- Installing Floflis Fixer..."
    $maysudo mv /usr/lib/floflis/layers/soil/fixer /usr/bin
    $maysudo chmod 755 /usr/bin/fixer
