@@ -74,5 +74,7 @@ Type=Application
 Exec=thesandbox
 Icon=thesandbox
 Categories=Game;Simulation;Metaverse;Ethereum;
-Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;
+Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
 EOF
+
+sudo snap install mmex
