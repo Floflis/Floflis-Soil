@@ -78,3 +78,5 @@ Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplayin
 EOF
 
 sudo snap install mmex
+
+sudo add-apt-repository ppa:openshot.developers/ppa && sudo apt-get update && sudo apt-get install openshot-qt
