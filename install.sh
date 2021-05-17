@@ -69,74 +69,57 @@ $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init default
 echo "- Installing programs..."
 $maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs npm -y && npm i ipfs-npm -g
 
-# Install Duniter Server:
-#
-#   if [ "$flofarch" = "amd64" ]; then
-#      echo "With Duniter Server, you can create a blockchain for your region and earn UBI (Universal Basic Income)."
-#      echo "Do you want to install Duniter Server? [Y/n]"
-#      read instdunserv
-#      case $instdunserv in
-#         [nN])
-#            echo "${ok}"
-#            break ;;
-#         [yY])
-#            echo "Installing Duniter Server..."
-#            $maysudo gdebi include/Duniter/duniter-server-v1.7.18-linux-x64.deb
-#            break ;;
-#         *)
-#            echo "${invalid}" ;;
-#esac
-#fi
-
 # Install git-LFS:
 
-echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
-echo "Do you want to install git-LFS? [Y/n]"
-read insgitlfs
-case $insgitlfs in
-   [nN])
-      echo "${ok}"
-      break ;;
-   [yY])
-      echo "Installing git-LFS..."
-            if [ "$flofarch" = "386" ]; then
-         $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
-fi
-      if [ "$flofarch" = "amd64" ]; then
-         $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
-fi
-      break ;;
-   *)
-      echo "${invalid}" ;;
-esac
+# echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
+# echo "Do you want to install git-LFS? [Y/n]"
+# read insgitlfs
+# case $insgitlfs in
+#    [nN])
+#       echo "${ok}"
+#       break ;;
+#    [yY])
+#       echo "Installing git-LFS..."
+#             if [ "$flofarch" = "386" ]; then
+#          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+# fi
+#       if [ "$flofarch" = "amd64" ]; then
+#          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+# fi
+#       break ;;
+#    *)
+#       echo "${invalid}" ;;
+# esac
 
 # Install GSM:
 
-echo "Do you want to install support for GSM calls and 2G/3G/4G modems? [Y/n]"
-read instgsm
-case $instgsm in
-   [nN])
-      echo "${ok}"
-      break ;;
-   [yY])
-      echo "Installing GSM support..."
-            if [ "$flofarch" = "386" ]; then
-         $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb
-         $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb
-         $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb
-         $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb
-fi
-      if [ "$flofarch" = "amd64" ]; then
-         $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb
-         $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb
-         $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb
-         $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb
-fi
-      $maysudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb
-      break ;;
-   *)
-      echo "${invalid}" ;;
-esac
+# echo "Do you want to install support for GSM calls and 2G/3G/4G modems? [Y/n]"
+# read instgsm
+# case $instgsm in
+#    [nN])
+#       echo "${ok}"
+#       break ;;
+#    [yY])
+#       echo "Installing GSM support..."
+#             if [ "$flofarch" = "386" ]; then
+#          $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb
+#          $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb
+#          $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb
+#          $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb
+# fi
+#       if [ "$flofarch" = "amd64" ]; then
+#          $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb
+#          $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb
+#          $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb
+#          $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb
+# fi
+#       $maysudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb
+#       break ;;
+#    *)
+#       echo "${invalid}" ;;
+# esac
+
+#- if ubuntu, use sudo dpkg -i 
 
    if [ -e /tmp/cubicmode ]; then
       echo "Detected Cubic mode 🧚"
