@@ -18,7 +18,7 @@ if [ "$is_root" = "false" ]
       $maysudo=""
 fi
 
-cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
+$maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Handler for ipfs:// URIs
@@ -27,11 +27,11 @@ StartupNotify=false
 MimeType=x-scheme-handler/ipfs;
 EOF
 
-cat >> /usr/share/applications/x-cinnamon-mimeapps.list <<EOF
+$maysudo cat >> /usr/share/applications/x-cinnamon-mimeapps.list <<EOF
 x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;
 EOF
 
-cat > /usr/share/desktop-directories/Finance.directory <<EOF
+$maysudo cat > /usr/share/desktop-directories/Finance.directory <<EOF
 [Desktop Entry]
 Name=Finance
 Comment=Financial applications
@@ -41,13 +41,13 @@ Type=Directory
 X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
 
-cat > /usr/bin/uniswap <<EOF
+$maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
 xdg-open ipfs://uniswap.eth
 EOF
 $maysudo chmod +x /usr/bin/uniswap
-cat > /usr/share/applications/uniswap.desktop <<EOF
+$maysudo cat > /usr/share/applications/uniswap.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Uniswap
@@ -59,13 +59,13 @@ Categories=Finance;Ethereum;
 Keywords=swap;exchange;tokens;ethereum;
 EOF
 
-cat > /usr/bin/decentraland <<EOF
+$maysudo cat > /usr/bin/decentraland <<EOF
 #!/bin/bash
 
 xdg-open https://play.decentraland.org/
 EOF
 $maysudo chmod +x /usr/bin/decentraland
-cat > /usr/share/applications/decentraland.desktop <<EOF
+$maysudo cat > /usr/share/applications/decentraland.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Decentraland
@@ -77,13 +77,13 @@ Categories=Game;Simulation;Metaverse;Ethereum;Polygon;
 Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;
 EOF
 
-cat > /usr/bin/thesandbox <<EOF
+$maysudo cat > /usr/bin/thesandbox <<EOF
 #!/bin/bash
 
 xdg-open https://www.sandbox.game/en/
 EOF
 $maysudo chmod +x /usr/bin/thesandbox
-cat > /usr/share/applications/thesandbox.desktop <<EOF
+$maysudo cat > /usr/share/applications/thesandbox.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=The Sandbox
