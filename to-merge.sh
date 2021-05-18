@@ -18,6 +18,7 @@ if [ "$is_root" = "false" ]
       $maysudo=""
 fi
 
+ipfs init
 ipfs daemon
 
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
@@ -47,6 +48,9 @@ sudo mkdir /1/apps
 cd /1/apps
 sudo ipfs get $(ipfs dns uniswap.eth) --output=uniswap
 ipfs add -r uniswap
+ipfs pin add $(ipfs dns uniswap.eth)
+ipfs ls $(ipfs dns uniswap.eth)
+# this will have to work on user side (post-install), not only when installing
 cd
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
