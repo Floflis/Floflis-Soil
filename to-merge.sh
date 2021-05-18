@@ -18,6 +18,8 @@ if [ "$is_root" = "false" ]
       $maysudo=""
 fi
 
+ipfs daemon
+
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -41,6 +43,11 @@ Type=Directory
 X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
 
+sudo mkdir /1/apps
+cd /1/apps
+sudo ipfs get $(ipfs dns uniswap.eth) --output=uniswap
+ipfs add -r uniswap
+cd
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
