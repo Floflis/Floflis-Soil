@@ -105,3 +105,7 @@ $maysudo apt install minetest
 
 $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2105 'Eusoumafoca'"/' /usr/lib/os-release
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2105 'Eusoumafoca'"/' /etc/lsb-release
+
+tar -xzf include/icons/Floflis.tar.gz
+$maysudo mv -f Floflis /usr/share/icons/Floflis
+#$maysudo rm -rf /usr/share/icons/Floflis.git
