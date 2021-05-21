@@ -18,8 +18,12 @@ if [ "$is_root" = "false" ]
       $maysudo=""
 fi
 
+sudo apt install xdotool
+
 ipfs init
-ipfs daemon
+ipfsdaemon
+xdotool key Ctrl+d
+xdotool key Ctrl+d
 
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
 [Desktop Entry]
@@ -45,13 +49,11 @@ X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
 
 sudo mkdir /1/apps
-cd /1/apps
-sudo ipfs get $(ipfs dns uniswap.eth) --output=uniswap
-ipfs add -r uniswap
+sudo ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+ipfs add -r /1/apps/uniswap
 ipfs pin add $(ipfs dns uniswap.eth)
 ipfs ls $(ipfs dns uniswap.eth)
 # this will have to work on user side (post-install), not only when installing
-cd
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
@@ -108,7 +110,7 @@ EOF
 
 $maysudo snap install mmex
 
-$maysudo add-apt-repository ppa:openshot.developers/ppa && sudo apt-get update && sudo apt-get install openshot-qt
+$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
 
 $maysudo apt install minetest
 
