@@ -18,7 +18,7 @@ if [ "$is_root" = "false" ]
       $maysudo=""
 fi
 
-sudo apt install xdotool
+$maysudo apt install xdotool
 
 ipfs init
 ipfsdaemon
@@ -48,8 +48,8 @@ Type=Directory
 X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
 
-sudo mkdir /1/apps
-sudo ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+$maysudo mkdir /1/apps
+$maysudo ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
 ipfs add -r /1/apps/uniswap
 ipfs pin add $(ipfs dns uniswap.eth)
 ipfs ls $(ipfs dns uniswap.eth)
@@ -120,5 +120,6 @@ $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2105 'Eusou
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2105 'Eusoumafoca'"/' /etc/lsb-release
 
 tar -xzf include/icons/Floflis.tar.gz
-$maysudo mv -f Floflis /usr/share/icons/Floflis
+$maysudo rsync -av Floflis /usr/share/icons/Floflis
+$maysudo rm -rf Floflis
 #$maysudo rm -rf /usr/share/icons/Floflis.git
