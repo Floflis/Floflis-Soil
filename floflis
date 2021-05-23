@@ -5,6 +5,10 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
 #   echo "   --version --sound, -vs      Plays a sound which represents the current version"
 fi
 
-#if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
-#   paplay presentation.ogg
+if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
+   paplay /1/sounds/presentation.ogg
+fi
+
+#if [ "$2" = "--sound" ] || [ "$2" = "-vs" ]; then
+#   paplay /1/sounds/presentation.ogg
 #fi
