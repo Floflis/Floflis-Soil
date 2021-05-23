@@ -21,9 +21,11 @@ fi
 $maysudo apt install xdotool
 
 ipfs init
-ipfsdaemon
+#bash ipfsdaemon > ipfs.log &
+ipfs daemon
 xdotool key Ctrl+d
 xdotool key Ctrl+d
+# on Cubic, need to have IPFS running on host - until its fixed
 
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
 [Desktop Entry]
@@ -199,7 +201,7 @@ $maysudo cp -f include/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
 $maysudo mkdir /1/sounds
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds
 
-$maysudo add-apt-repository -y ppa:gwendal-lebihan-dev/cinnamon-nightly
+$maysudo add-apt-repository ppa:embrosyn/cinnamon
 $maysudo apt-get update
 $maysudo apt-get install cinnamon
 #https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
