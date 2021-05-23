@@ -198,3 +198,8 @@ $maysudo cp -f include/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
 
 $maysudo mkdir /1/sounds
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds
+
+$maysudo add-apt-repository -y ppa:gwendal-lebihan-dev/cinnamon-nightly
+$maysudo apt-get update
+$maysudo apt-get install cinnamon
+#https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
