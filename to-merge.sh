@@ -205,3 +205,8 @@ $maysudo add-apt-repository ppa:embrosyn/cinnamon
 $maysudo apt-get update
 $maysudo apt-get install cinnamon
 #https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
+
+sudo apt install gnome-photos
+sudo apt install gnome-clocks
+sudo apt install keepassxc
+sudo apt install gnome-weather
