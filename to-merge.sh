@@ -181,3 +181,17 @@ $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/c
 tar -xzf include/Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
 $maysudo rm -rf Avatars
+
+$maysudo mkdir /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu
+
+tar -xzf include/Backgrounds.tar.gz
+$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
+$maysudo rm -rf Backgrounds
+
+$maysudo mv -f include/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
