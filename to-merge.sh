@@ -134,8 +134,8 @@ $maysudo apt install minetest
 
 #- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD
 
-$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2105 'Eusoumafoca'"/' /usr/lib/os-release
-$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2105 'Eusoumafoca'"/' /etc/lsb-release
+$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2106 'Eusoumafoca'"/' /usr/lib/os-release
+$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2106 'Eusoumafoca'"/' /etc/lsb-release
 
 tar -xzf include/icons/Floflis.tar.gz
 $maysudo rsync -av Floflis /usr/share/icons
@@ -194,4 +194,7 @@ tar -xzf include/Backgrounds.tar.gz
 $maysudo rsync -av Backgrounds/. /usr/share/backgrounds
 $maysudo rm -rf Backgrounds
 
-$maysudo mv -f include/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
+$maysudo cp -f include/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
+
+$maysudo mkdir /1/sounds
+$maysudo cp -f include/sounds/presentation.ogg /1/sounds
