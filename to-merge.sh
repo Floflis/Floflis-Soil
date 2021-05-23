@@ -108,6 +108,24 @@ Categories=Game;Simulation;Metaverse;Ethereum;
 Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
 EOF
 
+$maysudo cat > /usr/bin/cryptovoxels <<EOF
+#!/bin/bash
+
+xdg-open https://www.cryptovoxels.com/play
+EOF
+$maysudo chmod +x /usr/bin/cryptovoxels
+$maysudo cat > /usr/share/applications/cryptovoxels.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Cryptovoxels
+Comment=Play in a open 3D voxels metaverse with other etherean players, and spend tokens to buy NFT items/wearables
+Type=Application
+Exec=cryptovoxels
+Icon=cryptovoxels
+Categories=Game;Simulation;Metaverse;Ethereum;
+Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
+EOF
+
 $maysudo snap install mmex
 
 $maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
@@ -120,6 +138,6 @@ $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2105 'Eusou
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2105 'Eusoumafoca'"/' /etc/lsb-release
 
 tar -xzf include/icons/Floflis.tar.gz
-$maysudo rsync -av Floflis /usr/share/icons/Floflis
+$maysudo rsync -av Floflis /usr/share/icons
 $maysudo rm -rf Floflis
 #$maysudo rm -rf /usr/share/icons/Floflis.git
