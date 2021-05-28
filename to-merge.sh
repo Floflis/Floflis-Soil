@@ -254,3 +254,22 @@ $maysudo rm -rf Adapta
 tar -xzf include/Adapta-Nokto.tar.gz
 $maysudo rsync -av Adapta-Nokto /usr/share/themes
 $maysudo rm -rf Adapta-Nokto
+
+#$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
+$maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
+[Desktop Entry]
+Name=Cam
+GenericName=Webcam Booth
+Comment=Take photos and videos with your webcam, with fun graphical effects
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+Keywords=photo;video;webcam;
+Exec=cheese
+Terminal=false
+Type=Application
+StartupNotify=true
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=org.gnome.Cheese
+Categories=GNOME;AudioVideo;Video;Recorder;
+DBusActivatable=true
+X-Ubuntu-Gettext-Domain=cheese
+EOF
