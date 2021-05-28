@@ -246,3 +246,11 @@ tar -xzf include/Eleganse-Floflis.tar.gz
 $maysudo rsync -av Eleganse-Floflis /usr/share/themes
 $maysudo rm -rf Eleganse-Floflis
 #$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
+
+tar -xzf include/Adapta.tar.gz
+$maysudo rsync -av Adapta /usr/share/themes
+$maysudo rm -rf Adapta
+
+tar -xzf include/Adapta-Nokto.tar.gz
+$maysudo rsync -av Adapta-Nokto /usr/share/themes
+$maysudo rm -rf Adapta-Nokto
