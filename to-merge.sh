@@ -321,3 +321,29 @@ Exec=rhythmbox-client --previous
 Name=Stop & Quit
 Exec=rhythmbox-client --quit
 EOF
+
+# Base sounds
+$maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volume.ogg
+$maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
+$maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg
+$maysudo cp -f include/sounds/Base/Manipulating\ windows.ogg /1/sounds/Manipulating\ windows.ogg
+$maysudo cp -f include/sounds/Base/Notification.ogg /1/sounds/Notification.ogg
+$maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ device.ogg
+$maysudo cp -f include/sounds/Base/Starting.ogg /1/sounds/Starting.ogg
+$maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
+
+# Home sounds patch
+$maysudo cp -f include/sounds/Base/Home/Dialog.flac /1/sounds/Dialog.flac
+$maysudo cp -f include/sounds/Base/Home/Navigation.flac /1/sounds/Navigation.flac
+$maysudo cp -f include/sounds/Base/Home/Notification.flac /1/sounds/Notification.flac
+$maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
+$maysudo cp -f include/sounds/Base/Home/System\ Logon.flac /1/sounds/System\ Logon.flac
+$maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.flac /1/sounds/Starting.ogg
+
+$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
+
+$maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
+$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
