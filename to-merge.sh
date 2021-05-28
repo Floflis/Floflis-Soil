@@ -142,7 +142,7 @@ $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 b
 tar -xzf include/icons/Floflis.tar.gz
 $maysudo rsync -av Floflis /usr/share/icons
 $maysudo rm -rf Floflis
-#$maysudo rm -rf /usr/share/icons/Floflis.git
+#$maysudo rm -rf /usr/share/icons/Floflis/.git
 
 $maysudo mkdir /usr/share/cinnamon
 $maysudo mkdir /usr/share/cinnamon/faces
@@ -241,3 +241,8 @@ EOF
 tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
 $maysudo rsync -av cinnamon/. /usr/share/cinnamon
 $maysudo rm -rf cinnamon
+
+tar -xzf include/icons/Eleganse-Floflis.tar.gz
+$maysudo rsync -av Eleganse-Floflis /usr/share/themes
+$maysudo rm -rf Eleganse-Floflis
+#$maysudo rm -rf /usr/share/icons/Floflis/.git
