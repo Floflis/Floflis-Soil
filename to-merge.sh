@@ -196,10 +196,14 @@ tar -xzf include/Backgrounds.tar.gz
 $maysudo rsync -av Backgrounds/. /usr/share/backgrounds
 $maysudo rm -rf Backgrounds
 
-$maysudo cp -f include/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
+$maysudo cp -f include/img/bg.png /1/img
+$maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
 
 $maysudo mkdir /1/sounds
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds
+
+$maysudo mkdir /1/img
+$maysudo cp -f include/img/logo.png /1/img
 
 $maysudo add-apt-repository ppa:embrosyn/cinnamon
 $maysudo apt-get update
