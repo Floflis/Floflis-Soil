@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # displays help message with a list of commands:
-if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+#if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
 #   echo "   --version --sound, -vs      Plays a sound which represents the current version"
-fi
+#fi
 
 if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
    paplay /1/sounds/presentation.ogg
+   echo "presentation.ogg source: https://youtu.be/XMWmX_KXMhg"
 fi
 
 #if [ "$2" = "--sound" ] || [ "$2" = "-vs" ]; then
