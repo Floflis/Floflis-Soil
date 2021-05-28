@@ -242,7 +242,7 @@ tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
 $maysudo rsync -av cinnamon/. /usr/share/cinnamon
 $maysudo rm -rf cinnamon
 
-tar -xzf include/icons/Eleganse-Floflis.tar.gz
+tar -xzf include/Eleganse-Floflis.tar.gz
 $maysudo rsync -av Eleganse-Floflis /usr/share/themes
 $maysudo rm -rf Eleganse-Floflis
-#$maysudo rm -rf /usr/share/icons/Floflis/.git
+#$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
