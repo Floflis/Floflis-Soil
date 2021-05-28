@@ -211,4 +211,33 @@ $maysudo apt install gnome-clocks
 $maysudo apt install keepassxc
 $maysudo apt install gnome-weather
 
-$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
+#$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
+$maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
+[Desktop Entry]
+# VERSION=3.36.2
+Name=Witchcraft
+Comment=Use the command line
+Keywords=shell;prompt;command;commandline;cmd;
+TryExec=gnome-terminal
+Exec=gnome-terminal
+Icon=org.gnome.Terminal
+Type=Application
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+X-GNOME-SingleWindow=false
+OnlyShowIn=GNOME;Unity;
+Actions=new-window;preferences;
+X-Ubuntu-Gettext-Domain=gnome-terminal
+
+[Desktop Action new-window]
+Name=New Window
+Exec=gnome-terminal --window
+
+[Desktop Action preferences]
+Name=Preferences
+Exec=gnome-terminal --preferences
+EOF
+
+tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
+$maysudo rsync -av cinnamon/. /usr/share/cinnamon
+$maysudo rm -rf cinnamon
