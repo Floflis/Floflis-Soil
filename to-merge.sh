@@ -205,6 +205,8 @@ $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
 $maysudo cp -f include/img/logo.png /1/img/logo.png
 
+$maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
+
 $maysudo add-apt-repository ppa:embrosyn/cinnamon
 $maysudo apt-get update
 $maysudo apt-get install cinnamon
