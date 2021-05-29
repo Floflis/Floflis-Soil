@@ -351,7 +351,7 @@ $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/N
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.flac /1/sounds/System\ Logon.flac
 $maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.flac /1/sounds/Starting.ogg
 
-if [ ! -e /usr/share/ubiquity-slideshow ]; then
+if [ -e /usr/share/ubiquity-slideshow ]; then
     $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
