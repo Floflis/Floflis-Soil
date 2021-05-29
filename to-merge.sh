@@ -205,6 +205,9 @@ $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
 $maysudo cp -f include/img/logo.png /1/img/logo.png
 
+$maysudo cp -f include/img/lockscreen.png /1/img/lockscreen.png
+$maysudo cp -f include/img/watermark.png /1/img/watermark.png
+
 $maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
 
 $maysudo add-apt-repository ppa:embrosyn/cinnamon
@@ -322,6 +325,8 @@ Name=Stop & Quit
 Exec=rhythmbox-client --quit
 EOF
 
+$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
+
 # Base sounds
 $maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volume.ogg
 $maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
@@ -332,6 +337,12 @@ $maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ devi
 $maysudo cp -f include/sounds/Base/Starting.ogg /1/sounds/Starting.ogg
 $maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
 
+$maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
+$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
+
 # Home sounds patch
 $maysudo cp -f include/sounds/Base/Home/Dialog.flac /1/sounds/Dialog.flac
 $maysudo cp -f include/sounds/Base/Home/Navigation.flac /1/sounds/Navigation.flac
@@ -340,10 +351,28 @@ $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/N
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.flac /1/sounds/System\ Logon.flac
 $maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.flac /1/sounds/Starting.ogg
 
-$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
+if [ ! -e /usr/share/ubiquity-slideshow ]; then
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
 
-$maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
-$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
+
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
+
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+
+    tar -xzf include/ubiquity-slideshow.tar.gz
+    $maysudo rsync -av ubiquity-slideshow /usr/share
+    $maysudo rm -rf ubiquity-slideshow
+    #$maysudo rm -rf /usr/share/ubiquity-slideshow/.git
+fi
