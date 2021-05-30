@@ -54,6 +54,7 @@ $maysudo mkdir /1/apps
 ipfs add $(ipfs dns uniswap.eth)
 ipfs pin add $(ipfs dns uniswap.eth)
 ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+# to change: use a variable. test if ipfs dns result starts with /ipfs/, if not use ethereal ens contenthash get --domain=, and if not display an error
 # commands to work on post-install:
 ipfs add -r /1/apps/uniswap
 ipfs pin add $(ipfs dns uniswap.eth)
@@ -383,4 +384,28 @@ $maysudo mkdir /usr/share/icons/ubuntu
 $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
 $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
 
-
+#ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
+#ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
+#ipfs get $(ethereal ens contenthash get --domain=1inch.eth) --output=/1/apps/1inch
+# commands to work on post-install:
+#ipfs add -r /1/apps/1inch
+#ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
+#ipfs ls $(ethereal ens contenthash get --domain=1inch.eth)
+# this will have to work on user side (post-install), not only when installing
+#$maysudo cat > /usr/bin/1inch <<EOF
+#!/bin/bash
+#
+#xdg-open ipfs://1inch.eth
+#EOF
+#$maysudo chmod +x /usr/bin/1inch
+#$maysudo cat > /usr/share/applications/1inch.desktop <<EOF
+#[Desktop Entry]
+#Encoding=UTF-8
+#Name=1inch
+#Comment=Swap ETH and tokens on multiple exchanges
+#Type=Application
+#Exec=1inch
+#Icon=1inch
+#Categories=Finance;Ethereum;
+#Keywords=swap;exchange;tokens;ethereum;
+#EOF
