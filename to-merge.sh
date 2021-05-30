@@ -348,7 +348,8 @@ $maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-logi
 $maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
 
 # Home sounds patch
-$maysudo cp -f include/sounds/Base/Home/Dialog.flac /1/sounds/Dialog.flac
+$maysudo cp -f include/sounds/Base/Home/Dialog.ogg /1/sounds/Dialog.ogg
+$maysudo cp -f include/sounds/Base/Home/Navigation.ogg /1/sounds/Navigation.ogg
 $maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.ogg
 $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
