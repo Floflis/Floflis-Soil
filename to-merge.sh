@@ -51,7 +51,10 @@ X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
 
 $maysudo mkdir /1/apps
-$maysudo ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+ipfs add $(ipfs dns uniswap.eth)
+ipfs pin add $(ipfs dns uniswap.eth)
+ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+# commands to work on post-install:
 ipfs add -r /1/apps/uniswap
 ipfs pin add $(ipfs dns uniswap.eth)
 ipfs ls $(ipfs dns uniswap.eth)
@@ -345,11 +348,10 @@ $maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready
 
 # Home sounds patch
 $maysudo cp -f include/sounds/Base/Home/Dialog.flac /1/sounds/Dialog.flac
-$maysudo cp -f include/sounds/Base/Home/Navigation.flac /1/sounds/Navigation.flac
-$maysudo cp -f include/sounds/Base/Home/Notification.flac /1/sounds/Notification.flac
+$maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.ogg
 $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
-$maysudo cp -f include/sounds/Base/Home/System\ Logon.flac /1/sounds/System\ Logon.flac
-$maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.flac /1/sounds/Starting.ogg
+$maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
+$maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogg
 
 if [ -e /usr/share/ubiquity-slideshow ]; then
     $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
@@ -376,3 +378,9 @@ if [ -e /usr/share/ubiquity-slideshow ]; then
     $maysudo rm -rf ubiquity-slideshow
     #$maysudo rm -rf /usr/share/ubiquity-slideshow/.git
 fi
+
+$maysudo mkdir /usr/share/icons/ubuntu
+$maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
+$maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
+
+
