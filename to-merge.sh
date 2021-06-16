@@ -146,7 +146,9 @@ $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 b
 tar -xzf include/icons/Floflis.tar.gz
 $maysudo rsync -av Floflis /usr/share/icons
 $maysudo rm -rf Floflis
-#$maysudo rm -rf /usr/share/icons/Floflis/.git
+if [ -e /tmp/cubicmode ]; then
+   $maysudo rm -rf /usr/share/icons/Floflis/.git
+fi
 
 $maysudo mkdir /usr/share/cinnamon
 $maysudo mkdir /usr/share/cinnamon/faces
@@ -381,9 +383,18 @@ if [ -e /usr/share/ubiquity-slideshow ]; then
     #$maysudo rm -rf /usr/share/ubiquity-slideshow/.git
 fi
 
-$maysudo mkdir /usr/share/icons/ubuntu
-$maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
-$maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
+if [ ! -e /usr/share/icons/Yaru ]; then
+   tar -xzf include/icons/Yaru.tar.gz
+   $maysudo rsync -av Yaru /usr/share/icons
+   $maysudo rm -rf Yaru
+fi
+
+if [ -e /usr/share/icons/Yaru ]; then
+       echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
+       $maysudo mkdir /usr/share/icons/ubuntu
+       $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
+       $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
+fi
 
 #ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
@@ -410,3 +421,25 @@ $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
 #Categories=Finance;Ethereum;
 #Keywords=swap;exchange;tokens;ethereum;
 #EOF
+
+ Install git-LFS:
+
+ echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
+ echo "Do you want to install git-LFS? [Y/n]"
+ read insgitlfs
+ case $insgitlfs in
+    [nN])
+       echo "${ok}"
+       break ;;
+    [yY])
+       echo "Installing git-LFS..."
+             if [ "$flofarch" = "386" ]; then
+          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+ fi
+       if [ "$flofarch" = "amd64" ]; then
+          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+ fi
+       break ;;
+    *)
+       echo "${invalid}" ;;
+ esac
