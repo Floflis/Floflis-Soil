@@ -406,19 +406,19 @@ application/x-html5			        html5
 application/x-apps			        apps
 application/x-game			        game
 EOF
-$maysudo cat > /usr/share/mime/packages/.xml <<EOF
+$maysudo cat > /usr/share/mime/packages/html5.xml <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-html5">
 <glob pattern="*.html5"/>
 </mime-type>
 EOF
-$maysudo cat > /usr/share/mime/packages/.xml <<EOF
+$maysudo cat > /usr/share/mime/packages/apps.xml <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-apps">
 <glob pattern="*.apps"/>
 </mime-type>
 EOF
-$maysudo cat > /usr/share/mime/packages/.xml <<EOF
+$maysudo cat > /usr/share/mime/packages/game.xml <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-game">
 <glob pattern="*.game"/>
