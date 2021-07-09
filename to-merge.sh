@@ -395,10 +395,21 @@ if [ -e /usr/share/icons/Yaru ]; then
        $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
        $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
        # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
-       #echo "de-duplicing some icons in Yaru..."
-       #echo "de-duplicing some icons in Yaru/apps..."
-       #cd /usr/share/icons/ubuntu/Yaru/apps && rm -f org.gnome.baobab.png && ln -s disk-usage-app.png baobab.png && ln -s disk-usage-app.png org.gnome.baobab.png && rm -f bijiben.png && rm -f org.gnome.bijiben.png && rm -f org.gnome.Bijiben.png && rm -f org.gnome.Notes.png && ln -s notes-app.png bijiben.png && ln -s notes-app.png org.gnome.bijiben.png && ln -s notes-app.png org.gnome.Bijiben.png && ln -s notes-app.png org.gnome.Notes.png && rm -f dconf-editor.png && rm -f ca.desrt.dconf-editor.png && ln -s configurator-app.png dconf-editor.png && ln -s configurator-app.png ca.desrt.dconf-editor.png && rm -f gnome-clocks.png && rm -f org.gnome.clocks.png && rm -f org.gnome.Clocks.png && ln -s clock-app.png gnome-clocks.png && ln -s clock-app.png org.gnome.clocks.png && ln -s clock-app.png org.gnome.Clocks.png && rm -f gnome-disks.png && rm -f org.gnome.Disks.png && rm -f org.gnome.DiskUtility.png && ln -s disk-utility-app.png gnome-disks.png && ln -s disk-utility-app.png org.gnome.Disks.png && ln -s disk-utility-app.png org.gnome.DiskUtility.png && rm -f gnome-documents.png && rm -f org.gnome.Documents.png && ln -s documents-app.png gnome-documents.png && ln -s documents-app.png org.gnome.Documents.png && rm -f org.gnome.Books.png && ln -s ebook-reader-app.png org.gnome.Books.png && rm -f empathy.png && rm -f internet-chat.png && rm -f org.gnome.Empathy.png && ln -s messaging-app.png empathy.png && ln -s messaging-app.png internet-chat.png && ln -s messaging-app.png org.gnome.Empathy.png && rm -f eog.png && rm -f multimedia-photo-viewer.png && rm -f org.gnome.eog.png && ln -s image-viewer-app.png eog.png && ln -s image-viewer-app.png multimedia-photo-viewer.png && ln -s image-viewer-app.png org.gnome.eog.png && rm -f org.gnome.Evince.png && ln -s evince.png org.gnome.Evince.png
-       #rm -f gnome-screenshot.png && rm -f org.gnome.Screenshot.png && rm -f screenshot-app.png && ln -s applets-screenshooter.png gnome-screenshot.png && ln -s applets-screenshooter.png org.gnome.Screenshot.png && ln -s applets-screenshooter.png screenshot-app.png && rm -f gnome-characters.png && rm -f org.gnome.Characters.png && ln -s accessories-character-map.png gnome-characters.png && ln -s accessories-character-map.png org.gnome.Characters.png && rm -f gedit.png && rm -f org.gnome.gedit.png && rm -f org.gnome.Gedit.png && ln -s accessories-text-editor.png gedit.png && ln -s accessories-text-editor.png org.gnome.gedit.png && ln -s accessories-text-editor.png org.gnome.Gedit.png && rm -f gnome-contacts.png && rm -f office-address-book.png && rm -f office-addressbook.png && rm -f org.gnome.Contacts.png && rm -f x-office-address-book.png && ln -s address-book-app.png gnome-contacts.png && ln -s address-book-app.png office-address-book.png && ln -s address-book-app.png office-addressbook.png && ln -s address-book-app.png org.gnome.Contacts.png && ln -s address-book-app.png x-office-address-book.png && rm -f apport.png && ln -s error-app.png apport.png && rm -f packages-app.png && ln -s system-software-install.png packages-app.png && rm -f deja-dup.png && rm -f org.gnome.DejaDup.png && ln -s backups-app.png deja-dup.png && ln -s backups-app.png org.gnome.DejaDup.png && rm -f baobab.png && cd
+       echo "de-duplicing some icons in Yaru..."
+       echo "de-duplicing some icons in Yaru/apps..."
+       sudo cp -f include/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/256x256@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/256x256/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/48x48@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/48x48/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/32x32@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/32x32/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/24x24@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/24x24/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/16x16@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+       cd
+       sudo rm -f /tmp/to-merge_floflis-icons.sh
 fi
 
 $maysudo cat >> /etc/mime.types <<EOF
@@ -838,3 +849,13 @@ Name[zh_HK]=垃圾桶
 Name[zh_TW]=回收筒
 Exec=nemo trash:///
 EOF
+
+$maysudo cat > /etc/floflis-release <<EOF
+EOF
+
+$maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
+$maysudo chmod +x /usr/bin/neofetch
+
+$maysudo mkdir /usr/share/cups/data/ubuntu
+$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
+$maysudo cp -f include/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
