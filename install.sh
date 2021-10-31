@@ -124,7 +124,7 @@ $maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs npm -y && np
    if [ -e /tmp/cubicmode ]; then
       echo "Detected Cubic mode 🧚"
       echo "Installing to-merge.sh..."
-      $maysudo sh ./to-merge.sh
+      $maysudo bash ./to-merge.sh
       echo "Done (to-merge.sh)"
 fi
 
