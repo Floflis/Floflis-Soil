@@ -1,5 +1,15 @@
 #!/bin/bash
 
+unameOutM="$(uname -m)"
+case "${unameOutM}" in
+    i286)   flofarch="286";;
+    i386)   flofarch="386";;
+    i686)   flofarch="386";;
+    x86_64) flofarch="amd64";;
+    arm)    dpkg --print-flofarch | grep -q "arm64" && flofarch="arm64" || flofarch="arm";;
+    riscv64) flofarch="riscv64"
+esac
+
 is_root=false
 
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
@@ -389,6 +399,15 @@ if [ ! -e /usr/share/icons/Yaru ]; then
    $maysudo rm -rf Yaru
 fi
 
+$maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
+$maysudo chmod +x /usr/bin/neofetch
+
+$maysudo mkdir /usr/share/cups/data/ubuntu
+$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
+$maysudo cp -f include/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
+
+
+
 if [ -e /usr/share/icons/Yaru ]; then
        echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
        $maysudo mkdir /usr/share/icons/ubuntu
@@ -408,7 +427,7 @@ if [ -e /usr/share/icons/Yaru ]; then
        cd /usr/share/icons/ubuntu/Yaru/24x24/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/16x16@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd
+       cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
        sudo rm -f /tmp/to-merge_floflis-icons.sh
 fi
 
@@ -483,7 +502,7 @@ sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 #Keywords=swap;exchange;tokens;ethereum;
 #EOF
 
- Install git-LFS:
+# Install git-LFS:
 
  echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
  echo "Do you want to install git-LFS? [Y/n]"
@@ -853,9 +872,26 @@ EOF
 $maysudo cat > /etc/floflis-release <<EOF
 EOF
 
-$maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
-$maysudo chmod +x /usr/bin/neofetch
+# Install ethereal:
 
-$maysudo mkdir /usr/share/cups/data/ubuntu
-$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
-$maysudo cp -f include/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
+echo "Installing geth..."
+
+#- x32 is not available as ethereal isn't available for x32 yet
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+   $maysudo mv geth /usr/bin
+   chmod +x /usr/bin/geth
+   rm -rf geth-linux-amd64-1.10.11-7231b3ef
+   echo "Testing if geth works:"
+   geth
+fi
