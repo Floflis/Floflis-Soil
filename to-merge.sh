@@ -1111,3 +1111,35 @@ Icon=hop
 Categories=Finance;Ethereum;
 Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-chain;arbitrum;optimism
 EOF
+
+ipfs add $(ipfs dns aragon.plasmmer.eth)
+ipfs pin add $(ipfs dns aragon.plasmmer.eth)
+ipfs get $(ipfs dns aragon.plasmmer.eth) --output=/1/apps/aragon
+# to change: use a variable. test if ipfs dns result starts with /ipfs/, if not use ethereal ens contenthash get --domain=, and if not display an error
+# commands to work on post-install:
+ipfs add -r /1/apps/aragon
+ipfs dns aragon.plasmmer.eth && ipfs dns aragon.plasmmer.eth
+ipfs pin add $(ipfs dns aragon.plasmmer.eth)
+ipfs ls $(ipfs dns aragon.plasmmer.eth)
+ipfs pin add $(ipfs dns aragon.plasmmer.eth)
+#- this will have to work on user side (post-install), not only when installing
+$maysudo cat > /usr/bin/aragon <<EOF
+#!/bin/bash
+
+ipfs-desktop
+xdg-open ipns://aragon.plasmmer.eth
+EOF
+$maysudo chmod +x /usr/bin/aragon
+$maysudo cat > /usr/share/applications/aragon.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Aragon
+Comment=Participate on Internet-native organizations/enterprises (as BTC/ETH are the Internet-native money) or create your own!
+Type=Application
+Exec=aragon
+Icon=aragon
+Categories=Office;Finance;Ethereum;
+Keywords=daos;govern;governance;organizations;decentralized;autonomous;tokens;ethereum;xdai;polygon
+EOF
+$maysudo mkdir /1/img/humanrepresentation
+ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
