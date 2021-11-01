@@ -151,6 +151,9 @@ $maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get updat
 
 $maysudo apt install minetest
 
+$maysudo apt install gbrainy
+$maysudo apt install supertux
+
 #- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
 
 $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2106 'Eusoumafoca'"/' /usr/lib/os-release
