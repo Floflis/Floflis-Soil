@@ -249,10 +249,16 @@ $maysudo cp -f include/img/watermark.png /1/img/watermark.png
 
 $maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
 
-$maysudo add-apt-repository ppa:embrosyn/cinnamon
-$maysudo apt-get update
-$maysudo apt-get install cinnamon
-#https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
+$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
+$maysudo apt update
+$maysudo apt install cinnamon-desktop-environment
+
+$maysudo add-apt-repository --remove ppa:embrosyn/cinnamon
+$maysudo add-apt-repository --remove ppa:gwendal-lebihan-dev/cinnamon-nightly
+$maysudo apt-get remove cinnamon
+$maysudo apt-get remove cinnamon-nightly
+$maysudo apt-get autoremove
+#https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
 
 $maysudo apt install gnome-photos
 $maysudo apt install gnome-clocks
