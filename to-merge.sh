@@ -1091,3 +1091,21 @@ Icon=opensea
 Categories=Internet;
 Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
 EOF
+
+$maysudo cat > /usr/bin/hop <<EOF
+#!/bin/bash
+
+xdg-open https://app.hop.exchange/
+EOF
+$maysudo chmod +x /usr/bin/hop
+$maysudo cat > /usr/share/applications/hop.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Hop protocol
+Comment=Send ETH and tokens from Ethereum to Layer2's and vice-versa!
+Type=Application
+Exec=hop
+Icon=hop
+Categories=Finance;Ethereum;
+Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-chain;arbitrum;optimism
+EOF
