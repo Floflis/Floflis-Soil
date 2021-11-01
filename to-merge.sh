@@ -75,7 +75,7 @@ ipfs ls $(ipfs dns uniswap.eth)
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
-xdg-open ipfs://uniswap.eth
+xdg-open ipns://uniswap.eth
 EOF
 $maysudo chmod +x /usr/bin/uniswap
 $maysudo cat > /usr/share/applications/uniswap.desktop <<EOF
@@ -509,6 +509,7 @@ sudo update-mime-database /usr/share/mime
 
 sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 
+# Prepare to replace 1inch to better alternative (should also support XDai) ----------------------------------------------------->
 #ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs get $(ethereal ens contenthash get --domain=1inch.eth) --output=/1/apps/1inch
@@ -534,6 +535,7 @@ sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 #Categories=Finance;Ethereum;
 #Keywords=swap;exchange;tokens;ethereum;
 #EOF
+# <----------------------------------------------------- Prepare to replace 1inch to better alternative (should also support XDai)
 
 # Install git-LFS:
 
