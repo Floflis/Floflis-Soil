@@ -521,7 +521,7 @@ sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 #$maysudo cat > /usr/bin/1inch <<EOF
 #!/bin/bash
 #
-#xdg-open ipfs://1inch.eth
+#xdg-open ipns://1inch.eth
 #EOF
 #$maysudo chmod +x /usr/bin/1inch
 #$maysudo cat > /usr/share/applications/1inch.desktop <<EOF
