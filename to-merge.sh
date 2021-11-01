@@ -75,6 +75,7 @@ ipfs ls $(ipfs dns uniswap.eth)
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
+ipfs-desktop
 xdg-open ipns://uniswap.eth
 EOF
 $maysudo chmod +x /usr/bin/uniswap
@@ -521,6 +522,7 @@ sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 #$maysudo cat > /usr/bin/1inch <<EOF
 #!/bin/bash
 #
+#ipfs-desktop
 #xdg-open ipns://1inch.eth
 #EOF
 #$maysudo chmod +x /usr/bin/1inch
