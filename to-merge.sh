@@ -1016,3 +1016,42 @@ $maysudo cat > /1/bulbasaur.json <<EOF
     ]
 }
 EOF
+
+echo "Installing GDevelop..."
+
+#- x32 is not available as ethereal isn't available for x32 yet
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/gdevelop.tar.gz
+   mv -f gdevelop /1/apps
+   chmod +x /1/apps/gdevelop/gdevelop
+   #rm -rf gdevelop
+fi
+
+$maysudo cat > /usr/bin/gdevelop <<EOF
+#!/bin/bash
+
+cd /1/apps/gdevelop/
+./gdevelop
+EOF
+$maysudo chmod +x /usr/bin/gdevelop
+$maysudo cat > /usr/share/applications/gdevelop.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=GDevelop
+Comment=Make games easily even if you don't know to program; even your grandma can.
+Type=Application
+Exec=gdevelop
+Icon=gdevelop
+Categories=Programming;Games;
+Keywords=programming;games;event-sheet;development;
+EOF
