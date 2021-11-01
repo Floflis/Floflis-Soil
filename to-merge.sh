@@ -1055,3 +1055,21 @@ Icon=gdevelop
 Categories=Programming;Games;
 Keywords=programming;games;event-sheet;development;
 EOF
+
+$maysudo cat > /usr/bin/audius <<EOF
+#!/bin/bash
+
+xdg-open https://audius.co/trending
+EOF
+$maysudo chmod +x /usr/bin/audius
+$maysudo cat > /usr/share/applications/audius.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Audius
+Comment=Discover underground music! Partnered with Tiktok. Higher quality than other music streamming services (even in their PRO/premium versions).
+Type=Application
+Exec=audius
+Icon=audius
+Categories=AudioVideo;Audio;
+Keywords=music;blockchain;metaverse;nft;ethereum;
+EOF
