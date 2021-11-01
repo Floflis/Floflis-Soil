@@ -1073,3 +1073,21 @@ Icon=audius
 Categories=AudioVideo;Audio;
 Keywords=music;blockchain;metaverse;nft;ethereum;
 EOF
+
+$maysudo cat > /usr/bin/opensea <<EOF
+#!/bin/bash
+
+xdg-open https://opensea.io/
+EOF
+$maysudo chmod +x /usr/bin/opensea
+$maysudo cat > /usr/share/applications/opensea.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=OpenSea
+Comment=Discover, collect, and sell extraordinary NFTs on the world's first & largest NFT marketplace
+Type=Application
+Exec=opensea
+Icon=opensea
+Categories=Internet;
+Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
+EOF
