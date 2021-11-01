@@ -71,7 +71,7 @@ ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
 ipfs add -r /1/apps/uniswap
 ipfs pin add $(ipfs dns uniswap.eth)
 ipfs ls $(ipfs dns uniswap.eth)
-# this will have to work on user side (post-install), not only when installing
+#- this will have to work on user side (post-install), not only when installing
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
@@ -150,7 +150,7 @@ $maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get updat
 
 $maysudo apt install minetest
 
-#- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD
+#- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
 
 $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2106 'Eusoumafoca'"/' /usr/lib/os-release
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2106 'Eusoumafoca'"/' /etc/lsb-release
