@@ -72,6 +72,7 @@ ipfs add -r /1/apps/uniswap
 ipfs dns uniswap.eth && ipfs dns uniswap.eth
 ipfs pin add $(ipfs dns uniswap.eth)
 ipfs ls $(ipfs dns uniswap.eth)
+ipfs pin add $(ipfs dns uniswap.eth)
 #- this will have to work on user side (post-install), not only when installing
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
