@@ -1,27 +1,7 @@
 #!/bin/bash
 
 tmp="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-#SCRIPTPATH="$(echo "$tmp" | sed 's/\(.* \)/\1\\/')"
-#ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-#SCRIPTPATH=$( cd "$(dirname "$0")" ; pwd -P )
-#tmp="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-#SCRIPTPATH="$(echo "$tmp" | sed 's/ /\\ /g')"
-
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-
-echo "$SCRIPTPATH"
-#echo "$ABSOLUTE_PATH"
-#echo "$SCRIPTPATH"
-
-ls
-cd
-ls
-cd "$SCRIPTPATH"
-#cd $ABSOLUTE_PATH
-#cd $SCRIPTPATH
-#cd -- $(dirname "$0")
-#cd $(dirname "${BASH_SOURCE[0]}")
-ls
 
 unameOutM="$(uname -m)"
 case "${unameOutM}" in
