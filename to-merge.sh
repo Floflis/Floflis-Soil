@@ -1,5 +1,28 @@
 #!/bin/bash
 
+tmp="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+#SCRIPTPATH="$(echo "$tmp" | sed 's/\(.* \)/\1\\/')"
+#ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+#SCRIPTPATH=$( cd "$(dirname "$0")" ; pwd -P )
+#tmp="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+#SCRIPTPATH="$(echo "$tmp" | sed 's/ /\\ /g')"
+
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+echo "$SCRIPTPATH"
+#echo "$ABSOLUTE_PATH"
+#echo "$SCRIPTPATH"
+
+ls
+cd
+ls
+cd "$SCRIPTPATH"
+#cd $ABSOLUTE_PATH
+#cd $SCRIPTPATH
+#cd -- $(dirname "$0")
+#cd $(dirname "${BASH_SOURCE[0]}")
+ls
+
 unameOutM="$(uname -m)"
 case "${unameOutM}" in
     i286)   flofarch="286";;
@@ -236,6 +259,30 @@ $maysudo apt install gnome-clocks
 $maysudo apt install keepassxc
 $maysudo apt install gnome-weather
 
+# Install geth:
+
+echo "Installing geth..."
+
+#- x32 is not available as ethereal isn't available for x32 yet
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+   $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
+   chmod +x /usr/bin/geth
+   rm -rf geth-linux-amd64-1.10.11-7231b3ef
+   #echo "Testing if geth works:"
+   #geth &
+fi
+
 #$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
 $maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
 [Desktop Entry]
@@ -427,7 +474,8 @@ if [ -e /usr/share/icons/Yaru ]; then
        cd /usr/share/icons/ubuntu/Yaru/24x24/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/16x16@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
+       #cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
+       cd "$SCRIPTPATH"
        sudo rm -f /tmp/to-merge_floflis-icons.sh
 fi
 
@@ -871,27 +919,3 @@ EOF
 
 $maysudo cat > /etc/floflis-release <<EOF
 EOF
-
-# Install ethereal:
-
-echo "Installing geth..."
-
-#- x32 is not available as ethereal isn't available for x32 yet
-#      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
-#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
-#         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
-#         echo "Testing if IPFS works:"
-#         ipfs
-#fi
-
-if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
-   $maysudo mv geth /usr/bin
-   chmod +x /usr/bin/geth
-   rm -rf geth-linux-amd64-1.10.11-7231b3ef
-   echo "Testing if geth works:"
-   geth
-fi
