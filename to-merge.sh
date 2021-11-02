@@ -32,11 +32,11 @@ fi
 
 $maysudo apt install xdotool
 
-ipfs init
-#bash ipfsdaemon > ipfs.log &
-ipfs daemon
-xdotool key Ctrl+d
-xdotool key Ctrl+d
+#ipfs init
+##bash ipfsdaemon > ipfs.log &
+#ipfs daemon
+#xdotool key Ctrl+d
+#xdotool key Ctrl+d
 # on Cubic, need to have IPFS running on host - until its fixed
 
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
@@ -168,6 +168,39 @@ if [ -e /tmp/cubicmode ]; then
    $maysudo rm -rf /usr/share/icons/Floflis/.git
 fi
 
+$maysudo mkdir /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu
+
+tar -xzf include/Backgrounds.tar.gz
+$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
+$maysudo rm -rf Backgrounds
+
+$maysudo mkdir /1/img
+$maysudo cp -f include/img/bg.png /1/img/bg.png
+$maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
+
+$maysudo cp -f include/img/token.png /1/img/token.png
+
+$maysudo mkdir /1/sounds
+$maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
+
+$maysudo cp -f include/img/logo.png /1/img/logo.png
+
+$maysudo cp -f include/img/lockscreen.png /1/img/lockscreen.png
+$maysudo cp -f include/img/watermark.png /1/img/watermark.png
+
+$maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
+
+$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
+$maysudo apt update
+$maysudo apt install cinnamon-desktop-environment
+#https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
+
 $maysudo mkdir /usr/share/cinnamon
 $maysudo mkdir /usr/share/cinnamon/faces
 $maysudo mkdir /usr/share/cinnamon/faces/cinnamon
@@ -207,37 +240,6 @@ $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/c
 tar -xzf include/Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
 $maysudo rm -rf Avatars
-
-$maysudo mkdir /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu
-
-tar -xzf include/Backgrounds.tar.gz
-$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
-$maysudo rm -rf Backgrounds
-
-$maysudo mkdir /1/img
-$maysudo cp -f include/img/bg.png /1/img/bg.png
-$maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
-
-$maysudo mkdir /1/sounds
-$maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
-
-$maysudo cp -f include/img/logo.png /1/img/logo.png
-
-$maysudo cp -f include/img/lockscreen.png /1/img/lockscreen.png
-$maysudo cp -f include/img/watermark.png /1/img/watermark.png
-
-$maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
-
-$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
-$maysudo apt update
-$maysudo apt install cinnamon-desktop-environment
-#https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
 
 $maysudo apt install gnome-photos
 $maysudo apt install gnome-clocks
