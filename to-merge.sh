@@ -1112,16 +1112,18 @@ Categories=Finance;Ethereum;
 Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-chain;arbitrum;optimism
 EOF
 
-ipfs add $(ipfs dns aragon.plasmmer.eth)
-ipfs pin add $(ipfs dns aragon.plasmmer.eth)
-ipfs get $(ipfs dns aragon.plasmmer.eth) --output=/1/apps/aragon
+#ipfs add $(ipfs dns aragon.plasmmer.eth)
+#ipfs pin add $(ipfs dns aragon.plasmmer.eth)
+ipfs pin add $(ethereal ens contenthash get --domain=aragon.plasmmer.eth)
+#ipfs get $(ipfs dns aragon.plasmmer.eth) --output=/1/apps/aragon
+ipfs get $(ethereal ens contenthash get --domain=aragon.plasmmer.eth) --output=/1/apps/aragon
 # to change: use a variable. test if ipfs dns result starts with /ipfs/, if not use ethereal ens contenthash get --domain=, and if not display an error
 # commands to work on post-install:
-ipfs add -r /1/apps/aragon
-ipfs dns aragon.plasmmer.eth && ipfs dns aragon.plasmmer.eth
-ipfs pin add $(ipfs dns aragon.plasmmer.eth)
-ipfs ls $(ipfs dns aragon.plasmmer.eth)
-ipfs pin add $(ipfs dns aragon.plasmmer.eth)
+#ipfs add -r /1/apps/aragon
+#ipfs dns aragon.plasmmer.eth && ipfs dns aragon.plasmmer.eth
+#ipfs pin add $(ipfs dns aragon.plasmmer.eth)
+#ipfs ls $(ipfs dns aragon.plasmmer.eth)
+#ipfs pin add $(ipfs dns aragon.plasmmer.eth)
 #- this will have to work on user side (post-install), not only when installing
 $maysudo cat > /usr/bin/aragon <<EOF
 #!/bin/bash
