@@ -63,16 +63,20 @@ X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
 
 $maysudo mkdir /1/apps
-ipfs add $(ipfs dns uniswap.eth)
-ipfs pin add $(ipfs dns uniswap.eth)
-ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+#ipfs pin add $(ipfs dns uniswap.eth)
+ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth)
+#ipfs add $(ipfs dns uniswap.eth)
+#tmp=$(ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth) | tr -d "pinned " | tr -d " recursively")
+#ipfs add $tmp
+#ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
+ipfs get $(ethereal ens contenthash get --domain=uniswap.eth) --output=/1/apps/uniswap
 # to change: use a variable. test if ipfs dns result starts with /ipfs/, if not use ethereal ens contenthash get --domain=, and if not display an error
 # commands to work on post-install:
-ipfs add -r /1/apps/uniswap
-ipfs dns uniswap.eth && ipfs dns uniswap.eth
-ipfs pin add $(ipfs dns uniswap.eth)
-ipfs ls $(ipfs dns uniswap.eth)
-ipfs pin add $(ipfs dns uniswap.eth)
+#ipfs add -r /1/apps/uniswap
+#ipfs dns uniswap.eth && ipfs dns uniswap.eth
+#ipfs pin add $(ipfs dns uniswap.eth)
+#ipfs ls $(ipfs dns uniswap.eth)
+#ipfs pin add $(ipfs dns uniswap.eth)
 #- this will have to work on user side (post-install), not only when installing
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
