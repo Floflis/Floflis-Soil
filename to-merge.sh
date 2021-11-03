@@ -1129,7 +1129,8 @@ $maysudo cat > /usr/bin/aragon <<EOF
 #!/bin/bash
 
 ipfs-desktop
-xdg-open ipns://aragon.plasmmer.eth
+#xdg-open ipns://aragon.plasmmer.eth
+xdg-open https://aragon.plasmmer.com #until IPFS issue is fixed
 EOF
 $maysudo chmod +x /usr/bin/aragon
 $maysudo cat > /usr/share/applications/aragon.desktop <<EOF
@@ -1145,3 +1146,4 @@ Keywords=daos;govern;governance;organizations;decentralized;autonomous;tokens;et
 EOF
 $maysudo mkdir /1/img/humanrepresentation
 ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
+ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/activity-no-results.png
