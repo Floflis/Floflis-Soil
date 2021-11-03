@@ -1094,10 +1094,26 @@ Categories=Internet;
 Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
 EOF
 
+
+#ipfs add $(ipfs dns hop.mirroring.eth)
+#ipfs pin add $(ipfs dns hop.mirroring.eth)
+ipfs pin add $(ethereal ens contenthash get --domain=hop.mirroring.eth)
+#ipfs get $(ipfs dns hop.mirroring.eth) --output=/1/apps/hop
+ipfs get $(ethereal ens contenthash get --domain=hop.mirroring.eth) --output=/1/apps/hop
+# to change: use a variable. test if ipfs dns result starts with /ipfs/, if not use ethereal ens contenthash get --domain=, and if not display an error
+# commands to work on post-install:
+#ipfs add -r /1/apps/hop
+#ipfs dns hop.mirroring.eth && ipfs dns hop.mirroring.eth
+#ipfs pin add $(ipfs dns hop.mirroring.eth)
+#ipfs ls $(ipfs dns hop.mirroring.eth)
+#ipfs pin add $(ipfs dns hop.mirroring.eth)
+#- this will have to work on user side (post-install), not only when installing
 $maysudo cat > /usr/bin/hop <<EOF
 #!/bin/bash
 
-xdg-open https://app.hop.exchange/
+#xdg-open https://app.hop.exchange/ #removed
+#xdg-open ipns://hop.exchange #not ENS
+xdg-open ipns://hop.mirroring.eth
 EOF
 $maysudo chmod +x /usr/bin/hop
 $maysudo cat > /usr/share/applications/hop.desktop <<EOF
