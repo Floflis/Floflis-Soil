@@ -1175,3 +1175,6 @@ $maysudo mkdir /1/Floflis
 $maysudo mkdir /1/Floflis/libs
 tar -C /1/Floflis/libs -xzf include/node_modules.tar.gz
 $maysudo mv -f /1/Floflis/libs/node_modules /1/Floflis/libs/js
+
+$maysudo mkdir /1/Floflis/libs/game-engines
+tar -C /1/Floflis/libs/game-engines -xzf include/Floflis_libs_game-engines_c2.tar.gz
