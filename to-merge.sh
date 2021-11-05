@@ -1170,3 +1170,8 @@ EOF
 $maysudo mkdir /1/img/humanrepresentation
 ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/activity-no-results.png
+
+$maysudo mkdir /1/Floflis
+$maysudo mkdir /1/Floflis/libs
+tar -C /1/Floflis/libs -xzf include/node_modules.tar.gz
+$maysudo mv -f /1/Floflis/libs/node_modules /1/Floflis/libs/js
