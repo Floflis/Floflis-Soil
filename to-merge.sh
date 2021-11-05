@@ -1174,7 +1174,28 @@ ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation
 $maysudo mkdir /1/Floflis
 $maysudo mkdir /1/Floflis/libs
 tar -C /1/Floflis/libs -xzf include/node_modules.tar.gz
-$maysudo mv -f /1/Floflis/libs/node_modules /1/Floflis/libs/js
+cd /1/Floflis/libs
+npm install
+cd "$SCRIPTPATH"
 
 $maysudo mkdir /1/Floflis/libs/game-engines
 tar -C /1/Floflis/libs/game-engines -xzf include/Floflis_libs_game-engines_c2.tar.gz
+
+tar -C /1/apps -xzf include/central.tar.gz
+$maysudo cat > /usr/bin/central <<EOF
+#!/bin/bash
+
+cd /1/apps/central && npm start
+EOF
+$maysudo chmod +x /usr/bin/central
+$maysudo cat > /usr/share/applications/central.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Floflis Central
+Comment=Participate on Internet-native organizations/enterprises (as BTC/ETH are the Internet-native money) or create your own!
+Type=Application
+Exec=central
+Icon=central
+Categories=System;
+Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
+EOF
