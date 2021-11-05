@@ -186,8 +186,8 @@ $maysudo rm -rf Backgrounds
 
 $maysudo mkdir /1/img
 $maysudo cp -f include/img/bg.png /1/img/bg.png
-$maysudo mkdir /usr/share/backgrounds/Ubuntu
-$maysudo cp -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/Ubuntu/warty-final-ubuntu.png
+$maysudo mkdir /usr/share/backgrounds/ubuntu
+$maysudo cp -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu/warty-final-ubuntu.png
 $maysudo rm -f /usr/share/backgrounds/warty-final-ubuntu.png
 $maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
 
@@ -1192,7 +1192,7 @@ $maysudo cat > /usr/share/applications/central.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Floflis Central
-Comment=Participate on Internet-native organizations/enterprises (as BTC/ETH are the Internet-native money) or create your own!
+Comment=Change settings, view your Dashboard with token balances, view your Profile, etc.
 Type=Application
 Exec=central
 Icon=central
