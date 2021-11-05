@@ -186,9 +186,16 @@ $maysudo rm -rf Backgrounds
 
 $maysudo mkdir /1/img
 $maysudo cp -f include/img/bg.png /1/img/bg.png
+$maysudo mkdir /usr/share/backgrounds/Ubuntu
+$maysudo cp -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/Ubuntu/warty-final-ubuntu.png
+$maysudo rm -f /usr/share/backgrounds/warty-final-ubuntu.png
 $maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
 
 $maysudo cp -f include/img/token.png /1/img/token.png
+
+$maysudo mkdir /1/img/networks
+$maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
+$maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
 
 $maysudo mkdir /1/sounds
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
