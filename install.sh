@@ -135,6 +135,11 @@ fi
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/soil/install.sh
    $maysudo sed -i 's/soil/grass/g' /usr/lib/floflis/config && $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config
+   source /usr/lib/floflis/config
+   contents="$(jq ".layer = \"$layer\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".nxtlayer = \"$nxtlayer\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
    echo "(✓) Floflis Core has been upgraded to Floflis Soil."
 else
    echo "(X) Floflis Core isn't found. Please install Floflis DNA before installing Floflis Soil."
