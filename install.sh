@@ -3,9 +3,7 @@
 # Layer: Soil
 
 # load definitions & settings
-source /usr/lib/floflis/config
-# it doesn't works yet. need to do it manually here:
-
+#source /usr/lib/floflis/config # it doesn't works yet. need to do it manually here:
 unameOutM="$(uname -m)"
 case "${unameOutM}" in
     i286)   flofarch="286";;
@@ -135,7 +133,7 @@ fi
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/soil/install.sh
    $maysudo sed -i 's/soil/grass/g' /usr/lib/floflis/config && $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config
-   bash /usr/lib/floflis/config
+   . /usr/lib/floflis/./config
    contents="$(jq ".layer = \"$layer\"" /1/Floflis/system/os.json)" && \
    echo "${contents}" > /1/Floflis/system/os.json
    contents="$(jq ".nxtlayer = \"$nxtlayer\"" /1/Floflis/system/os.json)" && \
