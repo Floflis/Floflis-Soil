@@ -197,6 +197,8 @@ $maysudo mkdir /1/img/networks
 $maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
 $maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
 
+$maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
+
 $maysudo mkdir /1/sounds
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
@@ -1199,3 +1201,11 @@ Icon=central
 Categories=System;
 Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
 EOF
+
+echo "Updating default background..."
+sudo mkdir /usr/share/wallpapers/FuturePrototype/debian
+sudo mv /usr/share/wallpapers/FuturePrototype/contents /usr/share/wallpapers/FuturePrototype/debian/contents
+sudo mkdir /usr/share/wallpapers/FuturePrototype/contents
+sudo mkdir /usr/share/wallpapers/FuturePrototype/contents/images
+sudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/share/wallpapers/FuturePrototype/debian/gnome-background.xml
+sudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
