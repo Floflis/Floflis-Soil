@@ -1171,7 +1171,7 @@ Keywords=daos;govern;governance;organizations;decentralized;autonomous;tokens;et
 EOF
 $maysudo mkdir /1/img/humanrepresentation
 ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
-ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/activity-no-results.png
+ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
 $maysudo mkdir /1/Floflis
 $maysudo mkdir /1/Floflis/libs
@@ -1209,3 +1209,21 @@ sudo mkdir /usr/share/wallpapers/FuturePrototype/contents
 sudo mkdir /usr/share/wallpapers/FuturePrototype/contents/images
 sudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/share/wallpapers/FuturePrototype/debian/gnome-background.xml
 sudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
+
+echo "Installing nushell..."
+tar -xzf include/nu_0_39_0_linux.tar.gz
+$maysudo mv -f nu_0_39_0_linux/nushell-0.39.0/nu /bin/nu
+$maysudo chmod +x /bin/nu
+rm -rf nu_0_39_0_linux
+echo "/bin/nu" | $maysudo tee -a /etc/shells
+chsh -s /bin/nu
+
+# Floflis Soil's to-merge.sh need its own version for firstboot
+#cat >> ~/.config/nu/config.toml <<EOF
+#startup = [
+# "mkdir ~/.cache/starship",
+# "starship init nu | save ~/.cache/starship/init.nu",
+# "source ~/.cache/starship/init.nu"
+#]
+#prompt = "starship_prompt"
+#EOF
