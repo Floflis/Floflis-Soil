@@ -1218,6 +1218,20 @@ rm -rf nu_0_39_0_linux
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 chsh -s /bin/nu
 
+echo "Installing Sh it..."
+cd include/shexec
+git checkout -f
+chmod +x install.sh && sh ./install.sh
+rm -f install.sh
+rm -f README.md
+rm -f shit
+rm -f .gitmeta
+cd "$SCRIPTPATH"
+
+#echo "Installing Starship..."
+#shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
+#echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
 # Floflis Soil's to-merge.sh need its own version for firstboot
 #cat >> ~/.config/nu/config.toml <<EOF
 #startup = [
