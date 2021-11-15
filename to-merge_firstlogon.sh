@@ -83,6 +83,9 @@ Categories=Finance;Ethereum;
 Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-chain;arbitrum;optimism
 EOF
 
+echo "Installing Aragon..."
+tar -xzf include/aragon.tar.gz
+mv -f aragon /1/apps
 #ipfs add $(ipfs dns aragon.plasmmer.eth)
 #ipfs pin add $(ipfs dns aragon.plasmmer.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=aragon.plasmmer.eth)
