@@ -14,6 +14,8 @@ prompt = "starship_prompt"
 EOF
 
 echo "Installing Uniswap..."
+tar -xzf include/uniswap.tar.gz
+mv -f uniswap /1/apps
 #ipfs pin add $(ipfs dns uniswap.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth)
 #ipfs add $(ipfs dns uniswap.eth)
