@@ -1124,3 +1124,10 @@ rm -f README.md
 rm -f shit
 rm -f .gitmeta
 cd "$SCRIPTPATH"
+
+echo "Installing pijul..."
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/pijul.tar.gz
+   mv -f pijul  /usr/bin/pijul
+   chmod +x /usr/bin/pijul
+fi
