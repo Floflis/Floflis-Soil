@@ -1117,7 +1117,7 @@ chsh -s /bin/nu
 echo "Installing Sh it..."
 cd include/shexec
 git checkout -f
-chmod +x install.sh && sh ./install.sh
+chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh
 rm -f README.md
 rm -f shit
@@ -1127,6 +1127,14 @@ cd "$SCRIPTPATH"
 echo "Installing Pijul VCS (you did great, elder git)..."
 if [ "$flofarch" = "amd64" ]; then
    tar -xzf include/pijul.tar.gz
-   mv -f pijul  /usr/bin/pijul
-   chmod +x /usr/bin/pijul
+   $maysudo mv -f pijul  /usr/bin/pijul
+   $maysudo chmod +x /usr/bin/pijul
+fi
+
+echo "Installing Hugo (you did great, elder blogspot.com)..."
+if [ "$flofarch" = "386" ]; then
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
+fi
+if [ "$flofarch" = "amd64" ]; then
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.89.2_Linux-64bit.deb
 fi
