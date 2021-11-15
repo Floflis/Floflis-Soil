@@ -1013,16 +1013,14 @@ if [ "$flofarch" = "amd64" ]; then
    mv -f gdevelop /1/apps
    chmod +x /1/apps/gdevelop/gdevelop
    #rm -rf gdevelop
-fi
-
-$maysudo cat > /usr/bin/gdevelop <<EOF
+   $maysudo cat > /usr/bin/gdevelop <<EOF
 #!/bin/bash
 
 cd /1/apps/gdevelop/
 ./gdevelop
 EOF
-$maysudo chmod +x /usr/bin/gdevelop
-$maysudo cat > /usr/share/applications/gdevelop.desktop <<EOF
+   $maysudo chmod +x /usr/bin/gdevelop
+   $maysudo cat > /usr/share/applications/gdevelop.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=GDevelop
@@ -1033,6 +1031,7 @@ Icon=gdevelop
 Categories=Programming;Games;
 Keywords=programming;games;event-sheet;development;
 EOF
+fi
 
 $maysudo cat > /usr/bin/audius <<EOF
 #!/bin/bash
@@ -1125,7 +1124,7 @@ rm -f shit
 rm -f .gitmeta
 cd "$SCRIPTPATH"
 
-echo "Installing pijul..."
+echo "Installing Pijul VCS (you did great, elder git)..."
 if [ "$flofarch" = "amd64" ]; then
    tar -xzf include/pijul.tar.gz
    mv -f pijul  /usr/bin/pijul
