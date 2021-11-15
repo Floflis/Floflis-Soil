@@ -1227,17 +1227,3 @@ rm -f README.md
 rm -f shit
 rm -f .gitmeta
 cd "$SCRIPTPATH"
-
-#echo "Installing Starship..."
-#shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
-#echo 'eval "$(starship init bash)"' >> ~/.bashrc
-
-# Floflis Soil's to-merge.sh need its own version for firstboot
-#cat >> ~/.config/nu/config.toml <<EOF
-#startup = [
-# "mkdir ~/.cache/starship",
-# "starship init nu | save ~/.cache/starship/init.nu",
-# "source ~/.cache/starship/init.nu"
-#]
-#prompt = "starship_prompt"
-#EOF
