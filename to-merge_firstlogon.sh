@@ -50,6 +50,9 @@ Categories=Finance;Ethereum;
 Keywords=swap;exchange;tokens;ethereum;
 EOF
 
+echo "Installing Hop protocol..."
+tar -xzf include/hop.tar.gz
+mv -f hop /1/apps
 #ipfs add $(ipfs dns hop.mirroring.eth)
 #ipfs pin add $(ipfs dns hop.mirroring.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=hop.mirroring.eth)
