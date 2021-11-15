@@ -1,0 +1,3 @@
+#!/bin/sh
+
+bash /usr/lib/floflis/layers/soil/to-merge_firstboot.sh
