@@ -1131,6 +1131,16 @@ if [ "$flofarch" = "amd64" ]; then
    $maysudo chmod +x /usr/bin/pijul
 fi
 
+if [ "$flofarch" = "amd64" ]; then
+   echo "Installing gix (you did great, elder perl git)..."
+   tar -xzf include/gix-max-v0.10.0-x86_64-unknown-linux-musl.tar.gz
+   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gix  /usr/bin/gix
+   $maysudo chmod +x /usr/bin/gix
+   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gixp  /usr/bin/gixp
+   $maysudo chmod +x /usr/bin/gixp
+   rm -rf gix-max-v0.10.0-x86_64-unknown-linux-musl
+fi
+
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
    $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
