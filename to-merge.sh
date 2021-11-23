@@ -1148,3 +1148,11 @@ fi
 if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.89.2_Linux-64bit.deb
 fi
+
+echo "Installing unzip..."
+sudo apt install unzip
+
+echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cute <3)..."
+unzip include/nerdyfonts/FantasqueSansMono.zip
+$maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
+#sudo mv *.otf *.OTF /usr/share/fonts/opentype
