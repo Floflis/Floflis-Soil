@@ -30,7 +30,23 @@ if [ "$is_root" = "false" ]
       $maysudo=""
 fi
 
+#- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
+
+#- attempt to fix Cubic's custom name:
+$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2112_X 'Eusoumafoca'"/' /usr/lib/os-release
+$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2112_X 'Eusoumafoca'"/' /etc/lsb-release
+# have to get it from config or json
+
+$maysudo cat > /etc/floflis-release <<EOF
+EOF
+
+echo "Installing neofetch..."
+$maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
+$maysudo chmod +x /usr/bin/neofetch
+
+echo "Installing xdotool..."
 $maysudo apt install xdotool
+echo "Is xdotool still useful?" # inspire on how firedoge is installed and how it opens an app without blocking the rest of script
 
 #ipfs init
 ##bash ipfsdaemon > ipfs.log &
@@ -39,6 +55,7 @@ $maysudo apt install xdotool
 #xdotool key Ctrl+d
 # on Cubic, need to have IPFS running on host - until its fixed
 
+echo "Installing ipfs-handle..." #this doesnt works yet
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -47,11 +64,12 @@ Exec=xdg-open %u
 StartupNotify=false
 MimeType=x-scheme-handler/ipfs;
 EOF
-
 $maysudo cat >> /usr/share/applications/x-cinnamon-mimeapps.list <<EOF
 x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;
 EOF
+echo "ipfs-handle doesn't works, yet."
 
+echo "Installing Finance category..." #this doesnt works yet
 $maysudo cat > /usr/share/desktop-directories/Finance.directory <<EOF
 [Desktop Entry]
 Name=Finance
@@ -61,9 +79,72 @@ Icon=ethereum
 Type=Directory
 X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
+echo "Finance category doesn't works, yet."
 
+echo "Installing GDevelop..."
+#- x32 is not available as ethereal isn't available for x32 yet
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/gdevelop.tar.gz
+   mv -f gdevelop /1/apps
+   chmod +x /1/apps/gdevelop/gdevelop
+   #rm -rf gdevelop
+   $maysudo cat > /usr/bin/gdevelop <<EOF
+#!/bin/bash
+
+cd /1/apps/gdevelop/
+./gdevelop
+EOF
+   $maysudo chmod +x /usr/bin/gdevelop
+   $maysudo cat > /usr/share/applications/gdevelop.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=GDevelop
+Comment=Make games easily even if you don't know to program; even your grandma can.
+Type=Application
+Exec=gdevelop
+Icon=gdevelop
+Categories=Programming;Games;
+Keywords=programming;games;event-sheet;development;
+EOF
+fi
+
+echo "Installing Money Manager Ex..." #this doesnt works yet
+$maysudo snap install mmex
+echo "Money Manager Ex doesn't works, yet."
+
+echo "Installing Openshot video editor..."
+$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
+
+echo "Installing Minetest..."
+$maysudo apt install minetest
+
+echo "Installing gbrainy and supertux..."
+$maysudo apt install gbrainy
+$maysudo apt install supertux
+
+echo "Installing Photos..."
+$maysudo apt install gnome-photos
+echo "Installing Clock..."
+$maysudo apt install gnome-clocks
+echo "Installing KeePassXC..."
+$maysudo apt install keepassxc
+echo "Installing Weather..."
+$maysudo apt install gnome-weather
+
+echo "Creating HTML5 apps directory..."
 $maysudo mkdir /1/apps
 
+echo "Installing Decentraland weblink app..."
 $maysudo cat > /usr/bin/decentraland <<EOF
 #!/bin/bash
 
@@ -82,6 +163,7 @@ Categories=Game;Simulation;Metaverse;Ethereum;Polygon;
 Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;
 EOF
 
+echo "Installing The Sandbox weblink app..."
 $maysudo cat > /usr/bin/thesandbox <<EOF
 #!/bin/bash
 
@@ -100,6 +182,7 @@ Categories=Game;Simulation;Metaverse;Ethereum;
 Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
 EOF
 
+echo "Installing Cryptovoxels weblink app..."
 $maysudo cat > /usr/bin/cryptovoxels <<EOF
 #!/bin/bash
 
@@ -118,20 +201,45 @@ Categories=Game;Simulation;Metaverse;Ethereum;
 Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
 EOF
 
-$maysudo snap install mmex
+echo "Installing Audius weblink app..."
+$maysudo cat > /usr/bin/audius <<EOF
+#!/bin/bash
 
-$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
+xdg-open https://audius.co/trending
+EOF
+$maysudo chmod +x /usr/bin/audius
+$maysudo cat > /usr/share/applications/audius.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Audius
+Comment=Discover underground music! Partnered with Tiktok. Higher quality than other music streamming services (even in their PRO/premium versions).
+Type=Application
+Exec=audius
+Icon=audius
+Categories=AudioVideo;Audio;
+Keywords=music;blockchain;metaverse;nft;ethereum;
+EOF
 
-$maysudo apt install minetest
+echo "Installing OpenSea weblink app..."
+$maysudo cat > /usr/bin/opensea <<EOF
+#!/bin/bash
 
-$maysudo apt install gbrainy
-$maysudo apt install supertux
+xdg-open https://opensea.io/
+EOF
+$maysudo chmod +x /usr/bin/opensea
+$maysudo cat > /usr/share/applications/opensea.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=OpenSea
+Comment=Discover, collect, and sell extraordinary NFTs on the world's first & largest NFT marketplace
+Type=Application
+Exec=opensea
+Icon=opensea
+Categories=Internet;
+Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
+EOF
 
-#- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
-
-$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 20 build 2106 'Eusoumafoca'"/' /usr/lib/os-release
-$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 20 build 2106 'Eusoumafoca'"/' /etc/lsb-release
-
+echo "Installing icons..."
 tar -xzf include/icons/Floflis.tar.gz
 $maysudo rsync -av Floflis /usr/share/icons
 $maysudo rm -rf Floflis
@@ -139,288 +247,11 @@ if [ -e /tmp/cubicmode ]; then
    $maysudo rm -rf /usr/share/icons/Floflis/.git
 fi
 
-$maysudo mkdir /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu
-
-tar -xzf include/Backgrounds.tar.gz
-$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
-$maysudo rm -rf Backgrounds
-
-$maysudo mkdir /1/img
-$maysudo cp -f include/img/bg.png /1/img/bg.png
-$maysudo mkdir /usr/share/backgrounds/ubuntu
-$maysudo cp -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu/warty-final-ubuntu.png
-$maysudo rm -f /usr/share/backgrounds/warty-final-ubuntu.png
-$maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
-
-$maysudo cp -f include/img/token.png /1/img/token.png
-
-$maysudo mkdir /1/img/networks
-$maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
-$maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
-
-$maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
-
-$maysudo mkdir /1/sounds
-$maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
-
-$maysudo cp -f include/img/logo.png /1/img/logo.png
-
-$maysudo cp -f include/img/lockscreen.png /1/img/lockscreen.png
-$maysudo cp -f include/img/watermark.png /1/img/watermark.png
-
-$maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
-
-$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
-$maysudo apt update
-$maysudo apt install cinnamon-desktop-environment
-#https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
-
-$maysudo mkdir /usr/share/cinnamon
-$maysudo mkdir /usr/share/cinnamon/faces
-$maysudo mkdir /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/0_cars.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/0_chess.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/0_coffee.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/0_guitar.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/2_10.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/2_11.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/2_12.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/2_13.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/3_lightning.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/3_mountain.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/3_sky.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/3_sunset.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/4_cinnamon.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/4_flower.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/4_leaf.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/4_sunflower.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/5_fish.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/5_kitten.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/5_penguin.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/5_puppy.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/6_astronaut.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/6_butterfly.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/6_flake.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/6_grapes.jpg /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_bat.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_dog.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_elephant.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_fox.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_lion.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_panda.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon
-$maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon
-
-tar -xzf include/Avatars.tar.gz
-$maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
-$maysudo rm -rf Avatars
-
-$maysudo apt install gnome-photos
-$maysudo apt install gnome-clocks
-$maysudo apt install keepassxc
-$maysudo apt install gnome-weather
-
-# Install geth:
-
-echo "Installing geth..."
-
-#- x32 is not available as ethereal isn't available for x32 yet
-#      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
-#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
-#         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
-#         echo "Testing if IPFS works:"
-#         ipfs
-#fi
-
-if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
-   $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
-   chmod +x /usr/bin/geth
-   rm -rf geth-linux-amd64-1.10.11-7231b3ef
-   #echo "Testing if geth works:"
-   #geth &
-fi
-
-#$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
-$maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
-[Desktop Entry]
-# VERSION=3.36.2
-Name=Witchcraft
-Comment=Use the command line
-Keywords=shell;prompt;command;commandline;cmd;
-TryExec=gnome-terminal
-Exec=gnome-terminal
-Icon=org.gnome.Terminal
-Type=Application
-Categories=GNOME;GTK;System;TerminalEmulator;
-StartupNotify=true
-X-GNOME-SingleWindow=false
-OnlyShowIn=GNOME;Unity;
-Actions=new-window;preferences;
-X-Ubuntu-Gettext-Domain=gnome-terminal
-
-[Desktop Action new-window]
-Name=New Window
-Exec=gnome-terminal --window
-
-[Desktop Action preferences]
-Name=Preferences
-Exec=gnome-terminal --preferences
-EOF
-
-tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
-$maysudo rsync -av cinnamon/. /usr/share/cinnamon
-$maysudo rm -rf cinnamon
-
-tar -xzf include/Eleganse-Floflis.tar.gz
-$maysudo rsync -av Eleganse-Floflis /usr/share/themes
-$maysudo rm -rf Eleganse-Floflis
-#$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
-
-tar -xzf include/Adapta.tar.gz
-$maysudo rsync -av Adapta /usr/share/themes
-$maysudo rm -rf Adapta
-
-tar -xzf include/Adapta-Nokto.tar.gz
-$maysudo rsync -av Adapta-Nokto /usr/share/themes
-$maysudo rm -rf Adapta-Nokto
-
-#$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
-$maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
-[Desktop Entry]
-Name=Cam
-GenericName=Webcam Booth
-Comment=Take photos and videos with your webcam, with fun graphical effects
-# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-Keywords=photo;video;webcam;
-Exec=cheese
-Terminal=false
-Type=Application
-StartupNotify=true
-# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=org.gnome.Cheese
-Categories=GNOME;AudioVideo;Video;Recorder;
-DBusActivatable=true
-X-Ubuntu-Gettext-Domain=cheese
-EOF
-
-#$maysudo sed -i 's/^Name=" .*$/Name=" Music"/' /usr/share/applications/rhythmbox.desktop
-$maysudo cat > /usr/share/applications/rhythmbox.desktop <<EOF
-[Desktop Entry]
-Name=Music
-GenericName=Music Player
-X-GNOME-FullName=Rhythmbox Music Player
-Comment=Play and organize your music collection
-Keywords=Audio;Song;MP3;CD;Podcast;MTP;iPod;Playlist;Last.fm;UPnP;DLNA;Radio;
-Exec=rhythmbox %U
-Terminal=false
-Type=Application
-Icon=org.gnome.Rhythmbox
-X-GNOME-DocPath=rhythmbox/rhythmbox.xml
-Categories=GNOME;GTK;AudioVideo;Audio;Player;
-MimeType=application/x-ogg;application/ogg;audio/x-vorbis+ogg;audio/vorbis;audio/x-vorbis;audio/x-scpls;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-mpegurl;audio/x-flac;audio/mp4;audio/x-it;audio/x-mod;audio/x-s3m;audio/x-stm;audio/x-xm;
-StartupNotify=true
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=rhythmbox
-X-GNOME-Bugzilla-Component=general
-X-GNOME-Bugzilla-OtherBinaries=rhythmbox-client;rhythmbox-metadata;
-X-GNOME-Bugzilla-Version=3.4.4
-X-GNOME-UsesNotifications=true
-Actions=PlayPause;Next;Previous;StopQuit;
-X-Ubuntu-Gettext-Domain=rhythmbox
-
-[Desktop Action PlayPause]
-Name=Play/Pause
-Exec=rhythmbox-client --play-pause
-
-[Desktop Action Next]
-Name=Next
-Exec=rhythmbox-client --next
-
-[Desktop Action Previous]
-Name=Previous
-Exec=rhythmbox-client --previous
-
-[Desktop Action StopQuit]
-Name=Stop & Quit
-Exec=rhythmbox-client --quit
-EOF
-
-$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
-
-# Base sounds
-$maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volume.ogg
-$maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
-$maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg
-$maysudo cp -f include/sounds/Base/Manipulating\ windows.ogg /1/sounds/Manipulating\ windows.ogg
-$maysudo cp -f include/sounds/Base/Notification.ogg /1/sounds/Notification.ogg
-$maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ device.ogg
-$maysudo cp -f include/sounds/Base/Starting.ogg /1/sounds/Starting.ogg
-$maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
-
-$maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
-$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
-
-# Home sounds patch
-$maysudo cp -f include/sounds/Base/Home/Dialog.ogg /1/sounds/Dialog.ogg
-$maysudo cp -f include/sounds/Base/Home/Navigation.ogg /1/sounds/Navigation.ogg
-$maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.ogg
-$maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
-$maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
-$maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogg
-
-if [ -e /usr/share/ubiquity-slideshow ]; then
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
-
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
-
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
-
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-
-    tar -xzf include/ubiquity-slideshow.tar.gz
-    $maysudo rsync -av ubiquity-slideshow /usr/share
-    $maysudo rm -rf ubiquity-slideshow
-    #$maysudo rm -rf /usr/share/ubiquity-slideshow/.git
-fi
-
 if [ ! -e /usr/share/icons/Yaru ]; then
    tar -xzf include/icons/Yaru.tar.gz
    $maysudo rsync -av Yaru /usr/share/icons
    $maysudo rm -rf Yaru
 fi
-
-$maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
-$maysudo chmod +x /usr/bin/neofetch
-
-$maysudo mkdir /usr/share/cups/data/ubuntu
-$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
-$maysudo cp -f include/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
-
-
 
 if [ -e /usr/share/icons/Yaru ]; then
        echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
@@ -446,102 +277,7 @@ if [ -e /usr/share/icons/Yaru ]; then
        sudo rm -f /tmp/to-merge_floflis-icons.sh
 fi
 
-$maysudo cat >> /etc/mime.types <<EOF
-application/x-html5			        html5
-application/x-apps			        apps
-application/x-game			        game
-EOF
-$maysudo cat > /usr/share/mime/packages/x-html5.xml <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
-  <mime-type type="application/x-html5">
-    <comment>HTML5 application</comment>
-    <sub-class-of type="text/plain"/>
-    <generic-icon name="application-x-html5"/>
-    <glob pattern="*.html5"/>
-  </mime-type>
-</mime-info>
-
-EOF
-$maysudo cat > /usr/share/mime/packages/x-apps.xml <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
-  <mime-type type="application/x-apps">
-    <comment>Floflis application</comment>
-    <sub-class-of type="application/x-gzip"/>
-    <generic-icon name="application-x-apps"/>
-    <glob pattern="*.apps"/>
-  </mime-type>
-</mime-info>
-
-EOF
-$maysudo cat > /usr/share/mime/packages/x-game.xml <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
-  <mime-type type="application/x-game">
-    <comment>Floflis game</comment>
-    <sub-class-of type="application/x-gzip"/>
-    <generic-icon name="application-x-game"/>
-    <glob pattern="*.game"/>
-  </mime-type>
-</mime-info>
-
-EOF
-sudo update-mime-database /usr/share/mime
-
-sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
-
-# Prepare to replace 1inch to better alternative (should also support XDai) ----------------------------------------------------->
-#ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
-#ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
-#ipfs get $(ethereal ens contenthash get --domain=1inch.eth) --output=/1/apps/1inch
-# commands to work on post-install:
-#ipfs add -r /1/apps/1inch
-#ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
-#ipfs ls $(ethereal ens contenthash get --domain=1inch.eth)
-# this will have to work on user side (post-install), not only when installing
-#$maysudo cat > /usr/bin/1inch <<EOF
-#!/bin/bash
-#
-#ipfs-desktop
-#xdg-open ipns://1inch.eth
-#EOF
-#$maysudo chmod +x /usr/bin/1inch
-#$maysudo cat > /usr/share/applications/1inch.desktop <<EOF
-#[Desktop Entry]
-#Encoding=UTF-8
-#Name=1inch
-#Comment=Swap ETH and tokens on multiple exchanges
-#Type=Application
-#Exec=1inch
-#Icon=1inch
-#Categories=Finance;Ethereum;
-#Keywords=swap;exchange;tokens;ethereum;
-#EOF
-# <----------------------------------------------------- Prepare to replace 1inch to better alternative (should also support XDai)
-
-# Install git-LFS:
-
- echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
- echo "Do you want to install git-LFS? [Y/n]"
- read insgitlfs
- case $insgitlfs in
-    [nN])
-       echo "${ok}"
-       break ;;
-    [yY])
-       echo "Installing git-LFS..."
-             if [ "$flofarch" = "386" ]; then
-          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
- fi
-       if [ "$flofarch" = "amd64" ]; then
-          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
- fi
-       break ;;
-    *)
-       echo "${invalid}" ;;
- esac
- 
+echo "Installing icon for Explorer..."
 $maysudo cat > /usr/share/applications/csd-automount.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -887,9 +623,380 @@ Name[zh_TW]=回收筒
 Exec=nemo trash:///
 EOF
 
-$maysudo cat > /etc/floflis-release <<EOF
+echo "Installing mimetypes and their icons..."
+$maysudo cat >> /etc/mime.types <<EOF
+application/x-html5			        html5
+application/x-apps			        apps
+application/x-game			        game
+EOF
+$maysudo cat > /usr/share/mime/packages/x-html5.xml <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/x-html5">
+    <comment>HTML5 application</comment>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="application-x-html5"/>
+    <glob pattern="*.html5"/>
+  </mime-type>
+</mime-info>
+
+EOF
+$maysudo cat > /usr/share/mime/packages/x-apps.xml <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/x-apps">
+    <comment>Floflis application</comment>
+    <sub-class-of type="application/x-gzip"/>
+    <generic-icon name="application-x-apps"/>
+    <glob pattern="*.apps"/>
+  </mime-type>
+</mime-info>
+
+EOF
+$maysudo cat > /usr/share/mime/packages/x-game.xml <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/x-game">
+    <comment>Floflis game</comment>
+    <sub-class-of type="application/x-gzip"/>
+    <generic-icon name="application-x-game"/>
+    <glob pattern="*.game"/>
+  </mime-type>
+</mime-info>
+
+EOF
+sudo update-mime-database /usr/share/mime
+sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
+
+echo "Installing backgrounds..."
+$maysudo mkdir /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu
+
+tar -xzf include/Backgrounds.tar.gz
+$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
+$maysudo rm -rf Backgrounds
+
+$maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
+
+echo "Installing installer's slideshow..."
+if [ -e /usr/share/ubiquity-slideshow ]; then
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
+
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
+
+    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+
+    tar -xzf include/ubiquity-slideshow.tar.gz
+    $maysudo rsync -av ubiquity-slideshow /usr/share
+    $maysudo rm -rf ubiquity-slideshow
+    #$maysudo rm -rf /usr/share/ubiquity-slideshow/.git
+fi
+
+echo "Installing branding..."
+$maysudo mkdir /usr/share/cups/data/ubuntu
+$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
+$maysudo cp -f include/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
+
+echo "Installing img..."
+$maysudo mkdir /1/img
+$maysudo cp -f include/img/bg.png /1/img/bg.png
+$maysudo mkdir /usr/share/backgrounds/ubuntu
+$maysudo cp -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu/warty-final-ubuntu.png
+$maysudo rm -f /usr/share/backgrounds/warty-final-ubuntu.png
+$maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
+
+$maysudo cp -f include/img/token.png /1/img/token.png
+
+$maysudo mkdir /1/img/networks
+$maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
+$maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
+
+$maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
+
+$maysudo cp -f include/img/logo.png /1/img/logo.png
+
+$maysudo cp -f include/img/lockscreen.png /1/img/lockscreen.png
+$maysudo cp -f include/img/watermark.png /1/img/watermark.png
+
+echo "Installing avatars..."
+$maysudo mkdir /usr/share/cinnamon
+$maysudo mkdir /usr/share/cinnamon/faces
+$maysudo mkdir /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/0_cars.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/0_chess.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/0_coffee.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/0_guitar.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/2_10.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/2_11.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/2_12.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/2_13.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/3_lightning.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/3_mountain.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/3_sky.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/3_sunset.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/4_cinnamon.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/4_flower.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/4_leaf.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/4_sunflower.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/5_fish.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/5_kitten.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/5_penguin.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/5_puppy.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/6_astronaut.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/6_butterfly.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/6_flake.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/6_grapes.jpg /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_bat.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_dog.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_elephant.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_fox.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_lion.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_panda.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon
+
+tar -xzf include/Avatars.tar.gz
+$maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
+$maysudo rm -rf Avatars
+
+echo "Installing sounds..."
+$maysudo mkdir /1/sounds
+$maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
+
+$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
+
+# Base sounds
+$maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volume.ogg
+$maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
+$maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg
+$maysudo cp -f include/sounds/Base/Manipulating\ windows.ogg /1/sounds/Manipulating\ windows.ogg
+$maysudo cp -f include/sounds/Base/Notification.ogg /1/sounds/Notification.ogg
+$maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ device.ogg
+$maysudo cp -f include/sounds/Base/Starting.ogg /1/sounds/Starting.ogg
+$maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
+
+$maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
+$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
+$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
+
+# Home sounds patch
+$maysudo cp -f include/sounds/Base/Home/Dialog.ogg /1/sounds/Dialog.ogg
+$maysudo cp -f include/sounds/Base/Home/Navigation.ogg /1/sounds/Navigation.ogg
+$maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.ogg
+$maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
+$maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
+$maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogg
+
+echo "Installing Cinnamon 4.8..."
+$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
+$maysudo apt update
+$maysudo apt install cinnamon-desktop-environment
+#https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
+
+echo "Installing Cinnamon applets, desklets and extensions..."
+tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
+$maysudo rsync -av cinnamon/. /usr/share/cinnamon
+$maysudo rm -rf cinnamon
+
+echo "Installing main theme..."
+tar -xzf include/Eleganse-Floflis.tar.gz
+$maysudo rsync -av Eleganse-Floflis /usr/share/themes
+$maysudo rm -rf Eleganse-Floflis
+#$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
+
+tar -xzf include/Adapta.tar.gz
+$maysudo rsync -av Adapta /usr/share/themes
+$maysudo rm -rf Adapta
+
+tar -xzf include/Adapta-Nokto.tar.gz
+$maysudo rsync -av Adapta-Nokto /usr/share/themes
+$maysudo rm -rf Adapta-Nokto
+
+# Install geth:
+echo "Installing geth..."
+
+#- x32 is not available as ethereal isn't available for x32 yet
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+   $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
+   chmod +x /usr/bin/geth
+   rm -rf geth-linux-amd64-1.10.11-7231b3ef
+   #echo "Testing if geth works:"
+   #geth &
+fi
+
+echo "Fixing Terminal's name..."
+#$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
+$maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
+[Desktop Entry]
+# VERSION=3.36.2
+Name=Witchcraft
+Comment=Use the command line
+Keywords=shell;prompt;command;commandline;cmd;
+TryExec=gnome-terminal
+Exec=gnome-terminal
+Icon=org.gnome.Terminal
+Type=Application
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+X-GNOME-SingleWindow=false
+OnlyShowIn=GNOME;Unity;
+Actions=new-window;preferences;
+X-Ubuntu-Gettext-Domain=gnome-terminal
+
+[Desktop Action new-window]
+Name=New Window
+Exec=gnome-terminal --window
+
+[Desktop Action preferences]
+Name=Preferences
+Exec=gnome-terminal --preferences
 EOF
 
+echo "Fixing Cam's name..."
+#$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
+$maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
+[Desktop Entry]
+Name=Cam
+GenericName=Webcam Booth
+Comment=Take photos and videos with your webcam, with fun graphical effects
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+Keywords=photo;video;webcam;
+Exec=cheese
+Terminal=false
+Type=Application
+StartupNotify=true
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=org.gnome.Cheese
+Categories=GNOME;AudioVideo;Video;Recorder;
+DBusActivatable=true
+X-Ubuntu-Gettext-Domain=cheese
+EOF
+
+echo "Fixing Music's name..."
+#$maysudo sed -i 's/^Name=" .*$/Name=" Music"/' /usr/share/applications/rhythmbox.desktop
+$maysudo cat > /usr/share/applications/rhythmbox.desktop <<EOF
+[Desktop Entry]
+Name=Music
+GenericName=Music Player
+X-GNOME-FullName=Rhythmbox Music Player
+Comment=Play and organize your music collection
+Keywords=Audio;Song;MP3;CD;Podcast;MTP;iPod;Playlist;Last.fm;UPnP;DLNA;Radio;
+Exec=rhythmbox %U
+Terminal=false
+Type=Application
+Icon=org.gnome.Rhythmbox
+X-GNOME-DocPath=rhythmbox/rhythmbox.xml
+Categories=GNOME;GTK;AudioVideo;Audio;Player;
+MimeType=application/x-ogg;application/ogg;audio/x-vorbis+ogg;audio/vorbis;audio/x-vorbis;audio/x-scpls;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-mpegurl;audio/x-flac;audio/mp4;audio/x-it;audio/x-mod;audio/x-s3m;audio/x-stm;audio/x-xm;
+StartupNotify=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=rhythmbox
+X-GNOME-Bugzilla-Component=general
+X-GNOME-Bugzilla-OtherBinaries=rhythmbox-client;rhythmbox-metadata;
+X-GNOME-Bugzilla-Version=3.4.4
+X-GNOME-UsesNotifications=true
+Actions=PlayPause;Next;Previous;StopQuit;
+X-Ubuntu-Gettext-Domain=rhythmbox
+
+[Desktop Action PlayPause]
+Name=Play/Pause
+Exec=rhythmbox-client --play-pause
+
+[Desktop Action Next]
+Name=Next
+Exec=rhythmbox-client --next
+
+[Desktop Action Previous]
+Name=Previous
+Exec=rhythmbox-client --previous
+
+[Desktop Action StopQuit]
+Name=Stop & Quit
+Exec=rhythmbox-client --quit
+EOF
+
+# Prepare to replace 1inch to better alternative (should also support XDai) ----------------------------------------------------->
+#ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
+#ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
+#ipfs get $(ethereal ens contenthash get --domain=1inch.eth) --output=/1/apps/1inch
+# commands to work on post-install:
+#ipfs add -r /1/apps/1inch
+#ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
+#ipfs ls $(ethereal ens contenthash get --domain=1inch.eth)
+# this will have to work on user side (post-install), not only when installing
+#$maysudo cat > /usr/bin/1inch <<EOF
+#!/bin/bash
+#
+#ipfs-desktop
+#xdg-open ipns://1inch.eth
+#EOF
+#$maysudo chmod +x /usr/bin/1inch
+#$maysudo cat > /usr/share/applications/1inch.desktop <<EOF
+#[Desktop Entry]
+#Encoding=UTF-8
+#Name=1inch
+#Comment=Swap ETH and tokens on multiple exchanges
+#Type=Application
+#Exec=1inch
+#Icon=1inch
+#Categories=Finance;Ethereum;
+#Keywords=swap;exchange;tokens;ethereum;
+#EOF
+# <----------------------------------------------------- Prepare to replace 1inch to better alternative (should also support XDai)
+
+# Install git-LFS:
+ echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
+ echo "Do you want to install git-LFS? [Y/n]"
+ read insgitlfs
+ case $insgitlfs in
+    [nN])
+       echo "${ok}"
+       break ;;
+    [yY])
+       echo "Installing git-LFS..."
+             if [ "$flofarch" = "386" ]; then
+          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+ fi
+       if [ "$flofarch" = "amd64" ]; then
+          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+ fi
+       break ;;
+    *)
+       echo "${invalid}" ;;
+ esac
+
+echo "Adding bulbasaur.json..." # need to relocate
 $maysudo cat > /1/bulbasaur.json <<EOF
 {
     "id": 1,
@@ -995,90 +1102,22 @@ $maysudo cat > /1/bulbasaur.json <<EOF
 }
 EOF
 
-echo "Installing GDevelop..."
-
-#- x32 is not available as ethereal isn't available for x32 yet
-#      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
-#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
-#         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
-#         echo "Testing if IPFS works:"
-#         ipfs
-#fi
-
-if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/gdevelop.tar.gz
-   mv -f gdevelop /1/apps
-   chmod +x /1/apps/gdevelop/gdevelop
-   #rm -rf gdevelop
-   $maysudo cat > /usr/bin/gdevelop <<EOF
-#!/bin/bash
-
-cd /1/apps/gdevelop/
-./gdevelop
-EOF
-   $maysudo chmod +x /usr/bin/gdevelop
-   $maysudo cat > /usr/share/applications/gdevelop.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=GDevelop
-Comment=Make games easily even if you don't know to program; even your grandma can.
-Type=Application
-Exec=gdevelop
-Icon=gdevelop
-Categories=Programming;Games;
-Keywords=programming;games;event-sheet;development;
-EOF
-fi
-
-$maysudo cat > /usr/bin/audius <<EOF
-#!/bin/bash
-
-xdg-open https://audius.co/trending
-EOF
-$maysudo chmod +x /usr/bin/audius
-$maysudo cat > /usr/share/applications/audius.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=Audius
-Comment=Discover underground music! Partnered with Tiktok. Higher quality than other music streamming services (even in their PRO/premium versions).
-Type=Application
-Exec=audius
-Icon=audius
-Categories=AudioVideo;Audio;
-Keywords=music;blockchain;metaverse;nft;ethereum;
-EOF
-
-$maysudo cat > /usr/bin/opensea <<EOF
-#!/bin/bash
-
-xdg-open https://opensea.io/
-EOF
-$maysudo chmod +x /usr/bin/opensea
-$maysudo cat > /usr/share/applications/opensea.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=OpenSea
-Comment=Discover, collect, and sell extraordinary NFTs on the world's first & largest NFT marketplace
-Type=Application
-Exec=opensea
-Icon=opensea
-Categories=Internet;
-Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
-EOF
-
+echo "Installing global shared NodeJS modules..."
 $maysudo mkdir /1/Floflis
 $maysudo mkdir /1/Floflis/libs
 tar -C /1/Floflis/libs -xzf include/node_modules.tar.gz
 cd /1/Floflis/libs
 npm install
 cd "$SCRIPTPATH"
+echo "They'll be useful for Floflis Central and other apps/games made with the C2 engine."
 
+echo "Installing game-engines lib folder..."
 $maysudo mkdir /1/Floflis/libs/game-engines
+echo "Installing C2 common libs..."
 tar -C /1/Floflis/libs/game-engines -xzf include/Floflis_libs_game-engines_c2.tar.gz
+echo "Having common libs, C2 games/apps will be smaller to download (also to store locally)!"
 
+echo "Installing Floflis Central..."
 tar -C /1/apps -xzf include/central.tar.gz
 $maysudo cat > /usr/bin/central <<EOF
 #!/bin/bash
