@@ -36,9 +36,9 @@ $maysudo=""
 
 if [ "$is_root" = "false" ]
    then
-      $maysudo="sudo"
+      maysudo="sudo"
    else
-      $maysudo=""
+      maysudo=""
 fi
 
 cat << "EOF"

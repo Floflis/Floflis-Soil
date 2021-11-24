@@ -25,9 +25,9 @@ $maysudo=""
 
 if [ "$is_root" = "false" ]
    then
-      $maysudo="sudo"
+      maysudo="sudo"
    else
-      $maysudo=""
+      maysudo=""
 fi
 
 #- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
