@@ -813,6 +813,8 @@ $maysudo apt update
 $maysudo apt install cinnamon-desktop-environment
 #https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
 
+$maysudo apt --fix-broken install
+
 echo "Installing Cinnamon applets, desklets and extensions..."
 tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
 $maysudo rsync -av cinnamon/. /usr/share/cinnamon
@@ -1200,3 +1202,10 @@ echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cut
 unzip include/nerdyfonts/FantasqueSansMono.zip
 $maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
 #sudo mv *.otf *.OTF /usr/share/fonts/opentype
+
+$maysudo apt --fix-broken install
+
+echo "Installing Etcher (you are still great, Rufus)..."
+if [ "$flofarch" = "amd64" ]; then
+   $maysudo dpkg -i include/deb\ packages/balena-etcher-electron_1.6.0_amd64.deb
+fi
