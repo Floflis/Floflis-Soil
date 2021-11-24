@@ -94,8 +94,8 @@ echo "Installing GDevelop..."
 #fi
 
 if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/gdevelop.tar.gz
-   mv -f gdevelop /1/apps
+   tar -xzf include/gdevelop_amd64.tar.gz
+   $maysudo rsync -av gdevelop /1/apps
    chmod +x /1/apps/gdevelop/gdevelop
    #rm -rf gdevelop
    $maysudo cat > /usr/bin/gdevelop <<EOF
