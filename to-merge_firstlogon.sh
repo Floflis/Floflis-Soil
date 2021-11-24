@@ -90,6 +90,9 @@ startup = [
 prompt = "starship_prompt"
 EOF
 
+echo "Preparing to create your ETH address..."
+bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
+
 echo "Installing Uniswap..."
 tar -xzf include/uniswap.tar.gz
 mv -f uniswap /1/apps
