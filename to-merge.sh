@@ -261,7 +261,7 @@ if [ -e /usr/share/icons/Yaru ]; then
        # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
        echo "de-duplicing some icons in Yaru..."
        echo "de-duplicing some icons in Yaru/apps..."
-       sudo cp -f include/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
+       $maysudo cp -f include/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/256x256@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/256x256/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/48x48@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
@@ -274,7 +274,7 @@ if [ -e /usr/share/icons/Yaru ]; then
        cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        #cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
        cd "$SCRIPTPATH"
-       sudo rm -f /tmp/to-merge_floflis-icons.sh
+       $maysudo rm -f /tmp/to-merge_floflis-icons.sh
 fi
 
 echo "Installing icon for Explorer..."
@@ -665,8 +665,8 @@ $maysudo cat > /usr/share/mime/packages/x-game.xml <<EOF
 </mime-info>
 
 EOF
-sudo update-mime-database /usr/share/mime
-sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
+$maysudo update-mime-database /usr/share/mime
+$maysudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 
 echo "Installing backgrounds..."
 $maysudo mkdir /usr/share/backgrounds/ubuntu
@@ -1145,12 +1145,12 @@ Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
 EOF
 
 echo "Updating default background..."
-sudo mkdir /usr/share/wallpapers/FuturePrototype/debian
-sudo mv /usr/share/wallpapers/FuturePrototype/contents /usr/share/wallpapers/FuturePrototype/debian/contents
-sudo mkdir /usr/share/wallpapers/FuturePrototype/contents
-sudo mkdir /usr/share/wallpapers/FuturePrototype/contents/images
-sudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/share/wallpapers/FuturePrototype/debian/gnome-background.xml
-sudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
+$maysudo mkdir /usr/share/wallpapers/FuturePrototype/debian
+$maysudo mv /usr/share/wallpapers/FuturePrototype/contents /usr/share/wallpapers/FuturePrototype/debian/contents
+$maysudo mkdir /usr/share/wallpapers/FuturePrototype/contents
+$maysudo mkdir /usr/share/wallpapers/FuturePrototype/contents/images
+$maysudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/share/wallpapers/FuturePrototype/debian/gnome-background.xml
+$maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
 
 echo "Installing nushell..."
 tar -xzf include/nu_0_39_0_linux.tar.gz
@@ -1196,7 +1196,7 @@ if [ "$flofarch" = "amd64" ]; then
 fi
 
 echo "Installing unzip..."
-sudo apt install unzip
+$maysudo apt install unzip
 
 echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cute <3)..."
 unzip include/nerdyfonts/FantasqueSansMono.zip
