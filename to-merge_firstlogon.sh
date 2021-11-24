@@ -87,6 +87,9 @@ EOF
 dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles
 rm -f /tmp/org-gnome-terminal-legacy-profiles
 
+echo "Setting up Cinnamon data..."
+tar -C /home/${flouser}/.cinnamon/configs -xzf include/home-daniella-.cinnamon-configs.tar.gz
+
 echo "Installing Starship..."
 shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
