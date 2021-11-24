@@ -1211,7 +1211,10 @@ if [ "$flofarch" = "amd64" ]; then
 fi
 
 echo "Installing Audacity (12.0 MB download; 52.2 MB installed)..."
-sudo apt install audacity
+$maysudo apt install audacity
 
 echo "Installing OBS (17.0 MB download; 85.8 MB installed)..."
-sudo apt install obs-studio
+$maysudo apt install obs-studio
+
+echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
+$maysudo apt install gnome-games-app
