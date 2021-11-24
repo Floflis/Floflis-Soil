@@ -1210,5 +1210,8 @@ if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/balena-etcher-electron_1.6.0_amd64.deb
 fi
 
-echo "Installing Audacity..."
+echo "Installing Audacity (12.0 MB download; 52.2 MB installed)..."
 sudo apt install audacity
+
+echo "Installing OBS (17.0 MB download; 85.8 MB installed)..."
+sudo apt install obs-studio
