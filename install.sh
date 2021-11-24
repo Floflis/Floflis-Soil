@@ -32,7 +32,7 @@ if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
       is_root=true
 fi
 
-$maysudo=""
+maysudo=""
 
 if [ "$is_root" = "false" ]
    then

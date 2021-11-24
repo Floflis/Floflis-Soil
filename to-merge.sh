@@ -21,7 +21,7 @@ if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
       is_root=true
 fi
 
-$maysudo=""
+maysudo=""
 
 if [ "$is_root" = "false" ]
    then
@@ -97,7 +97,7 @@ if [ "$flofarch" = "amd64" ]; then
    tar -xzf include/gdevelop_amd64.tar.gz
    $maysudo rsync -av gdevelop /1/apps
    chmod +x /1/apps/gdevelop/gdevelop
-   #rm -rf gdevelop
+   rm -rf gdevelop
    $maysudo cat > /usr/bin/gdevelop <<EOF
 #!/bin/bash
 
