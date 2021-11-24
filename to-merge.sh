@@ -1209,3 +1209,6 @@ echo "Installing Etcher (you are still great, Rufus)..."
 if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/balena-etcher-electron_1.6.0_amd64.deb
 fi
+
+echo "Installing Audacity..."
+sudo apt install audacity
