@@ -128,7 +128,7 @@ ipfs get $(ethereal ens contenthash get --domain=uniswap.eth) --output=/1/apps/u
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
-ipfs-desktop
+ipfsdaemon
 xdg-open ipns://uniswap.eth
 EOF
 $maysudo chmod +x /usr/bin/uniswap
@@ -199,7 +199,7 @@ ipfs get $(ethereal ens contenthash get --domain=aragon.plasmmer.eth) --output=/
 $maysudo cat > /usr/bin/aragon <<EOF
 #!/bin/bash
 
-ipfs-desktop
+ipfsdaemon
 #xdg-open ipns://aragon.plasmmer.eth
 xdg-open https://aragon.plasmmer.com #until IPFS issue is fixed
 EOF
