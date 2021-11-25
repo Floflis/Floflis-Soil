@@ -55,6 +55,19 @@ $maysudo chmod +x /usr/bin/neofetch
 #xdotool key Ctrl+d
 # on Cubic, need to have IPFS running on host - until its fixed
 
+# HOME LAYER -->
+# Install IPFS-Desktop:
+echo "Installing IPFS Desktop..."
+if [ "$flofarch" = "amd64" ]; then
+   $maysudo dpkg -i include/deb\ packages/ipfs-desktop-0.17.0-linux-amd64.deb
+   rm -f /opt/IPFS\ Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs && sudo ln -s /usr/bin/ipfs /opt/IPFS\ Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs
+   $maysudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
+ipfs-desktop
+ENDOFFILE
+   $maysudo chmod +x /usr/bin/ipfsdaemon
+fi
+# <-- HOME LAYER
+
 echo "Installing ipfs-handle..." #this doesnt works yet
 $maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
 [Desktop Entry]
