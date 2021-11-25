@@ -44,9 +44,9 @@ echo "Installing neofetch..."
 $maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
 $maysudo chmod +x /usr/bin/neofetch
 
-echo "Installing xdotool..."
-$maysudo apt install xdotool
-echo "Is xdotool still useful?" # inspire on how firedoge is installed and how it opens an app without blocking the rest of script
+#echo "Installing xdotool..."
+#$maysudo apt install xdotool
+#echo "Is xdotool still useful?" # inspire on how firedoge is installed and how it opens an app without blocking the rest of script
 
 #ipfs init
 ##bash ipfsdaemon > ipfs.log &
