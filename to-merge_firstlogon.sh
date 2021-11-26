@@ -1,5 +1,7 @@
 #!/bin/bash
 
+flouser=$(jq -r '.name' /1/config/user.json)
+
 echo "Building your desktop experience..."
 cat >> /tmp/org-cinnamon <<EOF
 [/]
