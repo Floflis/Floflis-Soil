@@ -1181,6 +1181,7 @@ rm -f install.sh
 rm -f README.md
 rm -f shit
 rm -f .gitmeta
+sudo apt install curl
 cd "$SCRIPTPATH"
 
 echo "Installing Pijul VCS (you did great, elder git)..."
