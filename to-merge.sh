@@ -1234,3 +1234,6 @@ $maysudo apt install obs-studio
 
 echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
+
+$maysudo mkdir /usr/lib/floflis/layers/soil/include
+$maysudo rsync -av include/to-merge_firstlogon/ /usr/lib/floflis/layers/soil/include/to-merge_firstlogon

@@ -88,7 +88,7 @@ dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d
 rm -f /tmp/org-gnome-terminal-legacy-profiles
 
 echo "Setting up Cinnamon data..."
-tar -C /home/${flouser}/.cinnamon/configs -xzf include/home-daniella-.cinnamon-configs.tar.gz
+tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/home-daniella-.cinnamon-configs.tar.gz
 
 echo "Installing Starship..."
 shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
@@ -108,7 +108,7 @@ echo "Preparing to create your ETH address..."
 bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 
 echo "Installing Uniswap..."
-tar -xzf include/uniswap.tar.gz
+tar -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/uniswap.tar.gz
 mv -f uniswap /1/apps
 #ipfs pin add $(ipfs dns uniswap.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth)
@@ -145,7 +145,7 @@ Keywords=swap;exchange;tokens;ethereum;
 EOF
 
 echo "Installing Hop protocol..."
-tar -xzf include/hop.tar.gz
+tar -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/hop.tar.gz
 mv -f hop /1/apps
 #ipfs add $(ipfs dns hop.mirroring.eth)
 #ipfs pin add $(ipfs dns hop.mirroring.eth)
@@ -181,7 +181,7 @@ Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-cha
 EOF
 
 echo "Installing Aragon..."
-tar -xzf include/aragon.tar.gz
+tar -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/aragon.tar.gz
 mv -f aragon /1/apps
 #ipfs add $(ipfs dns aragon.plasmmer.eth)
 #ipfs pin add $(ipfs dns aragon.plasmmer.eth)
