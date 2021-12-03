@@ -1187,8 +1187,10 @@ cd "$SCRIPTPATH"
 echo "Installing Pijul VCS (you did great, elder git)..."
 if [ "$flofarch" = "amd64" ]; then
    tar -xzf include/pijul.tar.gz
-   $maysudo mv -f pijul  /usr/bin/pijul
+   $maysudo mv -f pijul /usr/bin/pijul
    $maysudo chmod +x /usr/bin/pijul
+   $maysudo mv -f libpijul_macros.so /usr/bin/libpijul_macros.so
+   $maysudo chmod +x /usr/bin/libpijul_macros.so
 fi
 
 if [ "$flofarch" = "amd64" ]; then
