@@ -2,6 +2,8 @@
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+flouser=$(logname)
+
 unameOutM="$(uname -m)"
 case "${unameOutM}" in
     i286)   flofarch="286";;
@@ -1117,10 +1119,14 @@ $maysudo cat > /1/bulbasaur.json <<EOF
 }
 EOF
 
+echo "Installing NodeJS..."
+$maysudo apt-get install nodejs npm -y
+
 echo "Installing global shared NodeJS modules..."
 $maysudo mkdir /1/Floflis
 $maysudo mkdir /1/Floflis/libs
 tar -C /1/Floflis/libs -xzf include/node_modules.tar.gz
+$maysudo chmod -R a+rwX /1/Floflis/libs/node_modules && $maysudo chown ${flouser}:${flouser} /1/Floflis/libs/node_modules
 cd /1/Floflis/libs
 npm install
 cd "$SCRIPTPATH"
@@ -1166,10 +1172,10 @@ $maysudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/shar
 $maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
 
 echo "Installing nushell..."
-tar -xzf include/nu_0_39_0_linux.tar.gz
-$maysudo mv -f nu_0_39_0_linux/nushell-0.39.0/nu /bin/nu
+tar -xzf include/nu_0_40_0_linux.tar.gz
+$maysudo mv -f nu_0_40_0_linux/nushell-0.40.0/nu /bin/nu
 $maysudo chmod +x /bin/nu
-rm -rf nu_0_39_0_linux
+rm -rf nu_0_40_0_linux
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 chsh -s /bin/nu
 
