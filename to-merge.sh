@@ -1195,8 +1195,9 @@ if [ "$flofarch" = "amd64" ]; then
    tar -xzf include/pijul.tar.gz
    $maysudo mv -f pijul /usr/bin/pijul
    $maysudo chmod +x /usr/bin/pijul
-   $maysudo mv -f libpijul_macros.so /usr/bin/libpijul_macros.so
-   $maysudo chmod +x /usr/bin/libpijul_macros.so
+   $maysudo mv -f libpijul_macros.so /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
+   $maysudo chmod +x /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
+   $maysudo mv libxxhash* -f /usr/lib/x86_64-linux-gnu
 fi
 
 if [ "$flofarch" = "amd64" ]; then
