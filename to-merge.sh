@@ -1119,6 +1119,9 @@ $maysudo cat > /1/bulbasaur.json <<EOF
 }
 EOF
 
+#gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
+#(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
+
 echo "Installing NodeJS..."
 $maysudo apt-get install nodejs npm -y
 
@@ -1126,10 +1129,11 @@ echo "Installing global shared NodeJS modules..."
 $maysudo mkdir /1/Floflis
 $maysudo mkdir /1/Floflis/libs
 tar -C /1/Floflis/libs -xzf include/node_modules.tar.gz
-$maysudo chmod -R a+rwX /1/Floflis/libs/node_modules && $maysudo chown ${flouser}:${flouser} /1/Floflis/libs/node_modules
 cd /1/Floflis/libs
 npm install
-cd "$SCRIPTPATH"
+$maysudo chmod -R a+rwX /1/Floflis/libs/node_modules && $maysudo chown ${flouser}:${flouser} /1/Floflis/libs/node_modules
+npm install
+#cd "$SCRIPTPATH"
 echo "They'll be useful for Floflis Central and other apps/games made with the C2 engine."
 
 echo "Installing game-engines lib folder..."

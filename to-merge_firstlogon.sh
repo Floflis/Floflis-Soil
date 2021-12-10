@@ -78,15 +78,6 @@ EOF
 dconf load /org/nemo/desktop/ < /tmp/org-nemo-desktop
 rm -f /tmp/org-nemo-desktop
 
-cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
-[/]
-bold-is-bright=true
-font='FantasqueSansMono Nerd Font 12'
-use-system-font=false
-EOF
-dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles
-rm -f /tmp/org-gnome-terminal-legacy-profiles
-
 echo "Setting up Cinnamon data..."
 tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/home-daniella-.cinnamon-configs.tar.gz
 
