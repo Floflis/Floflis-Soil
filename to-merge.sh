@@ -58,6 +58,8 @@ rm -f neofetch.1
 rm -f README.md
 rm -f .travis.yml
 cd "$SCRIPTPATH"
+echo "Testing if neofetch works:"
+neofetch
 
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool
@@ -881,8 +883,8 @@ if [ "$flofarch" = "amd64" ]; then
    $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
    chmod +x /usr/bin/geth
    rm -rf geth-linux-amd64-1.10.11-7231b3ef
-   #echo "Testing if geth works:"
-   #geth &
+   echo "Testing if geth works:"
+   geth -h
 fi
 
 echo "Fixing Terminal's name..."
@@ -1017,9 +1019,13 @@ EOF
        echo "Installing git-LFS..."
              if [ "$flofarch" = "386" ]; then
           $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+          echo "Testing if git-LFS works:"
+          git lfs
  fi
        if [ "$flofarch" = "amd64" ]; then
           $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+          echo "Testing if git-LFS works:"
+          git lfs
  fi
        break ;;
     *)
@@ -1187,6 +1193,9 @@ $maysudo chmod +x /bin/nu
 rm -rf nu_0_40_0_linux
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 chsh -s /bin/nu
+#echo "Testing if nushell works:"
+#nu
+# introduce in next build
 
 echo "Installing Sh it..."
 cd include/shexec
@@ -1207,6 +1216,8 @@ if [ "$flofarch" = "amd64" ]; then
    $maysudo mv -f libpijul_macros.so /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
    $maysudo chmod +x /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
    $maysudo mv libxxhash* -f /usr/lib/x86_64-linux-gnu
+   echo "Testing if Pijul works:"
+   pijul
 fi
 
 if [ "$flofarch" = "amd64" ]; then
@@ -1217,14 +1228,20 @@ if [ "$flofarch" = "amd64" ]; then
    $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gixp  /usr/bin/gixp
    $maysudo chmod +x /usr/bin/gixp
    rm -rf gix-max-v0.10.0-x86_64-unknown-linux-musl
+   echo "Testing if gix works:"
+   gix
 fi
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
    $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
+   echo "Testing if Hugo works:"
+   hugo -h
 fi
 if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.89.2_Linux-64bit.deb
+   echo "Testing if Hugo works:"
+   hugo -h
 fi
 
 echo "Installing unzip..."
@@ -1310,5 +1327,7 @@ rm -f tasks.txt
 rm -f .gitignore
 rm -f .gitmeta
 cd "$SCRIPTPATH"
+echo "Testing if 01 works:"
+01
 
 $maysudo apt --fix-broken install
