@@ -1266,4 +1266,19 @@ rm -f README.txt
 rm -f online
 cd "$SCRIPTPATH"
 
+echo "Installing mlq..."
+cd include/mlq
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f README.md
+rm -f mlq
+rm -f dependencies.txt
+rm -f mlq-parser.sh
+rm -f mlq-parser_worker.sh
+rm -f sample.html
+rm -f Tasks.txt
+rm -f .gitmeta
+cd "$SCRIPTPATH"
+
 $maysudo apt --fix-broken install
