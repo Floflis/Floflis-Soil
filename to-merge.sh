@@ -1230,8 +1230,6 @@ unzip include/nerdyfonts/FantasqueSansMono.zip
 $maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
 #sudo mv *.otf *.OTF /usr/share/fonts/opentype
 
-$maysudo apt --fix-broken install
-
 echo "Installing Etcher (you are still great, Rufus)..."
 if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/balena-etcher-electron_1.6.0_amd64.deb
@@ -1248,3 +1246,5 @@ $maysudo apt install gnome-games-app
 
 $maysudo mkdir /usr/lib/floflis/layers/soil/include
 $maysudo rsync -av include/to-merge_firstlogon/ /usr/lib/floflis/layers/soil/include/to-merge_firstlogon
+
+$maysudo apt --fix-broken install
