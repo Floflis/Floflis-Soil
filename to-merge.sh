@@ -1305,4 +1305,18 @@ rm -f readme.md
 rm -f screenshot.png
 cd "$SCRIPTPATH"
 
+echo "Installing 01 VCS..."
+cd include/01
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f 01
+rm -f git
+rm -f README.md
+rm -f recipe.json
+rm -f tasks.txt
+rm -f .gitignore
+rm -f .gitmeta
+cd "$SCRIPTPATH"
+
 $maysudo apt --fix-broken install
