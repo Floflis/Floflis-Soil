@@ -1158,15 +1158,7 @@ echo "Having common libs, C2 games/apps will be smaller to download (also to sto
 echo "Installing Floflis Central..."
 tar -C /1/apps -xzf include/central.tar.gz
 $maysudo mv /usr/bin/central /usr/lib/floflis/layers/core
-$maysudo cat > /usr/bin/central <<EOF
-#!/bin/bash
-
-if [ x$DISPLAY != x ] ; then
-   cd /1/apps/central && npm start
-   else
-      bash /usr/lib/floflis/layers/core/central
-fi
-EOF
+$maysudo cp -f to-merge/central /usr/bin/central
 $maysudo chmod +x /usr/bin/central
 $maysudo cat > /usr/share/applications/central.desktop <<EOF
 [Desktop Entry]
