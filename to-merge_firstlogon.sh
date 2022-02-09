@@ -104,6 +104,7 @@ shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
 
 echo "Adding Starship to nushell..."
+mkdir /home/${flouser}/.config/nu
 cat >> /home/${flouser}/.config/nu/config.toml <<EOF
 startup = [
  "mkdir ~/.cache/starship",
