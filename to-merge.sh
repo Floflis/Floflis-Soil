@@ -43,8 +43,21 @@ $maysudo cat > /etc/floflis-release <<EOF
 EOF
 
 echo "Installing neofetch..."
-$maysudo cp -f include/neofetch/neofetch /usr/bin/neofetch
+sudo mkdir /usr/lib/neofetch
+cd include/neofetch
+git checkout -f
+sudo cp -r -f --preserve=all . /usr/lib/neofetch
+$maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
 $maysudo chmod +x /usr/bin/neofetch
+rm -rf .github #use noah to exclude everything except .git
+rm -f CONTRIBUTING.md
+rm -f LICENSE.md
+rm -f Makefile
+rm -f neofetch
+rm -f neofetch.1
+rm -f README.md
+rm -f .travis.yml
+cd "$SCRIPTPATH"
 
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool
@@ -1187,7 +1200,7 @@ echo "Installing Sh it..."
 cd include/shexec
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh
+rm -f install.sh #use noah to exclude everything except .git
 rm -f README.md
 rm -f shit
 rm -f .gitmeta
