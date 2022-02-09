@@ -1257,7 +1257,13 @@ $maysudo apt install obs-studio
 echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
 
-#$maysudo mkdir /usr/lib/floflis/layers/soil/include
-#$maysudo rsync -av include/to-merge_firstlogon/ /usr/lib/floflis/layers/soil/include/to-merge_firstlogon
+echo "Installing online..."
+cd include/online
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f README.txt
+rm -f online
+cd "$SCRIPTPATH"
 
 $maysudo apt --fix-broken install
