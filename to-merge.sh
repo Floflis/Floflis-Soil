@@ -1281,4 +1281,15 @@ rm -f Tasks.txt
 rm -f .gitmeta
 cd "$SCRIPTPATH"
 
+echo "Installing ethgas..."
+cd include/ethgas
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f ethgas
+rm -f gas-pump.svg
+rm -f gas-pump-symbolic.svg
+rm -f .gitmeta
+cd "$SCRIPTPATH"
+
 $maysudo apt --fix-broken install
