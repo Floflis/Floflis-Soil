@@ -70,19 +70,19 @@ ENDOFFILE
 fi
 # <-- HOME LAYER
 
-echo "Installing ipfs-handle..." #this doesnt works yet
-$maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
-[Desktop Entry]
-Type=Application
-Name=Handler for ipfs:// URIs
-Exec=xdg-open %u
-StartupNotify=false
-MimeType=x-scheme-handler/ipfs;
-EOF
-$maysudo cat >> /usr/share/applications/x-cinnamon-mimeapps.list <<EOF
-x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;
-EOF
-echo "ipfs-handle doesn't works, yet."
+#echo "Installing ipfs-handle..." #this doesnt works yet
+#$maysudo cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
+#[Desktop Entry]
+#Type=Application
+#Name=Handler for ipfs:// URIs
+#Exec=xdg-open %u
+#StartupNotify=false
+#MimeType=x-scheme-handler/ipfs;
+#EOF
+#$maysudo cat >> /usr/share/applications/x-cinnamon-mimeapps.list <<EOF
+#x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;
+#EOF
+#echo "ipfs-handle doesn't works, yet."
 
 echo "Installing Finance category..." #this doesnt works yet
 $maysudo cat > /usr/share/desktop-directories/Finance.directory <<EOF
