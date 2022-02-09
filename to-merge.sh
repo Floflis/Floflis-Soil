@@ -1292,4 +1292,17 @@ rm -f gas-pump-symbolic.svg
 rm -f .gitmeta
 cd "$SCRIPTPATH"
 
+echo "Installing Witchcraft Candy Colors..."
+cd include/witchcraft-candy-colors
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -rf colors
+rm -rf src
+rm -f INSTALL.md
+rm -f LICENSE
+rm -f readme.md
+rm -f screenshot.png
+cd "$SCRIPTPATH"
+
 $maysudo apt --fix-broken install
