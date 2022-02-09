@@ -1146,7 +1146,7 @@ cd /1/Floflis/libs
 npm install
 $maysudo chmod -R a+rwX /1/Floflis/libs/node_modules && $maysudo chown ${flouser}:${flouser} /1/Floflis/libs/node_modules
 npm install
-#cd "$SCRIPTPATH"
+cd "$SCRIPTPATH"
 echo "They'll be useful for Floflis Central and other apps/games made with the C2 engine."
 
 echo "Installing game-engines lib folder..."
