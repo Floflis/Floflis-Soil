@@ -1,5 +1,23 @@
 #!/bin/bash
 
+is_root=false
+
+if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
+   then
+      is_root=false
+   else
+      is_root=true
+fi
+
+maysudo=""
+
+if [ "$is_root" = "false" ]
+   then
+      maysudo="sudo"
+   else
+      maysudo=""
+fi
+
 echo "Building your desktop experience..."
 cat >> /tmp/org-cinnamon <<EOF
 [/]
@@ -79,7 +97,7 @@ dconf load /org/nemo/desktop/ < /tmp/org-nemo-desktop
 rm -f /tmp/org-nemo-desktop
 
 echo "Setting up Cinnamon data..."
-tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/home-daniella-.cinnamon-configs.tar.gz
+tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
 
 echo "Installing Starship..."
 shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
@@ -99,7 +117,7 @@ echo "Preparing to create your ETH address..."
 bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 
 echo "Installing Uniswap..."
-tar -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/uniswap.tar.gz
+tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.tar.gz
 mv -f uniswap /1/apps
 #ipfs pin add $(ipfs dns uniswap.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth)
@@ -136,7 +154,7 @@ Keywords=swap;exchange;tokens;ethereum;
 EOF
 
 echo "Installing Hop protocol..."
-tar -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/hop.tar.gz
+tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.tar.gz
 mv -f hop /1/apps
 #ipfs add $(ipfs dns hop.mirroring.eth)
 #ipfs pin add $(ipfs dns hop.mirroring.eth)
@@ -172,7 +190,7 @@ Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-cha
 EOF
 
 echo "Installing Aragon..."
-tar -xzf /usr/lib/floflis/layers/soil/include/to-merge_firstlogon/aragon.tar.gz
+tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.tar.gz
 mv -f aragon /1/apps
 #ipfs add $(ipfs dns aragon.plasmmer.eth)
 #ipfs pin add $(ipfs dns aragon.plasmmer.eth)
@@ -207,5 +225,7 @@ Categories=Office;Finance;Ethereum;
 Keywords=daos;govern;governance;organizations;decentralized;autonomous;tokens;ethereum;xdai;polygon
 EOF
 $maysudo mkdir /1/img/humanrepresentation
-ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
-ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
+$maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
+$maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
+
+$maysudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
