@@ -229,4 +229,7 @@ $maysudo mkdir /1/img/humanrepresentation
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
+cd /home/${flouser} && ln -s .local/share/nu/history.txt .nu_history
+
+
 $maysudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
