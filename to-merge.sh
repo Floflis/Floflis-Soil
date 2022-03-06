@@ -813,6 +813,7 @@ $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
 $maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
 
+# BASE LAYER -->
 # Base sounds
 $maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volume.ogg
 $maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
@@ -828,7 +829,9 @@ $maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds
 $maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
 $maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
 $maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
+# <-- BASE LAYER
 
+# HOME LAYER -->
 # Home sounds patch
 $maysudo cp -f include/sounds/Base/Home/Dialog.ogg /1/sounds/Dialog.ogg
 $maysudo cp -f include/sounds/Base/Home/Navigation.ogg /1/sounds/Navigation.ogg
@@ -836,6 +839,7 @@ $maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.
 $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
 $maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogg
+# <-- HOME LAYER
 
 echo "Installing Cinnamon 4.8..."
 $maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
@@ -1155,12 +1159,15 @@ npm install
 cd "$SCRIPTPATH"
 echo "They'll be useful for Floflis Central and other apps/games made with the C2 engine."
 
+# HOME LAYER -->
 echo "Installing game-engines lib folder..."
 $maysudo mkdir /1/Floflis/libs/game-engines
 echo "Installing C2 common libs..."
 tar -C /1/Floflis/libs/game-engines -xzf include/Floflis_libs_game-engines_c2.tar.gz
 echo "Having common libs, C2 games/apps will be smaller to download (also to store locally)!"
+# <-- HOME LAYER
 
+# HOME LAYER -->
 echo "Installing Floflis Central..."
 tar -C /1/apps -xzf include/central.tar.gz
 $maysudo mv /usr/bin/central /usr/lib/floflis/layers/core
@@ -1177,6 +1184,7 @@ Icon=central
 Categories=System;
 Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
 EOF
+# <-- HOME LAYER
 
 echo "Updating default background..."
 $maysudo mkdir /usr/share/wallpapers/FuturePrototype/debian
@@ -1252,10 +1260,12 @@ unzip include/nerdyfonts/FantasqueSansMono.zip
 $maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
 #sudo mv *.otf *.OTF /usr/share/fonts/opentype
 
+# HOME LAYER -->
 echo "Installing Etcher (you are still great, Rufus)..."
 if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/balena-etcher-electron_1.6.0_amd64.deb
 fi
+# <-- HOME LAYER
 
 echo "Installing Audacity (12.0 MB download; 52.2 MB installed)..."
 $maysudo apt install audacity
@@ -1331,3 +1341,5 @@ echo "Testing if 01 works:"
 01
 
 $maysudo apt --fix-broken install
+
+$maysudo cp -f include/img/networks/ethereum.svg /1/img/networks/ethereum.svg
