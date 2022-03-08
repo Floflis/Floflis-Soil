@@ -1167,6 +1167,13 @@ tar -C /1/Floflis/libs/game-engines -xzf include/Floflis_libs_game-engines_c2.ta
 echo "Having common libs, C2 games/apps will be smaller to download (also to store locally)!"
 # <-- HOME LAYER
 
+echo "Protecting (read-only) C2 common libs..."
+#sudo chmod -R a+rwX ${D} && sudo chown root:root /1/Floflis/libs/game-engines/c2
+#sudo chown root:root /1/Floflis/libs/game-engines/c2
+#sudo chown root:root /1/Floflis/libs/game-engines/c2 #- credits: https://askubuntu.com/a/193066/1255788
+#sudo chmod -R 0444 /1/Floflis/libs/game-engines/c2 #- credits: https://www.cyberciti.biz/faq/howto-set-readonly-file-permission-in-linux-unix/
+sudo chmod -R 0555 /1/Floflis/libs/game-engines/c2 #- credits: https://www.cyberciti.biz/faq/howto-set-readonly-file-permission-in-linux-unix/
+
 # HOME LAYER -->
 echo "Installing Floflis Central..."
 tar -C /1/apps -xzf include/central.tar.gz
