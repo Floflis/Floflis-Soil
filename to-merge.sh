@@ -653,7 +653,7 @@ Name[zh_TW]=回收筒
 Exec=nemo trash:///
 EOF
 
-echo "Installing mimetypes and their icons..."
+echo "Installing mimetypes and their icons..." # this is continuously adding the same entries to /etc/mime.types and have to be fixed
 $maysudo cat >> /etc/mime.types <<EOF
 application/x-html5			        html5
 application/x-apps			        apps
