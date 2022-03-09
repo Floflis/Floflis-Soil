@@ -1180,7 +1180,7 @@ $maysudo chmod +x /usr/bin/central
 $maysudo cat > /usr/share/applications/central.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
-Name=Floflis Central
+Name=Central
 Comment=Change settings, view your Dashboard with token balances, view your Profile, etc.
 Type=Application
 Exec=central
