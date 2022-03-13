@@ -174,6 +174,9 @@ $maysudo apt install gnome-weather
 echo "Creating HTML5 apps directory..."
 $maysudo mkdir /1/apps
 
+echo "Creating HTML5 games directory..."
+$maysudo mkdir /1/games
+
 echo "Installing Decentraland weblink app..."
 $maysudo cat > /usr/bin/decentraland <<EOF
 #!/bin/bash
