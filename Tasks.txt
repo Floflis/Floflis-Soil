@@ -1,7 +1,2 @@
-❯ cinnamon --version
-Cinnamon 4.8.6
-
-- Play version's sound
-
 If Ubuntu, Flof disables modem to permit Android tethering
 Floflis Fixer app
