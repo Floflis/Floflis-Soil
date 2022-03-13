@@ -177,6 +177,11 @@ $maysudo mkdir /1/apps
 echo "Creating HTML5 games directory..."
 $maysudo mkdir /1/games
 
+echo "Creating html5 directory..."
+$maysudo mkdir /1/html5
+echo "Adding Color Converter.html5..."
+cp -f include/html5/Color\ Converter.html5 /1/html5/
+
 echo "Installing Decentraland weblink app..."
 $maysudo cat > /usr/bin/decentraland <<EOF
 #!/bin/bash
