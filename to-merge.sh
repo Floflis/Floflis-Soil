@@ -1209,6 +1209,23 @@ $maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/imag
 echo "Installing nushell..."
 tar -xzf include/nu_0_44_0_linux.tar.gz
 $maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_binaryview /bin/nu_plugin_binaryview
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_chart_bar /bin/nu_plugin_chart_bar
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_chart_line /bin/nu_plugin_chart_line
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_from_bson /bin/nu_plugin_from_bson
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_from_mp4 /bin/nu_plugin_from_mp4
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_from_sqlite /bin/nu_plugin_from_sqlite
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_inc /bin/nu_plugin_inc
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_match /bin/nu_plugin_match
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_query_json /bin/nu_plugin_query_json
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_s3 /bin/nu_plugin_s3
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_selector /bin/nu_plugin_selector
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_start /bin/nu_plugin_start
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_textview /bin/nu_plugin_textview
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_to_bson /bin/nu_plugin_to_bson
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_to_sqlite /bin/nu_plugin_to_sqlite
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_tree /bin/nu_plugin_tree
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_xpath /bin/nu_plugin_xpath
 $maysudo chmod +x /bin/nu
 rm -rf nu_0_44_0_linux
 echo "/bin/nu" | $maysudo tee -a /etc/shells
