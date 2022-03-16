@@ -1207,10 +1207,10 @@ $maysudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/shar
 $maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
 
 echo "Installing nushell..."
-tar -xzf include/nu_0_40_0_linux.tar.gz
-$maysudo mv -f nu_0_40_0_linux/nushell-0.40.0/nu /bin/nu
+tar -xzf include/nu_0_44_0_linux.tar.gz
+$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
 $maysudo chmod +x /bin/nu
-rm -rf nu_0_40_0_linux
+rm -rf nu_0_44_0_linux
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 chsh -s /bin/nu
 #echo "Testing if nushell works:"
