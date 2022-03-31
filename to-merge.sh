@@ -171,8 +171,14 @@ $maysudo apt install keepassxc
 echo "Installing Weather..."
 $maysudo apt install gnome-weather
 
+echo "Installing floapps..."
 cd to-merge/include-firstlogon/floapps
 $maysudo bash install.sh
+cd "$SCRIPTPATH"
+
+echo "Installing nu-post-install..."
+cd to-merge/include-firstlogon/nu-post-install
+$maysudo sh ./post-install.sh
 cd "$SCRIPTPATH"
 
 echo "Installing Decentraland weblink app..."
