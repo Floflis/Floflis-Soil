@@ -235,4 +235,8 @@ if [ ! -f "/home/${flouser}/.face" ]; then
    mv /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/avatar.png /home/${flouser}/.face
 fi
 
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
+$maysudo bash install.sh
+cd "$SCRIPTPATH"
+
 $maysudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
