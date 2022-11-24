@@ -1,2 +1,3 @@
 If Ubuntu, Flof disables modem to permit Android tethering
 Floflis Fixer app
+/home/daniell/.cinnamon/backgrounds (add Floflis' backgrounds folder for Cinnamon)
