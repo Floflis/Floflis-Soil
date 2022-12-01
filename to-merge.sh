@@ -1,7 +1,6 @@
 #!/bin/bash
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-
 flouser=$(logname)
 
 unameOutM="$(uname -m)"
@@ -15,16 +14,13 @@ case "${unameOutM}" in
 esac
 
 is_root=false
-
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
    then
       is_root=false
    else
       is_root=true
 fi
-
 maysudo=""
-
 if [ "$is_root" = "false" ]
    then
       maysudo="sudo"
@@ -39,12 +35,11 @@ $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2112_X 'Eus
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2112_X 'Eusoumafoca'"/' /etc/lsb-release
 # have to get it from config or json
 
-$maysudo cat > /etc/floflis-release <<EOF
-EOF
+if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
 echo "Installing neofetch..."
 sudo mkdir /usr/lib/neofetch
-cd include/neofetch
+cd include/Terminal/neofetch
 git checkout -f
 sudo cp -r -f --preserve=all . /usr/lib/neofetch
 $maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
@@ -114,7 +109,7 @@ echo "Finance category doesn't works, yet."
 echo "Installing GDevelop..."
 #- x32 is not available as ethereal isn't available for x32 yet
 #      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         tar -xzf include/HTML5Apps/386.tar.gz
 #         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
 #         $maysudo mv go-ipfs/ipfs /usr/bin
 #         $maysudo rm -rf go-ipfs
@@ -122,9 +117,9 @@ echo "Installing GDevelop..."
 #         echo "Testing if IPFS works:"
 #         ipfs
 #fi
-
+#-
 if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/gdevelop_amd64.tar.gz
+   tar -xzf include/HTML5Apps/gdevelop_amd64.tar.gz
    $maysudo rsync -av gdevelop /1/apps
    chmod +x /1/apps/gdevelop/gdevelop
    rm -rf gdevelop
@@ -277,7 +272,7 @@ Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
 EOF
 
 echo "Installing icons..."
-tar -xzf include/icons/Floflis.tar.gz
+tar -xzf include/img/icons/Floflis.tar.gz
 $maysudo rsync -av Floflis /usr/share/icons
 $maysudo rm -rf Floflis
 if [ -e /tmp/cubicmode ]; then
@@ -285,7 +280,7 @@ if [ -e /tmp/cubicmode ]; then
 fi
 
 if [ ! -e /usr/share/icons/Yaru ]; then
-   tar -xzf include/icons/Yaru.tar.gz
+   tar -xzf include/img/icons/Yaru.tar.gz
    $maysudo rsync -av Yaru /usr/share/icons
    $maysudo rm -rf Yaru
 fi
@@ -298,7 +293,7 @@ if [ -e /usr/share/icons/Yaru ]; then
        # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
        echo "de-duplicing some icons in Yaru..."
        echo "de-duplicing some icons in Yaru/apps..."
-       $maysudo cp -f include/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
+       $maysudo cp -f include/img/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/256x256@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/256x256/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
        cd /usr/share/icons/ubuntu/Yaru/48x48@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
@@ -660,73 +655,76 @@ Name[zh_TW]=回收筒
 Exec=nemo trash:///
 EOF
 
-echo "Installing backgrounds..."
-$maysudo mkdir /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
-$maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu
-
-tar -xzf include/Backgrounds.tar.gz
-$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
-$maysudo rm -rf Backgrounds
-
-$maysudo cp -f include/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
+echo "Installing branding..."
+$maysudo mkdir /usr/share/cups/data/ubuntu
+$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
+$maysudo cp -f include/img/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
 
 echo "Installing installer's slideshow..."
 if [ -e /usr/share/ubiquity-slideshow ]; then
     $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
-
+#-
     $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
-
+#-
     $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
-
+#-
     $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-
-    tar -xzf include/ubiquity-slideshow.tar.gz
+#-    
+    cd include/System/ubiquity-slideshow
+    git checkout -f
+    cd ..
     $maysudo rsync -av ubiquity-slideshow /usr/share
-    $maysudo rm -rf ubiquity-slideshow
-    #$maysudo rm -rf /usr/share/ubiquity-slideshow/.git
+    cd ubiquity-slideshow
+    rm -f .gitattributes #use noah to exclude everything except .git
+    rm -rf slides
+    rm -f slideshow.conf
+    cd "$SCRIPTPATH"
 fi
-
-echo "Installing branding..."
-$maysudo mkdir /usr/share/cups/data/ubuntu
-$maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
-$maysudo cp -f include/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
 
 echo "Installing img..."
 $maysudo mkdir /1/img
-$maysudo cp -f include/img/bg.png /1/img/bg.png
+#-
+$maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
+$maysudo cp -f include/img/logo.png /1/img/logo.png
+$maysudo cp -f include/img/watermark.png /1/img/watermark.png
+#-
+$maysudo mkdir /1/img/networks
+$maysudo cp -f include/img/networks/ethereum.svg /1/img/networks/ethereum.svg
+$maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
+$maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
+#-
+$maysudo cp -f include/img/token.png /1/img/token.png
+
+echo "Installing backgrounds..."
+$maysudo cp -f include/img/Backgrounds/bg.png /1/img/bg.png
+$maysudo cp -f include/img/Backgrounds/lockscreen.png /1/img/lockscreen.png
+#-
 $maysudo mkdir /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/ubuntu
+$maysudo mv -f /usr/share/backgrounds/ryan-stone-skykomish-river.jpg /usr/share/backgrounds/ubuntu
 $maysudo cp -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu/warty-final-ubuntu.png
 $maysudo rm -f /usr/share/backgrounds/warty-final-ubuntu.png
 $maysudo ln -s /1/img/bg.png /usr/share/backgrounds/warty-final-ubuntu.png
-
-$maysudo cp -f include/img/token.png /1/img/token.png
-
-$maysudo mkdir /1/img/networks
-$maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
-$maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
-
-$maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
-
-$maysudo cp -f include/img/logo.png /1/img/logo.png
-
-$maysudo cp -f include/img/lockscreen.png /1/img/lockscreen.png
-$maysudo cp -f include/img/watermark.png /1/img/watermark.png
+#-
+tar -xzf include/img/Backgrounds/Backgrounds.tar.gz
+$maysudo rsync -av Backgrounds/. /usr/share/backgrounds
+$maysudo rm -rf Backgrounds
+#-
+$maysudo cp -f include/img/Backgrounds/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
 
 echo "Installing avatars..."
 $maysudo mkdir /usr/share/cinnamon
@@ -765,7 +763,7 @@ $maysudo mv -f /usr/share/cinnamon/faces/7_panda.png /usr/share/cinnamon/faces/c
 $maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon
 $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon
 
-tar -xzf include/Avatars.tar.gz
+tar -xzf include/img/Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
 $maysudo rm -rf Avatars
 
@@ -817,16 +815,16 @@ $maysudo rsync -av cinnamon/. /usr/share/cinnamon
 $maysudo rm -rf cinnamon
 
 echo "Installing main theme..."
-tar -xzf include/Eleganse-Floflis.tar.gz
+tar -xzf include/Theme/Eleganse-Floflis.tar.gz
 $maysudo rsync -av Eleganse-Floflis /usr/share/themes
 $maysudo rm -rf Eleganse-Floflis
 #$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
-
-tar -xzf include/Adapta.tar.gz
+#-
+tar -xzf include/Theme/Adapta.tar.gz
 $maysudo rsync -av Adapta /usr/share/themes
 $maysudo rm -rf Adapta
-
-tar -xzf include/Adapta-Nokto.tar.gz
+#-
+tar -xzf include/Theme/Adapta-Nokto.tar.gz
 $maysudo rsync -av Adapta-Nokto /usr/share/themes
 $maysudo rm -rf Adapta-Nokto
 
@@ -835,7 +833,7 @@ echo "Installing geth..."
 
 #- x32 is not available as ethereal isn't available for x32 yet
 #      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         tar -xzf include/System/ethereum/386.tar.gz
 #         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
 #         $maysudo mv go-ipfs/ipfs /usr/bin
 #         $maysudo rm -rf go-ipfs
@@ -845,7 +843,7 @@ echo "Installing geth..."
 #fi
 
 if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+   tar -xzf include/System/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
    $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
    chmod +x /usr/bin/geth
    rm -rf geth-linux-amd64-1.10.11-7231b3ef
@@ -984,12 +982,12 @@ EOF
     [yY])
        echo "Installing git-LFS..."
              if [ "$flofarch" = "386" ]; then
-          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_i386.deb
           echo "Testing if git-LFS works:"
           git lfs
  fi
        if [ "$flofarch" = "amd64" ]; then
-          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
           echo "Testing if git-LFS works:"
           git lfs
  fi
@@ -997,119 +995,56 @@ EOF
     *)
        echo "${invalid}" ;;
  esac
+ 
+echo "Installing 01 VCS..."
+cd include/VCS/01
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f 01
+rm -f git
+rm -f README.md
+rm -f recipe.json
+rm -f tasks.txt
+rm -f .gitignore
+rm -f .gitmeta
+cd "$SCRIPTPATH"
+echo "Testing if 01 works:"
+01
 
-echo "Adding bulbasaur.json..." # need to relocate
-$maysudo cat > /1/bulbasaur.json <<EOF
-{
-    "id": 1,
-    "name": "bulbasaur",
-    "base_experience": 64,
-    "height": 7,
-    "is_default": true,
-    "order": 1,
-    "weight": 69,
-    "abilities": [
-        {
-            "is_hidden": true,
-            "slot": 3,
-            "ability": {
-                "name": "chlorophyll",
-                "url": "http://localhost:8000/api/v2/ability/34/"
-            }
-        }
-    ],
-    "forms": [
-        {
-            "name": "bulbasaur",
-            "url": "http://localhost:8000/api/v2/pokemon-form/1/"
-        }
-    ],
-    "game_indices": [
-        {
-            "game_index": 1,
-            "version": {
-                "name": "white-2",
-                "url": "http://localhost:8000/api/v2/version/22/"
-            }
-        }
-    ],
-    "held_items": [],
-    "location_area_encounters": [],
-    "moves": [
-        {
-            "move": {
-                "name": "captivate",
-                "url": "http://localhost:8000/api/v2/move/445/"
-            },
-            "version_group_details": [
-                {
-                    "level_learned_at": 0,
-                    "version_group": {
-                        "name": "heartgold-soulsilver",
-                        "url": "http://localhost:8000/api/v2/version-group/10/"
-                    },
-                    "move_learn_method": {
-                        "name": "machine",
-                        "url": "http://localhost:8000/api/v2/move-learn-method/4/"
-                    }
-                },
-                {
-                    "level_learned_at": 0,
-                    "version_group": {
-                        "name": "platinum",
-                        "url": "http://localhost:8000/api/v2/version-group/9/"
-                    },
-                    "move_learn_method": {
-                        "name": "machine",
-                        "url": "http://localhost:8000/api/v2/move-learn-method/4/"
-                    }
-                },
-                {
-                    "level_learned_at": 0,
-                    "version_group": {
-                        "name": "diamond-pearl",
-                        "url": "http://localhost:8000/api/v2/version-group/8/"
-                    },
-                    "move_learn_method": {
-                        "name": "machine",
-                        "url": "http://localhost:8000/api/v2/move-learn-method/4/"
-                    }
-                }
-            ]
-        }
-    ],
-    "species": {
-        "name": "bulbasaur",
-        "url": "http://localhost:8000/api/v2/pokemon-species/1/"
-    },
-    "stats": [
-        {
-            "base_stat": 45,
-            "effort": 0,
-            "stat": {
-                "name": "speed",
-                "url": "http://localhost:8000/api/v2/stat/6/"
-            }
-        }
-    ],
-    "types": [
-        {
-            "slot": 2,
-            "type": {
-                "name": "poison",
-                "url": "http://localhost:8000/api/v2/type/4/"
-            }
-        }
-    ]
-}
-EOF
+echo "Installing Pijul VCS (you did great, elder git)..."
+if [ "$flofarch" = "amd64" ]; then
+   tar -xzf include/VCS/pijul.tar.gz
+   $maysudo mv -f pijul /usr/bin/pijul
+   $maysudo chmod +x /usr/bin/pijul
+   $maysudo mv -f libpijul_macros.so /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
+   $maysudo chmod +x /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
+   $maysudo mv libxxhash* -f /usr/lib/x86_64-linux-gnu
+   echo "Testing if Pijul works:"
+   pijul
+fi
+
+if [ "$flofarch" = "amd64" ]; then
+   echo "Installing gix (you did great, elder perl git)..."
+   tar -xzf include/VCS/gix-max-v0.10.0-x86_64-unknown-linux-musl.tar.gz
+   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gix  /usr/bin/gix
+   $maysudo chmod +x /usr/bin/gix
+   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gixp  /usr/bin/gixp
+   $maysudo chmod +x /usr/bin/gixp
+   rm -rf gix-max-v0.10.0-x86_64-unknown-linux-musl
+   echo "Testing if gix works:"
+   gix
+fi
+
+echo "Adding bulbasaur.json..."
+$maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 
 #gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
 #(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
 
 # HOME LAYER -->
 echo "Installing Floflis Central..."
-tar -C /1/apps -xzf include/central.tar.gz
+tar -C /1/apps -xzf include/HTML5Apps/central.tar.gz
 $maysudo mv /usr/bin/central /usr/lib/floflis/layers/core
 $maysudo cp -f to-merge/central /usr/bin/central
 $maysudo chmod +x /usr/bin/central
@@ -1135,7 +1070,7 @@ $maysudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/shar
 $maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
 
 echo "Installing nushell..."
-tar -xzf include/nu_0_44_0_linux.tar.gz
+tar -xzf include/Terminal/nu_0_44_0_linux.tar.gz
 $maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
 $maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_binaryview /bin/nu_plugin_binaryview
 $maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_chart_bar /bin/nu_plugin_chart_bar
@@ -1163,7 +1098,7 @@ chsh -s /bin/nu
 # introduce in next build
 
 echo "Installing Sh it..."
-cd include/shexec
+cd include/Tools/shexec
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1172,30 +1107,6 @@ rm -f shit
 rm -f .gitmeta
 sudo apt install curl
 cd "$SCRIPTPATH"
-
-echo "Installing Pijul VCS (you did great, elder git)..."
-if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/pijul.tar.gz
-   $maysudo mv -f pijul /usr/bin/pijul
-   $maysudo chmod +x /usr/bin/pijul
-   $maysudo mv -f libpijul_macros.so /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
-   $maysudo chmod +x /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
-   $maysudo mv libxxhash* -f /usr/lib/x86_64-linux-gnu
-   echo "Testing if Pijul works:"
-   pijul
-fi
-
-if [ "$flofarch" = "amd64" ]; then
-   echo "Installing gix (you did great, elder perl git)..."
-   tar -xzf include/gix-max-v0.10.0-x86_64-unknown-linux-musl.tar.gz
-   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gix  /usr/bin/gix
-   $maysudo chmod +x /usr/bin/gix
-   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gixp  /usr/bin/gixp
-   $maysudo chmod +x /usr/bin/gixp
-   rm -rf gix-max-v0.10.0-x86_64-unknown-linux-musl
-   echo "Testing if gix works:"
-   gix
-fi
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
@@ -1211,11 +1122,6 @@ fi
 
 echo "Installing unzip..."
 $maysudo apt install unzip
-
-echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cute <3)..."
-unzip include/nerdyfonts/FantasqueSansMono.zip
-$maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
-#sudo mv *.otf *.OTF /usr/share/fonts/opentype
 
 # HOME LAYER -->
 echo "Installing Etcher (you are still great, Rufus)..."
@@ -1234,7 +1140,7 @@ echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
 
 echo "Installing online..."
-cd include/online
+cd include/Tools/online
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1243,7 +1149,7 @@ rm -f online
 cd "$SCRIPTPATH"
 
 echo "Installing mlq..."
-cd include/mlq
+cd include/Tools/mlq
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1258,7 +1164,7 @@ rm -f .gitmeta
 cd "$SCRIPTPATH"
 
 echo "Installing ethgas..."
-cd include/ethgas
+cd include/Tools/ethgas
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1269,7 +1175,7 @@ rm -f .gitmeta
 cd "$SCRIPTPATH"
 
 echo "Installing Witchcraft Candy Colors..."
-cd include/witchcraft-candy-colors
+cd include/Terminal/witchcraft-candy-colors
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1281,22 +1187,9 @@ rm -f readme.md
 rm -f screenshot.png
 cd "$SCRIPTPATH"
 
-echo "Installing 01 VCS..."
-cd include/01
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f 01
-rm -f git
-rm -f README.md
-rm -f recipe.json
-rm -f tasks.txt
-rm -f .gitignore
-rm -f .gitmeta
-cd "$SCRIPTPATH"
-echo "Testing if 01 works:"
-01
+echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cute <3)..."
+unzip include/Terminal/nerdyfonts/FantasqueSansMono.zip
+$maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
+#sudo mv *.otf *.OTF /usr/share/fonts/opentype
 
 $maysudo apt --fix-broken install
-
-$maysudo cp -f include/img/networks/ethereum.svg /1/img/networks/ethereum.svg

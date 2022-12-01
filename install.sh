@@ -22,18 +22,14 @@ esac
 #         exit
 #fi
 #done
-
 is_root=false
-
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
    then
       is_root=false
    else
       is_root=true
 fi
-
 maysudo=""
-
 if [ "$is_root" = "false" ]
    then
       maysudo="sudo"
