@@ -279,9 +279,19 @@ Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
 EOF
 
 echo "Installing icons..."
-tar -xzf include/img/icons/Floflis.tar.gz
+cd include/img/icons/Floflis
+git checkout -f
+cd ..
 $maysudo rsync -av Floflis /usr/share/icons
-$maysudo rm -rf Floflis
+cd Floflis
+rm -f .gitattributes #use noah to exclude everything except .git
+rm -f tasks.txt
+rm -f 'personal research.txt'
+rm -f index.theme
+rm -f icon-theme.cache
+rm -f cursor.theme
+rm -rf 8x8 && rm -rf 8x8@2x && rm -rf 16x16 && rm -rf 16x16@2x && rm -rf 22x22 && rm -rf 24x24 && rm -rf 24x24@2x && rm -rf 32x32 && rm -rf 32x32@2x && rm -rf 48x48 && rm -rf 48x48@2x && rm -rf 64x64 && rm -rf 96x96 && rm -rf 128x128 && rm -rf 256x256 && rm -rf 256x256@2x && rm -rf 512x512 && rm -rf cursors && rm -rf scalable && rm -rf scalable-max-32
+cd "$SCRIPTPATH"
 if [ -f /tmp/cubicmode ]; then
    $maysudo rm -rf /usr/share/icons/Floflis/.git
 fi
