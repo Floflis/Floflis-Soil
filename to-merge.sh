@@ -38,7 +38,7 @@ $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 b
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
 echo "Installing neofetch..."
-sudo mkdir /usr/lib/neofetch
+if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
 cd include/Terminal/neofetch
 git checkout -f
 sudo cp -r -f --preserve=all . /usr/lib/neofetch
