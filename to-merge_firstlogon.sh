@@ -229,7 +229,7 @@ $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepre
 cd /home/${flouser} && ln -s .local/share/nu/history.txt .nu_history
 
 if [ ! -f "/home/${flouser}/.face" ]; then
-   mv /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/avatar.png /home/${flouser}/.face
+   ln -s /usr/share/cinnamon/faces/user-generic.png /home/${flouser}/.face
 fi
 
 #echo "Installing floapps..."

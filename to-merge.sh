@@ -787,6 +787,7 @@ $maysudo mv -f /usr/share/cinnamon/faces/7_lion.png /usr/share/cinnamon/faces/ci
 $maysudo mv -f /usr/share/cinnamon/faces/7_panda.png /usr/share/cinnamon/faces/cinnamon
 $maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon
 $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon
+$maysudo mv -f /usr/share/cinnamon/faces/user-generic.png /usr/share/cinnamon/faces/cinnamon
 
 tar -xzf include/img/Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
