@@ -275,7 +275,7 @@ echo "Installing icons..."
 tar -xzf include/img/icons/Floflis.tar.gz
 $maysudo rsync -av Floflis /usr/share/icons
 $maysudo rm -rf Floflis
-if [ -e /tmp/cubicmode ]; then
+if [ -f /tmp/cubicmode ]; then
    $maysudo rm -rf /usr/share/icons/Floflis/.git
 fi
 
@@ -287,7 +287,7 @@ fi
 
 if [ -e /usr/share/icons/Yaru ]; then
        echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
-       $maysudo mkdir /usr/share/icons/ubuntu
+       if [ ! -e /usr/share/icons/ubuntu ]; then $maysudo mkdir /usr/share/icons/ubuntu; fi
        $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
        $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
        # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
@@ -656,26 +656,26 @@ Exec=nemo trash:///
 EOF
 
 echo "Installing branding..."
-$maysudo mkdir /usr/share/cups/data/ubuntu
+if [ ! -e /usr/share/cups/data/ubuntu ]; then $maysudo mkdir /usr/share/cups/data/ubuntu; fi
 $maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
 $maysudo cp -f include/img/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
 
 echo "Installing installer's slideshow..."
 if [ -e /usr/share/ubiquity-slideshow ]; then
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+    if [ ! -e /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu; fi
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
 #-
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu
+    if [ ! -e /usr/share/ubiquity-slideshow/slides/icons/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu; fi
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
 #-
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu
+    if [ ! -e /usr/share/ubiquity-slideshow/slides/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu; fi
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
 #-
-    $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu
+    if [ ! -e /usr/share/ubiquity-slideshow/slides/link/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu; fi
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
@@ -693,13 +693,13 @@ if [ -e /usr/share/ubiquity-slideshow ]; then
 fi
 
 echo "Installing img..."
-$maysudo mkdir /1/img
+if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 #-
 $maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
 $maysudo cp -f include/img/logo.png /1/img/logo.png
 $maysudo cp -f include/img/watermark.png /1/img/watermark.png
 #-
-$maysudo mkdir /1/img/networks
+if [ ! -e /1/img/networks ]; then $maysudo mkdir /1/img/networks; fi
 $maysudo cp -f include/img/networks/ethereum.svg /1/img/networks/ethereum.svg
 $maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
 $maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
@@ -710,7 +710,7 @@ echo "Installing backgrounds..."
 $maysudo cp -f include/img/Backgrounds/bg.png /1/img/bg.png
 $maysudo cp -f include/img/Backgrounds/lockscreen.png /1/img/lockscreen.png
 #-
-$maysudo mkdir /usr/share/backgrounds/ubuntu
+if [ ! -e /usr/share/backgrounds/ubuntu ]; then $maysudo mkdir /usr/share/backgrounds/ubuntu; fi
 $maysudo mv -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg /usr/share/backgrounds/ubuntu
 $maysudo mv -f /usr/share/backgrounds/hardy_wallpaper_uhd.png /usr/share/backgrounds/ubuntu
 $maysudo mv -f /usr/share/backgrounds/joshua-coleman-something-yellow.jpg /usr/share/backgrounds/ubuntu
@@ -726,10 +726,18 @@ $maysudo rm -rf Backgrounds
 #-
 $maysudo cp -f include/img/Backgrounds/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
 
+echo "Updating default background..."
+if [ ! -e /usr/share/wallpapers/FuturePrototype/debian ]; then $maysudo mkdir /usr/share/wallpapers/FuturePrototype/debian; fi
+$maysudo mv /usr/share/wallpapers/FuturePrototype/contents /usr/share/wallpapers/FuturePrototype/debian/contents
+if [ ! -e /usr/share/wallpapers/FuturePrototype/contents ]; then $maysudo mkdir /usr/share/wallpapers/FuturePrototype/contents; fi
+if [ ! -e /usr/share/wallpapers/FuturePrototype/contents/images ]; then $maysudo mkdir /usr/share/wallpapers/FuturePrototype/contents/images; fi
+$maysudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/share/wallpapers/FuturePrototype/debian/gnome-background.xml
+$maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
+
 echo "Installing avatars..."
-$maysudo mkdir /usr/share/cinnamon
-$maysudo mkdir /usr/share/cinnamon/faces
-$maysudo mkdir /usr/share/cinnamon/faces/cinnamon
+if [ ! -e /usr/share/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon; fi
+if [ ! -e /usr/share/cinnamon/faces ]; then $maysudo mkdir /usr/share/cinnamon/faces; fi
+if [ ! -e /usr/share/cinnamon/faces/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon/faces/cinnamon; fi
 $maysudo mv -f /usr/share/cinnamon/faces/0_cars.jpg /usr/share/cinnamon/faces/cinnamon
 $maysudo mv -f /usr/share/cinnamon/faces/0_chess.jpg /usr/share/cinnamon/faces/cinnamon
 $maysudo mv -f /usr/share/cinnamon/faces/0_coffee.jpg /usr/share/cinnamon/faces/cinnamon
@@ -768,7 +776,7 @@ $maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
 $maysudo rm -rf Avatars
 
 echo "Installing sounds..."
-$maysudo mkdir /1/sounds
+if [ ! -e /1/sounds ]; then $maysudo mkdir /1/sounds; fi
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
 $maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
@@ -784,7 +792,7 @@ $maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ devi
 $maysudo cp -f include/sounds/Base/Starting.ogg /1/sounds/Starting.ogg
 $maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
 
-$maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu
+if [ ! -e /usr/share/sounds/Yaru/stereo/ubuntu ]; then $maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu; fi
 $maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
 $maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
 $maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
@@ -830,7 +838,6 @@ $maysudo rm -rf Adapta-Nokto
 
 # Install geth:
 echo "Installing geth..."
-
 #- x32 is not available as ethereal isn't available for x32 yet
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/System/ethereum/386.tar.gz
@@ -841,7 +848,6 @@ echo "Installing geth..."
 #         echo "Testing if IPFS works:"
 #         ipfs
 #fi
-
 if [ "$flofarch" = "amd64" ]; then
    tar -xzf include/System/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
    $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
@@ -1060,14 +1066,6 @@ Categories=System;
 Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
 EOF
 # <-- HOME LAYER
-
-echo "Updating default background..."
-$maysudo mkdir /usr/share/wallpapers/FuturePrototype/debian
-$maysudo mv /usr/share/wallpapers/FuturePrototype/contents /usr/share/wallpapers/FuturePrototype/debian/contents
-$maysudo mkdir /usr/share/wallpapers/FuturePrototype/contents
-$maysudo mkdir /usr/share/wallpapers/FuturePrototype/contents/images
-$maysudo mv /usr/share/wallpapers/FuturePrototype/gnome-background.xml /usr/share/wallpapers/FuturePrototype/debian/gnome-background.xml
-$maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
 
 echo "Installing nushell..."
 tar -xzf include/Terminal/nu_0_44_0_linux.tar.gz

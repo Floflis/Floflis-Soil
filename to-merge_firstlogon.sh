@@ -1,16 +1,13 @@
 #!/bin/bash
 
 is_root=false
-
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
    then
       is_root=false
    else
       is_root=true
 fi
-
 maysudo=""
-
 if [ "$is_root" = "false" ]
    then
       maysudo="sudo"
@@ -104,7 +101,7 @@ shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
 
 echo "Adding Starship to nushell..."
-mkdir /home/${flouser}/.config/nu
+if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi
 cat >> /home/${flouser}/.config/nu/config.toml <<EOF
 startup = [
  "mkdir ~/.cache/starship",
@@ -225,7 +222,7 @@ Icon=aragon
 Categories=Office;Finance;Ethereum;
 Keywords=daos;govern;governance;organizations;decentralized;autonomous;tokens;ethereum;xdai;polygon
 EOF
-$maysudo mkdir /1/img/humanrepresentation
+if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresentation; fi
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
