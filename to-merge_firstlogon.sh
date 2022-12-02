@@ -96,9 +96,11 @@ rm -f /tmp/org-nemo-desktop
 echo "Setting up Cinnamon data..."
 tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
 
-echo "Installing Starship..."
-shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
-echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
+#echo "Installing Starship..."
+##shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
+##curl -sS https://starship.rs/install.sh | sh
+#curl -sS https://raw.githubusercontent.com/starship/starship/master/install/install.sh | sh
+#echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
 
 echo "Adding Starship to nushell..."
 if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi

@@ -1091,6 +1091,17 @@ Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
 EOF
 # <-- HOME LAYER
 
+echo "Installing Sh it..."
+cd include/Tools/shexec
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f README.md
+rm -f shit
+rm -f .gitmeta
+sudo apt install curl
+cd "$SCRIPTPATH"
+
 echo "Installing nushell..."
 tar -xzf include/Terminal/nu_0_44_0_linux.tar.gz
 $maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
@@ -1119,16 +1130,11 @@ chsh -s /bin/nu
 #nu
 # introduce in next build
 
-echo "Installing Sh it..."
-cd include/Tools/shexec
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f README.md
-rm -f shit
-rm -f .gitmeta
-sudo apt install curl
-cd "$SCRIPTPATH"
+echo "Installing Starship..."
+#shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
+#curl -sS https://starship.rs/install.sh | sh
+curl -sS https://raw.githubusercontent.com/starship/starship/master/install/install.sh | sh
+echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
