@@ -798,7 +798,12 @@ echo "Installing sounds..."
 if [ ! -e /1/sounds ]; then $maysudo mkdir /1/sounds; fi
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
-$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/system-ready.oga
+#- Deduplicate Ubuntu's login sound
+if [ -f /usr/share/sounds/Yaru/stereo/system-ready.oga ]; then
+if [ -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then
+$maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s 'desktop-login.oga' /usr/share/sounds/Yaru/stereo/system-ready.oga
+fi
+fi
 
 # BASE LAYER -->
 # Base sounds
@@ -808,14 +813,13 @@ $maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg
 $maysudo cp -f include/sounds/Base/Manipulating\ windows.ogg /1/sounds/Manipulating\ windows.ogg
 $maysudo cp -f include/sounds/Base/Notification.ogg /1/sounds/Notification.ogg
 $maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ device.ogg
-$maysudo cp -f include/sounds/Base/Starting.ogg /1/sounds/Starting.ogg
 $maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
+$maysudo cp -f include/sounds/Base/Starting.ogx /1/sounds/Starting.ogx
 
 if [ ! -e /usr/share/sounds/Yaru/stereo/ubuntu ]; then $maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu; fi
-$maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu
-$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/desktop-login.oga
-$maysudo ln -s /1/sounds/Starting.ogg /usr/share/sounds/Yaru/stereo/system-ready.oga
+if [ -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi
+if [ -f /usr/share/sounds/Yaru/stereo/system-ready.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi
+$maysudo ln -s /1/sounds/Starting.ogx /usr/share/sounds/Yaru/stereo/desktop-login.oga
 # <-- BASE LAYER
 
 # HOME LAYER -->
@@ -825,7 +829,8 @@ $maysudo cp -f include/sounds/Base/Home/Navigation.ogg /1/sounds/Navigation.ogg
 $maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.ogg
 $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
-$maysudo rm -f /1/sounds/Starting.ogg && $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogg
+if [ -f /1/sounds/Starting.ogx ]; then $maysudo rm -f /1/sounds/Starting.ogx; fi
+$maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
 # <-- HOME LAYER
 
 echo "Installing Cinnamon 4.8..."
