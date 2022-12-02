@@ -173,7 +173,14 @@ cd "$SCRIPTPATH"
 
 echo "Installing nu-post-install..."
 cd to-merge/include-firstlogon/nu-post-install
-$maysudo sh ./post-install.sh
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -f nu-script-handler
+rm -f Tasks.txt
+rm -f .gitattributes
+rm -f .gitmeta
+rm -rf rsc
 cd "$SCRIPTPATH"
 
 echo "Installing Decentraland weblink app..."
