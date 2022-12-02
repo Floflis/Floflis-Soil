@@ -1035,7 +1035,7 @@ rm -f 01
 rm -f git
 rm -f README.md
 rm -f recipe.json
-rm -f tasks.txt
+rm -f Tasks.txt
 rm -f .gitignore
 rm -f .gitmeta
 cd "$SCRIPTPATH"
@@ -1168,6 +1168,8 @@ chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
 rm -f README.txt
 rm -f online
+rm -f README.md
+rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
 echo "Installing mlq..."
@@ -1183,6 +1185,7 @@ rm -f mlq-parser_worker.sh
 rm -f sample.html
 rm -f Tasks.txt
 rm -f .gitmeta
+rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
 echo "Installing ethgas..."
@@ -1194,6 +1197,7 @@ rm -f ethgas
 rm -f gas-pump.svg
 rm -f gas-pump-symbolic.svg
 rm -f .gitmeta
+rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
 echo "Installing Witchcraft Candy Colors..."
