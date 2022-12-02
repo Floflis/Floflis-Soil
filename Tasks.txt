@@ -1,3 +1,4 @@
+Floflis Fixer as separate repo (fixer-core, prepare for Fixer app/UI)
 If Ubuntu, Flof disables modem to permit Android tethering
-Floflis Fixer app
+
 /home/daniell/.cinnamon/backgrounds (add Floflis' backgrounds folder for Cinnamon)
