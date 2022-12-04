@@ -1138,6 +1138,7 @@ echo "Installing Starship..."
 #curl -sS https://gateway.pinata.cloud/ipfs/Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D | sh
 #curl -sS https://raw.githubusercontent.com/starship/starship/master/install/install.sh | sh
 tar -xzf include/Terminal/starship/starship-x86_64-unknown-linux-gnu.tar.gz
+$maysudo rm -f /usr/local/bin/starship
 $maysudo mv -f starship /bin/starship
 $maysudo chmod +x /bin/starship
 echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc # configure Starship for Bash
