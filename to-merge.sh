@@ -1107,6 +1107,7 @@ rm -f .gitmeta
 sudo apt install curl
 cd "$SCRIPTPATH"
 
+if [ "$flofarch" = "amd64" ]; then
 echo "Installing nushell..."
 tar -xzf include/Terminal/nushell/nu_0_44_0_linux.tar.gz
 $maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
@@ -1118,6 +1119,7 @@ chsh -s /bin/nu
 #echo "Testing if nushell works:"
 #nu
 # introduce in next build
+fi
 
 echo "Installing Witchcraft Candy Colors..."
 cd include/Terminal/witchcraft-candy-colors
@@ -1133,6 +1135,7 @@ rm -f screenshot.png
 cd "$SCRIPTPATH"
 
 echo "Installing Starship..."
+if [ "$flofarch" = "amd64" ]; then
 #shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 #curl -sS https://starship.rs/install.sh | sh
 #curl -sS https://gateway.pinata.cloud/ipfs/Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D | sh
@@ -1158,6 +1161,7 @@ echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc # configure Star
 #-
 #https://starship.rs/config/#prompt
 #https://starship.rs/presets/pastel-powerline.html
+fi
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
