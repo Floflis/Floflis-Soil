@@ -2,3 +2,5 @@ Floflis Fixer as separate repo (fixer-core, prepare for Fixer app/UI)
 If Ubuntu, Flof disables modem to permit Android tethering
 
 /home/daniell/.cinnamon/backgrounds (add Floflis' backgrounds folder for Cinnamon)
+
+Fixer will have a section to fix possible issues of Terminal not opening, by disabling starship and manually opening bash term using "gnome-terminal -- /bin/sh -c 'cd Desktop/Floflis\ ISO/timeline/Floflis\ 19/builds\ Testing\ features/NFC/Untitled\ Folder/It\ works\ -\ requires\ restart/; sh ./nfctools; exec bash'" and filing a bug report
