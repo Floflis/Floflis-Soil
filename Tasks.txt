@@ -1,3 +1,5 @@
+Load .deb and other include/ + to-merge/ files externally if these files aren't found. if not found, place flag so it know to delete files that weren't there before
+
 Floflis Fixer as separate repo (fixer-core, prepare for Fixer app/UI)
 If Ubuntu, Flof disables modem to permit Android tethering
 
