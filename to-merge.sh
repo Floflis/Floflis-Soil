@@ -1091,6 +1091,11 @@ Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
 EOF
 # <-- HOME LAYER
 
+echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cute <3)..."
+unzip include/Terminal/nerdyfonts/FantasqueSansMono.zip
+$maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
+#sudo mv *.otf *.OTF /usr/share/fonts/opentype
+
 echo "Installing Sh it..."
 cd include/Tools/shexec
 git checkout -f
@@ -1103,27 +1108,32 @@ sudo apt install curl
 cd "$SCRIPTPATH"
 
 echo "Installing nushell..."
-tar -xzf include/Terminal/nu_0_44_0_linux.tar.gz
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_binaryview /bin/nu_plugin_binaryview
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_chart_bar /bin/nu_plugin_chart_bar
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_chart_line /bin/nu_plugin_chart_line
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_from_bson /bin/nu_plugin_from_bson
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_from_mp4 /bin/nu_plugin_from_mp4
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_from_sqlite /bin/nu_plugin_from_sqlite
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_inc /bin/nu_plugin_inc
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_match /bin/nu_plugin_match
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_query_json /bin/nu_plugin_query_json
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_s3 /bin/nu_plugin_s3
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_selector /bin/nu_plugin_selector
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_start /bin/nu_plugin_start
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_textview /bin/nu_plugin_textview
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_to_bson /bin/nu_plugin_to_bson
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_to_sqlite /bin/nu_plugin_to_sqlite
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_tree /bin/nu_plugin_tree
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu_plugin_xpath /bin/nu_plugin_xpath
+tar -xzf include/Terminal/nushell/nu-0.72.0-x86_64-unknown-linux-gnu.tar.gz
+$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu /bin/nu
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_binaryview /bin/nu_plugin_binaryview
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_chart_bar /bin/nu_plugin_chart_bar
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_chart_line /bin/nu_plugin_chart_line
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_from_bson /bin/nu_plugin_from_bson
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_from_mp4 /bin/nu_plugin_from_mp4
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_from_sqlite /bin/nu_plugin_from_sqlite
+$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_inc /bin/nu_plugin_inc
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_match /bin/nu_plugin_match
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_query_json /bin/nu_plugin_query_json
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_s3 /bin/nu_plugin_s3
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_selector /bin/nu_plugin_selector
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_start /bin/nu_plugin_start
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_textview /bin/nu_plugin_textview
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_to_bson /bin/nu_plugin_to_bson
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_to_sqlite /bin/nu_plugin_to_sqlite
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_tree /bin/nu_plugin_tree
+#$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_xpath /bin/nu_plugin_xpath
+$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_custom_values /bin/nu_plugin_custom_values
+$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_example /bin/nu_plugin_example
+$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_gstat /bin/nu_plugin_gstat
+$maysudo mv -f nu-0.72.0-x86_64-unknown-linux-gnu/nu_plugin_query /bin/nu_plugin_query
+#- later: register ./nu_plugin_query
 $maysudo chmod +x /bin/nu
-rm -rf nu_0_44_0_linux
+rm -rf nu-0.72.0-x86_64-unknown-linux-gnu
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 chsh -s /bin/nu
 #echo "Testing if nushell works:"
@@ -1134,7 +1144,21 @@ echo "Installing Starship..."
 #shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 #curl -sS https://starship.rs/install.sh | sh
 curl -sS https://raw.githubusercontent.com/starship/starship/master/install/install.sh | sh
+#curl -sS https://gateway.pinata.cloud/ipfs/Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D | sh
 echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
+
+echo "Installing Witchcraft Candy Colors..."
+cd include/Terminal/witchcraft-candy-colors
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -rf colors
+rm -rf src
+rm -f INSTALL.md
+rm -f LICENSE
+rm -f readme.md
+rm -f screenshot.png
+cd "$SCRIPTPATH"
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
@@ -1205,23 +1229,5 @@ rm -f gas-pump-symbolic.svg
 rm -f .gitmeta
 rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
-
-echo "Installing Witchcraft Candy Colors..."
-cd include/Terminal/witchcraft-candy-colors
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -rf colors
-rm -rf src
-rm -f INSTALL.md
-rm -f LICENSE
-rm -f readme.md
-rm -f screenshot.png
-cd "$SCRIPTPATH"
-
-echo "Installing FantasqueSansMono font (ComicSans haters gonna hate but its cute <3)..."
-unzip include/Terminal/nerdyfonts/FantasqueSansMono.zip
-$maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
-#sudo mv *.otf *.OTF /usr/share/fonts/opentype
 
 $maysudo apt --fix-broken install
