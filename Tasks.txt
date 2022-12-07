@@ -2,6 +2,7 @@ Load .deb and other include/ + to-merge/ files externally if these files aren't 
 
 Floflis Fixer as separate repo (fixer-core, prepare for Fixer app/UI)
 If Ubuntu, Flof disables modem to permit Android tethering
+If Windows: /media/daniell/B/git/danimesq/ThisWindowsIsntAFlashdrive
 
 /home/daniell/.cinnamon/backgrounds (add Floflis' backgrounds folder for Cinnamon)
 
