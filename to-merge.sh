@@ -1074,7 +1074,17 @@ $maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 
 # HOME LAYER -->
 echo "Installing Floflis Central..."
-tar -C /1/apps -xzf include/HTML5Apps/central.tar.gz
+
+#----> merge into floflis-packager/floflis-application-handler
+tar -C /1/apps -xzf include/HTML5Apps/central.apps
+mkdir /1/apps/central
+mv -f /1/apps/manifest.webapp /1/apps/central/
+cd /1/apps/application/central
+cp -rf . /1/apps/central/
+cd ../..
+rm -rf application
+#<---- merge into floflis-packager/floflis-application-handler
+
 $maysudo mv /usr/bin/central /usr/lib/floflis/layers/core
 $maysudo cp -f to-merge/central /usr/bin/central
 $maysudo chmod +x /usr/bin/central
