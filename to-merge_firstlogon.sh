@@ -39,6 +39,7 @@ image-source='xml:///usr/share/gnome-background-properties/floflis-backgrounds.x
 cursor-theme='Floflis'
 gtk-theme='Adapta'
 icon-theme='Floflis'
+scaling-factor=uint32 0
 
 [desktop/sound]
 event-sounds=true
