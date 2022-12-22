@@ -40,6 +40,7 @@ if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 echo "Installing neofetch..."
 if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
 cd include/Terminal/neofetch
+git clone --no-checkout https://github.com/Floflis/neofetch.git .
 git checkout -f
 sudo cp -r -f --preserve=all . /usr/lib/neofetch
 $maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
@@ -168,11 +169,17 @@ $maysudo apt install gnome-weather
 
 echo "Installing floapps..."
 cd to-merge/include-firstlogon/floapps
-$maysudo bash install.sh
+git clone --no-checkout https://github.com/Floflis/floapps.git .
+git checkout -f
+#$maysudo bash install.sh
+chmod +x install.sh && $maysudo sh ./install.sh
+rm -f install.sh #use noah to exclude everything except .git
+rm -rf include
 cd "$SCRIPTPATH"
 
 echo "Installing nu-post-install..."
 cd to-merge/include-firstlogon/nu-post-install
+git clone --no-checkout https://github.com/Floflis/nu-post-install.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -280,6 +287,7 @@ EOF
 
 echo "Installing icons..."
 cd include/img/icons/Floflis
+git clone --no-checkout https://github.com/Floflis/icons.git .
 git checkout -f
 cd ..
 $maysudo rsync -av Floflis /usr/share/icons
@@ -699,6 +707,8 @@ if [ -e /usr/share/ubiquity-slideshow ]; then
     $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
 #-    
     cd include/System/ubiquity-slideshow
+    git clone --no-checkout https://github.com/Floflis/ubiquity-slideshow.git .
+#if failure, get from other sources (add to all other clonable resources)
     git checkout -f
     cd ..
     $maysudo rsync -av ubiquity-slideshow /usr/share
@@ -1028,6 +1038,7 @@ EOF
  
 echo "Installing 01 VCS..."
 cd include/VCS/01
+git clone --no-checkout https://github.com/01VCS/01.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1108,6 +1119,7 @@ $maysudo mv *.ttf *.TTF /usr/share/fonts/truetype/
 
 echo "Installing Sh it..."
 cd include/Tools/shexec
+git clone --no-checkout https://github.com/Floflis/shit.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1133,6 +1145,7 @@ fi
 
 echo "Installing Witchcraft Candy Colors..."
 cd include/Terminal/witchcraft-candy-colors
+git clone --no-checkout https://github.com/Floflis/witchcraft-candy-colors.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1206,6 +1219,7 @@ $maysudo apt install gnome-games-app
 
 echo "Installing online..."
 cd include/Tools/online
+git clone --no-checkout https://github.com/Floflis/online.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1217,6 +1231,7 @@ cd "$SCRIPTPATH"
 
 echo "Installing mlq..."
 cd include/Tools/mlq
+git clone --no-checkout https://github.com/Floflis/mlq.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
@@ -1233,6 +1248,7 @@ cd "$SCRIPTPATH"
 
 echo "Installing ethgas..."
 cd include/Tools/ethgas
+git clone --no-checkout https://github.com/Floflis/ethgas.git .
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
