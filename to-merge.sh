@@ -870,6 +870,20 @@ tar -xzf include/Theme/Adapta-Nokto.tar.gz
 $maysudo rsync -av Adapta-Nokto /usr/share/themes
 $maysudo rm -rf Adapta-Nokto
 
+echo "Installing logon design..."
+cd include/Theme/ubuntu-gdm-set-background
+git clone --no-checkout https://github.com/Floflis/ubuntu-gdm-set-background.git .
+git checkout -f
+$maysudo ./ubuntu-gdm-set-background --gradient horizontal \#F19399 \#61EACA
+#-from https://www.omgubuntu.co.uk/2022/01/change-ubuntu-login-screen-background
+rm -f ubuntu-gdm-set-background #use noah to exclude everything except .git
+rm -f README.md
+rm -f LICENSE
+cd "$SCRIPTPATH"
+#-
+if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
+$maysudo cp -f include/img/ubuntu-logo.png /usr/share/plymouth/ubuntu-logo.png
+
 # Install geth:
 echo "Installing geth..."
 #- x32 is not available as ethereal isn't available for x32 yet
