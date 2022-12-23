@@ -843,13 +843,14 @@ if [ -f /1/sounds/Starting.ogx ]; then $maysudo rm -f /1/sounds/Starting.ogx; fi
 $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
 # <-- HOME LAYER
 
-echo "Installing Cinnamon 4.8..."
-$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
-$maysudo apt update
-$maysudo apt install cinnamon-desktop-environment
-#https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
+#echo "Installing Cinnamon 4.8..."
+#$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
+#$maysudo apt update
+#$maysudo apt install cinnamon-desktop-environment
+##https://www.tecmint.com/install-cinnamon-desktop-in-ubuntu-fedora-workstations/
 
-$maysudo apt --fix-broken install
+#$maysudo apt --fix-broken install
+#- detect ubuntu cinnamon remix otherwise install cinnamon normally
 
 echo "Installing Cinnamon applets, desklets and extensions..."
 tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
