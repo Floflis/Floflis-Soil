@@ -30,6 +30,10 @@ fi
 
 #- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
 
+sudo apt-get autoremove
+sudo apt-get autoclean
+#-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
+
 #- attempt to fix Cubic's custom name:
 $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2212_X 'Eusoumafoca'"/' /usr/lib/os-release
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2212_X 'Eusoumafoca'"/' /etc/lsb-release
@@ -108,7 +112,6 @@ EOF
 echo "Finance category doesn't works, yet."
 
 echo "Installing GDevelop..."
-#- x32 is not available as ethereal isn't available for x32 yet
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/HTML5Apps/386.tar.gz
 #         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
@@ -144,12 +147,12 @@ Keywords=programming;games;event-sheet;development;
 EOF
 fi
 
-echo "Installing Money Manager Ex..." #this doesnt works yet
-$maysudo snap install mmex
-echo "Money Manager Ex doesn't works, yet."
+#echo "Installing Money Manager Ex..." #this doesnt works yet
+#$maysudo snap install mmex
+#echo "Money Manager Ex doesn't works, yet."
 
-echo "Installing Openshot video editor..."
-$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
+#echo "Installing Openshot video editor..."
+#$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
 
 echo "Installing Minetest..."
 $maysudo apt install minetest
