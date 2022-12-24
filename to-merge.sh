@@ -1175,10 +1175,11 @@ chsh -s /bin/nu
 fi
 
 echo "Installing Witchcraft Candy Colors..."
+$maysudo apt-get install dconf-cli
 cd include/Terminal/witchcraft-candy-colors
 git clone --no-checkout https://github.com/Floflis/witchcraft-candy-colors.git .
 git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
+chmod +x install.sh && ./install.sh
 rm -f install.sh #use noah to exclude everything except .git
 rm -rf colors
 rm -rf src
