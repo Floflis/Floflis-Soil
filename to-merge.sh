@@ -1055,12 +1055,14 @@ EOF
     [yY])
        echo "Installing git-LFS..."
              if [ "$flofarch" = "386" ]; then
-          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_i386.deb
+#          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_i386.deb
+          $maysudo dpkg -i include/VCS/git-LFS/git-lfs_2.9.2_i386.deb
           echo "Testing if git-LFS works:"
           git lfs
  fi
        if [ "$flofarch" = "amd64" ]; then
-          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
+#          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
+          $maysudo dpkg -i include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
           echo "Testing if git-LFS works:"
           git lfs
  fi
@@ -1068,6 +1070,7 @@ EOF
     *)
        echo "${invalid}" ;;
  esac
+#task: detect if have to use gdebi or dpkg; or always use dpkg
  
 echo "Installing 01 VCS..."
 cd include/VCS/01
