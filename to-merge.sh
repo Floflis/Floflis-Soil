@@ -893,6 +893,9 @@ $maysudo rm -rf Adapta-Nokto
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
 $maysudo cp -f include/img/ubuntu-logo.png /usr/share/plymouth/ubuntu-logo.png
 
+if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
+$maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png
+
 # Install geth:
 echo "Installing geth..."
 #- x32 is not available as ethereal isn't available for x32 yet
