@@ -31,8 +31,8 @@ fi
 #- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
 
 #- attempt to fix Cubic's custom name:
-$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2112_X 'Eusoumafoca'"/' /usr/lib/os-release
-$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2112_X 'Eusoumafoca'"/' /etc/lsb-release
+$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2212_X 'Eusoumafoca'"/' /usr/lib/os-release
+$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2212_X 'Eusoumafoca'"/' /etc/lsb-release
 # have to get it from config or json
 
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
@@ -285,54 +285,56 @@ Categories=Internet;
 Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
 EOF
 
-echo "Installing icons..."
-cd include/img/icons/Floflis
-git clone --no-checkout https://github.com/Floflis/icons.git .
-git checkout -f
-cd ..
-$maysudo rsync -av Floflis /usr/share/icons
-cd Floflis
-rm -f .gitattributes #use noah to exclude everything except .git
-rm -f tasks.txt
-rm -f 'personal research.txt'
-rm -f index.theme
-rm -f icon-theme.cache
-rm -f cursor.theme
-rm -rf 8x8 && rm -rf 8x8@2x && rm -rf 16x16 && rm -rf 16x16@2x && rm -rf 22x22 && rm -rf 24x24 && rm -rf 24x24@2x && rm -rf 32x32 && rm -rf 32x32@2x && rm -rf 48x48 && rm -rf 48x48@2x && rm -rf 64x64 && rm -rf 96x96 && rm -rf 128x128 && rm -rf 256x256 && rm -rf 256x256@2x && rm -rf 512x512 && rm -rf cursors && rm -rf scalable && rm -rf scalable-max-32
-cd "$SCRIPTPATH"
-if [ -f /tmp/cubicmode ]; then
-   $maysudo rm -rf /usr/share/icons/Floflis/.git
-fi
+# UBUNTUCINNAMON TEMPORARILY DISABLE ---->
+#echo "Installing icons..."
+#cd include/img/icons/Floflis
+#git clone --no-checkout https://github.com/Floflis/icons.git .
+#git checkout -f
+#cd ..
+#$maysudo rsync -av Floflis /usr/share/icons
+#cd Floflis
+#rm -f .gitattributes #use noah to exclude everything except .git
+#rm -f tasks.txt
+#rm -f 'personal research.txt'
+#rm -f index.theme
+#rm -f icon-theme.cache
+#rm -f cursor.theme
+#rm -rf 8x8 && rm -rf 8x8@2x && rm -rf 16x16 && rm -rf 16x16@2x && rm -rf 22x22 && rm -rf 24x24 && rm -rf 24x24@2x && rm -rf 32x32 && rm -rf 32x32@2x && rm -rf 48x48 && rm -rf 48x48@2x && rm -rf 64x64 && rm -rf 96x96 && rm -rf 128x128 && rm -rf 256x256 && rm -rf 256x256@2x && rm -rf 512x512 && rm -rf cursors && rm -rf scalable && rm -rf scalable-max-32
+#cd "$SCRIPTPATH"
+#if [ -f /tmp/cubicmode ]; then
+#   $maysudo rm -rf /usr/share/icons/Floflis/.git
+#fi
 
-if [ ! -e /usr/share/icons/Yaru ]; then
-   tar -xzf include/img/icons/Yaru.tar.gz
-   $maysudo rsync -av Yaru /usr/share/icons
-   $maysudo rm -rf Yaru
-fi
+#if [ ! -e /usr/share/icons/Yaru ]; then
+#   tar -xzf include/img/icons/Yaru.tar.gz
+#   $maysudo rsync -av Yaru /usr/share/icons
+#   $maysudo rm -rf Yaru
+#fi
 
-if [ -e /usr/share/icons/Yaru ]; then
-       echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
-       if [ ! -e /usr/share/icons/ubuntu ]; then $maysudo mkdir /usr/share/icons/ubuntu; fi
-       $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
-       $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
-       # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
-       echo "de-duplicing some icons in Yaru..."
-       echo "de-duplicing some icons in Yaru/apps..."
-       $maysudo cp -f include/img/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/256x256@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/256x256/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/48x48@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/48x48/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/32x32@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/32x32/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/24x24@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/24x24/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/16x16@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-       #cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
-       cd "$SCRIPTPATH"
-       $maysudo rm -f /tmp/to-merge_floflis-icons.sh
-fi
+#if [ -e /usr/share/icons/Yaru ]; then
+#       echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
+#       if [ ! -e /usr/share/icons/ubuntu ]; then $maysudo mkdir /usr/share/icons/ubuntu; fi
+#       $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
+#       $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
+#       # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
+#       echo "de-duplicing some icons in Yaru..."
+#       echo "de-duplicing some icons in Yaru/apps..."
+#       $maysudo cp -f include/img/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/256x256@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/256x256/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/48x48@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/48x48/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/32x32@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/32x32/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/24x24@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/24x24/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/16x16@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
+#       #cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
+#       cd "$SCRIPTPATH"
+#       $maysudo rm -f /tmp/to-merge_floflis-icons.sh
+#fi
+# <---- UBUNTUCINNAMON TEMPORARILY DISABLE
 
 echo "Installing icon for Explorer..."
 $maysudo cat > /usr/share/applications/csd-automount.desktop <<EOF
@@ -685,39 +687,41 @@ if [ ! -e /usr/share/cups/data/ubuntu ]; then $maysudo mkdir /usr/share/cups/dat
 $maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
 $maysudo cp -f include/img/default-testpage.pdf /usr/share/cups/data/default-testpage.pdf
 
-echo "Installing installer's slideshow..."
-if [ -e /usr/share/ubiquity-slideshow ]; then
-    if [ ! -e /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu; fi
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+# UBUNTUCINNAMON TEMPORARILY DISABLE ---->
+#echo "Installing installer's slideshow..."
+#if [ -e /usr/share/ubiquity-slideshow ]; then
+#    if [ ! -e /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu; fi
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/welcome.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/screenshots/photos.png /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu
 #-
-    if [ ! -e /usr/share/ubiquity-slideshow/slides/icons/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu; fi
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
+#    if [ ! -e /usr/share/ubiquity-slideshow/slides/icons/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/icons/ubuntu; fi
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/icons/firefox.png /usr/share/ubiquity-slideshow/slides/icons/ubuntu
 #-
-    if [ ! -e /usr/share/ubiquity-slideshow/slides/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu; fi
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
+#    if [ ! -e /usr/share/ubiquity-slideshow/slides/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/ubuntu; fi
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/welcome.html /usr/share/ubiquity-slideshow/slides/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/music.html /usr/share/ubiquity-slideshow/slides/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/accessibility.html /usr/share/ubiquity-slideshow/slides/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/browse.html /usr/share/ubiquity-slideshow/slides/ubuntu
 #-
-    if [ ! -e /usr/share/ubiquity-slideshow/slides/link/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu; fi
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
-    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+#    if [ ! -e /usr/share/ubiquity-slideshow/slides/link/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/link/ubuntu; fi
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/background.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/bullet-point.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-back.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
+#    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
 #-    
-    cd include/System/ubiquity-slideshow
-    git clone --no-checkout https://github.com/Floflis/ubiquity-slideshow.git .
-#if failure, get from other sources (add to all other clonable resources)
-    git checkout -f
-    cd ..
-    $maysudo rsync -av ubiquity-slideshow /usr/share
-    cd ubiquity-slideshow
-    rm -f .gitattributes #use noah to exclude everything except .git
-    rm -rf slides
-    rm -f slideshow.conf
-    cd "$SCRIPTPATH"
-fi
+#    cd include/System/ubiquity-slideshow
+#    git clone --no-checkout https://github.com/Floflis/ubiquity-slideshow.git .
+##if failure, get from other sources (add to all other clonable resources)
+#    git checkout -f
+#    cd ..
+#    $maysudo rsync -av ubiquity-slideshow /usr/share
+#    cd ubiquity-slideshow
+#    rm -f .gitattributes #use noah to exclude everything except .git
+#    rm -rf slides
+#    rm -f slideshow.conf
+#    cd "$SCRIPTPATH"
+#fi
+# <---- UBUNTUCINNAMON TEMPORARILY DISABLE
 
 echo "Installing img..."
 if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
