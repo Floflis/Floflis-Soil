@@ -1161,16 +1161,17 @@ cd "$SCRIPTPATH"
 
 if [ "$flofarch" = "amd64" ]; then
 echo "Installing nushell..."
-tar -xzf include/Terminal/nushell/nu_0_44_0_linux.tar.gz
-$maysudo mv -f nu_0_44_0_linux/nushell-0.44.0/nu /bin/nu
+tar -xzf include/Terminal/nushell/nu-0.73.0-x86_64-unknown-linux-gnu.tar.gz
+$maysudo mv -f nu-0.73.0-x86_64-unknown-linux-gnu/nu /bin/nu
 $maysudo chmod +x /bin/nu
-rm -rf nu_0_44_0_linux
+rm -rf nu-0.73.0-x86_64-unknown-linux-gnu
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 #-<- should check if line is already added, before re-adding!
 chsh -s /bin/nu
 #echo "Testing if nushell works:"
 #nu
 # introduce in next build
+# task: enable plugins
 fi
 
 echo "Installing Witchcraft Candy Colors..."
