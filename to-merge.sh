@@ -1244,6 +1244,7 @@ $maysudo apt install unzip
 echo "Installing Etcher (you are still great, Rufus)..."
 if [ "$flofarch" = "amd64" ]; then
    $maysudo dpkg -i include/deb\ packages/balena-etcher_1.10.11_amd64.deb
+   apt --fix-broken install
 fi
 # <-- HOME LAYER
 
