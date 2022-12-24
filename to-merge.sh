@@ -1198,24 +1198,24 @@ tar -xzf include/Terminal/starship/starship-x86_64-unknown-linux-gnu.tar.gz
 $maysudo rm -f /usr/local/bin/starship
 $maysudo mv -f starship /bin/starship
 $maysudo chmod +x /bin/starship
-echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc # configure Starship for Bash
+echo 'eval "$(starship init bash)"' > /home/${flouser}/.bashrc # configure Starship for Bash
 #-<- should check if line is already added, before re-adding!
+
 #cat >> /home/$flouser/.config/mimeapps.list <<EOF
 #
 #EOF
 ## this is continuously adding the same entries to mimeapps.list and have to be fixed
-#Add the following to the end of your Nushell env file (find it by running $nu.env-path in Nushell):
-#
-#mkdir ~/.cache/starship
-#starship init nu | save ~/.cache/starship/init.nu
-#
-#And add the following to the end of your Nushell configuration (find it by running $nu.config-path):
-#
-#source ~/.cache/starship/init.nu
+
+cat > /home/${flouser}/.config/nushell/env.nu <<EOF
+mkdir ~/.cache/starship
+starship init nu | save ~/.cache/starship/init.nu
+EOF
+echo 'source ~/.cache/starship/init.nu' > /home/${flouser}/.config/nushell/config.nu
 #-
 #https://starship.rs/config/#prompt
 #https://starship.rs/presets/pastel-powerline.html
 fi
+# <---- future task: check against .sha256 file; floflis icons: icon for .sha256 files and file handler for comparing
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
