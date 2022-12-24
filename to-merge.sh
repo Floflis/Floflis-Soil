@@ -1236,7 +1236,7 @@ $maysudo apt install unzip
 # HOME LAYER -->
 echo "Installing Etcher (you are still great, Rufus)..."
 if [ "$flofarch" = "amd64" ]; then
-   $maysudo dpkg -i include/deb\ packages/balena-etcher-electron_1.6.0_amd64.deb
+   $maysudo dpkg -i include/deb\ packages/balena-etcher_1.10.11_amd64.deb
 fi
 # <-- HOME LAYER
 
