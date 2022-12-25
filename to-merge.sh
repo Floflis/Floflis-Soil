@@ -175,7 +175,8 @@ cd to-merge/include-firstlogon/floapps
 git clone --no-checkout https://github.com/Floflis/floapps.git .
 git checkout -f
 #$maysudo bash install.sh
-chmod +x install.sh && $maysudo sh ./install.sh
+#chmod +x install.sh && $maysudo sh ./install.sh
+chmod +x install.sh && $maysudo bash install.sh
 rm -f install.sh #use noah to exclude everything except .git
 rm -rf include
 cd "$SCRIPTPATH"
