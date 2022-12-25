@@ -749,6 +749,7 @@ if [ ! -e /usr/share/backgrounds/ubuntu ]; then $maysudo mkdir /usr/share/backgr
 if [ -f /usr/share/backgrounds/Kinetic_Kudu_by_Joshua_T_dark.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Kinetic_Kudu_by_Joshua_T_dark.jpg /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Kinetic_Kudu_by_Joshua_T_light.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Kinetic_Kudu_by_Joshua_T_light.jpg /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Kudu_Wallpaper_Grey_4096x2304.png ]; then $maysudo mv -f /usr/share/backgrounds/Kudu_Wallpaper_Grey_4096x2304.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png ]; then $maysudo mv -f /usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Obersee_by_Uday_Nakade.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Obersee_by_Uday_Nakade.jpg /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Reflection_by_Juliette_Taka.png ]; then $maysudo mv -f /usr/share/backgrounds/Reflection_by_Juliette_Taka.png /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Saffron_by_Rakesh_Yadav.png ]; then $maysudo mv -f /usr/share/backgrounds/Saffron_by_Rakesh_Yadav.png /usr/share/backgrounds/ubuntu; fi
@@ -904,7 +905,6 @@ if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/p
 $maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png
 
 # Install geth:
-echo "Installing geth..."
 #- x32 is not available as ethereal isn't available for x32 yet
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/System/ethereum/386.tar.gz
@@ -916,6 +916,7 @@ echo "Installing geth..."
 #         ipfs
 #fi
 if [ "$flofarch" = "amd64" ]; then
+   echo "Installing geth..."
    tar -xzf include/System/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
    $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
    chmod +x /usr/bin/geth
@@ -1113,11 +1114,27 @@ if [ "$flofarch" = "amd64" ]; then
    gix
 fi
 
+echo "----------------------------------------------------------------------"
+echo "DEBUG:"
+echo "Script path: $SCRIPTPATH"
+echo "Current directory: $(pwd)"
+echo "ls:"
+ls
+echo "----------------------------------------------------------------------"
+
 echo "Adding bulbasaur.json..."
 $maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 
 #gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
 #(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
+
+echo "----------------------------------------------------------------------"
+echo "DEBUG:"
+echo "Script path: $SCRIPTPATH"
+echo "Current directory: $(pwd)"
+echo "ls:"
+ls
+echo "----------------------------------------------------------------------"
 
 # HOME LAYER -->
 echo "Installing Floflis Central..."
