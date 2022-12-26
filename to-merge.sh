@@ -41,6 +41,9 @@ $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 b
 
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
+echo "Installing unzip..."
+$maysudo apt install unzip
+
 echo "Installing neofetch..."
 if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
 cd include/Terminal/neofetch
@@ -93,6 +96,7 @@ neofetch
 #Exec=xdg-open %u
 #StartupNotify=false
 #MimeType=x-scheme-handler/ipfs;
+#NoDisplay=true
 #EOF
 #$maysudo cat >> /usr/share/applications/x-cinnamon-mimeapps.list <<EOF
 #x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;
@@ -109,7 +113,25 @@ Icon=ethereum
 Type=Directory
 X-Ubuntu-Gettext-Domain=gnome-menus-3.0
 EOF
+$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
+<Menu><Name>Finance</Name><Directory>Finance.directory</Directory></Menu>
+EOF
+$maysudo cat > /usr/share/desktop-directories/cinnamon-finance.directory <<EOF
+[Desktop Entry]
+Name=Finance
+Comment=Financial applications
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=ethereum
+Type=Directory
+EOF
+$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
+<Menu>
+    <Name>Finance</Name>
+    <Directory>cinnamon-finance.directory</Directory>
+</Menu>
+EOF
 echo "Finance category doesn't works, yet."
+# now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
 
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
@@ -1257,9 +1279,6 @@ if [ "$flofarch" = "amd64" ]; then
    echo "Testing if Hugo works:"
    hugo -h
 fi
-
-echo "Installing unzip..."
-$maysudo apt install unzip
 
 # HOME LAYER -->
 echo "Installing Etcher (you are still great, Rufus)..."
