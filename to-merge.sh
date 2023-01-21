@@ -753,6 +753,7 @@ echo "Installing img..."
 if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 #-
 $maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
+$maysudo cp -f include/img/OSlogotype.svg /1/img/OSlogotype.svg
 $maysudo cp -f include/img/logo.png /1/img/logo.png
 
 bash include/img/watermarkmaker/run.sh
@@ -930,9 +931,11 @@ $maysudo rm -rf Adapta-Nokto
 #-
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
 $maysudo cp -f include/img/ubuntu-logo.png /usr/share/plymouth/ubuntu-logo.png
+$maysudo cp -f include/img/ubuntu-logo.svg /usr/share/plymouth/ubuntu-logo.svg
 
 if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
 $maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png
+$maysudo ln -s 'ubuntu-logo.svg' /usr/share/plymouth/ubuntucinnamon-logo.svg
 
 # Install geth:
 #- x32 is not available as ethereal isn't available for x32 yet
