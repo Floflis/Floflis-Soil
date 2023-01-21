@@ -1156,7 +1156,7 @@ EOF
  fi
        if [ "$flofarch" = "amd64" ]; then
 #          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
-          $maysudo dpkg -i include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
+          $maysudo dpkg -i include/VCS/git-LFS/git-lfs_3.0.2-1_amd64.deb
           echo "Testing if git-LFS works:"
           git lfs
  fi
