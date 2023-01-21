@@ -754,7 +754,14 @@ if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 #-
 $maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
 $maysudo cp -f include/img/logo.png /1/img/logo.png
+
+bash include/img/watermarkmaker/run.sh
+until [ -f include/img/watermark.png ]
+do
+   sleep 5s
+done
 $maysudo cp -f include/img/watermark.png /1/img/watermark.png
+
 #-
 if [ ! -e /1/img/networks ]; then $maysudo mkdir /1/img/networks; fi
 $maysudo cp -f include/img/networks/ethereum.svg /1/img/networks/ethereum.svg
