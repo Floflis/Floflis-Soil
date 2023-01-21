@@ -934,8 +934,8 @@ $maysudo cp -f include/img/ubuntu-logo.png /usr/share/plymouth/ubuntu-logo.png
 $maysudo cp -f include/img/ubuntu-logo.svg /usr/share/plymouth/ubuntu-logo.svg
 
 if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
-$maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png
-$maysudo ln -s 'ubuntu-logo.svg' /usr/share/plymouth/ubuntucinnamon-logo.svg
+if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png; fi
+if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.svg ]; then $maysudo ln -s 'ubuntu-logo.svg' /usr/share/plymouth/ubuntucinnamon-logo.svg; fi
 
 # Install geth:
 #- x32 is not available as ethereal isn't available for x32 yet
