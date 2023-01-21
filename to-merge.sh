@@ -904,9 +904,62 @@ $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
 #- detect ubuntu cinnamon remix otherwise install cinnamon normally
 
 echo "Installing Cinnamon applets, desklets and extensions..."
+cd include/usr-share-cinnamon
+
+function job_installSpice {
+wget -N https://cinnamon-spices.linuxmint.com/files/"$currentspicetype""s"/$currentspice.zip
+# from https://serverfault.com/a/379060/923518
+if [ -f $currentspice.zip.1 ]; then rm $currentspice.zip; mv $currentspice.zip.1 $currentspice.zip; fi
+unzip $currentspice.zip
+$maysudo rsync -av "$currentspice"/. /usr/share/cinnamon/"$currentspicetype""s"/$currentspice
+rm -r "$currentspice"
+}
+
+currentspicetype="applet"
+cd "$currentspicetype""s"
+
+currentspice="weather@mockturtl"
+currentspicemintid="17"
+job_installSpice
+
+currentspice="CinnVIIStarkMenu@NikoKrause"
+currentspicemintid="281"
+job_installSpice
+
+currentspice="Cinnamenu@json"
+currentspicemintid="322"
+job_installSpice
+
+currentspicetype="desklet"
+cd ..
+cd "$currentspicetype""s"
+
+currentspice="calendar@deeppradhan"
+currentspicemintid="40"
+job_installSpice
+
+currentspice="bbcwx@oak-wood.co.uk"
+currentspicemintid="20"
+job_installSpice
+
+currentspice="analog-clock@cobinja.de"
+currentspicemintid="7"
+job_installSpice
+
+currentspicetype="extension"
+cd ..
+cd "$currentspicetype""s"
+
+currentspice="transparent-panels@germanfr"
+currentspicemintid="81"
+job_installSpice
+
+# to remove ---->
 tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
 $maysudo rsync -av cinnamon/. /usr/share/cinnamon
 $maysudo rm -rf cinnamon
+# <---- to remove
+cd "$SCRIPTPATH"
 
 echo "Installing main theme..."
 tar -xzf include/Theme/Eleganse-Floflis.tar.gz
