@@ -47,19 +47,20 @@ $maysudo apt install unzip
 echo "Installing neofetch..."
 if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
 cd include/Terminal/neofetch
-git clone --no-checkout https://github.com/Floflis/neofetch.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/neofetch.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 sudo cp -r -f --preserve=all . /usr/lib/neofetch
 $maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
 $maysudo chmod +x /usr/bin/neofetch
-rm -rf .github #use noah to exclude everything except .git
-rm -f CONTRIBUTING.md
-rm -f LICENSE.md
-rm -f Makefile
-rm -f neofetch
-rm -f neofetch.1
-rm -f README.md
-rm -f .travis.yml
+#rm -rf .github #use noah to exclude everything except .git
+#rm -f CONTRIBUTING.md
+#rm -f LICENSE.md
+#rm -f Makefile
+#rm -f neofetch
+#rm -f neofetch.1
+#rm -f README.md
+#rm -f .travis.yml
 cd "$SCRIPTPATH"
 echo "Testing if neofetch works:"
 neofetch
@@ -194,26 +195,28 @@ $maysudo apt install gnome-weather
 
 echo "Installing floapps..."
 cd to-merge/include-firstlogon/floapps
-git clone --no-checkout https://github.com/Floflis/floapps.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 #$maysudo bash install.sh
 #chmod +x install.sh && $maysudo sh ./install.sh
 chmod +x install.sh && $maysudo bash install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -rf include
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -rf include
 cd "$SCRIPTPATH"
 
 echo "Installing nu-post-install..."
 cd to-merge/include-firstlogon/nu-post-install
-git clone --no-checkout https://github.com/Floflis/nu-post-install.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nu-post-install.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f nu-script-handler
-rm -f Tasks.txt
-rm -f .gitattributes
-rm -f .gitmeta
-rm -rf rsc
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f nu-script-handler
+#rm -f Tasks.txt
+#rm -f .gitattributes
+#rm -f .gitmeta
+#rm -rf rsc
 cd "$SCRIPTPATH"
 
 echo "Installing Decentraland weblink app..."
@@ -314,18 +317,19 @@ EOF
 # UBUNTUCINNAMON TEMPORARILY DISABLE ---->
 #echo "Installing icons..."
 #cd include/img/icons/Floflis
-#git clone --no-checkout https://github.com/Floflis/icons.git .
+#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/icons.git .; fi
+#if [ -e .git ]; then git pull; fi
 #git checkout -f
 #cd ..
 #$maysudo rsync -av Floflis /usr/share/icons
 #cd Floflis
-#rm -f .gitattributes #use noah to exclude everything except .git
-#rm -f tasks.txt
-#rm -f 'personal research.txt'
-#rm -f index.theme
-#rm -f icon-theme.cache
-#rm -f cursor.theme
-#rm -rf 8x8 && rm -rf 8x8@2x && rm -rf 16x16 && rm -rf 16x16@2x && rm -rf 22x22 && rm -rf 24x24 && rm -rf 24x24@2x && rm -rf 32x32 && rm -rf 32x32@2x && rm -rf 48x48 && rm -rf 48x48@2x && rm -rf 64x64 && rm -rf 96x96 && rm -rf 128x128 && rm -rf 256x256 && rm -rf 256x256@2x && rm -rf 512x512 && rm -rf cursors && rm -rf scalable && rm -rf scalable-max-32
+##rm -f .gitattributes #use noah to exclude everything except .git
+##rm -f tasks.txt
+##rm -f 'personal research.txt'
+##rm -f index.theme
+##rm -f icon-theme.cache
+##rm -f cursor.theme
+##rm -rf 8x8 && rm -rf 8x8@2x && rm -rf 16x16 && rm -rf 16x16@2x && rm -rf 22x22 && rm -rf 24x24 && rm -rf 24x24@2x && rm -rf 32x32 && rm -rf 32x32@2x && rm -rf 48x48 && rm -rf 48x48@2x && rm -rf 64x64 && rm -rf 96x96 && rm -rf 128x128 && rm -rf 256x256 && rm -rf 256x256@2x && rm -rf 512x512 && rm -rf cursors && rm -rf scalable && rm -rf scalable-max-32
 #cd "$SCRIPTPATH"
 #if [ -f /tmp/cubicmode ]; then
 #   $maysudo rm -rf /usr/share/icons/Floflis/.git
@@ -736,15 +740,16 @@ $maysudo cp -f include/img/default-testpage.pdf /usr/share/cups/data/default-tes
 #    $maysudo mv -f /usr/share/ubiquity-slideshow/slides/link/arrow-next.png /usr/share/ubiquity-slideshow/slides/link/ubuntu
 #-    
 #    cd include/System/ubiquity-slideshow
-#    git clone --no-checkout https://github.com/Floflis/ubiquity-slideshow.git .
+#    if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ubiquity-slideshow.git .; fi
+#    if [ -e .git ]; then git pull; fi
 ##if failure, get from other sources (add to all other clonable resources)
 #    git checkout -f
 #    cd ..
 #    $maysudo rsync -av ubiquity-slideshow /usr/share
 #    cd ubiquity-slideshow
-#    rm -f .gitattributes #use noah to exclude everything except .git
-#    rm -rf slides
-#    rm -f slideshow.conf
+##    rm -f .gitattributes #use noah to exclude everything except .git
+##    rm -rf slides
+##    rm -f slideshow.conf
 #    cd "$SCRIPTPATH"
 #fi
 # <---- UBUNTUCINNAMON TEMPORARILY DISABLE
@@ -919,13 +924,14 @@ $maysudo rm -rf Adapta-Nokto
 # temporarily disable "Installing logon design" until fixed for Ubuntu 22.10 ---->
 #echo "Installing logon design..."
 #cd include/Theme/ubuntu-gdm-set-background
-#git clone --no-checkout https://github.com/Floflis/ubuntu-gdm-set-background.git .
+#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ubuntu-gdm-set-background.git .; fi
+#if [ -e .git ]; then git pull; fi
 #git checkout -f
 #$maysudo ./ubuntu-gdm-set-background --gradient horizontal \#F19399 \#61EACA
 ##-from https://www.omgubuntu.co.uk/2022/01/change-ubuntu-login-screen-background
-#rm -f ubuntu-gdm-set-background #use noah to exclude everything except .git
-#rm -f README.md
-#rm -f LICENSE
+##rm -f ubuntu-gdm-set-background #use noah to exclude everything except .git
+##rm -f README.md
+##rm -f LICENSE
 #cd "$SCRIPTPATH"
 # <---- temporarily disable "Installing logon design" until fixed for Ubuntu 22.10
 #-
@@ -1108,17 +1114,18 @@ EOF
  
 echo "Installing 01 VCS..."
 cd include/VCS/01
-git clone --no-checkout https://github.com/01VCS/01.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f 01
-rm -f git
-rm -f README.md
-rm -f recipe.json
-rm -f Tasks.txt
-rm -f .gitignore
-rm -f .gitmeta
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f 01
+#rm -f git
+#rm -f README.md
+#rm -f recipe.json
+#rm -f Tasks.txt
+#rm -f .gitignore
+#rm -f .gitmeta
 cd "$SCRIPTPATH"
 echo "Testing if 01 works:"
 01
@@ -1209,13 +1216,14 @@ $maysudo fc-cache -f -v
 
 echo "Installing Sh it..."
 cd include/Tools/shexec
-git clone --no-checkout https://github.com/Floflis/shit.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/shit.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f README.md
-rm -f shit
-rm -f .gitmeta
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.md
+#rm -f shit
+#rm -f .gitmeta
 sudo apt install curl
 cd "$SCRIPTPATH"
 
@@ -1237,16 +1245,17 @@ fi
 echo "Installing Witchcraft Candy Colors..."
 $maysudo apt-get install dconf-cli
 cd include/Terminal/witchcraft-candy-colors
-git clone --no-checkout https://github.com/Floflis/witchcraft-candy-colors.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/witchcraft-candy-colors.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -rf colors
-rm -rf src
-rm -f INSTALL.md
-rm -f LICENSE
-rm -f readme.md
-rm -f screenshot.png
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -rf colors
+#rm -rf src
+#rm -f INSTALL.md
+#rm -f LICENSE
+#rm -f readme.md
+#rm -f screenshot.png
 cd "$SCRIPTPATH"
 
 echo "Installing Starship..."
@@ -1309,44 +1318,47 @@ $maysudo apt install gnome-games-app
 
 echo "Installing online..."
 cd include/Tools/online
-git clone --no-checkout https://github.com/Floflis/online.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/online.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f README.txt
-rm -f online
-rm -f README.md
-rm -f 'SRC At ETH💎💌.txt'
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.txt
+#rm -f online
+#rm -f README.md
+#rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
 echo "Installing mlq..."
 cd include/Tools/mlq
-git clone --no-checkout https://github.com/Floflis/mlq.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/mlq.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f README.md
-rm -f mlq
-rm -f dependencies.txt
-rm -f mlq-parser.sh
-rm -f mlq-parser_worker.sh
-rm -f sample.html
-rm -f Tasks.txt
-rm -f .gitmeta
-rm -f 'SRC At ETH💎💌.txt'
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.md
+#rm -f mlq
+#rm -f dependencies.txt
+#rm -f mlq-parser.sh
+#rm -f mlq-parser_worker.sh
+#rm -f sample.html
+#rm -f Tasks.txt
+#rm -f .gitmeta
+#rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
 echo "Installing ethgas..."
 cd include/Tools/ethgas
-git clone --no-checkout https://github.com/Floflis/ethgas.git .
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethgas.git .; fi
+if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
-rm -f install.sh #use noah to exclude everything except .git
-rm -f ethgas
-rm -f gas-pump.svg
-rm -f gas-pump-symbolic.svg
-rm -f .gitmeta
-rm -f 'SRC At ETH💎💌.txt'
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f ethgas
+#rm -f gas-pump.svg
+#rm -f gas-pump-symbolic.svg
+#rm -f .gitmeta
+#rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
 $maysudo apt --fix-broken install
