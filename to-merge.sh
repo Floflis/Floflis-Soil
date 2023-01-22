@@ -778,8 +778,9 @@ $maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
 $maysudo cp -f include/img/token.png /1/img/token.png
 
 echo "Installing backgrounds..."
-$maysudo cp -f include/img/Backgrounds/bg.png /1/img/bg.png
-$maysudo cp -f include/img/Backgrounds/lockscreen.png /1/img/lockscreen.png
+cd include/img/Backgrounds
+$maysudo cp -f bg.png /1/img/bg.png
+$maysudo cp -f lockscreen.png /1/img/lockscreen.png
 #-
 if [ ! -e /usr/share/backgrounds/ubuntu ]; then $maysudo mkdir /usr/share/backgrounds/ubuntu; fi
 
@@ -798,11 +799,13 @@ if [ ! -e /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntucinnamon ]; then $
 $maysudo mv -f /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntu_cinnamon_kinetic_kudu.jpg /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntucinnamon/ubuntu_cinnamon_kinetic_kudu.jpg
 $maysudo ln -s /1/img/bg.png /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntu_cinnamon_kinetic_kudu.jpg
 #-
-tar -xzf include/img/Backgrounds/Backgrounds.tar.gz
+#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/BackgroundsImg.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
 $maysudo rsync -av Backgrounds/. /usr/share/backgrounds
-$maysudo rm -rf Backgrounds
 #-
-$maysudo cp -f include/img/Backgrounds/floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
+$maysudo cp -f floflis-backgrounds.xml /usr/share/gnome-background-properties/floflis-backgrounds.xml
+cd "$SCRIPTPATH"
 
 echo "Updating default background..."
 if [ ! -e /usr/share/wallpapers/FuturePrototype/debian ]; then $maysudo mkdir /usr/share/wallpapers/FuturePrototype/debian; fi
