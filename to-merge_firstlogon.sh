@@ -100,6 +100,9 @@ rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella
 
 echo "Installing Templates of the 'New File' context menu..."
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
+rm /home/${flouser}/Templates/New slidesPresentation.pptx.weborigin.txt
+rm /home/${flouser}/Templates/New Spreadsheet.xlsx.txt
+rm /home/${flouser}/Templates/New WordWriter document.docx.txt
 
 #echo "Installing Starship..."
 ##shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
