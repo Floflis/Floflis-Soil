@@ -1440,6 +1440,13 @@ chmod +x install.sh && $maysudo sh ./install.sh
 #rm -f gas-pump-symbolic.svg
 #rm -f .gitmeta
 #rm -f 'SRC At ETH💎💌.txt'
+echo "Installing ethgas' Cinnamon spice..."
+cd spice
+cd ethgas-applet@floflis
+zombiespices install
+cd ..
+cd ethgas-desklet@floflis
+zombiespices install
 cd "$SCRIPTPATH"
 
 $maysudo apt --fix-broken install
