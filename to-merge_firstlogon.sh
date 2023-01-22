@@ -98,6 +98,9 @@ echo "Setting up Cinnamon data..."
 #tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${flouser}/.cinnamon/configs
 
+echo "Installing Templates of the 'New File' context menu..."
+rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
+
 #echo "Installing Starship..."
 ##shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 ##curl -sS https://starship.rs/install.sh | sh
