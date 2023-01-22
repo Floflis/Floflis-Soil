@@ -95,7 +95,8 @@ dconf load /org/nemo/desktop/ < /tmp/org-nemo-desktop
 rm -f /tmp/org-nemo-desktop
 
 echo "Setting up Cinnamon data..."
-tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
+#tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
+rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${flouser}/.cinnamon/configs
 
 #echo "Installing Starship..."
 ##shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
