@@ -762,12 +762,20 @@ $maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
 $maysudo cp -f include/img/OSlogotype.svg /1/img/OSlogotype.svg
 $maysudo cp -f include/img/logo.png /1/img/logo.png
 
-bash include/img/watermarkmaker/run.sh
-until [ -f include/img/watermark.png ]
+cd include/img/watermarkmaker
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/watermarkmaker.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+bash run.sh
+cd ..
+until [ -f watermark.png ]
 do
    sleep 5s
 done
-$maysudo cp -f include/img/watermark.png /1/img/watermark.png
+$maysudo cp -f watermark.png /1/img/watermark.png
+rm watermark_template.png
+rm watermark.png
+cd "$SCRIPTPATH"
 
 #-
 if [ ! -e /1/img/networks ]; then $maysudo mkdir /1/img/networks; fi
@@ -799,7 +807,7 @@ if [ ! -e /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntucinnamon ]; then $
 $maysudo mv -f /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntu_cinnamon_kinetic_kudu.jpg /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntucinnamon/ubuntu_cinnamon_kinetic_kudu.jpg
 $maysudo ln -s /1/img/bg.png /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntu_cinnamon_kinetic_kudu.jpg
 #-
-#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/BackgroundsImg.git .; fi
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/BackgroundsImg.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
 $maysudo rsync -av Backgrounds/. /usr/share/backgrounds
@@ -906,6 +914,14 @@ $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
 #$maysudo apt --fix-broken install
 #- detect ubuntu cinnamon remix otherwise install cinnamon normally
 
+echo "Installing 'zombiespices'..."
+cd include/System/zombiespices
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/zombiespices.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
+
 echo "Installing Cinnamon applets, desklets and extensions..."
 cd include/usr-share-cinnamon
 
@@ -956,13 +972,9 @@ cd "$currentspicetype""s"
 currentspice="transparent-panels@germanfr"
 currentspicemintid="81"
 job_installSpice
-
-# to remove ---->
-tar -xzf include/home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
-$maysudo rsync -av cinnamon/. /usr/share/cinnamon
-$maysudo rm -rf cinnamon
-# <---- to remove
 cd "$SCRIPTPATH"
+
+
 
 echo "Installing main theme..."
 tar -xzf include/Theme/Eleganse-Floflis.tar.gz
