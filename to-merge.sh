@@ -972,9 +972,21 @@ cd "$currentspicetype""s"
 currentspice="transparent-panels@germanfr"
 currentspicemintid="81"
 job_installSpice
+
+cd ..
+cd buildmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
+
+cd ..
+cd nftmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
 cd "$SCRIPTPATH"
-
-
 
 echo "Installing main theme..."
 tar -xzf include/Theme/Eleganse-Floflis.tar.gz
