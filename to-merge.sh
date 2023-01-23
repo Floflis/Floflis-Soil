@@ -767,10 +767,9 @@ if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/waterm
 if [ -e .git ]; then git pull; fi
 git checkout -f
 bash run.sh
-cd ..
 until [ -f watermark.png ]
 do
-   sleep 5s
+   sleep 1s
 done
 $maysudo cp -f watermark.png /1/img/watermark.png
 rm watermark_template.png
@@ -949,6 +948,10 @@ currentspice="Cinnamenu@json"
 currentspicemintid="322"
 job_installSpice
 
+currentspice="windowlist@cobinja.de"
+currentspicemintid="287"
+job_installSpice
+
 currentspicetype="desklet"
 cd ..
 cd "$currentspicetype""s"
@@ -973,7 +976,6 @@ currentspice="transparent-panels@germanfr"
 currentspicemintid="81"
 job_installSpice
 
-cd ..
 cd buildmark
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
 if [ -e .git ]; then git pull; fi
