@@ -1312,10 +1312,10 @@ cd "$SCRIPTPATH"
 
 if [ "$flofarch" = "amd64" ]; then
 echo "Installing nushell..."
-tar -xzf include/Terminal/nushell/nu-0.73.0-x86_64-unknown-linux-gnu.tar.gz
-$maysudo mv -f nu-0.73.0-x86_64-unknown-linux-gnu/nu /bin/nu
+tar -xzf include/Terminal/nushell/nu-0.74.0-x86_64-unknown-linux-gnu.tar.gz
+$maysudo mv -f nu-0.74.0-x86_64-unknown-linux-gnu/nu /bin/nu
 $maysudo chmod +x /bin/nu
-rm -rf nu-0.73.0-x86_64-unknown-linux-gnu
+rm -rf nu-0.74.0-x86_64-unknown-linux-gnu
 echo "/bin/nu" | $maysudo tee -a /etc/shells
 #-<- should check if line is already added, before re-adding!
 chsh -s /bin/nu
@@ -1361,7 +1361,7 @@ echo 'eval "$(starship init bash)"' > /home/${flouser}/.bashrc # configure Stars
 
 cat > /home/${flouser}/.config/nushell/env.nu <<EOF
 mkdir ~/.cache/starship
-starship init nu | save ~/.cache/starship/init.nu
+starship init nu | save -f ~/.cache/starship/init.nu
 EOF
 echo 'source ~/.cache/starship/init.nu' > /home/${flouser}/.config/nushell/config.nu
 #-
