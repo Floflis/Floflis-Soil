@@ -81,7 +81,7 @@ neofetch
 # Install IPFS-Desktop:
 #echo "Installing IPFS Desktop..."
 #if [ "$flofarch" = "amd64" ]; then
-#   $maysudo dpkg -i include/deb\ packages/ipfs-desktop-0.17.0-linux-amd64.deb
+#   $maysudo dpkg -i include/deb\ packages/ipfs-desktop-0.25.0-linux-amd64.deb
 #   rm -f /opt/IPFS\ Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs && sudo ln -s /usr/bin/ipfs /opt/IPFS\ Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs
 #   $maysudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
 #ipfs-desktop
@@ -1320,7 +1320,7 @@ if [ "$flofarch" = "386" ]; then
    hugo -h
 fi
 if [ "$flofarch" = "amd64" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.89.2_Linux-64bit.deb
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb
    echo "Testing if Hugo works:"
    hugo -h
 fi
