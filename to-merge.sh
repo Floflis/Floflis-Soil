@@ -1194,24 +1194,6 @@ EOF
        echo "${invalid}" ;;
  esac
 #task: detect if have to use gdebi or dpkg; or always use dpkg
- 
-echo "Installing 01 VCS..."
-cd include/VCS/01
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f 01
-#rm -f git
-#rm -f README.md
-#rm -f recipe.json
-#rm -f Tasks.txt
-#rm -f .gitignore
-#rm -f .gitmeta
-cd "$SCRIPTPATH"
-echo "Testing if 01 works:"
-01
 
 echo "Installing Pijul VCS (you did great, elder git)..."
 if [ "$flofarch" = "amd64" ]; then
