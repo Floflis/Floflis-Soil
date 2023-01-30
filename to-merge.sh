@@ -1167,58 +1167,6 @@ EOF
 #EOF
 # <----------------------------------------------------- Prepare to replace 1inch to better alternative (should also support XDai)
 
-# Install git-LFS:
- echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
- echo "Do you want to install git-LFS? [Y/n]"
- read insgitlfs
- case $insgitlfs in
-    [nN])
-       echo "${ok}"
-       break ;;
-    [yY])
-       echo "Installing git-LFS..."
-             if [ "$flofarch" = "386" ]; then
-#          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_i386.deb
-          $maysudo dpkg -i include/VCS/git-LFS/git-lfs_2.9.2_i386.deb
-          echo "Testing if git-LFS works:"
-          git lfs
- fi
-       if [ "$flofarch" = "amd64" ]; then
-#          $maysudo gdebi include/VCS/git-LFS/git-lfs_2.9.2_amd64.deb
-          $maysudo dpkg -i include/VCS/git-LFS/git-lfs_3.0.2-1_amd64.deb
-          echo "Testing if git-LFS works:"
-          git lfs
- fi
-       break ;;
-    *)
-       echo "${invalid}" ;;
- esac
-#task: detect if have to use gdebi or dpkg; or always use dpkg
-
-echo "Installing Pijul VCS (you did great, elder git)..."
-if [ "$flofarch" = "amd64" ]; then
-   tar -xzf include/VCS/pijul.tar.gz
-   $maysudo mv -f pijul /usr/bin/pijul
-   $maysudo chmod +x /usr/bin/pijul
-   $maysudo mv -f libpijul_macros.so /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
-   $maysudo chmod +x /usr/lib/x86_64-linux-gnu/libpijul_macros.so #wrong directory but may work
-   $maysudo mv libxxhash* -f /usr/lib/x86_64-linux-gnu
-   echo "Testing if Pijul works:"
-   pijul
-fi
-
-if [ "$flofarch" = "amd64" ]; then
-   echo "Installing gix (you did great, elder perl git)..."
-   tar -xzf include/VCS/gix-max-v0.10.0-x86_64-unknown-linux-musl.tar.gz
-   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gix  /usr/bin/gix
-   $maysudo chmod +x /usr/bin/gix
-   $maysudo mv -f gix-max-v0.10.0-x86_64-unknown-linux-musl/gixp  /usr/bin/gixp
-   $maysudo chmod +x /usr/bin/gixp
-   rm -rf gix-max-v0.10.0-x86_64-unknown-linux-musl
-   echo "Testing if gix works:"
-   gix
-fi
-
 echo "----------------------------------------------------------------------"
 echo "DEBUG:"
 echo "Script path: $SCRIPTPATH"
