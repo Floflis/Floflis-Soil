@@ -261,9 +261,10 @@ fi
 
 cd /home/${flouser} && ln -s .config/nushell/history.txt .nu_history
 
-if [ ! -f "/home/${flouser}/.face" ]; then
-   ln -s /usr/share/cinnamon/faces/user-generic.png /home/${flouser}/.face
-   
+facevar="/home/${flouser}/.face"
+if [ ! -f "$facevar" ]; then
+#   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
+   cp /usr/share/cinnamon/faces/user-generic.png "$facevar"
 fi
 
 #echo "Installing floapps..."
