@@ -185,7 +185,7 @@ $maysudo apt install minetest
 
 echo "Installing gbrainy and supertux..."
 $maysudo apt install gbrainy
-$maysudo apt install supertux
+#$maysudo apt install supertux
 
 echo "Installing Photos..."
 $maysudo apt install gnome-photos
