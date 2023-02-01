@@ -133,14 +133,11 @@ echo "Preparing to create your ETH address..."
 bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 fi
 
-if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
-echo "DEBUG: Not a Live ISO"
-
-fi
-
 echo "Installing Uniswap..."
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.tar.gz
 mv -f uniswap /1/apps
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
 #ipfs pin add $(ipfs dns uniswap.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth)
 #ipfs add $(ipfs dns uniswap.eth)
@@ -156,6 +153,7 @@ ipfs get $(ethereal ens contenthash get --domain=uniswap.eth) --output=/1/apps/u
 #ipfs ls $(ipfs dns uniswap.eth)
 #ipfs pin add $(ipfs dns uniswap.eth)
 #- this will have to work on user side (post-install), not only when installing
+fi
 $maysudo cat > /usr/bin/uniswap <<EOF
 #!/bin/bash
 
@@ -178,6 +176,8 @@ EOF
 echo "Installing Hop protocol..."
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.tar.gz
 mv -f hop /1/apps
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
 #ipfs add $(ipfs dns hop.mirroring.eth)
 #ipfs pin add $(ipfs dns hop.mirroring.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=hop.mirroring.eth)
@@ -191,6 +191,7 @@ ipfs get $(ethereal ens contenthash get --domain=hop.mirroring.eth) --output=/1/
 #ipfs ls $(ipfs dns hop.mirroring.eth)
 #ipfs pin add $(ipfs dns hop.mirroring.eth)
 #- this will have to work on user side (post-install), not only when installing
+fi
 $maysudo cat > /usr/bin/hop <<EOF
 #!/bin/bash
 
@@ -214,6 +215,8 @@ EOF
 echo "Installing Aragon..."
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.tar.gz
 mv -f aragon /1/apps
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
 #ipfs add $(ipfs dns aragon.plasmmer.eth)
 #ipfs pin add $(ipfs dns aragon.plasmmer.eth)
 ipfs pin add $(ethereal ens contenthash get --domain=aragon.plasmmer.eth)
@@ -227,6 +230,7 @@ ipfs get $(ethereal ens contenthash get --domain=aragon.plasmmer.eth) --output=/
 #ipfs ls $(ipfs dns aragon.plasmmer.eth)
 #ipfs pin add $(ipfs dns aragon.plasmmer.eth)
 #- this will have to work on user side (post-install), not only when installing
+fi
 $maysudo cat > /usr/bin/aragon <<EOF
 #!/bin/bash
 
@@ -249,6 +253,11 @@ EOF
 if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresentation; fi
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
+
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
+
+fi
 
 cd /home/${flouser} && ln -s .local/share/nu/history.txt .nu_history
 
