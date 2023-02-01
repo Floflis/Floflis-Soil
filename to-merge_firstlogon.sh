@@ -104,16 +104,22 @@ rm /home/${flouser}/Templates/New slidesPresentation.pptx.weborigin.txt
 rm /home/${flouser}/Templates/New Spreadsheet.xlsx.txt
 rm /home/${flouser}/Templates/New WordWriter document.docx.txt
 
+echo "Installing the \"Starshell\" package..."
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.md
+#rm -f shit
+#rm -f .gitmeta
+cd "$SCRIPTPATH"
+
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
 
 fi
-
-#echo "Installing Starship..."
-##shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
-##curl -sS https://starship.rs/install.sh | sh
-#curl -sS https://raw.githubusercontent.com/starship/starship/master/install/install.sh | sh
-#echo 'eval "$(starship init bash)"' >> /home/${flouser}/.bashrc
 
 echo "Adding Starship to nushell..."
 if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi

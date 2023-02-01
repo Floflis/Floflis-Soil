@@ -1234,18 +1234,6 @@ chmod +x install.sh && $maysudo sh ./install.sh
 sudo apt install curl
 cd "$SCRIPTPATH"
 
-echo "Installing the \"Starshell\" package..."
-cd include/Terminal/starshell
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f README.md
-#rm -f shit
-#rm -f .gitmeta
-cd "$SCRIPTPATH"
-
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
    $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
