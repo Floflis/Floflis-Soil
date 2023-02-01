@@ -116,24 +116,27 @@ chmod +x install.sh && $maysudo sh ./install.sh
 #rm -f .gitmeta
 cd "$SCRIPTPATH"
 
+#echo "Adding Starship to nushell..."
+#if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi
+#cat >> /home/${flouser}/.config/nu/config.toml <<EOF
+#startup = [
+# "mkdir ~/.cache/starship",
+# "starship init nu | save ~/.cache/starship/init.nu",
+# "source ~/.cache/starship/init.nu"
+#]
+#prompt = "starship_prompt"
+#EOF
+
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
+echo "Preparing to create your ETH address..."
+bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
+fi
+
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
 
 fi
-
-echo "Adding Starship to nushell..."
-if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi
-cat >> /home/${flouser}/.config/nu/config.toml <<EOF
-startup = [
- "mkdir ~/.cache/starship",
- "starship init nu | save ~/.cache/starship/init.nu",
- "source ~/.cache/starship/init.nu"
-]
-prompt = "starship_prompt"
-EOF
-
-echo "Preparing to create your ETH address..."
-bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 
 echo "Installing Uniswap..."
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.tar.gz
