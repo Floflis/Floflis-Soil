@@ -105,35 +105,37 @@ neofetch
 #EOF
 #echo "ipfs-handle doesn't works, yet."
 
-echo "Installing Finance category..." #this doesnt works yet
-$maysudo cat > /usr/share/desktop-directories/Finance.directory <<EOF
-[Desktop Entry]
-Name=Finance
-Comment=Financial applications
-# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=ethereum
-Type=Directory
-X-Ubuntu-Gettext-Domain=gnome-menus-3.0
-EOF
-$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
-<Menu><Name>Finance</Name><Directory>Finance.directory</Directory></Menu>
-EOF
-$maysudo cat > /usr/share/desktop-directories/cinnamon-finance.directory <<EOF
-[Desktop Entry]
-Name=Finance
-Comment=Financial applications
-# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=ethereum
-Type=Directory
-EOF
-$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
-<Menu>
-    <Name>Finance</Name>
-    <Directory>cinnamon-finance.directory</Directory>
-</Menu>
-EOF
-echo "Finance category doesn't works, yet."
-# now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
+# TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES ------------>
+#echo "Installing Finance category..." #this doesnt works yet
+#$maysudo cat > /usr/share/desktop-directories/Finance.directory <<EOF
+#[Desktop Entry]
+#Name=Finance
+#Comment=Financial applications
+## Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#Icon=ethereum
+#Type=Directory
+#X-Ubuntu-Gettext-Domain=gnome-menus-3.0
+#EOF
+#$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
+#<Menu><Name>Finance</Name><Directory>Finance.directory</Directory></Menu>
+#EOF
+#$maysudo cat > /usr/share/desktop-directories/cinnamon-finance.directory <<EOF
+#[Desktop Entry]
+#Name=Finance
+#Comment=Financial applications
+## Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#Icon=ethereum
+#Type=Directory
+#EOF
+#$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
+#<Menu>
+#    <Name>Finance</Name>
+#    <Directory>cinnamon-finance.directory</Directory>
+#</Menu>
+#EOF
+#echo "Finance category doesn't works, yet."
+## now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
+# <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
 
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
