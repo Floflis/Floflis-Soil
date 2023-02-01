@@ -1304,25 +1304,27 @@ chmod +x install.sh && $maysudo sh ./install.sh
 #rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
 
-echo "Installing ethgas..."
-cd include/Tools/ethgas
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethgas.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f ethgas
-#rm -f gas-pump.svg
-#rm -f gas-pump-symbolic.svg
-#rm -f .gitmeta
-#rm -f 'SRC At ETH💎💌.txt'
-echo "Installing ethgas' Cinnamon spice..."
-cd spice
-cd ethgas-applet@floflis
-zombiespices install
-cd ..
-cd ethgas-desklet@floflis
-zombiespices install
-cd "$SCRIPTPATH"
+# TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES ------------>
+#echo "Installing ethgas..."
+#cd include/Tools/ethgas
+#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethgas.git .; fi
+#if [ -e .git ]; then git pull; fi
+#git checkout -f
+#chmod +x install.sh && $maysudo sh ./install.sh
+##rm -f install.sh #use noah to exclude everything except .git
+##rm -f ethgas
+##rm -f gas-pump.svg
+##rm -f gas-pump-symbolic.svg
+##rm -f .gitmeta
+##rm -f 'SRC At ETH💎💌.txt'
+#echo "Installing ethgas' Cinnamon spice..."
+#cd spice
+#cd ethgas-applet@floflis
+#zombiespices install
+#cd ..
+#cd ethgas-desklet@floflis
+#zombiespices install
+#cd "$SCRIPTPATH"
+# <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
 
 $maysudo apt --fix-broken install
