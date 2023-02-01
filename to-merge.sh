@@ -1206,7 +1206,7 @@ rm -rf application
 #<---- merge into floflis-packager/floflis-application-handler
 
 $maysudo mv /usr/bin/central /usr/lib/floflis/layers/core
-$maysudo cp -f to-merge/central /usr/bin/central
+$maysudo cp -f include/HTML5Apps/central /usr/bin/central
 $maysudo chmod +x /usr/bin/central
 $maysudo cat > /usr/share/applications/central.desktop <<EOF
 [Desktop Entry]
