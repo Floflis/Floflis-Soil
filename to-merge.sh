@@ -208,20 +208,6 @@ chmod +x install.sh && $maysudo bash install.sh
 #rm -rf include
 cd "$SCRIPTPATH"
 
-echo "Installing nu-post-install..."
-cd to-merge/include-firstlogon/nu-post-install
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nu-post-install.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f nu-script-handler
-#rm -f Tasks.txt
-#rm -f .gitattributes
-#rm -f .gitmeta
-#rm -rf rsc
-cd "$SCRIPTPATH"
-
 echo "Installing Decentraland weblink app..."
 $maysudo cat > /usr/bin/decentraland <<EOF
 #!/bin/bash
