@@ -104,6 +104,11 @@ rm /home/${flouser}/Templates/New slidesPresentation.pptx.weborigin.txt
 rm /home/${flouser}/Templates/New Spreadsheet.xlsx.txt
 rm /home/${flouser}/Templates/New WordWriter document.docx.txt
 
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
+
+fi
+
 #echo "Installing Starship..."
 ##shit Qmf1XqY9vjU1yHDwEPj3hFBWJqtwGeUyoWPR77kYA7f65D
 ##curl -sS https://starship.rs/install.sh | sh
