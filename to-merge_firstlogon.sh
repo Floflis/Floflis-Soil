@@ -259,10 +259,11 @@ echo "DEBUG: Not a Live ISO"
 
 fi
 
-cd /home/${flouser} && ln -s .local/share/nu/history.txt .nu_history
+cd /home/${flouser} && ln -s .config/nushell/history.txt .nu_history
 
 if [ ! -f "/home/${flouser}/.face" ]; then
    ln -s /usr/share/cinnamon/faces/user-generic.png /home/${flouser}/.face
+   
 fi
 
 #echo "Installing floapps..."
