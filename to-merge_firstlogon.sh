@@ -254,11 +254,6 @@ if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresen
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
-if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
-echo "DEBUG: Not a Live ISO"
-
-fi
-
 cd /home/${flouser} && ln -s .config/nushell/history.txt .nu_history
 
 facevar="/home/${flouser}/.face"
@@ -266,6 +261,10 @@ if [ ! -f "$facevar" ]; then
 #   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
    cp /usr/share/cinnamon/faces/user-generic.png "$facevar"
 fi
+
+echo "Installing Sample Media..."
+cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample Photos/
+cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample Videos/
 
 #echo "Installing floapps..."
 #cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
