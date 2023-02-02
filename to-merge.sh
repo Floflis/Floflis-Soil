@@ -391,7 +391,7 @@ if [ -f /usr/share/cinnamon/faces/7_panda.png ]; then $maysudo mv -f /usr/share/
 if [ -f /usr/share/cinnamon/faces/7_penguin.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon; fi
 if [ -f /usr/share/cinnamon/faces/7_tucan.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon; fi
 if [ -f /usr/share/cinnamon/faces/user-generic.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/user-generic.png /usr/share/cinnamon/faces/cinnamon; fi
-
+#-
 tar -xzf include/img/Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/cinnamon/faces
 $maysudo rm -rf Avatars
@@ -602,32 +602,7 @@ ls
 echo "----------------------------------------------------------------------"
 
 # HOME LAYER -->
-echo "Installing Floflis Central..."
-
-#----> merge into floflis-packager/floflis-application-handler
-tar -C /1/apps -xzf include/HTML5Apps/central.apps
-mkdir /1/apps/central
-mv -f /1/apps/manifest.webapp /1/apps/central/
-cd /1/apps/application/central
-cp -rf . /1/apps/central/
-cd ../..
-rm -rf application
-#<---- merge into floflis-packager/floflis-application-handler
-
-$maysudo mv /usr/bin/central /usr/lib/floflis/layers/core
-$maysudo cp -f include/HTML5Apps/central /usr/bin/central
-$maysudo chmod +x /usr/bin/central
-$maysudo cat > /usr/share/applications/central.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=Central
-Comment=Change settings, view your Dashboard with token balances, view your Profile, etc.
-Type=Application
-Exec=central
-Icon=central
-Categories=System;
-Keywords=Preferences;Settings;Central;tokens;ethereum;xdai;polygon
-EOF
+$maysudo bash include/HTML5Apps/central/install.sh
 # <-- HOME LAYER
 
 echo "Installing Sh it..."
