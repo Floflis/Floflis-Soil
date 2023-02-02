@@ -1198,19 +1198,19 @@ if [ "$flofarch" = "amd64" ]; then
    hugo -h
 fi
 
-# HOME LAYER -->
-echo "Installing Etcher (you are still great, Rufus)..."
-if [ "$flofarch" = "amd64" ]; then
-   $maysudo dpkg -i include/deb\ packages/balena-etcher_1.14.3_amd64.deb
-   apt --fix-broken install
-fi
-# <-- HOME LAYER
+## HOME LAYER -->
+#echo "Installing Etcher (you are still great, Rufus)..."
+#if [ "$flofarch" = "amd64" ]; then
+#   $maysudo dpkg -i include/deb\ packages/balena-etcher_1.14.3_amd64.deb
+#   
+#fi
+## <-- HOME LAYER
 
-echo "Installing Audacity (12.0 MB download; 52.2 MB installed)..."
-$maysudo apt install audacity
+#echo "Installing Audacity (12.0 MB download; 52.2 MB installed)..."
+#$maysudo apt install audacity
 
-echo "Installing OBS (17.0 MB download; 85.8 MB installed)..."
-$maysudo apt install obs-studio
+#echo "Installing OBS (17.0 MB download; 85.8 MB installed)..."
+#$maysudo apt install obs-studio
 
 echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
