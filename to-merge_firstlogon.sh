@@ -100,9 +100,9 @@ rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella
 
 echo "Installing Templates of the 'New File' context menu..."
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
-rm /home/${flouser}/Templates/New slidesPresentation.pptx.weborigin.txt
-rm /home/${flouser}/Templates/New Spreadsheet.xlsx.txt
-rm /home/${flouser}/Templates/New WordWriter document.docx.txt
+rm /home/${flouser}/Templates/New\ slidesPresentation.pptx.weborigin.txt
+rm /home/${flouser}/Templates/New\ Spreadsheet.xlsx.txt
+rm /home/${flouser}/Templates/New\ WordWriter\ document.docx.txt
 
 echo "Installing the \"Starshell\" package..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
@@ -139,11 +139,17 @@ cd "$SCRIPTPATH"
 #prompt = "starship_prompt"
 #EOF
 
-if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
-echo "DEBUG: Not a Live ISO"
-echo "Preparing to create your ETH address..."
-bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
+cd /home/${flouser} && ln -s .config/nushell/history.txt .nu_history
+
+facevar="/home/${flouser}/.face"
+if [ ! -f "$facevar" ]; then
+#   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
+   cp /usr/share/cinnamon/faces/user-generic.png "$facevar"
 fi
+
+echo "Installing Sample Media..."
+cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample Photos/
+cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample Videos/
 
 echo "Installing Uniswap..."
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.tar.gz
@@ -266,33 +272,10 @@ if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresen
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
-cd /home/${flouser} && ln -s .config/nushell/history.txt .nu_history
-
-facevar="/home/${flouser}/.face"
-if [ ! -f "$facevar" ]; then
-#   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
-   cp /usr/share/cinnamon/faces/user-generic.png "$facevar"
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
+echo "Preparing to create your ETH address..."
+bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 fi
-
-echo "Installing Sample Media..."
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample Photos/
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample Videos/
-
-#echo "Installing floapps..."
-#cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
-#$maysudo bash install.sh
-#cd "$SCRIPTPATH"
-
-#echo "Installing nu-post-install..."
-#cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/nu-post-install
-#git checkout -f
-#chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f nu-script-handler
-#rm -f Tasks.txt
-#rm -f .gitattributes
-#rm -f .gitmeta
-#rm -rf rsc
-#cd "$SCRIPTPATH"
 
 $maysudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
