@@ -1030,6 +1030,11 @@ Name=Preferences
 Exec=gnome-terminal --preferences
 EOF
 
+echo "Installing webcam software..."
+$maysudo apt update
+$maysudo apt install cheese
+#from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
+
 echo "Fixing Cam's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
 $maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
