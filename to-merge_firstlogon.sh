@@ -47,7 +47,7 @@ volume-sound-enabled=true
 volume-sound-file='/1/sounds/Changing volume.ogg'
 
 [desktop/wm/preferences]
-theme='Adapta'
+theme='Yaru-cinnamon-dark'
 
 [settings-daemon/peripherals/keyboard]
 numlock-state='off'
