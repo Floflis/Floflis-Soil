@@ -77,7 +77,7 @@ unplug-enabled=true
 unplug-file='/1/sounds/Removing device.ogg'
 
 [theme]
-name='Eleganse-Floflis'
+name='Yaru-cinnamon-dark'
 EOF
 dconf load /org/cinnamon/ < /tmp/org-cinnamon
 rm -f /tmp/org-cinnamon
