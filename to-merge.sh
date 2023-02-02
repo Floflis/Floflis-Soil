@@ -161,7 +161,7 @@ fi
 echo "Installing Minetest..."
 $maysudo apt install minetest
 
-echo "Installing gbrainy and supertux..."
+echo "Installing gbrainy..."
 $maysudo apt install gbrainy
 #$maysudo apt install supertux
 
@@ -321,7 +321,7 @@ EOF
 #fi
 # <---- UBUNTUCINNAMON TEMPORARILY DISABLE
 
-echo "Installing icon for Explorer..."
+echo "Installing shortcut for Explorer..."
 $maysudo cat > /usr/share/applications/csd-automount.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -945,19 +945,19 @@ $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
 #cd "$SCRIPTPATH"
 # <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
 
-echo "Installing main theme..."
-tar -xzf include/Theme/Eleganse-Floflis.tar.gz
-$maysudo rsync -av Eleganse-Floflis /usr/share/themes
-$maysudo rm -rf Eleganse-Floflis
-#$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
-#-
-tar -xzf include/Theme/Adapta.tar.gz
-$maysudo rsync -av Adapta /usr/share/themes
-$maysudo rm -rf Adapta
-#-
-tar -xzf include/Theme/Adapta-Nokto.tar.gz
-$maysudo rsync -av Adapta-Nokto /usr/share/themes
-$maysudo rm -rf Adapta-Nokto
+#echo "Installing main theme..."
+#tar -xzf include/Theme/Eleganse-Floflis.tar.gz
+#$maysudo rsync -av Eleganse-Floflis /usr/share/themes
+#$maysudo rm -rf Eleganse-Floflis
+##$maysudo rm -rf /usr/share/themes/Eleganse-Floflis/.git
+##-
+#tar -xzf include/Theme/Adapta.tar.gz
+#$maysudo rsync -av Adapta /usr/share/themes
+#$maysudo rm -rf Adapta
+##-
+#tar -xzf include/Theme/Adapta-Nokto.tar.gz
+#$maysudo rsync -av Adapta-Nokto /usr/share/themes
+#$maysudo rm -rf Adapta-Nokto
 
 # temporarily disable "Installing logon design" until fixed for Ubuntu 22.10 ---->
 #echo "Installing logon design..."
@@ -1002,7 +1002,7 @@ if [ "$flofarch" = "amd64" ]; then
    geth -h
 fi
 
-echo "Fixing Terminal's name..."
+echo "Fixing Terminal's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
 $maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
 [Desktop Entry]
@@ -1030,7 +1030,7 @@ Name=Preferences
 Exec=gnome-terminal --preferences
 EOF
 
-echo "Fixing Cam's name..."
+echo "Fixing Cam's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
 $maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
 [Desktop Entry]
@@ -1050,7 +1050,7 @@ DBusActivatable=true
 X-Ubuntu-Gettext-Domain=cheese
 EOF
 
-echo "Fixing Music's name..."
+echo "Fixing Music's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Music"/' /usr/share/applications/rhythmbox.desktop
 $maysudo cat > /usr/share/applications/rhythmbox.desktop <<EOF
 [Desktop Entry]
