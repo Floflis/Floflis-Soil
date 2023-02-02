@@ -3,16 +3,17 @@
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 flouser=$(logname)
 
-unameOutM="$(uname -m)"
-case "${unameOutM}" in
-    i286)   flofarch="286";;
-    i386)   flofarch="386";;
-    i686)   flofarch="386";;
-    x86_64) flofarch="amd64";;
-    arm)    dpkg --print-flofarch | grep -q "arm64" && flofarch="arm64" || flofarch="arm";;
-    riscv64) flofarch="riscv64"
-esac
+# load definitions & settings
+. /usr/lib/floflis/./config
 
+# would detect fakeroot 
+#for path in ${LD_LIBRARY_PATH//:/ }; do
+#   if [[ "$path" == *libfakeroot ]]
+#      then
+#         echo "You're using fakeroot. Floflis won't work."
+#         exit
+#fi
+#done
 is_root=false
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
    then

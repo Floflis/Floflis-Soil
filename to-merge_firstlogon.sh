@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# would detect fakeroot 
+#for path in ${LD_LIBRARY_PATH//:/ }; do
+#   if [[ "$path" == *libfakeroot ]]
+#      then
+#         echo "You're using fakeroot. Floflis won't work."
+#         exit
+#fi
+#done
 is_root=false
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
    then
