@@ -196,18 +196,6 @@ $maysudo apt install keepassxc
 echo "Installing Weather..."
 $maysudo apt install gnome-weather
 
-echo "Installing floapps..."
-cd to-merge/include-firstlogon/floapps
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-#$maysudo bash install.sh
-#chmod +x install.sh && $maysudo sh ./install.sh
-chmod +x install.sh && $maysudo bash install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -rf include
-cd "$SCRIPTPATH"
-
 echo "Installing Decentraland weblink app..."
 $maysudo cat > /usr/bin/decentraland <<EOF
 #!/bin/bash

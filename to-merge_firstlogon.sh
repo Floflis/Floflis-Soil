@@ -116,6 +116,18 @@ chmod +x install.sh && $maysudo sh ./install.sh
 #rm -f .gitmeta
 cd "$SCRIPTPATH"
 
+echo "Installing floapps..."
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+#$maysudo bash install.sh
+#chmod +x install.sh && $maysudo sh ./install.sh
+chmod +x install.sh && $maysudo bash install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -rf include
+cd "$SCRIPTPATH"
+
 #echo "Adding Starship to nushell..."
 #if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi
 #cat >> /home/${flouser}/.config/nu/config.toml <<EOF
