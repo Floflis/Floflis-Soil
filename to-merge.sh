@@ -314,6 +314,7 @@ $maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
 $maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
 #-
 $maysudo cp -f include/img/token.png /1/img/token.png
+$maysudo cp -f include/img/token.svg /1/img/token.svg
 
 echo "Installing backgrounds..."
 cd include/img/Backgrounds
