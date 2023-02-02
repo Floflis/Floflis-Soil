@@ -1202,6 +1202,7 @@ fi
 #echo "Installing Etcher (you are still great, Rufus)..."
 #if [ "$flofarch" = "amd64" ]; then
 #   $maysudo dpkg -i include/deb\ packages/balena-etcher_1.14.3_amd64.deb
+#   apt --fix-broken install
 #   
 #fi
 ## <-- HOME LAYER
@@ -1268,5 +1269,7 @@ cd "$SCRIPTPATH"
 #zombiespices install
 #cd "$SCRIPTPATH"
 # <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
+
+$maysudo apt install wine64
 
 $maysudo apt --fix-broken install
