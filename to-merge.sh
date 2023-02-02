@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
+
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 flouser=$(logname)
 
@@ -30,8 +32,6 @@ if [ "$is_root" = "false" ]
 fi
 
 export maysudo
-
-#- Floflis main Ubuntu ISO will use Ultimate layer. For Home layer, different ISO base: https://help.ubuntu.com/community/Installation/MinimalCD https://www.edivaldobrito.com.br/instalar-ambiente-cinnamon-3-0-no-ubuntu-16-04/
 
 sudo apt upgrade
 sudo apt-get autoremove
@@ -177,100 +177,20 @@ $maysudo apt install keepassxc
 echo "Installing Weather..."
 $maysudo apt install gnome-weather
 
-echo "Installing Decentraland weblink app..."
-$maysudo cat > /usr/bin/decentraland <<EOF
-#!/bin/bash
+echo "Installing webcam software..."
+$maysudo apt update
+$maysudo apt install cheese
+#from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
 
-xdg-open https://play.decentraland.org/
-EOF
-$maysudo chmod +x /usr/bin/decentraland
-$maysudo cat > /usr/share/applications/decentraland.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=Decentraland
-Comment=Play in a open 3D metaverse with other etherean players, and spend tokens to buy NFT items/wearables
-Type=Application
-Exec=decentraland
-Icon=decentraland
-Categories=Game;Simulation;Metaverse;Ethereum;Polygon;
-Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;
-EOF
+$maysudo bash include/Shortcuts/customShortcuts.sh
 
-echo "Installing The Sandbox weblink app..."
-$maysudo cat > /usr/bin/thesandbox <<EOF
-#!/bin/bash
-
-xdg-open https://www.sandbox.game/en/
-EOF
-$maysudo chmod +x /usr/bin/thesandbox
-$maysudo cat > /usr/share/applications/thesandbox.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=The Sandbox
-Comment=Play in a open 3D voxels metaverse with other etherean players, and spend tokens to buy NFT items/wearables
-Type=Application
-Exec=thesandbox
-Icon=thesandbox
-Categories=Game;Simulation;Metaverse;Ethereum;
-Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
-EOF
-
-echo "Installing Cryptovoxels weblink app..."
-$maysudo cat > /usr/bin/cryptovoxels <<EOF
-#!/bin/bash
-
-xdg-open https://www.cryptovoxels.com/play
-EOF
-$maysudo chmod +x /usr/bin/cryptovoxels
-$maysudo cat > /usr/share/applications/cryptovoxels.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=Cryptovoxels
-Comment=Play in a open 3D voxels metaverse with other etherean players, and spend tokens to buy NFT items/wearables
-Type=Application
-Exec=cryptovoxels
-Icon=cryptovoxels
-Categories=Game;Simulation;Metaverse;Ethereum;
-Keywords=metaverse;world;mining;tokens;ethereum;wearables;multiplayer;roleplaying;sandbox;voxels;
-EOF
-
-echo "Installing Audius weblink app..."
-$maysudo cat > /usr/bin/audius <<EOF
-#!/bin/bash
-
-xdg-open https://audius.co/trending
-EOF
-$maysudo chmod +x /usr/bin/audius
-$maysudo cat > /usr/share/applications/audius.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=Audius
-Comment=Discover underground music! Partnered with Tiktok. Higher quality than other music streamming services (even in their PRO/premium versions).
-Type=Application
-Exec=audius
-Icon=audius
-Categories=AudioVideo;Audio;
-Keywords=music;blockchain;metaverse;nft;ethereum;
-EOF
-
-echo "Installing OpenSea weblink app..."
-$maysudo cat > /usr/bin/opensea <<EOF
-#!/bin/bash
-
-xdg-open https://opensea.io/
-EOF
-$maysudo chmod +x /usr/bin/opensea
-$maysudo cat > /usr/share/applications/opensea.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=OpenSea
-Comment=Discover, collect, and sell extraordinary NFTs on the world's first & largest NFT marketplace
-Type=Application
-Exec=opensea
-Icon=opensea
-Categories=Internet;
-Keywords=music;video;art;blockchain;metaverse;nft;ethereum;polygon;xdai;
-EOF
+echo "Installing Weblink apps/shortcuts..."
+cd include/Shortcuts/WeblinkApps
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/WeblinkApps.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo bash install.sh
+cd "$SCRIPTPATH"
 
 # UBUNTUCINNAMON TEMPORARILY DISABLE ---->
 #echo "Installing icons..."
@@ -658,13 +578,6 @@ if [ "$flofarch" = "amd64" ]; then
    echo "Testing if geth works:"
    geth -h
 fi
-
-echo "Installing webcam software..."
-$maysudo apt update
-$maysudo apt install cheese
-#from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
-
-$maysudo bash include/customShortcuts.sh
 
 echo "----------------------------------------------------------------------"
 echo "DEBUG:"
