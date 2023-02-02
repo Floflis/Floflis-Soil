@@ -36,35 +36,13 @@ sudo apt-get autoclean
 #-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
 
 #- attempt to fix Cubic's custom name:
-$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2212_X 'Eusoumafoca'"/' /usr/lib/os-release
-$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2212_X 'Eusoumafoca'"/' /etc/lsb-release
+$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2302_1 'Eusoumafoca'"/' /usr/lib/os-release
+$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2302_1 'Eusoumafoca'"/' /etc/lsb-release
 # have to get it from config or json
-
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
 echo "Installing unzip..."
 $maysudo apt install unzip
-
-echo "Installing neofetch..."
-if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
-cd include/Terminal/neofetch
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/neofetch.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-sudo cp -r -f --preserve=all . /usr/lib/neofetch
-$maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
-$maysudo chmod +x /usr/bin/neofetch
-#rm -rf .github #use noah to exclude everything except .git
-#rm -f CONTRIBUTING.md
-#rm -f LICENSE.md
-#rm -f Makefile
-#rm -f neofetch
-#rm -f neofetch.1
-#rm -f README.md
-#rm -f .travis.yml
-cd "$SCRIPTPATH"
-echo "Testing if neofetch works:"
-neofetch
 
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool

@@ -63,6 +63,27 @@ $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init default
 #echo "- Installing programs..."
 #$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs npm -y && npm i ipfs-npm -g
 
+echo "Installing neofetch..."
+if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
+cd include/Terminal/neofetch
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/neofetch.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+sudo cp -r -f --preserve=all . /usr/lib/neofetch
+$maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
+$maysudo chmod +x /usr/bin/neofetch
+#rm -rf .github #use noah to exclude everything except .git
+#rm -f CONTRIBUTING.md
+#rm -f LICENSE.md
+#rm -f Makefile
+#rm -f neofetch
+#rm -f neofetch.1
+#rm -f README.md
+#rm -f .travis.yml
+cd "$SCRIPTPATH"
+echo "Testing if neofetch works:"
+neofetch
+
 # Install git-LFS:
 
 # echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
