@@ -3,7 +3,7 @@
 if [ -f /usr/share/applications/org.gnome.Terminal.desktop ]; then
 echo "Fixing Terminal's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
-$maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
+cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
 [Desktop Entry]
 # VERSION=3.36.2
 Name=Witchcraft
@@ -33,7 +33,7 @@ fi
 if [ -f /usr/share/applications/org.gnome.Cheese.desktop ]; then
 echo "Fixing Cam's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
-$maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
+cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
 [Desktop Entry]
 Name=Cam
 GenericName=Webcam Booth
@@ -55,7 +55,7 @@ fi
 if [ -f /usr/share/applications/rhythmbox.desktop ]; then
 echo "Fixing Music's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Music"/' /usr/share/applications/rhythmbox.desktop
-$maysudo cat > /usr/share/applications/rhythmbox.desktop <<EOF
+cat > /usr/share/applications/rhythmbox.desktop <<EOF
 [Desktop Entry]
 Name=Music
 GenericName=Music Player
@@ -99,7 +99,7 @@ fi
 
 if [ -f /usr/share/applications/csd-automount.desktop ]; then
 echo "Installing shortcut for Explorer..."
-$maysudo cat > /usr/share/applications/csd-automount.desktop <<EOF
+cat > /usr/share/applications/csd-automount.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Files
@@ -135,7 +135,7 @@ EOF
 fi
 
 if [ -f /usr/share/applications/nemo.desktop ]; then
-$maysudo cat > /usr/share/applications/nemo.desktop <<EOF
+cat > /usr/share/applications/nemo.desktop <<EOF
 [Desktop Entry]
 Name=Files
 Name[am]=ፋይሎች
