@@ -156,10 +156,16 @@ if [ ! -f "$facevar" ]; then
 fi
 
 echo "Installing Sample Media..."
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample Photos/
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample Videos/
+if [ ! -e /home/${flouser}/Pictures/Sample\ Photos ]; then mkdir /home/${flouser}/Pictures/Sample\ Photos; fi
+if [ ! -e /home/${flouser}/Videos/Sample\ Videos ]; then mkdir /home/${flouser}/Videos/Sample\ Videos; fi
+if [ ! -e /home/${flouser}/Music/Sample\ Music ]; then mkdir /home/${flouser}/Music/Sample\ Music; fi
+cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
+cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
 
 echo "Installing Uniswap..."
+cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.svg /usr/share/icons/hicolor/scalable/apps/
+cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap-symbolic.svg /usr/share/icons/hicolor/scalable/apps/
+$maysudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.tar.gz
 mv -f uniswap /1/apps
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
@@ -229,6 +235,8 @@ EOF
 # <----------------------------------------------------- Prepare to replace 1inch to better alternative (should also support GnosisChain)
 
 echo "Installing Hop protocol..."
+cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.svg /usr/share/icons/hicolor/scalable/apps/
+$maysudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.tar.gz
 mv -f hop /1/apps
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
@@ -268,6 +276,8 @@ Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-cha
 EOF
 
 echo "Installing Aragon..."
+cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.svg /usr/share/icons/hicolor/scalable/apps/
+$maysudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
 tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.tar.gz
 mv -f aragon /1/apps
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
