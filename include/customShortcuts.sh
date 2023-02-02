@@ -1,5 +1,6 @@
 #!/bin/bash
 
+if [ -f /usr/share/applications/org.gnome.Terminal.desktop ]; then
 echo "Fixing Terminal's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Witchcraft"/' /usr/share/applications/org.gnome.Terminal.desktop
 $maysudo cat > /usr/share/applications/org.gnome.Terminal.desktop <<EOF
@@ -27,7 +28,9 @@ Exec=gnome-terminal --window
 Name=Preferences
 Exec=gnome-terminal --preferences
 EOF
+fi
 
+if [ -f /usr/share/applications/org.gnome.Cheese.desktop ]; then
 echo "Fixing Cam's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
 $maysudo cat > /usr/share/applications/org.gnome.Cheese.desktop <<EOF
@@ -47,7 +50,9 @@ Categories=GNOME;AudioVideo;Video;Recorder;
 DBusActivatable=true
 X-Ubuntu-Gettext-Domain=cheese
 EOF
+fi
 
+if [ -f /usr/share/applications/rhythmbox.desktop ]; then
 echo "Fixing Music's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Music"/' /usr/share/applications/rhythmbox.desktop
 $maysudo cat > /usr/share/applications/rhythmbox.desktop <<EOF
@@ -90,7 +95,9 @@ Exec=rhythmbox-client --previous
 Name=Stop & Quit
 Exec=rhythmbox-client --quit
 EOF
+fi
 
+if [ -f /usr/share/applications/csd-automount.desktop ]; then
 echo "Installing shortcut for Explorer..."
 $maysudo cat > /usr/share/applications/csd-automount.desktop <<EOF
 [Desktop Entry]
@@ -125,7 +132,9 @@ Exec=/usr/lib/x86_64-linux-gnu/cinnamon-settings-daemon/csd-automount
 OnlyShowIn=X-Cinnamon;
 NoDisplay=true
 EOF
+fi
 
+if [ -f /usr/share/applications/nemo.desktop ]; then
 $maysudo cat > /usr/share/applications/nemo.desktop <<EOF
 [Desktop Entry]
 Name=Files
@@ -436,3 +445,4 @@ Name[zh_HK]=垃圾桶
 Name[zh_TW]=回收筒
 Exec=nemo trash:///
 EOF
+fi
