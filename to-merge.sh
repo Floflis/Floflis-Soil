@@ -445,83 +445,82 @@ $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
 #$maysudo apt --fix-broken install
 #- detect ubuntu cinnamon remix otherwise install cinnamon normally
 
-#echo "Installing 'zombiespices'..."
-#cd include/System/zombiespices
-#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/zombiespices.git .; fi
-#if [ -e .git ]; then git pull; fi
-#git checkout -f
-#chmod +x install.sh && $maysudo sh ./install.sh
-#cd "$SCRIPTPATH"
+echo "Installing 'zombiespices'..."
+cd include/System/zombiespices
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/zombiespices.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
 
-#echo "Installing Cinnamon applets, desklets and extensions..."
-#cd include/usr-share-cinnamon
+echo "Installing Cinnamon applets, desklets and extensions..."
+cd include/usr-share-cinnamon
 
-#function job_installSpice {
-#wget -N https://cinnamon-spices.linuxmint.com/files/"$currentspicetype""s"/$currentspice.zip
-## from https://serverfault.com/a/379060/923518
-#if [ -f $currentspice.zip.1 ]; then rm $currentspice.zip; mv $currentspice.zip.1 $currentspice.zip; fi
-#unzip $currentspice.zip
-#$maysudo rsync -av "$currentspice"/. /usr/share/cinnamon/"$currentspicetype""s"/$currentspice
-#rm -r "$currentspice"
-#}
+function job_installSpice {
+wget -N https://cinnamon-spices.linuxmint.com/files/"$currentspicetype""s"/$currentspice.zip
+# from https://serverfault.com/a/379060/923518
+if [ -f $currentspice.zip.1 ]; then rm $currentspice.zip; mv $currentspice.zip.1 $currentspice.zip; fi
+unzip $currentspice.zip
+$maysudo rsync -av "$currentspice"/. /usr/share/cinnamon/"$currentspicetype""s"/$currentspice
+rm -r "$currentspice"
+}
 
-#currentspicetype="applet"
-#cd "$currentspicetype""s"
+currentspicetype="applet"
+cd "$currentspicetype""s"
 
-#currentspice="weather@mockturtl"
-#currentspicemintid="17"
-#job_installSpice
+currentspice="weather@mockturtl"
+currentspicemintid="17"
+job_installSpice
 
-#currentspice="CinnVIIStarkMenu@NikoKrause"
-#currentspicemintid="281"
-#job_installSpice
+currentspice="CinnVIIStarkMenu@NikoKrause"
+currentspicemintid="281"
+job_installSpice
 
-#currentspice="Cinnamenu@json"
-#currentspicemintid="322"
-#job_installSpice
+currentspice="Cinnamenu@json"
+currentspicemintid="322"
+job_installSpice
 
-#currentspice="windowlist@cobinja.de"
-#currentspicemintid="287"
-#job_installSpice
+currentspice="windowlist@cobinja.de"
+currentspicemintid="287"
+job_installSpice
 
-#currentspicetype="desklet"
-#cd ..
-#cd "$currentspicetype""s"
+currentspicetype="desklet"
+cd ..
+cd "$currentspicetype""s"
 
-#currentspice="calendar@deeppradhan"
-#currentspicemintid="40"
-#job_installSpice
+currentspice="calendar@deeppradhan"
+currentspicemintid="40"
+job_installSpice
 
-#currentspice="bbcwx@oak-wood.co.uk"
-#currentspicemintid="20"
-#job_installSpice
+currentspice="bbcwx@oak-wood.co.uk"
+currentspicemintid="20"
+job_installSpice
 
-#currentspice="analog-clock@cobinja.de"
-#currentspicemintid="7"
-#job_installSpice
+currentspice="analog-clock@cobinja.de"
+currentspicemintid="7"
+job_installSpice
 
-#currentspicetype="extension"
-#cd ..
-#cd "$currentspicetype""s"
+currentspicetype="extension"
+cd ..
+cd "$currentspicetype""s"
 
-#currentspice="transparent-panels@germanfr"
-#currentspicemintid="81"
-#job_installSpice
+currentspice="transparent-panels@germanfr"
+currentspicemintid="81"
+job_installSpice
 
-#cd buildmark
-#if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
-#if [ -e .git ]; then git pull; fi
-#git checkout -f
-#zombiespices install
+cd buildmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
 
-#cd ..
-#cd nftmark
-#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
-#if [ -e .git ]; then git pull; fi
-#git checkout -f
-#zombiespices install
-#cd "$SCRIPTPATH"
-# <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
+cd ..
+cd nftmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
+cd "$SCRIPTPATH"
 
 #echo "Installing main theme..."
 #tar -xzf include/Theme/Eleganse-Floflis.tar.gz
