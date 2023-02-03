@@ -25,6 +25,26 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
+echo "Setting up Cinnamon data..."
+#tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
+rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${flouser}/.cinnamon/configs
+
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
+#-
+cd buildmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
+#-
+cd ..
+cd nftmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
+cd "$SCRIPTPATH"
+
 echo "Building your desktop experience..."
 cat >> /tmp/org-cinnamon <<EOF
 [/]
@@ -103,26 +123,6 @@ volumes-visible=false
 EOF
 dconf load /org/nemo/desktop/ < /tmp/org-nemo-desktop
 rm -f /tmp/org-nemo-desktop
-
-echo "Setting up Cinnamon data..."
-#tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
-rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${flouser}/.cinnamon/configs
-
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
-#-
-cd buildmark
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-zombiespices install
-#-
-cd ..
-cd nftmark
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-zombiespices install
-cd "$SCRIPTPATH"
 
 echo "Installing Templates of the 'New File' context menu..."
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
