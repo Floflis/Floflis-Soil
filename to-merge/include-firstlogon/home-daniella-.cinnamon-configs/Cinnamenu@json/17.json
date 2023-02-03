@@ -472,7 +472,7 @@
         "default": false,
         "description": "Use a custom icon size",
         "tooltip": "Use a custom size for the panel icon",
-        "value": true
+        "value": false
     },
     "menu-icon-size": {
         "type": "spinbutton",
