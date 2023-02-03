@@ -414,6 +414,12 @@ cd "$SCRIPTPATH"
 echo "Installing Cinnamon applets, desklets and extensions..."
 cd include/usr-share-cinnamon
 
+if [ ! -e /usr/share/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon; fi
+
+function job_mkCinnSysFolds {
+if [ ! -e /usr/share/cinnamon/"$currentspicetype""s" ]; then $maysudo mkdir /usr/share/cinnamon/"$currentspicetype""s"; fi
+}
+
 function job_installSpice {
 wget -N https://cinnamon-spices.linuxmint.com/files/"$currentspicetype""s"/$currentspice.zip
 # from https://serverfault.com/a/379060/923518
@@ -425,6 +431,8 @@ rm -r "$currentspice"
 
 currentspicetype="applet"
 cd "$currentspicetype""s"
+
+job_mkCinnSysFolds
 
 currentspice="weather@mockturtl"
 currentspicemintid="17"
@@ -446,6 +454,8 @@ currentspicetype="desklet"
 cd ..
 cd "$currentspicetype""s"
 
+job_mkCinnSysFolds
+
 currentspice="calendar@deeppradhan"
 currentspicemintid="40"
 job_installSpice
@@ -461,6 +471,8 @@ job_installSpice
 currentspicetype="extension"
 cd ..
 cd "$currentspicetype""s"
+
+job_mkCinnSysFolds
 
 currentspice="transparent-panels@germanfr"
 currentspicemintid="81"
