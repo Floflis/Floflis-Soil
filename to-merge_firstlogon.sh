@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 # would detect fakeroot 
 #for path in ${LD_LIBRARY_PATH//:/ }; do
 #   if [[ "$path" == *libfakeroot ]]
@@ -318,6 +320,27 @@ EOF
 if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresentation; fi
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
+
+echo "Installing ethgas..."
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools/ethgas
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethgas.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f ethgas
+#rm -f gas-pump.svg
+#rm -f gas-pump-symbolic.svg
+#rm -f .gitmeta
+#rm -f 'SRC At ETH💎💌.txt'
+echo "Installing ethgas' Cinnamon spice..."
+cd spice
+cd ethgas-applet@floflis
+zombiespices install
+cd ..
+cd ethgas-desklet@floflis
+zombiespices install
+cd "$SCRIPTPATH"
 
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
