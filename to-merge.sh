@@ -703,6 +703,14 @@ cd "$SCRIPTPATH"
 #cd "$SCRIPTPATH"
 # <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
 
+echo "Installing nfc-setup (includes NFC Tools)..."
+cd include/System/nfc-setup
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/danimesq/nfc-setup.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash ./install.sh
+cd "$SCRIPTPATH"
+
 $maysudo apt install wine64
 
 $maysudo apt --fix-broken install
