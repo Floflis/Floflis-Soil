@@ -606,19 +606,6 @@ echo "----------------------------------------------------------------------"
 $maysudo bash include/HTML5Apps/central/install.sh
 # <-- HOME LAYER
 
-echo "Installing Sh it..."
-cd include/Tools/shexec
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/shit.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f README.md
-#rm -f shit
-#rm -f .gitmeta
-sudo apt install curl
-cd "$SCRIPTPATH"
-
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
    $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
@@ -648,37 +635,6 @@ fi
 
 echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
-
-echo "Installing online..."
-cd include/Tools/online
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/online.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f README.txt
-#rm -f online
-#rm -f README.md
-#rm -f 'SRC At ETH💎💌.txt'
-cd "$SCRIPTPATH"
-
-echo "Installing mlq..."
-cd include/Tools/mlq
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/mlq.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f README.md
-#rm -f mlq
-#rm -f dependencies.txt
-#rm -f mlq-parser.sh
-#rm -f mlq-parser_worker.sh
-#rm -f sample.html
-#rm -f Tasks.txt
-#rm -f .gitmeta
-#rm -f 'SRC At ETH💎💌.txt'
-cd "$SCRIPTPATH"
 
 # TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES ------------>
 #echo "Installing ethgas..."
