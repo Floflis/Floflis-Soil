@@ -3,7 +3,7 @@
         "type": "header",
         "description": "Settings - Bash Sensors (write commands in Bash!)"
     },
-    "title1": {
+    "title": {
         "type": "entry",
         "default": "Bash sensors",
         "description": "Title",
@@ -50,7 +50,7 @@
         "description": "Command 2",
         "tooltip": "second line of output (optional)",
         "dependency": "enableScript2",
-        "value": ""
+        "value": "echo 'configuration required'"
     },
     "head2": {
         "type": "header",
@@ -113,5 +113,5 @@
         "description": "Command run at start-up",
         "value": ""
     },
-    "__md5__": "db310dac53a1ec7c564733a512480c3a"
+    "__md5__": "80f0a5ee236cf15e0897079f92e88acd"
 }
