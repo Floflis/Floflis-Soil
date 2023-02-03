@@ -608,5 +608,7 @@ cd "$SCRIPTPATH"
 $maysudo apt install wine64
 $maysudo apt install winetricks
 $maysudo apt install playonlinux # 62,2 MB of additional disk space will be used
+#-
+sudo snap install kolourpaint # 10,1 MB disk space
 
 $maysudo apt --fix-broken install
