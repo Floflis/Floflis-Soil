@@ -289,7 +289,6 @@ $maysudo cp -f include/img/default-testpage.pdf /usr/share/cups/data/default-tes
 echo "Installing img..."
 if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 #-
-$maysudo cp -f include/img/OSlogotype.png /1/img/OSlogotype.png
 $maysudo cp -f include/img/OSlogotype.svg /1/img/OSlogotype.svg
 $maysudo cp -f include/img/logo.png /1/img/logo.png
 
@@ -311,9 +310,10 @@ cd "$SCRIPTPATH"
 if [ ! -e /1/img/networks ]; then $maysudo mkdir /1/img/networks; fi
 $maysudo cp -f include/img/networks/ethereum.svg /1/img/networks/ethereum.svg
 $maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
-$maysudo cp -f include/img/networks/xdai.svg /1/img/networks/xdai.svg
+$maysudo cp -f include/img/networks/optimism.svg /1/img/networks/optimism.svg
+$maysudo cp -f include/img/networks/gnosis.svg /1/img/networks/gnosis.svg
+$maysudo cp -f include/img/networks/ronin.svg /1/img/networks/ronin.svg
 #-
-$maysudo cp -f include/img/token.png /1/img/token.png
 $maysudo cp -f include/img/token.svg /1/img/token.svg
 
 echo "Installing backgrounds..."
