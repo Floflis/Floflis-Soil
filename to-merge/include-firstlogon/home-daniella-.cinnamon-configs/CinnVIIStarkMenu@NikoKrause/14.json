@@ -188,7 +188,7 @@
         "tooltip": "Enter custom text to show in the panel.",
         "dependency": "menu-custom",
         "indent": true,
-        "value": ""
+        "value": "Explore"
     },
     "all-programs-label": {
         "type": "entry",
