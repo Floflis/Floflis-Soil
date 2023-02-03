@@ -606,5 +606,7 @@ chmod +x install.sh && $maysudo bash ./install.sh
 cd "$SCRIPTPATH"
 
 $maysudo apt install wine64
+$maysudo apt install winetricks
+$maysudo apt install playonlinux # 62,2 MB of additional disk space will be used
 
 $maysudo apt --fix-broken install
