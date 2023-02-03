@@ -550,13 +550,17 @@ cd "$SCRIPTPATH"
 #cd "$SCRIPTPATH"
 # <---- temporarily disable "Installing logon design" until fixed for Ubuntu 22.10
 #-
+echo "Installing bootscreen logotype..."
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
 $maysudo cp -f include/img/ubuntu-logo.png /usr/share/plymouth/ubuntu-logo.png
 $maysudo cp -f include/img/ubuntu-logo.svg /usr/share/plymouth/ubuntu-logo.svg
-
+#-
 if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
 if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png; fi
 if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.svg ]; then $maysudo ln -s 'ubuntu-logo.svg' /usr/share/plymouth/ubuntucinnamon-logo.svg; fi
+#-
+if [ ! -e /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo ln -s ../../ubuntu-logo.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png; fi
+
 
 # Install geth:
 #- x32 is not available as ethereal isn't available for x32 yet
