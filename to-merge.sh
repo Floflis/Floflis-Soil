@@ -374,24 +374,24 @@ $maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volu
 $maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
 $maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg
 $maysudo cp -f include/sounds/Base/Manipulating\ windows.ogg /1/sounds/Manipulating\ windows.ogg
-$maysudo cp -f include/sounds/Base/Notification.ogg /1/sounds/Notification.ogg
+$maysudo cp -f include/sounds/Base/Notification.oga /1/sounds/Notification.oga
 $maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ device.ogg
 $maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
-$maysudo cp -f include/sounds/Base/Starting.ogx /1/sounds/Starting.ogx
+$maysudo cp -f include/sounds/Base/Starting.oga /1/sounds/Starting.oga
 
 if [ ! -e /usr/share/sounds/Yaru/stereo/ubuntu ]; then $maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu; if [ -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi; if [ -f /usr/share/sounds/Yaru/stereo/system-ready.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi; fi
-$maysudo ln -s /1/sounds/Starting.ogx /usr/share/sounds/Yaru/stereo/desktop-login.oga
+$maysudo ln -s /1/sounds/Starting.oga /usr/share/sounds/Yaru/stereo/desktop-login.oga
 # <-- BASE LAYER
 
 # HOME LAYER -->
 # Home sounds patch
 $maysudo cp -f include/sounds/Base/Home/Dialog.ogg /1/sounds/Dialog.ogg
 $maysudo cp -f include/sounds/Base/Home/Navigation.ogg /1/sounds/Navigation.ogg
-$maysudo cp -f include/sounds/Base/Home/Notification.ogg /1/sounds/Notification.ogg
+$maysudo cp -f include/sounds/Base/Home/Notification.oga /1/sounds/Notification.oga
 $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/Notification\ Important.flac
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
-if [ -f /1/sounds/Starting.ogx ]; then $maysudo rm -f /1/sounds/Starting.ogx; fi
-$maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.ogx
+if [ -f /1/sounds/Starting.oga ]; then $maysudo rm -f /1/sounds/Starting.oga; fi
+$maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.oga
 # <-- HOME LAYER
 
 #echo "Installing Cinnamon 4.8..."
