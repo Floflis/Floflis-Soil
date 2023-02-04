@@ -85,6 +85,7 @@ numlock-state='off'
 [sounds]
 close-enabled=true
 close-file='/1/sounds/Manipulating windows.ogg'
+login-file='/1/sounds/System Logon.oga'
 logout-enabled=true
 logout-file='/1/sounds/Leaving.ogg'
 map-enabled=true
@@ -94,7 +95,7 @@ maximize-file='/1/sounds/Manipulating windows.ogg'
 minimize-enabled=true
 minimize-file='/1/sounds/Manipulating windows.ogg'
 notification-enabled=true
-notification-file='/1/sounds/Notification.ogg'
+notification-file='/1/sounds/Notification.oga'
 plug-enabled=true
 plug-file='/1/sounds/Inserting device.ogg'
 switch-enabled=true
