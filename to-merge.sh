@@ -521,8 +521,8 @@ cd "$SCRIPTPATH"
 #-
 echo "Installing bootscreen logotype..."
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
-$maysudo cp -f include/img/ubuntu-logo.png /usr/share/plymouth/ubuntu-logo.png
-$maysudo cp -f include/img/ubuntu-logo.svg /usr/share/plymouth/ubuntu-logo.svg
+$maysudo cp -f include/img/floflis-logo.png /usr/share/plymouth/ubuntu-logo.png
+$maysudo cp -f include/img/floflis-logo.svg /usr/share/plymouth/ubuntu-logo.svg
 #-
 if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
 if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s 'ubuntu-logo.png' /usr/share/plymouth/ubuntucinnamon-logo.png; fi
