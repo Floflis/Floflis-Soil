@@ -617,6 +617,8 @@ git checkout -f
 chmod +x install.sh && $maysudo bash ./install.sh
 cd "$SCRIPTPATH"
 
+$maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
+
 $maysudo apt install wine64
 $maysudo apt install winetricks
 $maysudo apt install playonlinux # 62,2 MB of additional disk space will be used
