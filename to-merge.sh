@@ -44,9 +44,6 @@ $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 b
 # have to get it from config or json
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
-echo "Installing unzip..."
-$maysudo apt install unzip
-
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool
 #echo "Is xdotool still useful?" # inspire on how firedoge is installed and how it opens an app without blocking the rest of script
@@ -118,6 +115,50 @@ $maysudo apt install unzip
 ## now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
 # <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
 
+#echo "Installing Money Manager Ex..." #this doesnt works yet
+#$maysudo snap install mmex
+#echo "Money Manager Ex doesn't works, yet."
+
+#echo "Installing Openshot video editor..."
+#$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
+
+echo "Installing important libs:"
+echo "Installing unzip..."
+$maysudo apt install unzip
+
+echo "Installing important apps:"
+echo "Installing Photos..."
+$maysudo apt install gnome-photos -y
+echo "Installing Clock..."
+$maysudo apt install gnome-clocks -y
+echo "Installing Weather..."
+$maysudo apt install gnome-weather -y
+echo "Installing Maps..."
+$maysudo apt install gnome-maps -y # 3.448 kB of additional disk space will be used.
+echo "Installing Contacts"
+$maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
+echo "Installing SoundRecorder..."
+$maysudo apt install gnome-sound-recorder -y
+#-
+echo "Installing webcam software..."
+$maysudo apt update
+$maysudo apt install cheese -y #from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
+#-
+echo "Installing Character Map..."
+$maysudo apt install gnome-characters -y # 3.456 kB of additional disk space will be used.
+
+$maysudo bash include/Shortcuts/customShortcuts.sh
+
+echo "Installing other apps:"
+echo "Installing KeePassXC..."
+$maysudo apt install keepassxc
+#-
+echo "Installing Minetest..."
+$maysudo apt install minetest
+echo "Installing gbrainy..."
+$maysudo apt install gbrainy
+#$maysudo apt install supertux
+
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/HTML5Apps/386.tar.gz
@@ -153,45 +194,6 @@ Categories=Programming;Games;
 Keywords=programming;games;event-sheet;development;
 EOF
 fi
-
-#echo "Installing Money Manager Ex..." #this doesnt works yet
-#$maysudo snap install mmex
-#echo "Money Manager Ex doesn't works, yet."
-
-#echo "Installing Openshot video editor..."
-#$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
-
-echo "Installing Minetest..."
-$maysudo apt install minetest
-
-echo "Installing gbrainy..."
-$maysudo apt install gbrainy
-#$maysudo apt install supertux
-
-echo "Installing Photos..."
-$maysudo apt install gnome-photos
-echo "Installing Clock..."
-$maysudo apt install gnome-clocks
-echo "Installing KeePassXC..."
-$maysudo apt install keepassxc
-echo "Installing Weather..."
-$maysudo apt install gnome-weather
-echo "Installing Maps..."
-$maysudo apt install gnome-maps # 3.448 kB of additional disk space will be used.
-echo "Installing Contacts"
-$maysudo apt install gnome-contacts # 3.279 kB of additional disk space will be used.
-echo "Installing SoundRecorder..."
-$maysudo apt install gnome-sound-recorder
-
-echo "Installing webcam software..."
-$maysudo apt update
-$maysudo apt install cheese
-#from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
-#-
-echo "Installing Character Map..."
-$maysudo apt install gnome-characters # 3.456 kB of additional disk space will be used.
-
-$maysudo bash include/Shortcuts/customShortcuts.sh
 
 echo "Installing Weblink apps/shortcuts..."
 cd include/Shortcuts/WeblinkApps
@@ -559,27 +561,19 @@ if [ "$flofarch" = "amd64" ]; then
    geth -h
 fi
 
-echo "----------------------------------------------------------------------"
-echo "DEBUG:"
-echo "Script path: $SCRIPTPATH"
-echo "Current directory: $(pwd)"
-echo "ls:"
-ls
-echo "----------------------------------------------------------------------"
+#echo "----------------------------------------------------------------------"
+#echo "DEBUG:"
+#echo "Script path: $SCRIPTPATH"
+#echo "Current directory: $(pwd)"
+#echo "ls:"
+#ls
+#echo "----------------------------------------------------------------------"
 
 echo "Adding bulbasaur.json..."
 $maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 
 #gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
 #(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
-
-echo "----------------------------------------------------------------------"
-echo "DEBUG:"
-echo "Script path: $SCRIPTPATH"
-echo "Current directory: $(pwd)"
-echo "ls:"
-ls
-echo "----------------------------------------------------------------------"
 
 # HOME LAYER -->
 $maysudo bash include/HTML5Apps/central/install.sh
