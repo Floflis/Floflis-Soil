@@ -176,6 +176,8 @@ echo "Installing KeePassXC..."
 $maysudo apt install keepassxc
 echo "Installing Weather..."
 $maysudo apt install gnome-weather
+echo "Installing Maps..."
+$maysudo apt install gnome-maps # 3.448 kB of additional disk space will be used.
 
 echo "Installing webcam software..."
 $maysudo apt update
@@ -617,6 +619,7 @@ git checkout -f
 chmod +x install.sh && $maysudo bash ./install.sh
 cd "$SCRIPTPATH"
 
+echo "Installing MS Teams..."
 $maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
 
 $maysudo apt install wine64
