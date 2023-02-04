@@ -181,6 +181,9 @@ echo "Installing webcam software..."
 $maysudo apt update
 $maysudo apt install cheese
 #from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
+#-
+echo "Installing Character Map..."
+$maysudo apt install gnome-characters # 3.456 kB of additional disk space will be used.
 
 $maysudo bash include/Shortcuts/customShortcuts.sh
 
