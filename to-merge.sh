@@ -180,6 +180,8 @@ echo "Installing Maps..."
 $maysudo apt install gnome-maps # 3.448 kB of additional disk space will be used.
 echo "Installing Contacts"
 $maysudo apt install gnome-contacts # 3.279 kB of additional disk space will be used.
+echo "Installing SoundRecorder..."
+$maysudo apt install gnome-sound-recorder
 
 echo "Installing webcam software..."
 $maysudo apt update
