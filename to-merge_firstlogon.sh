@@ -165,7 +165,7 @@ cd "$SCRIPTPATH"
 #prompt = "starship_prompt"
 #EOF
 
-cd /home/${flouser} && ln -s .config/nushell/history.txt .nu_history
+cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 
 facevar="/home/${flouser}/.face"
 if [ ! -f "$facevar" ]; then
