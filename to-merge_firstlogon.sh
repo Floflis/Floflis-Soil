@@ -359,6 +359,9 @@ cd ethgas-desklet@floflis
 zombiespices install
 cd "$SCRIPTPATH"
 
+"Setting autostart apps..."
+chmod +x /home/${flouser}/.config/autostart/teams.desktop
+
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
 echo "Preparing to create your ETH address..."
