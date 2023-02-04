@@ -359,6 +359,17 @@ cd ethgas-desklet@floflis
 zombiespices install
 cd "$SCRIPTPATH"
 
+echo "Do you want to install the MS Edge browser? [Y/n]"
+   read setedge
+   case $setedge in
+      [nN])
+         echo "Ok, not going to install MS Edge for now; anyway it should be available in Floflis' stores."
+         ;;
+      [yY])
+         echo "Installing MS Edge..."
+         $maysudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/microsoft-edge-stable_109.0.1518.78-1_amd64.deb
+esac
+
 "Setting autostart apps..."
 chmod +x /home/${flouser}/.config/autostart/teams.desktop
 
