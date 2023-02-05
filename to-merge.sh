@@ -181,6 +181,9 @@ git checkout -f
 $maysudo bash install.sh
 cd "$SCRIPTPATH"
 
+echo "Upgrading Cinnamon..."
+sudo apt upgrade cinnamon-desktop-environment
+
 echo "Installing branding..."
 if [ ! -e /usr/share/cups/data/ubuntu ]; then $maysudo mkdir /usr/share/cups/data/ubuntu; fi
 $maysudo mv -f /usr/share/cups/data/default-testpage.pdf /usr/share/cups/data/ubuntu/default-testpage.pdf
