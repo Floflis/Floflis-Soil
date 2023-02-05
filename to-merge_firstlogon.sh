@@ -366,8 +366,20 @@ echo "Do you want to install the MS Edge browser? [Y/n]"
          echo "Ok, not going to install MS Edge for now; anyway it should be available in Floflis' stores."
          ;;
       [yY])
-         echo "Installing MS Edge..."
-         $maysudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/microsoft-edge-stable_109.0.1518.78-1_amd64.deb
+         echo "Important:" && echo ""
+         cat /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/TERMS && echo ""
+         echo "Privacy statement: https://go.microsoft.com/fwlink/?LinkId=521839" && echo ""
+         echo "Installing Microsoft Edge will add the Microsoft repository so your system will automatically keep Microsoft Edge up to date." && echo ""
+         echo "Scroll up to read. PLEASE READ/WRITE CAREFULLY!"
+         echo "Do you agree with the terms? [Y/n]"
+            read licenseagreement
+            case $licenseagreement in
+               [nN])
+                  exit ;;
+               [yY])
+                  echo "Installing MS Edge..."
+                  $maysudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/microsoft-edge-stable_109.0.1518.78-1_amd64.deb
+            esac
 esac
 
 "Setting autostart apps..."
