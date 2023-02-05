@@ -3,7 +3,7 @@ if [ ! -e /usr/share/pixmaps/faces/ubuntu ]; then $maysudo mkdir /usr/share/pixm
 
 if [ ! -e /usr/share/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon; fi
 if [ ! -e /usr/share/cinnamon/faces ]; then $maysudo mkdir /usr/share/cinnamon/faces; fi
-if [ ! -e /usr/share/cinnamon/faces/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon/faces/cinnamon; fi
+if [ ! -e /usr/share/cinnamon/faces/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon/faces/cinnamon; if [ -f /usr/share/cinnamon/faces/user-generic.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/user-generic.png /usr/share/cinnamon/faces/cinnamon; fi; fi
 
 if [ -f /usr/share/cinnamon/faces/0_cars.jpg ]; then $maysudo mv -f /usr/share/cinnamon/faces/0_cars.jpg /usr/share/cinnamon/faces/cinnamon; fi
 if [ -f /usr/share/cinnamon/faces/0_chess.jpg ]; then $maysudo ln -sf /usr/share/pixmaps/faces/ubuntu/legacy/chess.jpg /usr/share/cinnamon/faces/0_chess.jpg; $maysudo mv -f /usr/share/cinnamon/faces/0_chess.jpg /usr/share/cinnamon/faces/cinnamon; fi
@@ -37,7 +37,6 @@ if [ -f /usr/share/cinnamon/faces/7_lion.png ]; then $maysudo mv -f /usr/share/c
 if [ -f /usr/share/cinnamon/faces/7_panda.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_panda.png /usr/share/cinnamon/faces/cinnamon; fi
 if [ -f /usr/share/cinnamon/faces/7_penguin.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon; fi
 if [ -f /usr/share/cinnamon/faces/7_tucan.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon; fi
-if [ -f /usr/share/cinnamon/faces/user-generic.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/user-generic.png /usr/share/cinnamon/faces/cinnamon; fi
 
 tar -xzf Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/pixmaps/faces
