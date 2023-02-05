@@ -1,10 +1,15 @@
 #!/bin/bash
 
-SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+rocketlaunch_dir=`pwd` #from https://unix.stackexchange.com/a/52919/470623
 
 # HOME LAYER -->
 echo "Installing Floflis Central..."
 
+echo "----------------------------------------------------------------------"
+echo "DEBUG:"
+echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+echo "ls:" && ls
+echo "----------------------------------------------------------------------"
 #----> merge into floflis-packager/floflis-application-handler
 tar -C /1/apps -xzf central.apps
 mkdir /1/apps/central
@@ -14,7 +19,7 @@ cp -rf . /1/apps/central/
 cd ../..
 rm -rf application
 #<---- merge into floflis-packager/floflis-application-handler
-cd "$SCRIPTPATH"
+cd "$rocketlaunch_dir"
 
 if [ -f /usr/bin/central ]; then $maysudo mv /usr/bin/central /usr/lib/floflis/layers/core; fi
 $maysudo cp -f central /usr/bin
