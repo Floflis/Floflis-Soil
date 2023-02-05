@@ -1,4 +1,6 @@
 echo "Installing avatars..."
+if [ ! -e /usr/share/pixmaps/faces/ubuntu ]; then $maysudo mkdir /usr/share/pixmaps/faces/ubuntu; $maysudo mv /usr/share/pixmaps/faces/legacy/ /usr/share/pixmaps/faces/*.jpg /usr/share/pixmaps/faces/*.png /usr/share/pixmaps/faces/ubuntu; fi
+
 if [ ! -e /usr/share/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon; fi
 if [ ! -e /usr/share/cinnamon/faces ]; then $maysudo mkdir /usr/share/cinnamon/faces; fi
 if [ ! -e /usr/share/cinnamon/faces/cinnamon ]; then $maysudo mkdir /usr/share/cinnamon/faces/cinnamon; fi
