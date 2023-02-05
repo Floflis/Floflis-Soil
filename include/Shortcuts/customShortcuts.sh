@@ -648,3 +648,27 @@ Terminal=false
 EOF
 fi
 #from https://forum.snapcraft.io/t/overriding-desktop-files-on-ubuntu-snaps/6599/4
+
+if [ -f /usr/share/applications/org.gnome.Characters.desktop ]; then
+echo "Fixing Character Map's shortcut name..."
+#$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
+cat > /usr/share/applications/org.gnome.Characters.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Characters Map
+Name[pt]=Mapa de Caracteres
+Name[pt_BR]=Mapa de Caracteres
+Name[es]=Mapa de Caracteres
+Comment=Utility application to find and insert unusual characters
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=org.gnome.Characters
+Exec=/usr/bin/gnome-characters
+DBusActivatable=true
+StartupNotify=true
+Categories=GNOME;GTK;Utility;X-GNOME-Utilities;
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+Keywords=characters;unicode;punctuation;math;letters;emoji;emoticon;symbols;
+X-Purism-FormFactor=Workstation;Mobile;
+X-Ubuntu-Gettext-Domain=org.gnome.Characters
+EOF
+fi
