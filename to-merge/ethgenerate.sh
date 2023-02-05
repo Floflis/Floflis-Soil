@@ -4,12 +4,11 @@ terms="""
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 THE SOFTWARE IS PROVIDED ''AS IS'', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
-
 dna_ascii=$(cat /usr/lib/floflis/layers/dna/dna_ascii)
 
 termsagreement () {
    echo "${dna_ascii}"
-   echo "Terms:"
+   echo "Terms (applies to The Floflis Platform, The Floflis OS and its set of applications such as this script - ethgenerate.sh):"
    echo "${terms}"
    echo "Scroll up to read. PLEASE READ/WRITE CAREFULLY!"
    echo "Do you agree with the terms and the disclaimer? [Y/n]"
@@ -20,7 +19,7 @@ termsagreement () {
       [yY])
          echo "Ok"
          echo "${dna_ascii}"
-         echo "The safest way to store your ETH keys is using a hardware wallet. USB keys (Trezor/Ledger/Keepkey) are not available yet, but we will support them soon."
+         echo "The safest way to store your ETH keys is by using a hardware wallet. USB keys (Trezor/Ledger/Keepkey/etc) are not supported yet, but we will cover them as soon as possible."
          echo "${dna_ascii}"
 esac
 }
@@ -49,6 +48,8 @@ fi
    echo "Are you ready to farm FLOF and others tokens?"
    echo "Your journey begins today."
    echo "Your ETH address: $ethaddress"
+   echo "----"
+   echo "PS: we recommend that once you reach some $ values with your Floflis ETH address (be it generated for Floflis or imported from a private key), SAFELY MOVE YOUR ASSETS TO YOUR HARDWARE WALLET(S)."
 #read main address: geth --verbosity "0" console --exec "eth.accounts[0]" (should filter out the quotes) OR jq -r '.address' /home/daniell/.ethereum/keystore/UTC--*
    exit
 }
@@ -64,7 +65,7 @@ function olduserproceed {
             echo "The best choice! You are on the correct way."
             ethaddresscreate;;
          "Import from privatekey")
-            echo -n "Type your privatekey if you are aware of the risks: "
+            echo -n "Type your privatekey if you are aware of the risks, and responsible for your own choices: "
             read prvkey
             geth account import <(echo $prvkey)
             bothproceed
@@ -87,6 +88,7 @@ case $newethereum in
       echo "For now, the best safety measure available is: to not import your privatekey; but create one for exclusive use on Floflis."
       echo "----"
       echo "Its recommendable to make an exclusive ETH address for Floflis instead of importing from your private key, even if you trust us a lot."
+      echo "Also, we recommend that once you reach some $ values with your Floflis ETH address (be it generated for Floflis or imported from a private key), SAFELY MOVE YOUR ASSETS TO YOUR HARDWARE WALLET(S)."
       olduserproceed;;
    [yY])
       termsagreement
