@@ -44,8 +44,7 @@ $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 b
 # have to get it from config or json
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
-#$maysudo 
-bash include/System/to-merge_deactivated.sh
+#$maysudo bash include/System/to-merge_deactivated.sh
 
 echo "Installing important programs:"
 echo "Installing nfc-setup (includes NFC Tools)..."
@@ -100,14 +99,15 @@ $maysudo apt install unzip -y
 
 echo "Installing important apps:"
 # HOME LAYER -->
-$maysudo bash include/HTML5Apps/central/install.sh
+cd include/HTML5Apps/central && $maysudo bash install.sh
+cd "$SCRIPTPATH"
 # <-- HOME LAYER
 echo "Installing Clock..."
 $maysudo apt install gnome-clocks -y
 echo "Installing Contacts"
 $maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
 echo "Installing Paint..."
-$maysudo snap install kolourpaint -y # 10,1 MB disk space
+$maysudo snap install kolourpaint # 10,1 MB disk space
 echo "Installing Photos..."
 $maysudo apt install gnome-photos -y
 echo "Installing Character Map..."
@@ -260,7 +260,8 @@ if [ -f /usr/share/wallpapers/FuturePrototype/gnome-background.xml ]; then $mays
 $maysudo ln -s /1/img/bg.png /usr/share/wallpapers/FuturePrototype/contents/images/1680x1050.png
 
 # Cinnamon pre-installed avatars
-$maysudo bash include/img/Avatars/install.sh
+cd include/img/Avatars && $maysudo bash install.sh
+cd "$SCRIPTPATH"
 
 echo "Installing sounds..."
 if [ ! -e /1/sounds ]; then $maysudo mkdir /1/sounds; fi
