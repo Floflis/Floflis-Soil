@@ -2,6 +2,20 @@
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
 <wallpapers>
   <wallpaper deleted="false">
+    <name>Floflis Desktop</name>
+    <filename>/1/img/bg.png</filename>
+    <options>zoom</options>
+    <pcolor>#ffffff</pcolor>
+    <scolor>#000000</scolor>
+  </wallpaper>
+  <wallpaper deleted="false">
+    <name>Floflis Lockscreen</name>
+    <filename>/1/img/lockscreen.png</filename>
+    <options>zoom</options>
+    <pcolor>#ffffff</pcolor>
+    <scolor>#000000</scolor>
+  </wallpaper>
+  <wallpaper deleted="false">
     <name>Some apples</name>
     <filename>/usr/share/backgrounds/apple-1873078_1920.jpg</filename>
     <options>zoom</options>
