@@ -38,6 +38,11 @@ if [ -f /usr/share/cinnamon/faces/7_panda.png ]; then $maysudo mv -f /usr/share/
 if [ -f /usr/share/cinnamon/faces/7_penguin.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_penguin.png /usr/share/cinnamon/faces/cinnamon; fi
 if [ -f /usr/share/cinnamon/faces/7_tucan.png ]; then $maysudo mv -f /usr/share/cinnamon/faces/7_tucan.png /usr/share/cinnamon/faces/cinnamon; fi
 
+echo "----------------------------------------------------------------------"
+echo "DEBUG:"
+echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+echo "ls:" && ls
+echo "----------------------------------------------------------------------"
 tar -xzf Avatars.tar.gz
 $maysudo rsync -av Avatars/. /usr/share/pixmaps/faces
 $maysudo rm -rf Avatars

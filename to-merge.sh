@@ -401,10 +401,8 @@ $maysudo bash include/System/ubiquity-slideshow.sh
 
 #echo "----------------------------------------------------------------------"
 #echo "DEBUG:"
-#echo "Script path: $SCRIPTPATH"
-#echo "Current directory: $(pwd)"
-#echo "ls:"
-#ls
+#echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+#echo "ls:" && ls
 #echo "----------------------------------------------------------------------"
 
 echo "Adding bulbasaur.json..."
