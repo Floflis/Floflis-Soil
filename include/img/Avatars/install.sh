@@ -1,3 +1,5 @@
+rocketlaunch_dir=`pwd` #from https://unix.stackexchange.com/a/52919/470623
+
 echo "Installing avatars..."
 if [ ! -e /usr/share/pixmaps/faces/ubuntu ]; then $maysudo mkdir /usr/share/pixmaps/faces/ubuntu; $maysudo mv /usr/share/pixmaps/faces/legacy/ /usr/share/pixmaps/faces/*.jpg /usr/share/pixmaps/faces/*.png /usr/share/pixmaps/faces/ubuntu; fi
 
@@ -40,7 +42,7 @@ if [ -f /usr/share/cinnamon/faces/7_tucan.png ]; then $maysudo mv -f /usr/share/
 
 echo "----------------------------------------------------------------------"
 echo "DEBUG:"
-echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+echo "Script path: $rocketlaunch_dir" && echo "Current directory: $(pwd)"
 echo "ls:" && ls
 echo "----------------------------------------------------------------------"
 tar -xzf Avatars.tar.gz
@@ -66,3 +68,4 @@ $maysudo ln -sf ../../pixmaps/faces/16.png /usr/share/cinnamon/faces/16.png
 $maysudo ln -sf ../../pixmaps/faces/17.png /usr/share/cinnamon/faces/17.png
 $maysudo ln -sf ../../pixmaps/faces/18.png /usr/share/cinnamon/faces/18.png
 $maysudo ln -sf ../../pixmaps/faces/19.png /usr/share/cinnamon/faces/19.png
+$maysudo ln -sf ../../pixmaps/faces/user-generic.png /usr/share/cinnamon/faces/user-generic.png

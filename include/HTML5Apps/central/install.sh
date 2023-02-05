@@ -7,7 +7,7 @@ echo "Installing Floflis Central..."
 
 echo "----------------------------------------------------------------------"
 echo "DEBUG:"
-echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+echo "Script path: $rocketlaunch_dir" && echo "Current directory: $(pwd)"
 echo "ls:" && ls
 echo "----------------------------------------------------------------------"
 #----> merge into floflis-packager/floflis-application-handler
