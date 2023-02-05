@@ -45,7 +45,7 @@ Terminal=false
 Type=Application
 StartupNotify=true
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=org.gnome.Cheese
+Icon=camera-app
 Categories=GNOME;AudioVideo;Video;Recorder;
 DBusActivatable=true
 X-Ubuntu-Gettext-Domain=cheese
@@ -647,3 +647,4 @@ Terminal=false
 
 EOF
 fi
+#from https://forum.snapcraft.io/t/overriding-desktop-files-on-ubuntu-snaps/6599/4
