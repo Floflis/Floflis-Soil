@@ -47,37 +47,90 @@ if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 #$maysudo 
 bash include/System/to-merge_deactivated.sh
 
+echo "Installing important programs:"
+echo "Installing nfc-setup (includes NFC Tools)..."
+cd include/System/nfc-setup
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/danimesq/nfc-setup.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash ./install.sh
+cd "$SCRIPTPATH"
+
+# Install geth:
+#- x32 is not available as ethereal isn't available for x32 yet
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/System/ethereum/386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+if [ "$flofarch" = "amd64" ]; then
+   echo "Installing geth..."
+   tar -xzf include/System/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+   $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
+   chmod +x /usr/bin/geth
+   rm -rf geth-linux-amd64-1.10.11-7231b3ef
+   echo "Testing if geth works:"
+   geth -h
+fi
+
+echo "Installing support for Windows apps..."
+$maysudo apt install wine64 -y
+$maysudo apt install winetricks -y
+$maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
+
+echo "Installing Hugo (you did great, elder blogspot.com)..."
+if [ "$flofarch" = "386" ]; then
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
+   echo "Testing if Hugo works:"
+   hugo -h
+fi
+if [ "$flofarch" = "amd64" ]; then
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb
+   echo "Testing if Hugo works:"
+   hugo -h
+fi
+
 echo "Installing important libs:"
 echo "Installing unzip..."
-$maysudo apt install unzip
+$maysudo apt install unzip -y
 
 echo "Installing important apps:"
-echo "Installing Photos..."
-$maysudo apt install gnome-photos -y
+# HOME LAYER -->
+$maysudo bash include/HTML5Apps/central/install.sh
+# <-- HOME LAYER
 echo "Installing Clock..."
 $maysudo apt install gnome-clocks -y
+echo "Installing Contacts"
+$maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
+echo "Installing Paint..."
+$maysudo snap install kolourpaint -y # 10,1 MB disk space
+echo "Installing Photos..."
+$maysudo apt install gnome-photos -y
+echo "Installing Character Map..."
+$maysudo apt install gnome-characters -y # 3.456 kB of additional disk space will be used.
+echo "Installing SoundRecorder..."
+$maysudo apt install gnome-sound-recorder -y
+echo "Installing Cam..."
+$maysudo apt install cheese -y #from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
 echo "Installing Weather..."
 $maysudo apt install gnome-weather -y
 echo "Installing Maps..."
 $maysudo apt install gnome-maps -y # 3.448 kB of additional disk space will be used.
-echo "Installing Contacts"
-$maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
-echo "Installing SoundRecorder..."
-$maysudo apt install gnome-sound-recorder -y
-#-
-echo "Installing webcam software..."
-$maysudo apt update
-$maysudo apt install cheese -y #from https://linuxconfig.org/how-to-test-webcam-on-ubuntu-22-04-jammy-jellyfish
-#-
-echo "Installing Character Map..."
-$maysudo apt install gnome-characters -y # 3.456 kB of additional disk space will be used.
 
 $maysudo bash include/Shortcuts/customShortcuts.sh
 
 echo "Installing other apps:"
 echo "Installing KeePassXC..."
 $maysudo apt install keepassxc
+echo "Installing MS Teams..."
+$maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
 #-
+echo "Installing Gnome GAMES app (465 kB download; 2,745 kB installed)..."
+$maysudo apt install gnome-games-app
 echo "Installing Minetest..."
 $maysudo apt install minetest
 echo "Installing gbrainy..."
@@ -330,34 +383,13 @@ echo "Installing bootscreen logotype..."
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
 $maysudo convert include/img/floflis-logo.png    -resize 512x59  /usr/share/plymouth/ubuntu-logo.png
 #$maysudo cp -f include/img/floflis-logo.png /usr/share/plymouth/ubuntu-logo.png
-$maysudo cp -f include/img/floflis-logo.svg /1/img/ubuntu-logo.svg
+$maysudo cp -f include/img/floflis-logo.svg /1/img/floflis-logo.svg
 #-
 if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
 if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s ubuntu-logo.png /usr/share/plymouth/ubuntucinnamon-logo.png; fi
 #if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.svg ]; then $maysudo ln -s ubuntu-logo.svg /usr/share/plymouth/ubuntucinnamon-logo.svg; fi
 #-
 if [ ! -e /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo ln -s ../../ubuntu-logo.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png; fi
-
-# Install geth:
-#- x32 is not available as ethereal isn't available for x32 yet
-#      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/System/ethereum/386.tar.gz
-#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
-#         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
-#         echo "Testing if IPFS works:"
-#         ipfs
-#fi
-if [ "$flofarch" = "amd64" ]; then
-   echo "Installing geth..."
-   tar -xzf include/System/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
-   $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
-   chmod +x /usr/bin/geth
-   rm -rf geth-linux-amd64-1.10.11-7231b3ef
-   echo "Testing if geth works:"
-   geth -h
-fi
 
 #echo "----------------------------------------------------------------------"
 #echo "DEBUG:"
@@ -372,41 +404,5 @@ $maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 
 #gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
 #(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
-
-# HOME LAYER -->
-$maysudo bash include/HTML5Apps/central/install.sh
-# <-- HOME LAYER
-
-echo "Installing Hugo (you did great, elder blogspot.com)..."
-if [ "$flofarch" = "386" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
-   echo "Testing if Hugo works:"
-   hugo -h
-fi
-if [ "$flofarch" = "amd64" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb
-   echo "Testing if Hugo works:"
-   hugo -h
-fi
-
-echo "Installing Gnome GAMES (465 kB download; 2,745 kB installed)..."
-$maysudo apt install gnome-games-app
-
-echo "Installing nfc-setup (includes NFC Tools)..."
-cd include/System/nfc-setup
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/danimesq/nfc-setup.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo bash ./install.sh
-cd "$SCRIPTPATH"
-
-echo "Installing MS Teams..."
-$maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
-
-$maysudo apt install wine64
-$maysudo apt install winetricks
-$maysudo apt install playonlinux # 62,2 MB of additional disk space will be used
-#-
-$maysudo snap install kolourpaint # 10,1 MB disk space
 
 $maysudo apt --fix-broken install
