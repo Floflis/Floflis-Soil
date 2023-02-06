@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing installer's slideshow..."
 if [ -e /usr/share/ubiquity-slideshow ]; then
     if [ ! -e /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu ]; then $maysudo mkdir /usr/share/ubiquity-slideshow/slides/screenshots/ubuntu; fi

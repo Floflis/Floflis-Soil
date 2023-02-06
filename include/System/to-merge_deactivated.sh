@@ -37,21 +37,21 @@
 #EOF
 #echo "ipfs-handle doesn't works, yet."
 
-# TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES ------------>
-#echo "Installing Finance category..." #this doesnt works yet
-#$maysudo cat > /usr/share/desktop-directories/Finance.directory <<EOF
-#[Desktop Entry]
-#Name=Finance
-#Comment=Financial applications
-## Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#Icon=ethereum
-#Type=Directory
-#X-Ubuntu-Gettext-Domain=gnome-menus-3.0
-#EOF
-#$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
+
+echo "Installing Finance category..." #this doesnt works yet
+cat > /usr/share/desktop-directories/Finance.directory <<EOF
+[Desktop Entry]
+Name=Finance
+Comment=Financial applications
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=ethereum
+Type=Directory
+X-Ubuntu-Gettext-Domain=gnome-menus-3.0
+EOF
+#cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
 #<Menu><Name>Finance</Name><Directory>Finance.directory</Directory></Menu>
 #EOF
-#$maysudo cat > /usr/share/desktop-directories/cinnamon-finance.directory <<EOF
+#cat > /usr/share/desktop-directories/cinnamon-finance.directory <<EOF
 #[Desktop Entry]
 #Name=Finance
 #Comment=Financial applications
@@ -59,15 +59,15 @@
 #Icon=ethereum
 #Type=Directory
 #EOF
-#$maysudo cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
+#cat >> /etc/xdg/menus/cinnamon-applications.menu <<EOF
 #<Menu>
 #    <Name>Finance</Name>
 #    <Directory>cinnamon-finance.directory</Directory>
 #</Menu>
 #EOF
-#echo "Finance category doesn't works, yet."
-## now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
-# <-------- TEMPORARILY DEACTIVATE UNTIL MITIGATED ISSUES
+echo "Finance category doesn't works, yet."
+# now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
+
 
 #echo "Installing Money Manager Ex..." #this doesnt works yet
 #$maysudo snap install mmex
@@ -75,58 +75,6 @@
 
 #echo "Installing Openshot video editor..."
 #$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y
-
-# UBUNTUCINNAMON TEMPORARILY DISABLE ---->
-#echo "Installing icons..."
-#cd include/img/icons/Floflis
-#if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/icons.git .; fi
-#if [ -e .git ]; then git pull; fi
-#git checkout -f
-#cd ..
-#$maysudo rsync -av Floflis /usr/share/icons
-#cd Floflis
-##rm -f .gitattributes #use noah to exclude everything except .git
-##rm -f tasks.txt
-##rm -f 'personal research.txt'
-##rm -f index.theme
-##rm -f icon-theme.cache
-##rm -f cursor.theme
-##rm -rf 8x8 && rm -rf 8x8@2x && rm -rf 16x16 && rm -rf 16x16@2x && rm -rf 22x22 && rm -rf 24x24 && rm -rf 24x24@2x && rm -rf 32x32 && rm -rf 32x32@2x && rm -rf 48x48 && rm -rf 48x48@2x && rm -rf 64x64 && rm -rf 96x96 && rm -rf 128x128 && rm -rf 256x256 && rm -rf 256x256@2x && rm -rf 512x512 && rm -rf cursors && rm -rf scalable && rm -rf scalable-max-32
-#cd "$SCRIPTPATH"
-#if [ -f /tmp/cubicmode ]; then
-#   $maysudo rm -rf /usr/share/icons/Floflis/.git
-#fi
-
-#if [ ! -e /usr/share/icons/Yaru ]; then
-#   tar -xzf include/img/icons/Yaru.tar.gz
-#   $maysudo rsync -av Yaru /usr/share/icons
-#   $maysudo rm -rf Yaru
-#fi
-
-#if [ -e /usr/share/icons/Yaru ]; then
-#       echo "Proceeding with the install of Floflis icons..." #futurely, Floflis icons will be an separate package with its own installer
-#       if [ ! -e /usr/share/icons/ubuntu ]; then $maysudo mkdir /usr/share/icons/ubuntu; fi
-#       $maysudo mv -f /usr/share/icons/Yaru /usr/share/icons/ubuntu/Yaru
-#       $maysudo ln -s /usr/share/icons/Floflis /usr/share/icons/Yaru
-#       # echo "de-duplicing icons in hicolor..." sudo rm -f cinnamon-preferences-color.png && sudo rm -f csd-color.png && sudo ln -s preferences-color.png cinnamon-preferences-color.png && sudo ln -s preferences-color.png csd-color.png
-#       echo "de-duplicing some icons in Yaru..."
-#       echo "de-duplicing some icons in Yaru/apps..."
-#       $maysudo cp -f include/img/icons/to-merge_floflis-icons.sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/256x256@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/256x256/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/48x48@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/48x48/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/32x32@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/32x32/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/24x24@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/24x24/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/16x16@2x/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       cd /usr/share/icons/ubuntu/Yaru/16x16/apps && $maysudo sh /tmp/to-merge_floflis-icons.sh
-#       #cd "$(dirname "${BASH_SOURCE[0]}")" #should work but isnt working
-#       cd "$SCRIPTPATH"
-#       $maysudo rm -f /tmp/to-merge_floflis-icons.sh
-#fi
-# <---- UBUNTUCINNAMON TEMPORARILY DISABLE
 
 #echo "Installing Cinnamon 4.8..."
 #$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
