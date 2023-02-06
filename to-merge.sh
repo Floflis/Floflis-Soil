@@ -139,6 +139,43 @@ echo "Installing gbrainy..."
 $maysudo apt install gbrainy
 #$maysudo apt install supertux
 
+#echo "Installing xdotool..."
+#$maysudo apt install xdotool
+#echo "Is xdotool still useful?" # inspire on how firedoge is installed and how it opens an app without blocking the rest of script
+#-
+#ipfs init
+#bash ipfsdaemon > ipfs.log &
+#(ipfs daemon &)
+#?xdotool key Ctrl+d
+#?xdotool key Ctrl+d
+#? on Cubic, need to have IPFS running on host - until its fixed
+#check if issues have been fixed. also, Ubiquity post-install script which will include asking user to import Live ISO data to the newly installed OS
+
+echo "Installing ipfs-handle..."
+cat > /usr/share/applications/ipfs-handle-link.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Handler for ipfs:// URIs
+Exec=xdg-open %u
+StartupNotify=false
+MimeType=x-scheme-handler/ipfs;
+NoDisplay=true
+EOF
+$maysudo echo "x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;" > /usr/share/applications/x-cinnamon-mimeapps.list
+
+# HOME LAYER -->
+# Install IPFS-Desktop:
+if [ "$flofarch" = "amd64" ]; then
+   echo "Installing IPFS Desktop..."
+   $maysudo dpkg -i include/DEB/ipfs-desktop-0.25.0-linux-amd64.deb
+   rm -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -s '/usr/bin/ipfs /opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
+   $maysudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
+ipfs-desktop
+ENDOFFILE
+   $maysudo chmod +x /usr/bin/ipfsdaemon
+fi
+# <-- HOME LAYER
+
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/HTML5Apps/386.tar.gz
