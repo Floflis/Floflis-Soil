@@ -405,10 +405,15 @@ if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s ubu
 #-
 if [ ! -e /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo ln -s ../../ubuntu-logo.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo convert include/img/logo.png    -resize 128x128  /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png; fi
 
-# Ubiquity Slideshow
+# Ubiquity
+#Slideshow
 cd include/System
 $maysudo bash ubiquity-slideshow.sh
 cd "$SCRIPTPATH"
+#Pixmaps
+if [ ! -e /usr/share/ubiquity/pixmaps/ubuntuoriginal ]; then $maysudo mkdir /usr/share/ubiquity/pixmaps/ubuntuoriginal; $maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu /usr/share/ubiquity/pixmaps/ubuntuoriginal/; $maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu/cd_in_tray.png /usr/share/ubiquity/pixmaps/ubuntuoriginal;$maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu/ubuntu_installed.png /usr/share/ubiquity/pixmaps/ubuntuoriginal; fi
+#-
+$maysudo rsync -av include/System/ubiquity/pixmaps/. /usr/share/ubiquity/pixmaps
 
 #echo "----------------------------------------------------------------------"
 #echo "DEBUG:"
