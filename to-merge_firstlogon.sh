@@ -382,7 +382,7 @@ echo "Do you want to install the MS Edge browser? [Y/n]"
             esac
 esac
 
-"Setting autostart apps..."
+echo "Setting autostart apps..."
 chmod +x /home/${flouser}/.config/autostart/teams.desktop
 
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
@@ -390,5 +390,24 @@ echo "DEBUG: Not a Live ISO"
 echo "Preparing to create your ETH address..."
 bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 fi
+
+# to-merge>
+             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
+                installtermfont(){
+                cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
+[/]
+bold-is-bright=true
+font='FantasqueSansMono Nerd Font 12'
+use-system-font=false
+EOF
+                dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles
+                rm -f /tmp/org-gnome-terminal-legacy-profiles
+}
+                echo "You have to logout, so changes will take effect."
+                echo "Save any work you did (only if you did)."
+                echo "Logout? [Y/n]"
+                read logoutinput;case $logoutinput in [nN]) break ;; [yY]) installtermfont;cinnamon-session-quit --logout --force; esac
+fi
+# <to-merge
 
 $maysudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
