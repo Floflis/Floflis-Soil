@@ -176,6 +176,10 @@ ENDOFFILE
 fi
 # <-- HOME LAYER
 
+echo "Installing Frame + Frame Canary"
+$maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb
+$maysudo dpkg -i include/DEB/frame-canary_0.5.0-canary.12_amd64.deb
+
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/HTML5Apps/386.tar.gz
