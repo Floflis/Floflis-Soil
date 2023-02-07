@@ -499,4 +499,14 @@ cd "$SCRIPTPATH"
 echo "Testing if feofle works:"
 feofle
 
+echo "Installing UniStore..."
+cd include/System/unistore-core
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/unistore-core.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
+echo "Testing if UniStore CLI works:"
+unistore
+
 $maysudo apt --fix-broken install
