@@ -509,4 +509,14 @@ cd "$SCRIPTPATH"
 echo "Testing if UniStore CLI works:"
 unistore
 
+echo "Installing Floflis' flo-bkp-sync..."
+cd include/System/flo-bkp-sync
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/flo-bkp-sync.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash /install.sh
+cd "$SCRIPTPATH"
+echo "Testing if flo-bkp-sync works:"
+flo-bkp-sync
+
 $maysudo apt --fix-broken install
