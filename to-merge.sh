@@ -80,6 +80,25 @@ echo "Installing support for Windows apps..."
 $maysudo apt install wine64 -y
 $maysudo apt install winetricks -y
 $maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
+# WinApps
+echo "Installing WinApps..."
+$maysudo apt-get install -y virt-manager #Need to get 10,1 MB of archives. After this operation, 44,4 MB of additional disk space will be used.
+echo "Have already installed KVM/virt-manager. To follow the next steps: https://github.com/Fmstrat/winapps/blob/main/docs/KVM.md"
+sudo apt-get install -y freerdp2-x11
+cd include/System/winapps
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Fmstrat/winapps.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+#$maysudo bash install.sh
+if [ ! -e /usr/lib/winapps ]; then $maysudo mkdir /usr/lib/winapps; fi
+$maysudo rsync -av . /usr/lib/winapps
+$maysudo rm -f /usr/lib/winapps/icons/windows.svg
+cat > /usr/bin/winapps << ENDOFFILE
+#!/bin/bash
+
+source /usr/lib/winapps/bin/winapps
+ENDOFFILE
+cd "$SCRIPTPATH"
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
