@@ -489,4 +489,14 @@ $maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 #gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
 #(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
 
+echo "Installing Floflis' Feofle..."
+cd include/System/feofle
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/feofle.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash install.sh
+cd "$SCRIPTPATH"
+echo "Testing if feofle works:"
+feofle
+
 $maysudo apt --fix-broken install
