@@ -1,6 +1,1 @@
-home-daniell-.local-share-cinnamon_usr-share-cinnamon.tar.gz
-Use git repos for Spices whenever possible
-
 BeepBox_4_0_1.zip ? futurely convert to .apps
-
-HTML5Apps/central.tar.gz convert to .apps
