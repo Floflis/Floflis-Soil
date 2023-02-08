@@ -68,7 +68,7 @@ cd "$SCRIPTPATH"
 #fi
 if [ "$flofarch" = "amd64" ]; then
    echo "Installing geth..."
-   tar -xzf include/System/ethereum/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+   tar -xzf include/System/ethereum/geth-linux-amd64-1.10.26-e5eb32ac.tar.gz
    $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
    chmod +x /usr/bin/geth
    rm -rf geth-linux-amd64-1.10.11-7231b3ef
