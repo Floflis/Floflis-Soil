@@ -146,7 +146,8 @@ echo "Installing other apps:"
 echo "Installing KeePassXC..."
 $maysudo apt install keepassxc
 echo "Installing Stacer..."
-$maysudo dpkg -i include/DEB/stacer.deb
+$maysudo dpkg -i include/DEB/stacer_1.1.0_amd64.deb
+$maysudo apt upgrade stacer
 echo "Installing MS Teams..."
 $maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
 #-
