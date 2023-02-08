@@ -82,9 +82,5 @@ echo "Finance category doesn't works, yet."
 #echo "Installing OBS (17.0 MB download; 85.8 MB installed)..."
 #$maysudo apt install obs-studio
 
-#echo "Installing Money Manager Ex..." #this doesnt works yet
-#$maysudo snap install mmex
-#echo "Money Manager Ex doesn't works, yet."
-
 #echo "Installing Openshot video editor..."
 #$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y

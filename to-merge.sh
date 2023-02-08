@@ -158,6 +158,8 @@ $maysudo apt install minetest
 echo "Installing gbrainy..."
 $maysudo apt install gbrainy
 #$maysudo apt install supertux
+echo "Installing Money Manager Ex (MMEX)..."
+$maysudo dpkg -i include/DEB/mmex_1.6.3-Ubuntu.22.04.jammy_amd64.deb
 
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool
