@@ -188,7 +188,7 @@ $maysudo echo "x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;" > /usr/s
 if [ "$flofarch" = "amd64" ]; then
    echo "Installing IPFS Desktop..."
    $maysudo dpkg -i include/DEB/ipfs-desktop-0.26.0-linux-amd64.deb
-   rm -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -s '/usr/bin/ipfs /opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
+   rm -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf /usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
    $maysudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
 ipfs-desktop
 ENDOFFILE
