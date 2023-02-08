@@ -519,4 +519,14 @@ cd "$SCRIPTPATH"
 echo "Testing if flo-bkp-sync works:"
 flo-bkp-sync
 
+echo "Installing Web3Updater..."
+cd include/System/Web3Updater
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Plasmmer/Web3Updater.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash /install.sh
+cd "$SCRIPTPATH"
+echo "Testing if Web3Updater works:"
+web3updater
+
 $maysudo apt --fix-broken install
