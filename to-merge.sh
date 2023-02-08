@@ -529,4 +529,14 @@ cd "$SCRIPTPATH"
 echo "Testing if Web3Updater works:"
 web3updater
 
+echo "Installing SharedChain..."
+cd include/System/SharedChain
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Plasmmer/SharedChain.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash /install.sh
+cd "$SCRIPTPATH"
+echo "Testing if SharedChain works:"
+sharedchain
+
 $maysudo apt --fix-broken install
