@@ -33,11 +33,6 @@ fi
 
 export maysudo
 
-sudo apt upgrade
-sudo apt-get autoremove
-sudo apt-get autoclean
-#-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
-
 #- attempt to fix Cubic's custom name:
 $maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2302_1 'Eusoumafoca'"/' /usr/lib/os-release
 $maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2302_1 'Eusoumafoca'"/' /etc/lsb-release
