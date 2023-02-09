@@ -41,7 +41,7 @@ if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
 #$maysudo bash include/System/to-merge_deactivated.sh
 
-$maysudo apt-get install snapd #from https://stackoverflow.com/a/68008068
+$maysudo apt install snapd #from https://stackoverflow.com/a/68008068
 $maysudo service snapd start
 $maysudo systemctl start snapd.service
 #from https://stackoverflow.com/a/62747900
@@ -148,8 +148,10 @@ $maysudo apt install keepassxc
 echo "Installing Stacer..."
 $maysudo dpkg -i include/DEB/stacer_1.1.0_amd64.deb
 $maysudo apt upgrade stacer
+$maysudo apt --fix-broken install
 echo "Installing MS Teams..."
 $maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
+$maysudo apt --fix-broken install
 #-
 echo "Installing Gnome GAMES app (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
@@ -490,6 +492,12 @@ $maysudo cp -f include/System/bulbasaur.json /1/bulbasaur.json
 #gnome-terminal --tab --title="Installing NodeJS" -- /bin/sh -c 'bash install-node.sh; exec bash'
 #(gnome-terminal --tab --title="Installing NodeJS..." -- /bin/sh -c 'bash install-node.sh; exec bash' &)
 
+echo "----------------------------------------------------------------------"
+echo "DEBUG:"
+echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+echo "ls:" && ls
+echo "----------------------------------------------------------------------"
+
 echo "Installing Floflis' Feofle..."
 cd include/System/feofle
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/feofle.git .; fi
@@ -499,6 +507,12 @@ chmod +x install.sh && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 echo "Testing if feofle works:"
 feofle
+
+echo "----------------------------------------------------------------------"
+echo "DEBUG:"
+echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
+echo "ls:" && ls
+echo "----------------------------------------------------------------------"
 
 echo "Installing UniStore..."
 cd include/System/unistore-core
