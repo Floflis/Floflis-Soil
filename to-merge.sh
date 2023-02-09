@@ -246,9 +246,6 @@ git checkout -f
 $maysudo bash install.sh
 cd "$SCRIPTPATH"
 
-echo "Upgrading Cinnamon..."
-sudo apt upgrade cinnamon-desktop-environment
-
 # Floflis Icons
 cd include/img/icons
 $maysudo bash install.sh
@@ -542,5 +539,8 @@ chmod +x install.sh && $maysudo bash /install.sh
 cd "$SCRIPTPATH"
 echo "Testing if SharedChain works:"
 sharedchain
+
+echo "Upgrading Cinnamon..."
+$maysudo apt upgrade cinnamon-desktop-environment
 
 $maysudo apt --fix-broken install

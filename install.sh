@@ -5,6 +5,8 @@
 # load definitions & settings
 . /usr/lib/floflis/./config
 
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 # would detect fakeroot 
 #for path in ${LD_LIBRARY_PATH//:/ }; do
 #   if [[ "$path" == *libfakeroot ]]
@@ -55,12 +57,12 @@ $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init default
 #$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs npm -y && npm i ipfs-npm -g
 
 echo "Installing neofetch..."
-if [ ! -e /usr/lib/neofetch ]; then sudo mkdir /usr/lib/neofetch; fi
+if [ ! -e /usr/lib/neofetch ]; then $maysudo mkdir /usr/lib/neofetch; fi
 cd include/Terminal/neofetch
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/neofetch.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
-sudo cp -r -f --preserve=all . /usr/lib/neofetch
+$maysudo cp -r -f --preserve=all . /usr/lib/neofetch
 $maysudo mv -f /usr/lib/neofetch/neofetch /usr/bin/neofetch
 $maysudo chmod +x /usr/bin/neofetch
 #rm -rf .github #use noah to exclude everything except .git
