@@ -41,6 +41,11 @@ if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
 #$maysudo bash include/System/to-merge_deactivated.sh
 
+$maysudo apt-get install snapd #from https://stackoverflow.com/a/68008068
+$maysudo service snapd start
+$maysudo systemctl start snapd.service
+#from https://stackoverflow.com/a/62747900
+
 echo "Installing important programs:"
 echo "Installing nfc-setup (includes NFC Tools)..."
 cd include/System/nfc-setup
