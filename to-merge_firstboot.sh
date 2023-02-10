@@ -162,4 +162,5 @@ rm -f /tmp/org-nemo-desktop
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
    sudo chmod -R a+rwX /1 && sudo chown $pure:$pure /1
+   sudo chmod -R a+rwX /usr/share/ubiquity-slideshow && sudo chown $pure:$pure /usr/share/ubiquity-slideshow
 done
