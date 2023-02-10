@@ -27,7 +27,7 @@ fi
 
 echo "Setting up Cinnamon data..."
 #tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
-rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${flouser}/.cinnamon/configs
+rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${flouser}/.config/cinnamon/spices
 
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
 #-
@@ -48,14 +48,23 @@ cd "$SCRIPTPATH"
 echo "Building your desktop experience..."
 cat >> /tmp/org-cinnamon <<EOF
 [/]
-desklet-snap-interval=25
-enabled-applets=['panel1:right:12:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:2:xapp-status@cinnamon.org:4', 'panel1:right:3:notifications@cinnamon.org:5', 'panel1:right:4:printers@cinnamon.org:6', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:8:sound@cinnamon.org:10', 'panel1:right:9:power@cinnamon.org:11', 'panel1:right:11:calendar@cinnamon.org:12', 'panel1:right:10:weather@mockturtl:13', 'panel1:left:0:CinnVIIStarkMenu@NikoKrause:14']
-enabled-desklets=@as []
+enabled-applets=['panel1:right:12:cornerbar@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:2:xapp-status@cinnamon.org:4', 'panel1:right:3:notifications@cinnamon.org:5', 'panel1:right:4:printers@cinnamon.org:6', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:8:sound@cinnamon.org:10', 'panel1:right:9:power@cinnamon.org:11', 'panel1:right:11:calendar@cinnamon.org:12', 'panel1:right:10:weather@mockturtl:13', 'panel1:left:0:CinnVIIStarkMenu@NikoKrause:14']
 enabled-extensions=['transparent-panels@germanfr', 'buildmark@floflis']
 next-applet-id=15
 panel-edit-mode=false
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
 panels-height=['1:40']
+
+[desktop/a11y/applications]
+screen-keyboard-enabled=false
+screen-reader-enabled=false
+
+[desktop/a11y/mouse]
+dwell-click-enabled=false
+dwell-threshold=10
+dwell-time=1.2
+secondary-click-enabled=false
+secondary-click-time=1.2
 
 [desktop/background]
 picture-options='zoom'
@@ -69,7 +78,7 @@ image-source='xml:///usr/share/gnome-background-properties/floflis-backgrounds.x
 cursor-theme='Floflis'
 gtk-theme='Yaru-cinnamon-dark'
 icon-theme='Floflis'
-scaling-factor=uint32 0
+toolkit-accessibility=false
 
 [desktop/sound]
 event-sounds=true

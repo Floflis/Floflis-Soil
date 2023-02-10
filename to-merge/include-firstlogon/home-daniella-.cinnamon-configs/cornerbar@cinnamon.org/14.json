@@ -3,6 +3,30 @@
         "type": "header",
         "description": "Settings"
     },
+    "click-action": {
+        "type": "combobox",
+        "description": "Click action",
+        "default": "show_desktop",
+        "options": {
+            "Show the desktop": "show_desktop",
+            "Show the desklets": "show_desklets",
+            "Show the workspace selector (Expo)": "show_expo",
+            "Show the window selector (Scale)": "show_scale"
+        },
+        "value": "show_desktop"
+    },
+    "middle-click-action": {
+        "type": "combobox",
+        "description": "Middle click action",
+        "default": "show_desklets",
+        "options": {
+            "Show the desktop": "show_desktop",
+            "Show the desklets": "show_desklets",
+            "Show the workspace selector (Expo)": "show_expo",
+            "Show the window selector (Scale)": "show_scale"
+        },
+        "value": "show_desklets"
+    },
     "peek-at-desktop": {
         "type": "switch",
         "default": false,
@@ -28,7 +52,7 @@
         "dependency": "peek-at-desktop",
         "description": "Hover delay",
         "tooltip": "Delay before Peek shows desktop",
-        "value": 400
+        "value": 0.0
     },
     "peek-opacity": {
         "type": "scale",
@@ -43,5 +67,5 @@
         "tooltip": "Change the opacity of windows when peeking at the desktop",
         "value": 0.0
     },
-    "__md5__": "572d866c4382a156f35ea0664f8b64f9"
+    "__md5__": "c9d80feef5e24b1ccab9b6a03c1a5717"
 }
