@@ -161,4 +161,5 @@ rm -f /tmp/org-nemo-desktop
 #   sudo rm -rf /home/$pure/.config/autostart/firstlogon.sh
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
+   sudo chmod -R a+rwX /1 && sudo chown $pure:$pure /1
 done
