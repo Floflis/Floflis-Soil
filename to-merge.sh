@@ -118,6 +118,7 @@ $maysudo apt install unzip -y
 
 echo "Installing important apps:"
 # HOME LAYER -->
+if [ ! -e /1/apps ]; then echo "Creating HTML5 apps directory...";$maysudo mkdir /1/apps; fi
 cd include/HTML5Apps/central && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 # <-- HOME LAYER
@@ -220,14 +221,14 @@ if [ "$flofarch" = "amd64" ]; then
    $maysudo rsync -av gdevelop /1/apps
    chmod +x /1/apps/gdevelop/gdevelop
    rm -rf gdevelop
-   $maysudo cat > /usr/bin/gdevelop <<EOF
+   cat > /usr/bin/gdevelop <<EOF
 #!/bin/bash
 
 cd /1/apps/gdevelop/
 ./gdevelop
 EOF
    $maysudo chmod +x /usr/bin/gdevelop
-   $maysudo cat > /usr/share/applications/gdevelop.desktop <<EOF
+   cat > /usr/share/applications/gdevelop.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=GDevelop
