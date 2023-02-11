@@ -25,7 +25,7 @@
             "Show the workspace selector (Expo)": "show_expo",
             "Show the window selector (Scale)": "show_scale"
         },
-        "value": "show_desklets"
+        "value": "show_expo"
     },
     "peek-at-desktop": {
         "type": "switch",
