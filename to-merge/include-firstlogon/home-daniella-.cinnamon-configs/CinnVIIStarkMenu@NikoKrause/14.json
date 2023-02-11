@@ -294,7 +294,7 @@
         "units": "pixels",
         "description": "Size of the favorite buttons",
         "tooltip": "Change the size of the favorite buttons",
-        "value": 32
+        "value": 24.0
     },
     "show-sidebar": {
         "type": "switch",
@@ -573,9 +573,15 @@
             },
             {
                 "checkbox": true,
-                "command": "cinnamon-settings info",
-                "label": "System Info",
-                "icon": "cs-details"
+                "command": "cinnamon-settings default",
+                "label": "Preferred Apps",
+                "icon": "cs-default-applications"
+            },
+            {
+                "checkbox": true,
+                "command": "yelp %u",
+                "label": "Help & Support",
+                "icon": "org.gnome.Yelp"
             }
         ]
     },
