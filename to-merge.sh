@@ -428,6 +428,10 @@ currentspice="Cinnamenu@json"
 currentspicemintid="322"
 job_installSpice
 
+currentspice="search-box@mtwebster"
+currentspicemintid="57"
+job_installSpice
+
 currentspicetype="desklet"
 cd ..
 cd "$currentspicetype""s"
