@@ -123,7 +123,22 @@
     "categories": {
         "type": "generic",
         "default": [],
-        "value": []
+        "value": [
+            "all",
+            "Accessories",
+            "Games",
+            "Graphics",
+            "Internet",
+            "Office",
+            "Other",
+            "Multimedia",
+            "Administration",
+            "Preferences",
+            "places",
+            "recents",
+            "/home/daniella",
+            "emoji:"
+        ]
     },
     "custom-menu-width": {
         "type": "generic",
@@ -472,7 +487,7 @@
         "default": false,
         "description": "Use a custom icon size",
         "tooltip": "Use a custom size for the panel icon",
-        "value": false
+        "value": true
     },
     "menu-icon-size": {
         "type": "spinbutton",
@@ -484,7 +499,7 @@
         "description": "Panel icon size (pixels)",
         "dependency": "menu-icon-size-custom",
         "tooltip": "Choose a custom size for the panel icon",
-        "value": 32.0
+        "value": 50.0
     },
     "menu-label": {
         "type": "entry",
