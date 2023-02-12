@@ -416,10 +416,6 @@ currentspice="windowlist@cobinja.de"
 currentspicemintid="287"
 job_installSpice
 
-currentspice="clean-show-desktop@filipetorresbr"
-currentspicemintid="332"
-job_installSpice
-
 currentspice="weather@mockturtl"
 currentspicemintid="17"
 job_installSpice
