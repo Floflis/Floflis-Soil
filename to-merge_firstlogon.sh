@@ -286,7 +286,7 @@ echo "Do you want to install the MS Edge browser? [Y/n]"
                   exit ;;
                [yY])
                   echo "Installing MS Edge..."
-                  $maysudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/microsoft-edge-stable_109.0.1518.78-1_amd64.deb
+                  $maysudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/microsoft-edge-stable_110.0.1587.57-1_amd64.deb
             esac
 esac
 
