@@ -56,25 +56,12 @@ chmod +x install.sh && $maysudo bash ./install.sh
 cd "$SCRIPTPATH"
 
 # Install geth:
-#- x32 is not available as ethereal isn't available for x32 yet
-#      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/System/ethereum/386.tar.gz
-#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
-#         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
-#         echo "Testing if IPFS works:"
-#         ipfs
-#fi
-if [ "$flofarch" = "amd64" ]; then
-   echo "Installing geth..."
-   tar -xzf include/System/ethereum/geth-linux-amd64-1.10.26-e5eb32ac.tar.gz
-   $maysudo mv geth-linux-amd64-*-*/geth /usr/bin
-   chmod +x /usr/bin/geth
-   rm -rf geth-linux-amd64-1.10.11-7231b3ef
-   echo "Testing if geth works:"
-   geth -h
-fi
+echo "Installing geth..."
+$maysudo add-apt-repository ppa:ethereum/ethereum
+$maysudo apt update
+$maysudo apt install geth
+echo "Testing if geth works:"
+geth -h
 
 echo "Installing support for Windows apps..."
 $maysudo apt install wine32 wine64 -y # nearly 2GB!
@@ -469,6 +456,7 @@ if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s ubu
 #if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.svg ]; then $maysudo ln -s ubuntu-logo.svg /usr/share/plymouth/ubuntucinnamon-logo.svg; fi
 #-
 if [ ! -e /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo ln -s ../../ubuntu-logo.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo convert include/img/logo.png    -resize 128x128  /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png; fi
+update-initramfs -k all -u #from Ubuntu Cinnamon Remix scripts
 update-initramfs -u #from https://askubuntu.com/a/1290247
 
 # Ubiquity
