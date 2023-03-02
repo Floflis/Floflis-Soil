@@ -304,6 +304,9 @@ fi
                 installtermfont(){
                 cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
 [/]
+custom-command='nu'
+login-shell=false
+use-custom-command=true
 bold-is-bright=true
 font='FantasqueSansMono Nerd Font 12'
 use-system-font=false
