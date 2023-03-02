@@ -152,6 +152,12 @@ use-custom-command=true
 bold-is-bright=true
 font='FantasqueSansMono Nerd Font 12'
 use-system-font=false
+background-color='#282A36'
+bold-color='#6E46A4'
+bold-color-same-as-fg=false
+foreground-color='#F8F8F2'
+palette=['#262626', '#E356A7', '#42E66C', '#E4F34A', '#9B6BDF', '#E64747', '#75D7EC', '#EFA554', '#7A7A7A', '#FF79C6', '#50FA7B', '#F1FA8C', '#BD93F9', '#FF5555', '#8BE9FD', '#FFB86C']
+use-theme-colors=false
 EOF
                 exec dbus-run-session -- bash -c 'dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles'
                 rm -f /tmp/org-gnome-terminal-legacy-profiles
