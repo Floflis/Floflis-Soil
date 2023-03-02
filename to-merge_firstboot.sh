@@ -57,7 +57,7 @@ secondary-click-time=1.2
 
 [desktop/background]
 picture-options='zoom'
-picture-uri='file:///1/img/bg.png'
+picture-uri='file:///1/img/bg.jpg'
 
 [desktop/background/slideshow]
 delay=15

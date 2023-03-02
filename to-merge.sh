@@ -284,7 +284,7 @@ if [ ! -e /usr/share/pixmaps/ubuntu ]; then $maysudo mkdir /usr/share/pixmaps/ub
 
 echo "Installing backgrounds..."
 cd include/img/Backgrounds
-$maysudo cp -f bg.png /1/img/bg.png
+$maysudo cp -f parul-gupta-zhci1QZZJDU-unsplash.jpg /1/img/bg.jpg
 $maysudo cp -f lockscreen.png /1/img/lockscreen.png
 #-
 if [ ! -e /usr/share/backgrounds/ubuntu ]; then $maysudo mkdir /usr/share/backgrounds/ubuntu; fi
