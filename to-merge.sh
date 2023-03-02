@@ -42,6 +42,7 @@ if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 #$maysudo bash include/System/to-merge_deactivated.sh
 
 $maysudo apt install snapd #from https://stackoverflow.com/a/68008068
+$maysudo snap install core
 $maysudo service snapd start
 $maysudo systemctl start snapd.service
 #from https://stackoverflow.com/a/62747900
