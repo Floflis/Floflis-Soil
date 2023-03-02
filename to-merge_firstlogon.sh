@@ -69,50 +69,7 @@ if [ ! -e /home/${flouser}/Music/Sample\ Music ]; then mkdir /home/${flouser}/Mu
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
 
-echo "Installing Uniswap..."
-cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.svg /usr/share/icons/hicolor/scalable/apps/
-cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap-symbolic.svg /usr/share/icons/hicolor/scalable/apps/
-$maysudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
-tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/uniswap.tar.gz
-mv -f uniswap /1/apps
-if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
-echo "DEBUG: Not a Live ISO"
-#ipfs pin add $(ipfs dns uniswap.eth)
-ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth)
-#ipfs add $(ipfs dns uniswap.eth)
-#tmp=$(ipfs pin add $(ethereal ens contenthash get --domain=uniswap.eth) | tr -d "pinned " | tr -d " recursively")
-#ipfs add $tmp
-#ipfs get $(ipfs dns uniswap.eth) --output=/1/apps/uniswap
-ipfs get $(ethereal ens contenthash get --domain=uniswap.eth) --output=/1/apps/uniswap
-# to change: use a variable. test if ipfs dns result starts with /ipfs/, if not use ethereal ens contenthash get --domain=, and if not display an error
-# commands to work on post-install:
-#ipfs add -r /1/apps/uniswap
-#ipfs dns uniswap.eth && ipfs dns uniswap.eth
-#ipfs pin add $(ipfs dns uniswap.eth)
-#ipfs ls $(ipfs dns uniswap.eth)
-#ipfs pin add $(ipfs dns uniswap.eth)
-#- this will have to work on user side (post-install), not only when installing
-fi
-$maysudo cat > /usr/bin/uniswap <<EOF
-#!/bin/bash
-
-ipfsdaemon
-xdg-open ipns://uniswap.eth
-EOF
-$maysudo chmod +x /usr/bin/uniswap
-$maysudo cat > /usr/share/applications/uniswap.desktop <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=Uniswap
-Comment=Swap/exchange ETH and tokens
-Type=Application
-Exec=uniswap
-Icon=uniswap
-Categories=Finance;Ethereum;
-Keywords=swap;exchange;tokens;ethereum;
-EOF
-
-# Prepare to replace 1inch to better alternative (should also support XDai) ----------------------------------------------------->
+# Install 1inch + Cowswap, but this feature will be region-locked and need an Internet connection before pinning ----------------------------------------------------->
 #ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs get $(ethereal ens contenthash get --domain=1inch.eth) --output=/1/apps/1inch
