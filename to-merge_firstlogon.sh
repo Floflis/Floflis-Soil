@@ -31,18 +31,6 @@ rm /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
 rm /home/${flouser}/Templates/New\ Spreadsheet.xlsx.webpresent
 rm /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
 
-echo "Installing the \"Starshell\" package..."
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f README.md
-#rm -f shit
-#rm -f .gitmeta
-cd "$SCRIPTPATH"
-
 echo "Installing floapps..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
@@ -298,27 +286,5 @@ echo "DEBUG: Not a Live ISO"
 echo "Preparing to create your ETH address..."
 bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 fi
-
-# to-merge>
-             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
-                installtermfont(){
-                cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
-[/]
-custom-command='nu'
-login-shell=false
-use-custom-command=true
-bold-is-bright=true
-font='FantasqueSansMono Nerd Font 12'
-use-system-font=false
-EOF
-                dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles
-                rm -f /tmp/org-gnome-terminal-legacy-profiles
-}
-                echo "You have to logout, so changes will take effect."
-                echo "Save any work you did (only if you did)."
-                echo "Logout? [Y/n]"
-                read logoutinput;case $logoutinput in [nN]) break ;; [yY]) installtermfont;cinnamon-session-quit --logout --force; esac
-fi
-# <to-merge
 
 $maysudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
