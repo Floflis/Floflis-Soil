@@ -238,6 +238,17 @@ esac
 echo "Setting autostart apps..."
 chmod +x /home/${flouser}/.config/autostart/teams.desktop
 
+echo "How you prefer your mouse cursor color? [type the number according to your choice, then ENTER]"
+echo "1. ⚫Black (like in \"MecOS\"🍎)"
+echo "2. ⚪White (like in \"WindOS\"🪟)"
+   read cursorcolor
+   case $cursorcolor in
+      [nN])
+         gsettings set org.cinnamon.desktop.interface cursor-theme 'DMZ-White' #from https://askubuntu.com/a/72093
+      [yY])
+         gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' #from https://askubuntu.com/a/72093
+esac
+
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
 echo "Preparing to create your ETH address..."
