@@ -235,6 +235,19 @@ echo "Do you want to install the MS Edge browser? [Y/n]"
             esac
 esac
 
+echo "Do you want to install the \"WindOS\"🪟 Calculator? [Y/n]"
+echo "Please note Floflis do already include a basic calculator by default."
+   read setunocalc
+   case $setunocalc in
+      [nN])
+         echo "Ok, not going to install WinCalculator for now; anyway it should be available in Floflis' stores."
+         ;;
+      [yY])
+         sudo snap install uno-calculator
+esac
+#if user is an IT technician installing for a customer, don't ask and install MS Edge and Calculator right away)
+#floflis fixer should support reinstalling default calculator
+
 echo "Setting autostart apps..."
 chmod +x /home/${flouser}/.config/autostart/teams.desktop
 
@@ -243,9 +256,9 @@ echo "1. ⚫Black (like in \"MecOS\"🍎)"
 echo "2. ⚪White (like in \"WindOS\"🪟)"
    read cursorcolor
    case $cursorcolor in
-      [nN])
+      [1])
          gsettings set org.cinnamon.desktop.interface cursor-theme 'DMZ-White' #from https://askubuntu.com/a/72093
-      [yY])
+      [2])
          gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' #from https://askubuntu.com/a/72093
 esac
 
