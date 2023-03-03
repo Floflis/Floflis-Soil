@@ -261,6 +261,19 @@ echo "2. ⚪White (like in \"WindOS\"🪟)"
       [2])
          gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' #from https://askubuntu.com/a/72093
 esac
+#in UI, will have different background as example
+
+echo "How you prefer your system theme? [type the number according to your choice, then ENTER]"
+echo "1. ⚫Dark (let's save my eyes while computing in the dark)"
+echo "2. ⚪Light (i have strong eyes)"
+   read themetype
+   case $themetype in
+      [1])
+         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-cinnamon-dark' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-cinnamon-dark' && gsettings set org.cinnamon.theme name 'Yaru-cinnamon-dark' #from https://askubuntu.com/a/72093
+      [2])
+         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-cinnamon' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-cinnamon' && gsettings set org.cinnamon.theme name 'Yaru-cinnamon' #from https://askubuntu.com/a/72093
+esac
+#in UI, will have different background as example
 
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
