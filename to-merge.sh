@@ -176,19 +176,6 @@ NoDisplay=true
 EOF
 $maysudo echo "x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;" > /usr/share/applications/x-cinnamon-mimeapps.list
 
-# HOME LAYER -->
-# Install IPFS-Desktop:
-if [ "$flofarch" = "amd64" ]; then
-   echo "Installing IPFS Desktop..."
-   $maysudo dpkg -i include/DEB/ipfs-desktop-0.26.0-linux-amd64.deb
-   rm -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf /usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
-   $maysudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
-ipfs-desktop
-ENDOFFILE
-   $maysudo chmod +x /usr/bin/ipfsdaemon
-fi
-# <-- HOME LAYER
-
 echo "Installing Frame + Frame Canary"
 $maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb
 $maysudo dpkg -i include/DEB/frame-canary_0.5.0-canary.13_amd64.deb

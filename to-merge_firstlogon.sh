@@ -69,6 +69,19 @@ if [ ! -e /home/${flouser}/Music/Sample\ Music ]; then mkdir /home/${flouser}/Mu
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
 
+# HOME LAYER -->
+# Install IPFS-Desktop:
+if [ "$flofarch" = "amd64" ]; then
+   echo "Installing IPFS Desktop..."
+   $maysudo snap install ipfs-desktop
+   rm -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf /usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
+   $maysudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
+ipfs-desktop
+ENDOFFILE
+   $maysudo chmod +x /usr/bin/ipfsdaemon
+fi
+# <-- HOME LAYER
+
 # Install 1inch + Cowswap, but this feature will be region-locked and need an Internet connection before pinning ----------------------------------------------------->
 #ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
