@@ -68,6 +68,12 @@ echo "Installing support for Windows apps..."
 $maysudo apt install wine32 wine64 -y # nearly 2GB!
 $maysudo apt install winetricks -y
 $maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
+cd include/System/wine-desktop-common
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/bobwya/wine-desktop-common.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo make install
+cd "$SCRIPTPATH"
 # WinApps
 echo "Installing WinApps..."
 $maysudo apt-get install -y virt-manager #Need to get 10,1 MB of archives. After this operation, 44,4 MB of additional disk space will be used.
