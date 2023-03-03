@@ -49,32 +49,32 @@ fi
    echo "Your journey begins today."
    echo "Your ETH address: $ethaddress"
    echo "----"
-   echo "PS: we recommend that once you reach some $ values with your Floflis ETH address (be it generated for Floflis or imported from a private key), SAFELY MOVE YOUR ASSETS TO YOUR HARDWARE WALLET(S)."
+   echo "PS: we recommend that once you reach some $ values with your Floflis ETH address (be it generated for Floflis or imported from a private key), SAFELY MOVE YOUR ASSETS TO YOUR SAFE WALLET SUCH AS A HARDWARE WALLET(S)."
 #read main address: geth --verbosity "0" console --exec "eth.accounts[0]" (should filter out the quotes) OR jq -r '.address' /home/daniell/.ethereum/keystore/UTC--*
    exit
 }
 
 function olduserproceed {
    echo "We are once again asking, for you to reconsider: don't trust any service with your privatekey, not even Floflis; your privatekeys may contain invaluable assets that you can't afford to lose; and this script nor the Floflis Platform are responsible for your personal choices."
-   PS3='Whats your choice? '
-   options=("Create exclusive ETH address" "Import from privatekey")
-   select opt in "${options[@]}"
-   do
-      case $opt in
-         "Create exclusive ETH address")
-            echo "The best choice! You are on the correct way."
+#   PS3='Whats your choice? '
+#   options=("Create exclusive ETH address" "Import from privatekey")
+#   select opt in "${options[@]}"
+#   do
+#      case $opt in
+#         "Create exclusive ETH address")
+#            echo "The best choice! You are on the correct way."
             ethaddresscreate;;
-         "Import from privatekey")
-            echo -n "Type your privatekey if you are aware of the risks, and responsible for your own choices: "
-            read prvkey
-            geth account import <(echo $prvkey)
-            bothproceed
-            ;;
-         *) echo "invalid option $REPLY";;
-        esac
-done
+#         "Import from privatekey")
+#            echo -n "Type your privatekey if you are aware of the risks, and responsible for your own choices: "
+#            read prvkey
+#            geth account import <(echo $prvkey)
+#            bothproceed
+#            ;;
+#         *) echo "invalid option $REPLY";;
+#        esac
+#done
 #   echo "Are you sure to import privatekey?"
-}
+#}
 
 echo "Button 'y' = Yes"
 echo "Button 'n' = No"
@@ -88,7 +88,7 @@ case $newethereum in
       echo "For now, the best safety measure available is: to not import your privatekey; but create one for exclusive use on Floflis."
       echo "----"
       echo "Its recommendable to make an exclusive ETH address for Floflis instead of importing from your private key, even if you trust us a lot."
-      echo "Also, we recommend that once you reach some $ values with your Floflis ETH address (be it generated for Floflis or imported from a private key), SAFELY MOVE YOUR ASSETS TO YOUR HARDWARE WALLET(S)."
+      echo "Also, we recommend that once you reach some $ values with your Floflis ETH address, SAFELY MOVE YOUR ASSETS TO YOUR SAFE WALLET SUCH AS A HARDWARE WALLET(S)."
       olduserproceed;;
    [yY])
       termsagreement
