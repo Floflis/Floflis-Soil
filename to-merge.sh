@@ -65,7 +65,7 @@ echo "Testing if geth works:"
 geth -h
 
 echo "Installing support for Windows apps..."
-$maysudo apt install wine32 wine64 -y # nearly 2GB!
+$maysudo apt install wine32:i386 wine64 -y # nearly 2GB!
 $maysudo apt install winetricks -y
 $maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
 cd include/System/wine-desktop-common
