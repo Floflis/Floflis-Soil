@@ -121,7 +121,8 @@ $maysudo apt install gnome-clocks -y
 echo "Installing Contacts"
 $maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
 echo "Installing Paint..."
-$maysudo snap install kolourpaint # 10,1 MB disk space
+$maysudo apt install kolourpaint
+$maysudo apt install breeze && $maysudo apt autoremove qt5ct #from https://askubuntu.com/a/1302913 and https://askubuntu.com/questions/1302794/kolourpaint-missing-all-icons-on-ubuntu-20-10#comment2215417_1302913
 echo "Installing Photos..."
 $maysudo apt install gnome-photos -y
 echo "Installing Character Map..."
