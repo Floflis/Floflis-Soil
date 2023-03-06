@@ -29,6 +29,9 @@ echo "Finance category doesn't works, yet."
 # now it probably works, thanks to help from https://forums.linuxmint.com/viewtopic.php?t=291101
 
 
+
+
+
 #echo "Installing Cinnamon 4.8..."
 #$maysudo add-apt-repository ppa:wasta-linux/cinnamon-4-8
 #$maysudo apt update
@@ -37,6 +40,10 @@ echo "Finance category doesn't works, yet."
 
 #$maysudo apt --fix-broken install
 #- detect ubuntu cinnamon remix otherwise install cinnamon normally
+
+
+
+
 
 #echo "Installing main theme..."
 #tar -xzf include/Theme/Eleganse-Floflis.tar.gz
@@ -52,6 +59,10 @@ echo "Finance category doesn't works, yet."
 #$maysudo rsync -av Adapta-Nokto /usr/share/themes
 #$maysudo rm -rf Adapta-Nokto
 
+
+
+
+
 # temporarily disable "Installing logon design" until fixed for Ubuntu 22.10 ---->
 #echo "Installing logon design..."
 #cd include/Theme/ubuntu-gdm-set-background
@@ -66,21 +77,3 @@ echo "Finance category doesn't works, yet."
 #cd "$SCRIPTPATH"
 # <---- temporarily disable "Installing logon design" until fixed for Ubuntu 22.10
 #-
-
-## HOME LAYER -->
-#echo "Installing Etcher (you are still great, Rufus)..."
-#if [ "$flofarch" = "amd64" ]; then
-#   $maysudo dpkg -i include/deb\ packages/balena-etcher_1.14.3_amd64.deb
-#   apt --fix-broken install
-#   
-#fi
-## <-- HOME LAYER
-
-#echo "Installing Audacity (12.0 MB download; 52.2 MB installed)..."
-#$maysudo apt install audacity
-
-#echo "Installing OBS (17.0 MB download; 85.8 MB installed)..."
-#$maysudo apt install obs-studio
-
-#echo "Installing Openshot video editor..."
-#$maysudo add-apt-repository ppa:openshot.developers/ppa -y && sudo apt-get update -y && sudo apt-get install openshot-qt -y

@@ -465,6 +465,37 @@ if [ ! -e /usr/share/ubiquity/pixmaps/ubuntuoriginal ]; then $maysudo mkdir /usr
 #-
 $maysudo rsync -av include/System/ubiquity/pixmaps/. /usr/share/ubiquity/pixmaps
 
+echo "Installing themes:"
+echo "Installing Yaru-floflis theme..."
+cd include/Theme/Yaru-floflis
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Yaru-floflis.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo rsync -av . /usr/share/themes/Yaru-floflis
+$maysudo rm -rf /usr/share/themes/Yaru-floflis/.git
+cd "$SCRIPTPATH"
+#-
+echo "Installing themes:"
+echo "Installing Yaru-floflis-dark theme..."
+cd include/Theme/Yaru-floflis-dark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Yaru-floflis-dark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo rsync -av . /usr/share/themes/Yaru-floflis-dark
+$maysudo rm -rf /usr/share/themes/Yaru-floflis-dark/.git
+cd "$SCRIPTPATH"
+#-
+echo "Installing themes:"
+echo "Installing Yaru-floflis-light theme..."
+cd include/Theme/Yaru-floflis-light
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Yaru-floflis-light.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo rsync -av . /usr/share/themes/Yaru-floflis-light
+$maysudo rm -rf /usr/share/themes/Yaru-floflis-light/.git
+cd "$SCRIPTPATH"
+#task: use function and variable to reduce duplications
+
 #echo "----------------------------------------------------------------------"
 #echo "DEBUG:"
 #echo "Script path: $SCRIPTPATH" && echo "Current directory: $(pwd)"
@@ -541,6 +572,8 @@ sharedchain
 
 echo "Upgrading Cinnamon..."
 $maysudo apt upgrade cinnamon-desktop-environment
+
+#cinnamon patcher here
 
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
