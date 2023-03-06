@@ -201,8 +201,8 @@ EOF
 #   sudo rm -rf /home/$pure/.config/autostart/firstlogon.sh
 
 exec dbus-run-session -- bash -c 'gsettings set org.nemo.preferences tooltips-in-icon-view true && gsettings set org.nemo.preferences tooltips-in-list-view true && gsettings set org.nemo.preferences tooltips-on-desktop true && gsettings set org.nemo.preferences tooltips-show-file-type true && gsettings set org.nemo.preferences tooltips-show-mod-date true'
-
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.screensaver font-time 'Ubuntu Bold 64'"
+exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.desktop.interface buttons-have-icons true'
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
