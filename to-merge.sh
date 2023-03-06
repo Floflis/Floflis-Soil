@@ -121,7 +121,7 @@ $maysudo apt install gnome-clocks -y
 echo "Installing Contacts"
 $maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
 echo "Installing Paint..."
-$maysudo apt install kolourpaint
+$maysudo apt install kolourpaint -y
 $maysudo apt install breeze && $maysudo apt autoremove qt5ct #from https://askubuntu.com/a/1302913 and https://askubuntu.com/questions/1302794/kolourpaint-missing-all-icons-on-ubuntu-20-10#comment2215417_1302913
 echo "Installing Photos..."
 $maysudo apt install gnome-photos -y
@@ -181,7 +181,7 @@ StartupNotify=false
 MimeType=x-scheme-handler/ipfs;
 NoDisplay=true
 EOF
-$maysudo echo "x-scheme-handler/ipfs=firefox.desktop;chromium.desktop;" > /usr/share/applications/x-cinnamon-mimeapps.list
+$maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" > /usr/share/applications/x-cinnamon-mimeapps.list
 
 echo "Installing Frame + Frame Canary"
 $maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb
@@ -475,7 +475,6 @@ $maysudo rsync -av . /usr/share/themes/Yaru-floflis
 $maysudo rm -rf /usr/share/themes/Yaru-floflis/.git
 cd "$SCRIPTPATH"
 #-
-echo "Installing themes:"
 echo "Installing Yaru-floflis-dark theme..."
 cd include/Theme/Yaru-floflis-dark
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Yaru-floflis-dark.git .; fi
@@ -485,7 +484,6 @@ $maysudo rsync -av . /usr/share/themes/Yaru-floflis-dark
 $maysudo rm -rf /usr/share/themes/Yaru-floflis-dark/.git
 cd "$SCRIPTPATH"
 #-
-echo "Installing themes:"
 echo "Installing Yaru-floflis-light theme..."
 cd include/Theme/Yaru-floflis-light
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Yaru-floflis-light.git .; fi
@@ -494,6 +492,8 @@ git checkout -f
 $maysudo rsync -av . /usr/share/themes/Yaru-floflis-light
 $maysudo rm -rf /usr/share/themes/Yaru-floflis-light/.git
 cd "$SCRIPTPATH"
+$maysudo rm -rf /usr/share/themes/Yaru-cinnamon
+$maysudo rm -rf /usr/share/themes/Yaru-cinnamon-dark
 #task: use function and variable to reduce duplications
 
 #echo "----------------------------------------------------------------------"
