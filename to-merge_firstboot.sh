@@ -11,6 +11,11 @@ do
    pure=$(echo "${D}" | tr -d "/" | tr -d ".")
    cd ${D}
    
+# start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
+sudo  -i -u ${pure} bash <<-EOF
+   exec dbus-run-session -- bash -c 'bash /usr/lib/cinnamobile/set_desktop.sh'
+EOF
+   
    echo "Setting up Cinnamon data..."
 if [ ! -e /home/${pure}/.config/cinnamon ]; then mkdir /home/${pure}/.config/cinnamon; fi
 if [ ! -e /home/${pure}/.config/cinnamon/spices ]; then mkdir /home/${pure}/.config/cinnamon/spices; fi
