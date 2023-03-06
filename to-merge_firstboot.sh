@@ -206,6 +206,9 @@ exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.desktop.interface b
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon system-icon 'distributor-logo' && gsettings set org.cinnamon startup-icon-name 'distributor-logo'"
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon app-menu-label 'Explore' && gsettings set org.cinnamon app-menu-icon-name 'distributor-logo'"
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon demands-attention-passthru-wm-classes \"['gnome-screenshot', 'lxterminal', 'xfce4-terminal', 'firefox', 'firedoge', 'libreoffice', 'soffice']\"" #need testing. syntax may be wrong
+
+if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
+exec dbus-run-session -- bash -c "gsettings set org.gnome.gnome-screenshot auto-save-directory '~/Pictures/Screenshots'"
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
