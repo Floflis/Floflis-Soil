@@ -585,6 +585,11 @@ $maysudo apt upgrade cinnamon-desktop-environment
 
 $maysudo apt-get install dialog #1.254 kB of additional disk space
 
+$maysudo add-apt-repository ppa:oibaf/graphics-drivers
+$maysudo apt update && $maysudo apt -y upgrade
+$maysudo apt-get dist-upgrade
+# from https://diolinux.com.br/sistemas-operacionais/oibaf-melhorar-desempenho-grafico-ubuntu.html
+
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
 $maysudo apt --fix-broken install
