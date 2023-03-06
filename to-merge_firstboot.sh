@@ -205,6 +205,7 @@ exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.screensaver
 exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.desktop.interface buttons-have-icons true'
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon system-icon 'distributor-logo' && gsettings set org.cinnamon startup-icon-name 'distributor-logo'"
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon app-menu-label 'Explore' && gsettings set org.cinnamon app-menu-icon-name 'distributor-logo'"
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon demands-attention-passthru-wm-classes \"['gnome-screenshot', 'lxterminal', 'xfce4-terminal', 'firefox', 'firedoge', 'libreoffice', 'soffice']\"" #need testing. syntax may be wrong
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
