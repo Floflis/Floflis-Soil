@@ -181,7 +181,7 @@ StartupNotify=false
 MimeType=x-scheme-handler/ipfs;
 NoDisplay=true
 EOF
-$maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" > /usr/share/applications/x-cinnamon-mimeapps.list
+$maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" >> /usr/share/applications/x-cinnamon-mimeapps.list
 
 echo "Installing Frame + Frame Canary"
 $maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb
