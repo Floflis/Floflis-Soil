@@ -35,6 +35,32 @@ zombiespices install
 cd ${D}
 
 echo "Building your desktop experience..."
+# start a new dbus session and execute the gsettings command in bash shell. from https://askubuntu.com/a/1302886
+sudo  -i -u ${pure} bash <<-EOF
+   exec dbus-run-session -- bash -c 'gsettings set org.nemo.preferences tooltips-in-icon-view true && gsettings set org.nemo.preferences tooltips-in-list-view true && gsettings set org.nemo.preferences tooltips-on-desktop true && gsettings set org.nemo.preferences tooltips-show-file-type true && gsettings set org.nemo.preferences tooltips-show-mod-date true'
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.screensaver font-time 'Ubuntu Bold 64'"
+exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.desktop.interface buttons-have-icons true'
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon system-icon 'distributor-logo' && gsettings set org.cinnamon startup-icon-name 'distributor-logo'"
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon app-menu-label 'Explore' && gsettings set org.cinnamon app-menu-icon-name 'distributor-logo'"
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon demands-attention-passthru-wm-classes \"['gnome-screenshot', 'lxterminal', 'xfce4-terminal', 'firefox', 'firedoge', 'libreoffice', 'soffice']\"" #need testing. syntax may be wrong
+
+if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
+exec dbus-run-session -- bash -c "gsettings set org.gnome.gnome-screenshot auto-save-directory '~/Pictures/Screenshots'"
+
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.background picture-uri 'file:///1/img/bg.jpg' && gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/gnome-background-properties/floflis-backgrounds.xml'"
+
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon favorite-apps \"['firefox.desktop', 'cinnamon-settings.desktop', 'org.gnome.Calculator.desktop', 'sol.desktop', 'remote-viewer.desktop', 'cinnamon-settings-universal-access.desktop']\"" #need testing. syntax may be wrong
+
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' && gsettings set org.cinnamon.desktop.interface icon-theme 'Floflis'"
+#-
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis' && gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis' && gsettings set org.cinnamon.theme name 'Yaru-floflis'"
+
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.sound event-sounds true && gsettings set org.cinnamon.desktop.sound volume-sound-enabled true && gsettings set org.cinnamon.desktop.sound volume-sound-file '/1/sounds/Changing volume.ogg'"
+#-
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.sounds close-file '/1/sounds/Manipulating windows.ogg' && gsettings set org.cinnamon.sounds login-file '/1/sounds/System Logon.oga' && gsettings set org.cinnamon.sounds logout-file '/1/sounds/Leaving.ogg' && gsettings set org.cinnamon.sounds map-file '/1/sounds/Manipulating windows.ogg' && gsettings set org.cinnamon.sounds maximize-file '/1/sounds/Manipulating windows.ogg' && gsettings set org.cinnamon.sounds minimize-file '/1/sounds/Manipulating windows.ogg' && gsettings set org.cinnamon.sounds notification-file '/1/sounds/Notification.oga' && gsettings set org.cinnamon.sounds plug-file '/1/sounds/Inserting device.ogg' && gsettings set org.cinnamon.sounds switch-file '/1/sounds/Switching workspace.ogg' && gsettings set org.cinnamon.sounds tile-file '/1/sounds/Manipulating windows.ogg' && gsettings set org.cinnamon.sounds unmaximize-file '/1/sounds/Manipulating windows.ogg' && gsettings set org.cinnamon.sounds unplug-file '/1/sounds/Removing device.ogg'"
+#-
+exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.sounds close-enabled true && gsettings set org.cinnamon.sounds logout-enabled true && gsettings set org.cinnamon.sounds minimize-enabled true && gsettings set org.cinnamon.sounds notification-enabled true && gsettings set org.cinnamon.sounds plug-enabled true && gsettings set org.cinnamon.sounds switch-enabled true && gsettings set org.cinnamon.sounds tile-enabled true && gsettings set org.cinnamon.sounds unmaximize-enabled true && gsettings set org.cinnamon.sounds unplug-enabled true && gsettings set org.cinnamon.sounds map-enabled false && gsettings set org.cinnamon.sounds maximize-enabled false'
+EOF
 
 cat >> /tmp/org-nemo-desktop <<EOF
 [/]
@@ -50,18 +76,6 @@ sudo  -i -u ${pure} bash <<-EOF
    exec dbus-run-session -- bash -c 'dconf load /org/nemo/desktop/ < /tmp/org-nemo-desktop'
 EOF
 rm -f /tmp/org-nemo-desktop
-
-echo "Installing the \"Starshell\" package..."
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && sudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f README.md
-#rm -f shit
-#rm -f .gitmeta
-cd ${D}
 
 # to-merge>
 #             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
@@ -124,27 +138,6 @@ EOF
 #   cd ..
 #   echo "- Cleanning install..."
 #   sudo rm -rf /home/$pure/.config/autostart/firstlogon.sh
-
-# start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
-sudo  -i -u ${pure} bash <<-EOF
-   exec dbus-run-session -- bash -c 'dconf load /org/cinnamon/ < /tmp/org-cinnamon'
-EOF
-
-exec dbus-run-session -- bash -c 'gsettings set org.nemo.preferences tooltips-in-icon-view true && gsettings set org.nemo.preferences tooltips-in-list-view true && gsettings set org.nemo.preferences tooltips-on-desktop true && gsettings set org.nemo.preferences tooltips-show-file-type true && gsettings set org.nemo.preferences tooltips-show-mod-date true'
-exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.screensaver font-time 'Ubuntu Bold 64'"
-exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.desktop.interface buttons-have-icons true'
-exec dbus-run-session -- bash -c "gsettings set org.cinnamon system-icon 'distributor-logo' && gsettings set org.cinnamon startup-icon-name 'distributor-logo'"
-exec dbus-run-session -- bash -c "gsettings set org.cinnamon app-menu-label 'Explore' && gsettings set org.cinnamon app-menu-icon-name 'distributor-logo'"
-exec dbus-run-session -- bash -c "gsettings set org.cinnamon demands-attention-passthru-wm-classes \"['gnome-screenshot', 'lxterminal', 'xfce4-terminal', 'firefox', 'firedoge', 'libreoffice', 'soffice']\"" #need testing. syntax may be wrong
-
-if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
-exec dbus-run-session -- bash -c "gsettings set org.gnome.gnome-screenshot auto-save-directory '~/Pictures/Screenshots'"
-
-exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.background picture-uri 'file:///1/img/bg.jpg' && gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/gnome-background-properties/floflis-backgrounds.xml'"
-
-exec dbus-run-session -- bash -c "gsettings set org.cinnamon favorite-apps \"['firefox.desktop', 'cinnamon-settings.desktop', 'org.gnome.Calculator.desktop', 'sol.desktop', 'remote-viewer.desktop', 'cinnamon-settings-universal-access.desktop']\"" #need testing. syntax may be wrong
-
-
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}

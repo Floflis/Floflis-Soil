@@ -34,6 +34,19 @@ rm /home/${flouser}/Templates/New\ Access\ Database.accdb.webpresent
 rm '/home/${flouser}/Templates/New Compressed (zipped) Folder.zip.webpresent'
 rm /home/${flouser}/Templates/New\ Publisher\ Document.pub.webpresent
 
+echo "Installing the \"Starshell\" package..."
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && sudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.md
+#rm -f shit
+#rm -f .gitmeta
+#cd ${D}
+cd "$SCRIPTPATH"
+
 echo "Installing floapps..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
