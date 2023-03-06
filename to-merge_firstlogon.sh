@@ -294,13 +294,16 @@ esac
 
 echo "How you prefer your system theme? [type the number according to your choice, then ENTER]"
 echo "1. ⚫Dark (let's save my eyes while computing in the dark)"
-echo "2. ⚪Light (i have strong eyes)"
+echo "2. 🟤Normal (i have strong eyes)"
+echo "3. ⚪Light (i have stronger eyes, still; let's not abuse)"
    read themetype
    case $themetype in
       [1])
-         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-cinnamon-dark' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-cinnamon-dark' && gsettings set org.cinnamon.theme name 'Yaru-cinnamon-dark' #from https://askubuntu.com/a/72093
+         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.theme name 'Yaru-floflis-dark' #from https://askubuntu.com/a/72093
       [2])
-         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-cinnamon' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-cinnamon' && gsettings set org.cinnamon.theme name 'Yaru-cinnamon' #from https://askubuntu.com/a/72093
+         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis' && gsettings set org.cinnamon.theme name 'Yaru-floflis' #from https://askubuntu.com/a/72093
+      [3])
+         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-light' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-light' && gsettings set org.cinnamon.theme name 'Yaru-floflis-light' #from https://askubuntu.com/a/72093
 esac
 #in UI, will have different background as example
 
