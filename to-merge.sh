@@ -368,6 +368,14 @@ git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 cd "$SCRIPTPATH"
 
+echo "Installing Cinnamobile..."
+cd include/System/Cinnamobile
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Cinnamobile.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash install.sh
+cd "$SCRIPTPATH"
+
 echo "Installing Cinnamon applets, desklets and extensions..."
 cd include/usr-share-cinnamon
 
