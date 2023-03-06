@@ -35,60 +35,6 @@ zombiespices install
 cd ${D}
 
 echo "Building your desktop experience..."
-cat >> /tmp/org-cinnamon <<EOF
-[/]
-enabled-applets=['panel1:right:12:cornerbar@cinnamon.org:1', 'panel1:left:1:search-box@mtwebster:16', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:2:xapp-status@cinnamon.org:4', 'panel1:right:3:notifications@cinnamon.org:5', 'panel1:right:4:printers@cinnamon.org:6', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:8:sound@cinnamon.org:10', 'panel1:right:9:power@cinnamon.org:11', 'panel1:right:11:calendar@cinnamon.org:12', 'panel1:right:10:weather@mockturtl:13', 'panel1:left:0:CinnVIIStarkMenu@NikoKrause:14']
-enabled-extensions=['transparent-panels@germanfr', 'buildmark@floflis']
-next-applet-id=15
-panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
-panels-height=['1:40']
-
-[desktop/interface]
-cursor-theme='Floflis'
-gtk-theme='Yaru-floflis'
-icon-theme='Floflis'
-
-[desktop/sound]
-event-sounds=true
-volume-sound-enabled=true
-volume-sound-file='/1/sounds/Changing volume.ogg'
-
-[desktop/wm/preferences]
-theme='Yaru-floflis'
-
-[sounds]
-close-enabled=true
-close-file='/1/sounds/Manipulating windows.ogg'
-login-file='/1/sounds/System Logon.oga'
-logout-enabled=true
-logout-file='/1/sounds/Leaving.ogg'
-map-enabled=false
-map-file='/1/sounds/Manipulating windows.ogg'
-maximize-enabled=false
-maximize-file='/1/sounds/Manipulating windows.ogg'
-minimize-enabled=true
-minimize-file='/1/sounds/Manipulating windows.ogg'
-notification-enabled=true
-notification-file='/1/sounds/Notification.oga'
-plug-enabled=true
-plug-file='/1/sounds/Inserting device.ogg'
-switch-enabled=true
-switch-file='/1/sounds/Switching workspace.ogg'
-tile-enabled=true
-tile-file='/1/sounds/Manipulating windows.ogg'
-unmaximize-enabled=true
-unmaximize-file='/1/sounds/Manipulating windows.ogg'
-unplug-enabled=true
-unplug-file='/1/sounds/Removing device.ogg'
-
-[theme]
-name='Yaru-floflis'
-EOF
-# start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
-sudo  -i -u ${pure} bash <<-EOF
-   exec dbus-run-session -- bash -c 'dconf load /org/cinnamon/ < /tmp/org-cinnamon'
-EOF
-rm -f /tmp/org-cinnamon
 
 cat >> /tmp/org-nemo-desktop <<EOF
 [/]
@@ -135,7 +81,10 @@ foreground-color='#F8F8F2'
 palette=['#262626', '#E356A7', '#42E66C', '#E4F34A', '#9B6BDF', '#E64747', '#75D7EC', '#EFA554', '#7A7A7A', '#FF79C6', '#50FA7B', '#F1FA8C', '#BD93F9', '#FF5555', '#8BE9FD', '#FFB86C']
 use-theme-colors=false
 EOF
-                exec dbus-run-session -- bash -c 'dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles'
+                # start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
+sudo  -i -u ${pure} bash <<-EOF
+   exec dbus-run-session -- bash -c 'dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles'
+EOF
                 rm -f /tmp/org-gnome-terminal-legacy-profiles
 #}
 #                echo "You have to logout, so changes will take effect."
@@ -176,6 +125,11 @@ EOF
 #   echo "- Cleanning install..."
 #   sudo rm -rf /home/$pure/.config/autostart/firstlogon.sh
 
+# start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
+sudo  -i -u ${pure} bash <<-EOF
+   exec dbus-run-session -- bash -c 'dconf load /org/cinnamon/ < /tmp/org-cinnamon'
+EOF
+
 exec dbus-run-session -- bash -c 'gsettings set org.nemo.preferences tooltips-in-icon-view true && gsettings set org.nemo.preferences tooltips-in-list-view true && gsettings set org.nemo.preferences tooltips-on-desktop true && gsettings set org.nemo.preferences tooltips-show-file-type true && gsettings set org.nemo.preferences tooltips-show-mod-date true'
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.screensaver font-time 'Ubuntu Bold 64'"
 exec dbus-run-session -- bash -c 'gsettings set org.cinnamon.desktop.interface buttons-have-icons true'
@@ -189,6 +143,8 @@ exec dbus-run-session -- bash -c "gsettings set org.gnome.gnome-screenshot auto-
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.background picture-uri 'file:///1/img/bg.jpg' && gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/gnome-background-properties/floflis-backgrounds.xml'"
 
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon favorite-apps \"['firefox.desktop', 'cinnamon-settings.desktop', 'org.gnome.Calculator.desktop', 'sol.desktop', 'remote-viewer.desktop', 'cinnamon-settings-universal-access.desktop']\"" #need testing. syntax may be wrong
+
+
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
