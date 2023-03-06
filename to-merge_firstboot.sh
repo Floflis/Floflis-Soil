@@ -187,6 +187,8 @@ if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
 exec dbus-run-session -- bash -c "gsettings set org.gnome.gnome-screenshot auto-save-directory '~/Pictures/Screenshots'"
 
 exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.background picture-uri 'file:///1/img/bg.jpg' && gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/gnome-background-properties/floflis-backgrounds.xml'"
+
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon favorite-apps \"['firefox.desktop', 'cinnamon-settings.desktop', 'org.gnome.Calculator.desktop', 'sol.desktop', 'remote-viewer.desktop', 'cinnamon-settings-universal-access.desktop']\"" #need testing. syntax may be wrong
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
