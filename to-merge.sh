@@ -542,4 +542,6 @@ sharedchain
 echo "Upgrading Cinnamon..."
 $maysudo apt upgrade cinnamon-desktop-environment
 
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
 $maysudo apt --fix-broken install
