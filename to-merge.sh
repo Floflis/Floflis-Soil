@@ -575,6 +575,8 @@ $maysudo apt upgrade cinnamon-desktop-environment
 
 #cinnamon patcher here
 
+$maysudo apt-get install dialog #1.254 kB of additional disk space
+
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
 $maysudo apt --fix-broken install
