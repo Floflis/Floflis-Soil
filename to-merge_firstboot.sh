@@ -40,34 +40,13 @@ cat >> /tmp/org-cinnamon <<EOF
 enabled-applets=['panel1:right:12:cornerbar@cinnamon.org:1', 'panel1:left:1:search-box@mtwebster:16', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:2:xapp-status@cinnamon.org:4', 'panel1:right:3:notifications@cinnamon.org:5', 'panel1:right:4:printers@cinnamon.org:6', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:8:sound@cinnamon.org:10', 'panel1:right:9:power@cinnamon.org:11', 'panel1:right:11:calendar@cinnamon.org:12', 'panel1:right:10:weather@mockturtl:13', 'panel1:left:0:CinnVIIStarkMenu@NikoKrause:14']
 enabled-extensions=['transparent-panels@germanfr', 'buildmark@floflis']
 next-applet-id=15
-panel-edit-mode=false
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
 panels-height=['1:40']
 
-[desktop/a11y/applications]
-screen-keyboard-enabled=false
-screen-reader-enabled=false
-
-[desktop/a11y/mouse]
-dwell-click-enabled=false
-dwell-threshold=10
-dwell-time=1.2
-secondary-click-enabled=false
-secondary-click-time=1.2
-
-[desktop/background]
-picture-options='zoom'
-picture-uri='file:///1/img/bg.jpg'
-
-[desktop/background/slideshow]
-delay=15
-image-source='xml:///usr/share/gnome-background-properties/floflis-backgrounds.xml'
-
 [desktop/interface]
 cursor-theme='Floflis'
-gtk-theme='Yaru-cinnamon-dark'
+gtk-theme='Yaru-floflis'
 icon-theme='Floflis'
-toolkit-accessibility=false
 
 [desktop/sound]
 event-sounds=true
@@ -75,10 +54,7 @@ volume-sound-enabled=true
 volume-sound-file='/1/sounds/Changing volume.ogg'
 
 [desktop/wm/preferences]
-theme='Yaru-cinnamon-dark'
-
-[settings-daemon/peripherals/keyboard]
-numlock-state='off'
+theme='Yaru-floflis'
 
 [sounds]
 close-enabled=true
@@ -106,7 +82,7 @@ unplug-enabled=true
 unplug-file='/1/sounds/Removing device.ogg'
 
 [theme]
-name='Yaru-cinnamon-dark'
+name='Yaru-floflis'
 EOF
 # start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF
@@ -209,6 +185,8 @@ exec dbus-run-session -- bash -c "gsettings set org.cinnamon demands-attention-p
 
 if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
 exec dbus-run-session -- bash -c "gsettings set org.gnome.gnome-screenshot auto-save-directory '~/Pictures/Screenshots'"
+
+exec dbus-run-session -- bash -c "gsettings set org.cinnamon.desktop.background picture-uri 'file:///1/img/bg.jpg' && gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/gnome-background-properties/floflis-backgrounds.xml'"
    
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
