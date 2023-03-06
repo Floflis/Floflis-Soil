@@ -210,7 +210,7 @@ exec dbus-run-session -- bash -c "gsettings set org.cinnamon demands-attention-p
    cd ..
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
    sudo chmod -R a+rwX /1 && sudo chown $pure:$pure /1
-   sudo chmod -R a+rwX /1/config && sudo chown $pure:$pure /1/config
-   sudo chmod -R a+rwX /usr/share/ubiquity-slideshow && sudo chown $pure:$pure /usr/share/ubiquity-slideshow
-   sudo chmod -R a+rwX /usr/lib/floflis/layers/soil/to-merge && sudo chown $pure:$pure /usr/lib/floflis/layers/soil/to-merge
+   sudo chmod -R a+rwX /1/config && sudo chown -R $pure:$pure /1/config #from https://askubuntu.com/a/693427
+   sudo chmod -R a+rwX /usr/share/ubiquity-slideshow && sudo chown -R $pure:$pure /usr/share/ubiquity-slideshow
+   sudo chmod -R a+rwX /usr/lib/floflis/layers/soil/to-merge && sudo chown -R $pure:$pure /usr/lib/floflis/layers/soil/to-merge
 done
