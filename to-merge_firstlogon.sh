@@ -280,31 +280,68 @@ esac
 echo "Setting autostart apps..."
 chmod +x /home/${flouser}/.config/autostart/teams.desktop
 
-echo "How you prefer your mouse cursor color? [type the number according to your choice, then ENTER]"
-echo "1. ⚫Black (like in \"MecOS\"🍎)"
-echo "2. ⚪White (like in \"WindOS\"🪟)"
-   read cursorcolor
-   case $cursorcolor in
-      [1])
-         gsettings set org.cinnamon.desktop.interface cursor-theme 'DMZ-White' #from https://askubuntu.com/a/72093
-      [2])
-         gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' #from https://askubuntu.com/a/72093
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="Backtitle here"
+TITLE="Title here"
+MENU="How you prefer your mouse cursor color?"
+
+OPTIONS=(1 "⚫Black (like in \"MecOS\"🍎)"
+         2 "⚪White (like in \"WindOS\"🪟)")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+case $CHOICE in
+        1)
+            gsettings set org.cinnamon.desktop.interface cursor-theme 'DMZ-White' #from https://askubuntu.com/a/72093
+            ;;
+        2)
+            gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' #from https://askubuntu.com/a/72093
+            ;;
 esac
+#from https://askubuntu.com/a/666179
 #in UI, will have different background as example
 
-echo "How you prefer your system theme? [type the number according to your choice, then ENTER]"
-echo "1. ⚫Dark (let's save my eyes while computing in the dark)"
-echo "2. 🟤Normal (i have strong eyes)"
-echo "3. ⚪Light (i have stronger eyes, still; let's not abuse)"
-   read themetype
-   case $themetype in
-      [1])
-         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.theme name 'Yaru-floflis-dark' #from https://askubuntu.com/a/72093
-      [2])
-         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis' && gsettings set org.cinnamon.theme name 'Yaru-floflis' #from https://askubuntu.com/a/72093
-      [3])
-         gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-light' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-light' && gsettings set org.cinnamon.theme name 'Yaru-floflis-light' #from https://askubuntu.com/a/72093
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="Backtitle here"
+TITLE="Title here"
+MENU="How you prefer your system theme?"
+
+OPTIONS=(1 "⚫Dark (let's save my eyes while computing in the dark)"
+         2 "🟤Normal (i have strong eyes)"
+         3 "⚪Light (i have stronger eyes, still; let's not abuse)")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+case $CHOICE in
+        1)
+            gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.theme name 'Yaru-floflis-dark' #from https://askubuntu.com/a/72093
+            ;;
+        2)
+            gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis' && gsettings set org.cinnamon.theme name 'Yaru-floflis' #from https://askubuntu.com/a/72093
+            ;;
+        3)
+            gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-light' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-light' && gsettings set org.cinnamon.theme name 'Yaru-floflis-light' #from https://askubuntu.com/a/72093
+            ;;
 esac
+#from https://askubuntu.com/a/666179
 #in UI, will have different background as example
 
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
