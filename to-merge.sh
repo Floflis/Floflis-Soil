@@ -600,6 +600,12 @@ $maysudo apt update && $maysudo apt -y upgrade
 $maysudo apt-get dist-upgrade
 # from https://diolinux.com.br/sistemas-operacionais/oibaf-melhorar-desempenho-grafico-ubuntu.html
 
+echo "Upgrading packages and distro packages..."
+$maysudo apt upgrade -y #from https://linuxhint.com/update_all_packages_ubuntu/
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
+$maysudo apt dist-upgrade
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
+#-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
 $maysudo apt --fix-broken install
