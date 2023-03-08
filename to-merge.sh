@@ -66,15 +66,16 @@ geth -h
 
 echo "Installing support for Windows apps..."
 $maysudo apt install -y software-properties-common
-#$maysudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
-#$maysudo apt-key add winehq.key && rm winehq.key
+$maysudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
+$maysudo apt-key add winehq.key && rm winehq.key
 #$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/debian/ buster main'
-#$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ kinetic main'
+$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ kinetic main'
 $maysudo apt update
 $maysudo dpkg --add-architecture i386
-$maysudo apt-get update
-$maysudo apt-get install wine32 wine32:i386
+$maysudo apt update
 $maysudo apt -y install --install-recommends winehq-stable
+$maysudo apt install wine32:i386 # 1GB+!
+$maysudo apt install wine32
 $maysudo apt install wine64 -y # nearly 2GB!
 $maysudo apt install winetricks -y
 $maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
