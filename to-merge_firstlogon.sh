@@ -31,7 +31,7 @@ rm /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
 rm /home/${flouser}/Templates/New\ Spreadsheet.xlsx.webpresent
 rm /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
 rm /home/${flouser}/Templates/New\ Access\ Database.accdb.webpresent
-rm '/home/${flouser}/Templates/New Compressed (zipped) Folder.zip.webpresent'
+rm /home/${flouser}/Templates/"New Compressed (zipped) Folder.zip.webpresent"
 rm /home/${flouser}/Templates/New\ Publisher\ Document.pub.webpresent
 
 echo "Installing the \"Starshell\" package..."
