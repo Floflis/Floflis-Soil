@@ -166,9 +166,12 @@
             "teams.desktop",
             "firedoge.desktop",
             "firefox.desktop",
-            "org.gnome.Terminal.desktop",
+            "thunderbird.desktop",
             "nemo.desktop",
             "org.gnome.gedit.desktop",
+            "libreoffice-startcenter.desktop",
+            "org.gnome.Software.desktop",
+            "org.gnome.Terminal.desktop",
             "yelp.desktop"
         ]
     },
