@@ -54,7 +54,7 @@ exec dbus-run-session -- bash -c 'dconf write /org/gnome/gnome-screenshot/auto-s
 
 exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/background/picture-uri "'file:///1/img/bg/jpg'" && dconf write /org/cinnamon/desktop/background/slideshow/image-source "'xml:///usr/share/gnome-background-properties/floflis-backgrounds/xml'"'
 
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/favorite-apps "['firefox/desktop', 'cinnamon-settings/desktop', 'org/gnome/Calculator/desktop', 'sol/desktop', 'remote-viewer/desktop', 'cinnamon-settings-universal-access/desktop']"'
+exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/favorite-apps "['firefox.desktop', 'cinnamon-settings.desktop', 'org.gnome.Calculator.desktop', 'sol.desktop', 'remote-viewer.desktop', 'cinnamon-settings-universal-access.desktop']"'
 
 exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/interface/cursor-theme "'Floflis'" && dconf write /org/cinnamon/desktop/interface/icon-theme "'Floflis'"'
 #-
