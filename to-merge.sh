@@ -610,3 +610,9 @@ $maysudo apt-get autoremove
 $maysudo apt-get autoclean
 #-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
 $maysudo apt --fix-broken install
+
+echo "Attempting to upgrade Cinnamon..."
+$maysudo apt install ubuntucinnamon-desktop
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
+$maysudo apt --fix-broken install
