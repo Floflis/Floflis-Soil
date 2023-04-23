@@ -469,12 +469,12 @@ Exec=nemo trash:///
 EOF
 fi
 
-if [ -f /var/lib/snapd/desktop/applications/kolourpaint_kolourpaint.desktop ]; then
+if [ -f /usr/share/applications/org.kde.kolourpaint.desktop ]; then
 echo "Fixing Paint's shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
-cat > /var/lib/snapd/desktop/applications/kolourpaint_kolourpaint.desktop <<EOF
+cat > /usr/share/applications/org.kde.kolourpaint.desktop <<EOF
 [Desktop Entry]
-X-SnapInstanceName=kolourpaint
+
 Name=Paint
 Name[ar]=الرسام
 Name[be]=Paint
@@ -545,6 +545,7 @@ Name[uk]=Paint
 Name[uz]=Paint
 Name[uz@cyrillic]=Paint
 Name[vi]=Paint
+Name[x-test]=xxPaintxx
 Name[zh_CN]=Paint 画图工具
 Name[zh_HK]=Paint
 Name[zh_TW]=Paint 小畫家
@@ -620,9 +621,11 @@ GenericName[uz@cyrillic]=Чизиш дастури
 GenericName[vi]=Chương trình vẽ
 GenericName[wa]=Program di dessinaedje
 GenericName[xh]=Udweliso lwenkqubo lwepeyinti
+GenericName[x-test]=xxPaint Programxx
 GenericName[zh_CN]=画图程序
 GenericName[zh_HK]=繪圖程式
 GenericName[zh_TW]=繪圖程式
+
 Comment=An easy-to-use paint program
 Comment[ar]=برنامج تلوين سهل الاستخدام
 Comment[bg]=Лесна за изпълнение програма за изпълнение
@@ -657,13 +660,20 @@ Comment[sl]=Enostaven program za risanje
 Comment[sv]=Ett lättanvänt ritprogram
 Comment[tr]=Kolay kullanılır bir boyama programı
 Comment[uk]=Проста у користуванні програма для малювання
+Comment[x-test]=xxAn easy-to-use paint programxx
 Comment[zh_CN]=一款简易画图程序
 Comment[zh_TW]=易於使用的繪圖程式
-Icon=/snap/kolourpaint/77/meta/gui/icon.png
+
+Icon=kolourpaint
+
 Type=Application
-Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/kolourpaint_kolourpaint.desktop /snap/bin/kolourpaint %u
+Exec=kolourpaint %u
+X-DocPath=kolourpaint/index.html
 StartupWMClass=kolourpaint
+
+# SYNC: Run kolourpaint --mimetypes
 MimeType=application/x-krita;application/x-navi-animation;image/avif;image/bmp;image/gif;image/heif;image/jpeg;image/jxl;image/openraster;image/png;image/svg+xml;image/svg+xml-compressed;image/tiff;image/vnd.adobe.photoshop;image/vnd.microsoft.icon;image/vnd.wap.wbmp;image/webp;image/x-eps;image/x-exr;image/x-hdr;image/x-icns;image/x-mng;image/x-pcx;image/x-pic;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-rgb;image/x-sun-raster;image/x-tga;image/x-xbitmap;image/x-xcf;image/x-xpixmap;
+
 Categories=Qt;KDE;Graphics;2DGraphics;RasterGraphics;
 Terminal=false
 
