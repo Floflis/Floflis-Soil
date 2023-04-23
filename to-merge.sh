@@ -595,6 +595,7 @@ $maysudo apt upgrade cinnamon-desktop-environment
 #cinnamon patcher here
 
 $maysudo apt-get install dialog #1.254 kB of additional disk space
+$maysudo apt-get install ppa-purge #Need to get 6.566 B of archives. After this operation, 24,6 kB of additional disk space will be used.
 
 echo "Upgrading packages and distro packages..."
 $maysudo apt upgrade -y #from https://linuxhint.com/update_all_packages_ubuntu/
