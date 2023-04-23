@@ -66,7 +66,7 @@ exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/sounds/close-file "'
 #-
 exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/sounds/close-enabled true && dconf write /org/cinnamon/sounds/logout-enabled true && dconf write /org/cinnamon/sounds/minimize-enabled true && dconf write /org/cinnamon/sounds/notification-enabled true && dconf write /org/cinnamon/sounds/plug-enabled true && dconf write /org/cinnamon/sounds/switch-enabled true && dconf write /org/cinnamon/sounds/tile-enabled true && dconf write /org/cinnamon/sounds/unmaximize-enabled true && dconf write /org/cinnamon/sounds/unplug-enabled true && dconf write /org/cinnamon/sounds/map-enabled false && dconf write /org/cinnamon/sounds/maximize-enabled false'
 EOF
-# from https://askubuntu.com/a/487216 (have to vote)
+# from https://askubuntu.com/a/487216
 
 cat >> /tmp/org-nemo-desktop <<EOF
 [/]
