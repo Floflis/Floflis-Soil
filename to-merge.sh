@@ -41,6 +41,11 @@ if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
 
 echo "Building your desktop experience [part 1/2]..."
 $maysudo cp -f include/System/gschemas/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/ && $maysudo cp -f include/System/gschemas/10_ubuntucinnamon-lightdm-theme.gschema.override /usr/share/glib-2.0/schemas/
+#Cinnamobile: Mobile device mode
+#$maysudo cp -f include/System/gschemas/11_ubuntucinnamon-environment-mobile.gschema.override /usr/share/glib-2.0/schemas/
+#Cinnamobile: Desktop device mode
+$maysudo cp -f include/System/gschemas/11_ubuntucinnamon-environment-desktop.gschema.override /usr/share/glib-2.0/schemas/
+#-
 $maysudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 #$maysudo bash include/System/to-merge_deactivated.sh
