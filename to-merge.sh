@@ -33,12 +33,6 @@ fi
 
 export maysudo
 
-#- attempt to fix Cubic's custom name:
-$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2302_1 'Eusoumafoca'"/' /usr/lib/os-release
-$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2302_1 'Eusoumafoca'"/' /etc/lsb-release
-# have to get it from config or json
-if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi
-
 echo "Building your desktop experience [part 1/2]..."
 $maysudo cp -f include/System/gschemas/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/ && $maysudo cp -f include/System/gschemas/10_ubuntucinnamon-lightdm-theme.gschema.override /usr/share/glib-2.0/schemas/
 #Cinnamobile: Mobile device mode
@@ -621,3 +615,12 @@ $maysudo apt install ubuntucinnamon-desktop
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
 $maysudo apt --fix-broken install
+
+#- attempt to fix Cubic's custom name:
+#$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2304_2 Eusoumafoca"/' /usr/lib/os-release
+#$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2304_2 Eusoumafoca"/' /etc/lsb-release
+$maysudo sed -i 's/PRETTY_NAME="Ubuntu 23.04"/PRETTY_NAME="\$osname\ \$osversion\ build \$osbuild\ \$osbuildcodename\"/g' /usr/lib/os-release
+$maysudo sed -i 's/HOME_URL="https://www.ubuntu.com/"/HOME_URL="https://www.floflis.com/"/g' /usr/lib/os-release
+$maysudo sed -i 's/LOGO=ubuntu-logo/LOGO=floflis-logo/g' /usr/lib/os-release
+$maysudo sed -i 's/DISTRIB_DESCRIPTION="Ubuntu 23.04"/DISTRIB_DESCRIPTION="\$osname\ \$osversion\ build \$osbuild\ \$osbuildcodename\"/g' /etc/lsb-release
+if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi #enable Floflis to be detected by applications (such as Neofetch)
