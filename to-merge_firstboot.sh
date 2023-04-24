@@ -151,4 +151,5 @@ EOF
    sudo chmod -R a+rwX /1/config && sudo chown -R $pure:$pure /1/config #from https://askubuntu.com/a/693427
    sudo chmod -R a+rwX /usr/share/ubiquity-slideshow && sudo chown -R $pure:$pure /usr/share/ubiquity-slideshow
    sudo chmod -R a+rwX /usr/lib/floflis/layers/soil/to-merge && sudo chown -R $pure:$pure /usr/lib/floflis/layers/soil/to-merge
+   sudo chmod -R a+rwX /home/$pure/.config/cinnamon && sudo chown -R $pure:$pure /home/$pure/.config/cinnamon
 done
