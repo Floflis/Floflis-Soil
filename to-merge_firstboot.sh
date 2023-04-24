@@ -22,49 +22,11 @@ if [ ! -e /home/${pure}/.config/cinnamon/spices ]; then mkdir /home/${pure}/.con
 #tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${pure}/.config/cinnamon/spices
 
-echo "Building your desktop experience..."
+echo "Building your desktop experience [part 2/2]..."
 # start a new dbus session and execute the gsettings command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF
-   exec dbus-run-session -- bash -c 'dconf write /org/nemo/preferences/tooltips-in-icon-view true && dconf write /org/nemo/preferences/tooltips-in-list-view true && dconf write /org/nemo/preferences/tooltips-on-desktop true && dconf write /org/nemo/preferences/tooltips-show-file-type true && dconf write /org/nemo/preferences/tooltips-show-mod-date true'
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/screensaver/font-time "'Ubuntu Bold 64'"'
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/interface/buttons-have-icons true'
-exec dbus-run-session -- bash -c "dconf write /org/cinnamon/system-icon "'distributor-logo'" && dconf write /org/cinnamon/startup-icon-name "'distributor-logo'"'
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/app-menu-label "'Explore'" && dconf write /org/cinnamon/app-menu-icon-name "'distributor-logo'"'
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/demands-attention-passthru-wm-classes "['gnome-screenshot', 'lxterminal', 'xfce4-terminal', 'firefox', 'firedoge', 'libreoffice', 'soffice']"'
-
-if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
-exec dbus-run-session -- bash -c 'dconf write /org/gnome/gnome-screenshot/auto-save-directory "'~/Pictures/Screenshots'"'
-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/background/picture-uri "'file:///1/img/bg/jpg'" && dconf write /org/cinnamon/desktop/background/slideshow/image-source "'xml:///usr/share/gnome-background-properties/floflis-backgrounds/xml'"'
-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/favorite-apps "['firefox.desktop', 'cinnamon-settings.desktop', 'org.gnome.Calculator.desktop', 'sol.desktop', 'remote-viewer.desktop', 'cinnamon-settings-universal-access.desktop']"'
-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/interface/cursor-theme "'Floflis'" && dconf write /org/cinnamon/desktop/interface/icon-theme "'Floflis'"'
-#-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/interface/gtk-theme "'Yaru-floflis'" && dconf write /org/cinnamon/desktop/wm/preferences/theme "'Yaru-floflis'" && dconf write /org/cinnamon/theme/name "'Yaru-floflis'"'
-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/desktop/sound/event-sounds true && dconf write /org/cinnamon/desktop/sound/volume-sound-enabled true && dconf write /org/cinnamon/desktop/sound/volume-sound-file "'/1/sounds/Changing volume/ogg'"'
-#-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/sounds/close-file "'/1/sounds/Manipulating windows/ogg'" && dconf write /org/cinnamon/sounds/login-file "'/1/sounds/System Logon/oga'" && dconf write /org/cinnamon/sounds/logout-file "'/1/sounds/Leaving/ogg'" && dconf write /org/cinnamon/sounds/map-file "'/1/sounds/Manipulating windows/ogg'" && dconf write /org/cinnamon/sounds/maximize-file "'/1/sounds/Manipulating windows/ogg'" && dconf write /org/cinnamon/sounds/minimize-file "'/1/sounds/Manipulating windows/ogg'" && dconf write /org/cinnamon/sounds/notification-file "'/1/sounds/Notification/oga'" && dconf write /org/cinnamon/sounds/plug-file "'/1/sounds/Inserting device/ogg'" && dconf write /org/cinnamon/sounds/switch-file "'/1/sounds/Switching workspace/ogg'" && dconf write /org/cinnamon/sounds/tile-file "'/1/sounds/Manipulating windows/ogg'" && dconf write /org/cinnamon/sounds/unmaximize-file "'/1/sounds/Manipulating windows/ogg'" && dconf write /org/cinnamon/sounds/unplug-file "'/1/sounds/Removing device/ogg'"'
-#-
-exec dbus-run-session -- bash -c 'dconf write /org/cinnamon/sounds/close-enabled true && dconf write /org/cinnamon/sounds/logout-enabled true && dconf write /org/cinnamon/sounds/minimize-enabled true && dconf write /org/cinnamon/sounds/notification-enabled true && dconf write /org/cinnamon/sounds/plug-enabled true && dconf write /org/cinnamon/sounds/switch-enabled true && dconf write /org/cinnamon/sounds/tile-enabled true && dconf write /org/cinnamon/sounds/unmaximize-enabled true && dconf write /org/cinnamon/sounds/unplug-enabled true && dconf write /org/cinnamon/sounds/map-enabled false && dconf write /org/cinnamon/sounds/maximize-enabled false'
+exec dbus-run-session -- bash -c 'if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi; dconf write /org/gnome/gnome-screenshot/auto-save-directory "'~/Pictures/Screenshots'"'
 EOF
-# from https://askubuntu.com/a/487216
-
-cat >> /tmp/org-nemo-desktop <<EOF
-[/]
-computer-icon-visible=true
-home-icon-visible=true
-network-icon-visible=false
-show-desktop-icons=true
-trash-icon-visible=true
-volumes-visible=false
-EOF
-# start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
-sudo  -i -u ${pure} bash <<-EOF
-   exec dbus-run-session -- bash -c 'dconf load /org/nemo/desktop/ < /tmp/org-nemo-desktop'
-EOF
-rm -f /tmp/org-nemo-desktop
 
 # to-merge>
 #             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
