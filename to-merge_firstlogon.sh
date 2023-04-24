@@ -229,6 +229,8 @@ if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresen
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
+sudo chmod -R a+rwX /home/${flouser}/.config/nushell && sudo chown -R ${flouser}:${flouser} /home/${flouser}/.config/nushell
+
 echo "Installing ethgas..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools/ethgas
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethgas.git .; fi
