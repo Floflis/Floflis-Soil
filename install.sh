@@ -53,8 +53,9 @@ echo "- Installing Floflis Soil as init program..."
 $maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/soil/flo-init
 $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
-#echo "- Installing programs..."
-#$maysudo apt-get install autoconf elinks ceni gdebi udftools nodejs npm -y && npm i ipfs-npm -g
+echo "- Installing programs..."
+#$maysudo apt-get install autoconf elinks ceni gdebi udftools
+$maysudo apt-get install nodejs npm -y #&& npm i ipfs-npm -g
 
 echo "Installing neofetch..."
 if [ ! -e /usr/lib/neofetch ]; then $maysudo mkdir /usr/lib/neofetch; fi
