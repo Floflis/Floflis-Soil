@@ -22,23 +22,6 @@ if [ ! -e /home/${pure}/.config/cinnamon/spices ]; then mkdir /home/${pure}/.con
 #tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${pure}/.config/cinnamon/spices
 
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
-#-
-cd buildmark
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-zombiespices install
-#-
-cd ..
-cd nftmark
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-zombiespices install
-#cd "$SCRIPTPATH"
-cd ${D}
-
 echo "Building your desktop experience..."
 # start a new dbus session and execute the gsettings command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF

@@ -25,6 +25,23 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
+#-
+cd buildmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
+#-
+cd ..
+cd nftmark
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/nftmark.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+zombiespices install
+cd "$SCRIPTPATH"
+#cd ${D}
+
 echo "Installing Templates of the 'New File' context menu..."
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
 rm /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
