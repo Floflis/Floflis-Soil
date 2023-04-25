@@ -306,6 +306,18 @@ if [ -f /usr/share/backgrounds/Reflection_by_Juliette_Taka.png ]; then $maysudo 
 if [ -f /usr/share/backgrounds/Saffron_by_Rakesh_Yadav.png ]; then $maysudo mv -f /usr/share/backgrounds/Saffron_by_Rakesh_Yadav.png /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Sunset_Over_Lake_Lugano_by_Alexey_Kulik.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Sunset_Over_Lake_Lugano_by_Alexey_Kulik.jpg /usr/share/backgrounds/ubuntu; fi
 if [ -f /usr/share/backgrounds/Twisted_Gradients_by_Gustavo_Brenner.png ]; then $maysudo mv -f /usr/share/backgrounds/Twisted_Gradients_by_Gustavo_Brenner.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Copper_Mountain_by_Eduardo_Battaglia.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Copper_Mountain_by_Eduardo_Battaglia.jpg /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Flow_by_Emanuele_Santoro.png ]; then $maysudo mv -f /usr/share/backgrounds/Flow_by_Emanuele_Santoro.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Lobster_Wallpaper_Grey.png ]; then $maysudo mv -f /usr/share/backgrounds/Lobster_Wallpaper_Grey.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/LunarCatcher_by_Espio347.png ]; then $maysudo mv -f /usr/share/backgrounds/LunarCatcher_by_Espio347.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Lunar-lobster-side_by_Gixo-dark.png ]; then $maysudo mv -f /usr/share/backgrounds/Lunar-lobster-side_by_Gixo-dark.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Lunar-lobster-side_by_Gixo-light.png ]; then $maysudo mv -f /usr/share/backgrounds/Lunar-lobster-side_by_Gixo-light.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Multiverse_by_Emanuele_Santoro.png ]; then $maysudo mv -f /usr/share/backgrounds/Multiverse_by_Emanuele_Santoro.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Startrail_by_Hajime_Mizuno.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Startrail_by_Hajime_Mizuno.jpg /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/Warm_Filament_by_Eduardo_Battaglia.jpg ]; then $maysudo mv -f /usr/share/backgrounds/Warm_Filament_by_Eduardo_Battaglia.jpg /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/warty-final-ubuntu.png ]; then $maysudo mv -f /usr/share/backgrounds/warty-final-ubuntu.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/winter-is-leaving_by_Gixo-dark.png ]; then $maysudo mv -f /usr/share/backgrounds/winter-is-leaving_by_Gixo-dark.png /usr/share/backgrounds/ubuntu; fi
+if [ -f /usr/share/backgrounds/winter-is-leaving_by_Gixo-light.png ]; then $maysudo mv -f /usr/share/backgrounds/winter-is-leaving_by_Gixo-light.png /usr/share/backgrounds/ubuntu; fi
 
 if [ ! -e /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntucinnamon ]; then $maysudo mkdir /usr/share/backgrounds/ubuntucinnamon/kinetic/ubuntucinnamon; fi
 
