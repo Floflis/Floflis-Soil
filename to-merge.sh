@@ -81,9 +81,9 @@ $maysudo apt install wine32:i386 # 1GB+!
 $maysudo apt install wine32
 $maysudo apt install wine64 -y # nearly 2GB!
 $maysudo apt install winetricks -y
-wget https://dl.winehq.org/wine/wine-mono/7.4.0/wine-mono-7.4.0-x86.msi && wine msiexec /i wine-mono-7.4.0-x86.msi #from https://askubuntu.com/a/1448770
+wget https://dl.winehq.org/wine/wine-mono/7.4.0/wine-mono-7.4.0-x86.msi && wine msiexec /i wine-mono-7.4.0-x86.msi #from https://askubuntu.com/a/1448770 (have to login and VOTE)
 if [ ! -f wine-mono-7.4.0-x86.msi ]; then rm wine-mono-7.4.0-x86.msi; fi
-winetricks dotnet45 #from https://askubuntu.com/a/1106750
+winetricks dotnet45 #from https://askubuntu.com/a/1106750 (have to login and VOTE)
 $maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
 cd include/System/wine-desktop-common
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/bobwya/wine-desktop-common.git .; fi
@@ -113,12 +113,12 @@ cd "$SCRIPTPATH"
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb --refuse-downgrade
    echo "Testing if Hugo works:"
    hugo -h
 fi
 if [ "$flofarch" = "amd64" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb
+   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb --refuse-downgrade
    echo "Testing if Hugo works:"
    hugo -h
 fi
@@ -159,11 +159,11 @@ echo "Installing other apps:"
 echo "Installing KeePassXC..."
 $maysudo apt install keepassxc
 echo "Installing Stacer..."
-$maysudo dpkg -i include/DEB/stacer_1.1.0_amd64.deb
+$maysudo dpkg -i include/DEB/stacer_1.1.0_amd64.deb --refuse-downgrade #from https://askubuntu.com/a/198445 (have to login and VOTE)
 $maysudo apt upgrade stacer
 $maysudo apt --fix-broken install
 echo "Installing MS Teams..."
-$maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb
+$maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb --refuse-downgrade
 $maysudo apt --fix-broken install
 #-
 echo "Installing Gnome GAMES app (465 kB download; 2,745 kB installed)..."
@@ -174,7 +174,7 @@ echo "Installing gbrainy..."
 $maysudo apt install gbrainy
 #$maysudo apt install supertux
 echo "Installing Money Manager Ex (MMEX)..."
-$maysudo dpkg -i include/DEB/mmex_1.6.3-Ubuntu.22.04.jammy_amd64.deb
+$maysudo dpkg -i include/DEB/mmex_1.6.3-Ubuntu.22.04.jammy_amd64.deb --refuse-downgrade
 
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool
@@ -201,8 +201,8 @@ EOF
 $maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" >> /usr/share/applications/x-cinnamon-mimeapps.list
 
 echo "Installing Frame + Frame Canary"
-$maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb
-$maysudo dpkg -i include/DEB/frame-canary_0.5.0-canary.13_amd64.deb
+$maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb --refuse-downgrade
+$maysudo dpkg -i include/DEB/frame-canary_0.5.0-canary.13_amd64.deb --refuse-downgrade
 
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
