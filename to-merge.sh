@@ -620,7 +620,7 @@ $maysudo apt --fix-broken install
 #$maysudo sed -i 's/^PRETTY_NAME=" .*$/PRETTY_NAME=" Floflis 19 build 2304_2 Eusoumafoca"/' /usr/lib/os-release
 #$maysudo sed -i 's/^DISTRIB_DESCRIPTION=" .*$/DISTRIB_DESCRIPTION=" Floflis 19 build 2304_2 Eusoumafoca"/' /etc/lsb-release
 $maysudo sed -i 's/PRETTY_NAME="Ubuntu 23.04"/PRETTY_NAME="\$osname\ \$osversion\ build \$osbuild\ \$osbuildcodename\"/g' /usr/lib/os-release
-$maysudo sed -i 's/HOME_URL="https://www.ubuntu.com/"/HOME_URL="https://www.floflis.com/"/g' /usr/lib/os-release
+$maysudo sed -i 's/HOME_URL="https:\/\/www.ubuntu.com\/"/HOME_URL="https:\/\/www.floflis.com\/"/g' /usr/lib/os-release
 $maysudo sed -i 's/LOGO=ubuntu-logo/LOGO=floflis-logo/g' /usr/lib/os-release
 $maysudo sed -i 's/DISTRIB_DESCRIPTION="Ubuntu 23.04"/DISTRIB_DESCRIPTION="\$osname\ \$osversion\ build \$osbuild\ \$osbuildcodename\"/g' /etc/lsb-release
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi #enable Floflis to be detected by applications (such as Neofetch)
