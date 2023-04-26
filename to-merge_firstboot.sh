@@ -23,9 +23,10 @@ if [ ! -e /home/${pure}/.config/cinnamon/spices ]; then mkdir /home/${pure}/.con
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${pure}/.config/cinnamon/spices
 
 echo "Building your desktop experience [part 2/2]..."
+if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
 # start a new dbus session and execute the gsettings command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF
-exec dbus-run-session -- bash -c 'if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi; dconf write /org/gnome/gnome-screenshot/auto-save-directory "'~/Pictures/Screenshots'"'
+exec dbus-run-session -- bash -c 'dconf write /org/gnome/gnome-screenshot/auto-save-directory "'~/Pictures/Screenshots'"'
 EOF
 
 # to-merge>
@@ -34,8 +35,6 @@ EOF
                 cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
 [/]
 custom-command='nu'
-login-shell=false
-use-custom-command=true
 bold-is-bright=true
 font='FantasqueSansMono Nerd Font 12'
 use-system-font=false

@@ -64,6 +64,11 @@ chmod +x install.sh && sudo sh ./install.sh
 #cd ${D}
 cd "$SCRIPTPATH"
 
+sudo chmod -R a+rwX /home/${flouser}/.config/nushell && sudo chown -R ${flouser}:${flouser} /home/${flouser}/.config/nushell
+
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/login-shell false
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-custom-command true
+
 echo "Installing floapps..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
@@ -228,8 +233,6 @@ EOF
 if [ ! -e /1/img/humanrepresentation ]; then $maysudo mkdir /1/img/humanrepresentation; fi
 $maysudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 $maysudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
-
-sudo chmod -R a+rwX /home/${flouser}/.config/nushell && sudo chown -R ${flouser}:${flouser} /home/${flouser}/.config/nushell
 
 echo "Installing ethgas..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools/ethgas
