@@ -72,7 +72,8 @@ $maysudo apt install -y software-properties-common
 $maysudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
 $maysudo apt-key add winehq.key && rm winehq.key
 #$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/debian/ buster main'
-$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ kinetic main'
+#$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ kinetic main'
+$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ lunar main'
 $maysudo apt update
 $maysudo dpkg --add-architecture i386
 $maysudo apt update
