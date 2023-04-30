@@ -260,7 +260,7 @@ cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/firedoge
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Web3HQ/firedoge.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
-chmod +x install.sh && sudo bash install.sh
+chmod +x install.sh && bash install.sh
 cd "$SCRIPTPATH"
 
 echo "Do you want to install the MS Edge browser? [Y/n]"
