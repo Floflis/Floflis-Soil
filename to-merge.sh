@@ -643,6 +643,6 @@ $maysudo sed -i "s/NAME=\"Ubuntu\"/NAME=\"$osname\"/g" /usr/lib/os-release
 $maysudo sed -i "s/VERSION_ID=\"23.04\"/VERSION_ID=\"$osversion\"/g" /usr/lib/os-release
 $maysudo sed -i "s/VERSION=\"23.04 (Lunar Lobster)\"/VERSION=\"$(echo $osbuild | tr "_" .) ($(echo $osbuildcodename | tr '[:upper:]' '[:lower:]' | tr -d '"'))\"/g" /usr/lib/os-release
 #thanks to https://stackoverflow.com/a/5928159, https://stackoverflow.com/a/2264537 and https://stackoverflow.com/a/26314887 (have to login and VOTE)
-$maysudo sed -i "s/VERSION_CODENAME=lunar/VERSION_CODENAME=$(echo $osbuildcodename | tr '[:upper:]' '[:lower:]' | tr -d '"')/g" /usr/lib/os-release
+#this bugs apt: $maysudo sed -i "s/VERSION_CODENAME=lunar/VERSION_CODENAME=$(echo $osbuildcodename | tr '[:upper:]' '[:lower:]' | tr -d '"')/g" /usr/lib/os-release
 #thanks to https://askubuntu.com/a/76842 (have to login and VOTE)
 if [ ! -f /etc/floflis-release ]; then $maysudo touch /etc/floflis-release; fi #enable Floflis to be detected by applications (such as Neofetch)
