@@ -263,7 +263,6 @@ echo "Installing img..."
 if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 #-
 $maysudo cp -f include/img/OSlogotype.svg /1/img/OSlogotype.svg
-$maysudo cp -f include/img/logo.png /1/img/logo.png
 $maysudo cp -f include/img/logo.svg /1/img/logo.svg
 
 cd include/img/watermarkmaker
