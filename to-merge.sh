@@ -201,9 +201,9 @@ NoDisplay=true
 EOF
 $maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" >> /usr/share/applications/x-cinnamon-mimeapps.list
 
-echo "Installing Frame + Frame Canary"
-$maysudo dpkg -i include/DEB/frame_0.5.0-beta.22_amd64.deb --refuse-downgrade
-$maysudo dpkg -i include/DEB/frame-canary_0.5.0-canary.13_amd64.deb --refuse-downgrade
+echo "Installing Frame"
+$maysudo dpkg -i include/DEB/frame_0.6.6_amd64.deb --refuse-downgrade
+#- if ARM64: $maysudo dpkg -i include/DEB/frame_0.6.6_arm64.deb --refuse-downgrade
 
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
