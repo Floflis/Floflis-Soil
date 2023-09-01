@@ -476,6 +476,17 @@ currentspice="transparent-panels@germanfr"
 currentspicemintid="81"
 job_installSpice
 
+#-
+
+cd applets
+unzip CinnXIStarkMenu@floflis.eth.zip
+$maysudo rsync -av CinnXIStarkMenu@floflis.eth/. /usr/share/cinnamon/applets/CinnXIStarkMenu@floflis.eth
+rm -r CinnXIStarkMenu@floflis.eth
+#-
+unzip super-window-list@floflis.eth.zip
+$maysudo rsync -av super-window-list@floflis.eth/. /usr/share/cinnamon/applets/super-window-list@floflis.eth
+rm -r super-window-list@floflis.eth
+
 cd "$SCRIPTPATH"
 
 echo "Installing bootscreen logotype..."
