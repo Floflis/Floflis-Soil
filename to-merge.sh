@@ -286,6 +286,18 @@ $maysudo cp -f include/img/networks/polygon.svg /1/img/networks/polygon.svg
 $maysudo cp -f include/img/networks/optimism.svg /1/img/networks/optimism.svg
 $maysudo cp -f include/img/networks/gnosis.svg /1/img/networks/gnosis.svg
 $maysudo cp -f include/img/networks/ronin.svg /1/img/networks/ronin.svg
+$maysudo cp -f include/img/networks/base.svg /1/img/networks/base.svg
+$maysudo cp -f include/img/networks/arbitrum.svg /1/img/networks/arbitrum.svg
+$maysudo cp -f include/img/networks/bsc.svg /1/img/networks/bsc.svg
+$maysudo cp -f include/img/networks/zksyncera.svg /1/img/networks/zksyncera.svg
+$maysudo cp -f include/img/networks/linea.svg /1/img/networks/linea.svg
+$maysudo cp -f include/img/networks/celo.svg /1/img/networks/celo.svg
+$maysudo cp -f include/img/networks/immutablex.svg /1/img/networks/immutablex.svg
+$maysudo cp -f include/img/networks/immutablezkevm.svg /1/img/networks/immutablezkevm.svg
+$maysudo cp -f include/img/networks/loopring.svg /1/img/networks/loopring.svg
+$maysudo cp -f include/img/networks/starknet.svg /1/img/networks/starknet.svg
+$maysudo cp -f include/img/networks/metis.svg /1/img/networks/metis.svg
+$maysudo cp -f include/img/networks/dydx.svg /1/img/networks/dydx.svg
 #-
 $maysudo cp -f include/img/token.svg /1/img/token.svg
 
