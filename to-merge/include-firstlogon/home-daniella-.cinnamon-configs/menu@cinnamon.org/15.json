@@ -89,7 +89,7 @@
         "tooltip": "Select an icon to show in the panel.",
         "default_icon": "cinnamon-symbolic",
         "dependency": "menu-custom",
-        "value": "/1/img/logo.png"
+        "value": "/1/img/logo.svg"
     },
     "menu-icon-size": {
         "type": "spinbutton",

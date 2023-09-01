@@ -179,7 +179,7 @@
         "tooltip": "Select an icon to show in the panel.",
         "dependency": "menu-custom",
         "indent": true,
-        "value": "/1/img/logo.png"
+        "value": "/1/img/logo.svg"
     },
     "menu-label": {
         "type": "entry",

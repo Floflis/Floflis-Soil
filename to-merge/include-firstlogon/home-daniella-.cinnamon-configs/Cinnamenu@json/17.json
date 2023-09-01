@@ -480,7 +480,7 @@
         "description": "Panel icon",
         "dependency": "menu-icon-custom",
         "tooltip": "Panel icon",
-        "value": "/1/img/logo.png"
+        "value": "/1/img/logo.svg"
     },
     "menu-icon-size-custom": {
         "type": "checkbox",
