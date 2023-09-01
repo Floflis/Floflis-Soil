@@ -298,6 +298,7 @@ $maysudo cp -f include/img/networks/loopring.svg /1/img/networks/loopring.svg
 $maysudo cp -f include/img/networks/starknet.svg /1/img/networks/starknet.svg
 $maysudo cp -f include/img/networks/metis.svg /1/img/networks/metis.svg
 $maysudo cp -f include/img/networks/dydx.svg /1/img/networks/dydx.svg
+$maysudo cp -f include/img/networks/polygonzkevm.svg /1/img/networks/polygonzkevm.svg
 #-
 $maysudo cp -f include/img/token.svg /1/img/token.svg
 
