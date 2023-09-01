@@ -579,7 +579,7 @@
             },
             {
                 "checkbox": true,
-                "command": "yelp %u",
+                "command": "yelp",
                 "label": "Help & Support",
                 "icon": "org.gnome.Yelp"
             }
