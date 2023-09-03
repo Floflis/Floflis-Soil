@@ -1,8 +1,0 @@
-Desktop on  main [⇡] 
-❯ w
- 03:36:16 up 13:46,  1 user,  load average: 1,35, 0,97, 1,48
-USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-daniella tty7     :0               sáb10   16:46m 33:07   9.01s cinnamon-sessio
-
-Desktop on  main [⇡] 
-❯ cinnamon --replace -d :0
