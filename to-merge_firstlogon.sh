@@ -120,6 +120,16 @@ ENDOFFILE
 fi
 # <-- HOME LAYER
 
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools
+#-
+cd neurus-core
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/neurus-core.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+echo "Installing neurus-core..."
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
+
 # Install 1inch + Cowswap, but this feature will be region-locked and need an Internet connection before pinning ----------------------------------------------------->
 #ipfs add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
