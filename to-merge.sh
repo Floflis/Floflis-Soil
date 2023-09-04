@@ -93,6 +93,13 @@ echo "Installing Clock..."
 $maysudo apt install gnome-clocks -y
 echo "Installing Contacts"
 $maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
+$maysudo apt --fix-broken install
+echo "Installing Sticky Notes..." #https://www.edivaldobrito.com.br/sticky-notes-indicator/
+$maysudo dpkg -i include/DEB/indicator-stickynotes_1.0.1-0~ppa1_all.deb --refuse-downgrade
+#$maysudo apt-add-repository ppa:umang/indicator-stickynotes
+#$maysudo apt-get update
+#$maysudo apt-get install indicator-stickynotes
+$maysudo apt --fix-broken install
 echo "Installing Paint..."
 $maysudo apt install kolourpaint -y
 $maysudo apt install breeze && $maysudo apt autoremove qt5ct #from https://askubuntu.com/a/1302913 and https://askubuntu.com/questions/1302794/kolourpaint-missing-all-icons-on-ubuntu-20-10#comment2215417_1302913
@@ -120,12 +127,6 @@ $maysudo apt upgrade stacer
 $maysudo apt --fix-broken install
 echo "Installing MS Teams..."
 $maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb --refuse-downgrade
-$maysudo apt --fix-broken install
-echo "Installing Sticky Notes..." #https://www.edivaldobrito.com.br/sticky-notes-indicator/
-$maysudo dpkg -i include/DEB/indicator-stickynotes_1.0.1-0~ppa1_all.deb --refuse-downgrade
-#$maysudo apt-add-repository ppa:umang/indicator-stickynotes
-#$maysudo apt-get update
-#$maysudo apt-get install indicator-stickynotes
 $maysudo apt --fix-broken install
 #-
 echo "Installing Gnome GAMES app (465 kB download; 2,745 kB installed)..."
@@ -371,14 +372,6 @@ git checkout -f
 chmod +x install.sh && $maysudo sh ./install.sh
 cd "$SCRIPTPATH"
 
-echo "Installing Cinnamobile..."
-cd include/System/Cinnamobile
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Cinnamobile.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo bash install.sh
-cd "$SCRIPTPATH"
-
 echo "Installing Cinnamon applets, desklets and extensions..."
 cd include/usr-share-cinnamon
 
@@ -461,6 +454,22 @@ unzip super-window-list@floflis.eth.zip
 $maysudo rsync -av super-window-list@floflis.eth/. /usr/share/cinnamon/applets/super-window-list@floflis.eth
 rm -r super-window-list@floflis.eth
 
+cd "$SCRIPTPATH"
+
+echo "Installing cinnamon-patch..."
+cd include/System/DE/cinnamon-patch
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/cinnamon-patch.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x patch.sh && $maysudo bash patch.sh
+cd "$SCRIPTPATH"
+
+echo "Installing Cinnamobile..."
+cd include/System/Cinnamobile
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Cinnamobile.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 
 echo "Installing bootscreen logotype..."
