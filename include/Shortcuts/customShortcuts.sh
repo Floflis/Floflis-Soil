@@ -771,3 +771,86 @@ Exec=/usr/bin/teams --quit
 OnlyShowIn=Unity;
 EOF
 fi
+
+if [ -f /usr/share/applications/indicator-stickynotes.desktop ]; then
+echo "Fixing Character Map's shortcut name..."
+#$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
+cat > /usr/share/applications/indicator-stickynotes.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Sticky Notes
+Name[ar]=Sticky Notes
+Name[be]=нататак
+Name[ca]=Notes adhesives
+Name[en_GB]=Sticky Notes
+Name[es]=Notas adhesivas
+Name[eu]=Ohar itsaskorren jakinarazlea
+Name[fr]=Pense-bêtes
+Name[he]=Sticky Notes
+Name[id]=Catatan Tempel
+Name[it]=Sticky Notes
+Name[ko]=스티키노트
+Name[ms]=Nota Lekat
+Name[pt]=Notas Autoadesivas
+Name[pt_BR]=Notas Autoadesivas
+Name[sv]=Indicator Stickynotes
+Name[tr]=Yapışkan Notlar
+Name[uk]=Нотатки
+Name[zh_CN]=Sticky Notes
+GenericName=Sticky Notes
+GenericName[ar]=مذكرات لاصقة
+GenericName[be]=Ліпучыя нататкі
+GenericName[ca]=Notes adhesives
+GenericName[cs]=Lepící poznámky
+GenericName[da]=Post-It noter
+GenericName[de]=Klebezettel
+GenericName[el]=Sticky Notes
+GenericName[en_GB]=Sticky Notes
+GenericName[es]=Notas adhesivas
+GenericName[eu]=Ohar itsaskorrak
+GenericName[fr]=Pense-bêtes
+GenericName[he]=פתקים נצמדים
+GenericName[hi]=स्टिकी नोट्स
+GenericName[hr]=Ljepljive bilješke
+GenericName[hu]=Ragadós jegyzetek
+GenericName[id]=Catatan Tempel
+GenericName[it]=Note adesive
+GenericName[ko]=스티키 노트
+GenericName[lt]=Lipnūs rašteliai
+GenericName[ms]=Nota Lekat
+GenericName[pl]=Żółte karteczki
+GenericName[pt]=Sticky Notes
+GenericName[pt_BR]=Notas adesivas
+GenericName[ru]=Sticky Notes
+GenericName[si]=අලවන සටහන්
+GenericName[sk]=Sticky Notes
+GenericName[sv]=Fästisar
+GenericName[tr]=Yapışkan Notlar
+GenericName[uk]=Липкі нотатки
+GenericName[zh_CN]=便笺
+GenericName[zh_TW]=便利貼
+Comment=Write reminders on notes
+Comment[ar]=كتابة المذكّرات في الملاحظات
+Comment[be]=Дадаваць напаміны на нататкі
+Comment[ca]=Escriviu els recordatoris a les notes
+Comment[es]=Escriba los recordatorios en notas
+Comment[eu]=Idatzi gogorarazleak oharretan
+Comment[fr]=Écrire les rappels sur les notes
+Comment[he]=כתיבת התזכורות בפתקיות
+Comment[id]=Tulis pengingat pada catatan
+Comment[it]=Scrivi promemoria sulle note
+Comment[ko]=알람 지정
+Comment[ms]=Tulis peringatan atas nota
+Comment[pt]=Escrever lembretes nas notas
+Comment[pt_BR]=Escreva lembretes nas notas
+Comment[sv]=Skriv påminnelser på Fästisar
+Comment[uk]=Запишіть нагадування в нотатках
+Comment[zh_CN]=在便签上填写备忘录
+Comment[zh_TW]=在便條紙上填寫備忘錄
+Icon=indicator-stickynotes
+Exec=indicator-stickynotes
+Categories=Utility;TextTools;
+Hidden=False
+X-GNOME-autostart-enabled=true
+EOF
+fi

@@ -121,6 +121,12 @@ $maysudo apt --fix-broken install
 echo "Installing MS Teams..."
 $maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb --refuse-downgrade
 $maysudo apt --fix-broken install
+echo "Installing Sticky Notes..." #https://www.edivaldobrito.com.br/sticky-notes-indicator/
+$maysudo dpkg -i include/DEB/indicator-stickynotes_1.0.1-0~ppa1_all.deb --refuse-downgrade
+#$maysudo apt-add-repository ppa:umang/indicator-stickynotes
+#$maysudo apt-get update
+#$maysudo apt-get install indicator-stickynotes
+$maysudo apt --fix-broken install
 #-
 echo "Installing Gnome GAMES app (465 kB download; 2,745 kB installed)..."
 $maysudo apt install gnome-games-app
