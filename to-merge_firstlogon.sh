@@ -329,8 +329,8 @@ if [ ! -e /1/img/humanrepresentation ]; then sudo mkdir /1/img/humanrepresentati
 sudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 sudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
 
-echo "Setting autostart apps..."
-chmod +x /home/${flouser}/.config/autostart/teams.desktop
+#echo "Setting autostart apps..."
+#chmod +x /home/${flouser}/.config/autostart/teams.desktop
 
 HEIGHT=15
 WIDTH=40
