@@ -441,9 +441,9 @@ cd "$currentspicetype""s"
 
 job_mkCinnSysFolds
 
-currentspice="CinnVIIStarkMenu@NikoKrause"
-currentspicemintid="281"
-job_installSpice
+#currentspice="CinnVIIStarkMenu@NikoKrause"
+#currentspicemintid="281"
+#job_installSpice
 
 currentspice="windowlist@cobinja.de"
 currentspicemintid="287"
