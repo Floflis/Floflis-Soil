@@ -504,15 +504,24 @@ cd "$SCRIPTPATH"
 
 echo "Installing bootscreen logotype..."
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
-$maysudo convert include/img/OSlogotype_maybenext.png    -resize 512x59  /usr/share/plymouth/ubuntu-logo.png
+$maysudo convert include/img/OSlogotype_maybenext.png    -resize 512x59  /usr/share/plymouth/ubuntu-logo.png # Plymouth logo
 #$maysudo cp -f include/img/floflis-logo.png /usr/share/plymouth/ubuntu-logo.png
 $maysudo cp -f include/img/floflis-logo.svg /1/img/floflis-logo.svg
-#-
-if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
-if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s ubuntu-logo.png /usr/share/plymouth/ubuntucinnamon-logo.png; fi
+
+
+#if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
+#if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s ubuntu-logo.png /usr/share/plymouth/ubuntucinnamon-logo.png; fi
 #if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.svg ]; then $maysudo ln -s ubuntu-logo.svg /usr/share/plymouth/ubuntucinnamon-logo.svg; fi
 #-
-if [ ! -e /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo ln -s ../../ubuntu-logo.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo convert include/img/logo.png    -resize 128x128  /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png; fi
+#if [ ! -e /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo ln -s ../../ubuntu-logo.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/watermark.png; $maysudo mv -f /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png /usr/share/plymouth/themes/ubuntucinnamon-spinner/ubuntu; $maysudo convert include/img/logo.png    -resize 128x128  /usr/share/plymouth/themes/ubuntucinnamon-spinner/bgrt-fallback.png; fi
+
+echo "Installing Floflis bootscreen (Plymouth) theme..."
+cd include/System/Boot/floflis-plymouth
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floflis-plymouth.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+bash install.sh
+cd "$SCRIPTPATH"
 $maysudo update-initramfs -k all -u #from Ubuntu Cinnamon Remix scripts
 $maysudo update-initramfs -u #from https://askubuntu.com/a/1290247
 
