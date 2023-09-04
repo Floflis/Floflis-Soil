@@ -94,6 +94,49 @@ cd "$SCRIPTPATH"
 
 cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 
+echo "Installing support for Windows apps..."
+$maysudo apt install -y software-properties-common
+$maysudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
+$maysudo apt-key add winehq.key && rm winehq.key
+$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ lunar main'
+$maysudo apt update
+$maysudo dpkg --add-architecture i386
+$maysudo apt update
+$maysudo apt -y install --install-recommends winehq-stable
+$maysudo apt install wine32:i386 # 1GB+!
+$maysudo apt install wine32
+$maysudo apt install wine64 -y # nearly 2GB!
+$maysudo apt install winetricks -y
+wget https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi && wine msiexec /i wine-mono-8.0.0-x86.msi #from https://askubuntu.com/a/1448770 (have to login and VOTE)
+if [ -f wine-mono-8.0.0-x86.msi ]; then rm wine-mono-8.0.0-x86.msi; fi
+winetricks dotnet45 #from https://askubuntu.com/a/1106750 (have to login and VOTE)
+$maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/wine-desktop-common
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/bobwya/wine-desktop-common.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo make install
+cd "$SCRIPTPATH"
+# WinApps
+echo "Installing WinApps..."
+$maysudo apt-get install -y virt-manager #Need to get 10,1 MB of archives. After this operation, 44,4 MB of additional disk space will be used.
+echo "Have already installed KVM/virt-manager. Pending to follow the next steps: https://github.com/Fmstrat/winapps/blob/main/docs/KVM.md"
+sudo apt-get install -y freerdp2-x11
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/winapps
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Fmstrat/winapps.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+#$maysudo bash install.sh
+if [ ! -e /usr/lib/winapps ]; then $maysudo mkdir /usr/lib/winapps; fi
+$maysudo rsync -av . /usr/lib/winapps
+$maysudo rm -f /usr/lib/winapps/icons/windows.svg
+cat > /usr/bin/winapps << ENDOFFILE
+#!/bin/bash
+
+source /usr/lib/winapps/bin/winapps
+ENDOFFILE
+cd "$SCRIPTPATH"
+
 facevar="/home/${flouser}/.face"
 if [ ! -f "$facevar" ]; then
 #   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
