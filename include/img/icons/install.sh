@@ -72,3 +72,6 @@ $maysudo rm -rf /usr/share/icons/Floflis/.git
 #       cd "$SCRIPTPATH"
 #       $maysudo rm -f /tmp/to-merge_floflis-icons.sh
 #fi
+
+sudo gtk-update-icon-cache /usr/share/icons/FloflisPNG/ -f
+sudo gtk-update-icon-cache /usr/share/icons/Floflis/ -f
