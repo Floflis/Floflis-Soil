@@ -71,8 +71,6 @@ echo "Installing support for Windows apps..."
 $maysudo apt install -y software-properties-common
 $maysudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
 $maysudo apt-key add winehq.key && rm winehq.key
-#$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/debian/ buster main'
-#$maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ kinetic main'
 $maysudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ lunar main'
 $maysudo apt update
 $maysudo dpkg --add-architecture i386
@@ -83,7 +81,7 @@ $maysudo apt install wine32
 $maysudo apt install wine64 -y # nearly 2GB!
 $maysudo apt install winetricks -y
 wget https://dl.winehq.org/wine/wine-mono/7.4.0/wine-mono-7.4.0-x86.msi && wine msiexec /i wine-mono-7.4.0-x86.msi #from https://askubuntu.com/a/1448770 (have to login and VOTE)
-if [ ! -f wine-mono-7.4.0-x86.msi ]; then rm wine-mono-7.4.0-x86.msi; fi
+if [ -f wine-mono-7.4.0-x86.msi ]; then rm wine-mono-7.4.0-x86.msi; fi
 winetricks dotnet45 #from https://askubuntu.com/a/1106750 (have to login and VOTE)
 $maysudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
 cd include/System/wine-desktop-common
