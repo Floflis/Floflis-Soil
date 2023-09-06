@@ -623,8 +623,13 @@ cd "$SCRIPTPATH"
 echo "Testing if SharedChain works:"
 sharedchain
 
-echo "Upgrading Cinnamon..."
+echo "Attempting to upgrade Cinnamon..."
 $maysudo apt upgrade cinnamon-desktop-environment
+$maysudo apt install ubuntucinnamon-desktop
+$maysudo apt upgrade ubuntucinnamon-desktop
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
+$maysudo apt --fix-broken install
 echo "Upgrading other packages..."
 $maysudo apt upgrade gir1.2-mutter-12 libmutter-12-0 mutter-common mutter-common-bin
 $maysudo apt upgrade gnome-control-center gnome-control-center-data gnome-control-center-faces gnome-shell gnome-shell-common
@@ -642,12 +647,6 @@ $maysudo apt dist-upgrade
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
 #-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
-$maysudo apt --fix-broken install
-
-echo "Attempting to upgrade Cinnamon..."
-$maysudo apt install ubuntucinnamon-desktop
-$maysudo apt-get autoremove
-$maysudo apt-get autoclean
 $maysudo apt --fix-broken install
 
 #- attempt to fix Cubic's custom name:
