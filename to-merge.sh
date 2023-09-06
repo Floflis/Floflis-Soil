@@ -334,6 +334,7 @@ cd include/img/Avatars && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 
 echo "Installing sounds..."
+$maysudo dpkg -i include/sounds/ubuntu-touch-sounds_15.08_all.deb --refuse-downgrade
 if [ ! -e /1/sounds ]; then $maysudo mkdir /1/sounds; fi
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
@@ -372,8 +373,7 @@ $maysudo cp -f include/sounds/Base/Home/Notification\ Important.flac /1/sounds/N
 $maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logon.oga
 if [ -f /1/sounds/Starting.oga ]; then $maysudo rm -f /1/sounds/Starting.oga; fi
 $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.oga
-$maysudo dpkg -i include/sounds/ubuntu-touch-sounds_15.08_all.deb --refuse-downgrade
-ln -sf /usr/share/sounds/ubuntu/ringtones/Harmonics.ogg /1/sounds/Leaving.ogg
+$maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Celestial.ogg /1/sounds/Launcher.ogg
 # <-- HOME LAYER
 
 echo "Installing 'zombiespices'..."
