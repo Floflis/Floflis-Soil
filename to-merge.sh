@@ -93,7 +93,7 @@ cd "$SCRIPTPATH"
 cd include/HTML5Apps/beepbox && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 # <-- HOME LAYER
-echo "Installing native apps[2/2]..."
+echo "Installing important apps[2/2]: Installing native apps..."
 echo "Installing Clock..."
 $maysudo apt install gnome-clocks -y
 echo "Installing Contacts"
