@@ -105,6 +105,7 @@ Keywords=DAWs;Audio;Song;MP3;MIDI;Chiptunes;8Bit;Retro;Music;Compose;Create;Melo
 EOF
 # <-- HOME LAYER
 
+echo "DEBUG: " && echo $PWD
 #rm -r "$application_id"
 
 echo "It seems that $application_name has been successfully installed!"
