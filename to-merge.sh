@@ -618,8 +618,11 @@ sharedchain
 
 echo "Upgrading Cinnamon..."
 $maysudo apt upgrade cinnamon-desktop-environment
+echo "Upgrading other packages..."
+$maysudo apt upgrade gir1.2-mutter-12 libmutter-12-0 mutter-common mutter-common-bin
+$maysudo apt upgrade gnome-control-center gnome-control-center-data gnome-control-center-faces gnome-shell gnome-shell-common
 
-#cinnamon patcher here
+#cinnamon patcher (cinnamon-patch) here
 
 $maysudo apt-get install dialog #1.254 kB of additional disk space
 $maysudo apt-get install ppa-purge #Need to get 6.566 B of archives. After this operation, 24,6 kB of additional disk space will be used.
