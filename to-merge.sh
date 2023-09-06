@@ -90,7 +90,7 @@ echo "Installing important apps[1/2]: Installing HTML5 apps..."
 cd include/HTML5Apps/central && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 #
-cd include/HTML5Apps/beepbox && $maysudo bash install.sh
+cd include/HTML5Apps/webappforks/beepbox && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 # <-- HOME LAYER
 echo "Installing important apps[2/2]: Installing native apps..."
