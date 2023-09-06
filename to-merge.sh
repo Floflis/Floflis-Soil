@@ -374,6 +374,7 @@ $maysudo cp -f include/sounds/Base/Home/System\ Logon.oga /1/sounds/System\ Logo
 if [ -f /1/sounds/Starting.oga ]; then $maysudo rm -f /1/sounds/Starting.oga; fi
 $maysudo ln -s /1/sounds/System\ Logon.oga /1/sounds/Starting.oga
 $maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Celestial.ogg /1/sounds/Launcher.ogg
+$maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Ubuntu.ogg /1/sounds/Call.ogg
 # <-- HOME LAYER
 
 echo "Installing 'zombiespices'..."
