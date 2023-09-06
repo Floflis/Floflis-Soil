@@ -361,7 +361,7 @@ $maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\
 $maysudo cp -f include/sounds/Base/Starting.oga /1/sounds/Starting.oga
 
 if [ ! -e /usr/share/sounds/Yaru/stereo/ubuntu ]; then $maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu; if [ -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi; if [ -f /usr/share/sounds/Yaru/stereo/system-ready.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi; fi
-$maysudo ln -s /1/sounds/Starting.oga /usr/share/sounds/Yaru/stereo/desktop-login.oga
+if [ ! -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then $maysudo ln -s /1/sounds/Starting.oga /usr/share/sounds/Yaru/stereo/desktop-login.oga; fi
 # <-- BASE LAYER
 
 # HOME LAYER -->
