@@ -29,6 +29,11 @@ sudo  -i -u ${pure} bash <<-EOF
 exec dbus-run-session -- bash -c 'dconf write /org/gnome/gnome-screenshot/auto-save-directory "'~/Pictures/Screenshots'"'
 EOF
 
+# start a new dbus session and execute the gsettings command in bash shell. from https://askubuntu.com/a/1302886
+sudo  -i -u ${pure} bash <<-EOF
+exec dbus-run-session -- bash -c 'dconf write /org/blueman/general/symbolic-status-icons true'
+EOF
+
 # to-merge>
 #             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
 #                installtermfont(){
