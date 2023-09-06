@@ -695,7 +695,7 @@
                 "url": "http://www.ask.com/web?q="
             },
             {
-                "checkbox": false,
+                "checkbox": true,
                 "icon": "web-browser",
                 "engine": "Bing",
                 "url": "http://www.bing.com/search?q="
@@ -725,7 +725,7 @@
                 "url": "http://letmegooglethat.com/?q="
             },
             {
-                "checkbox": true,
+                "checkbox": false,
                 "icon": "web-browser",
                 "engine": "Startpage",
                 "url": "https://www.startpage.com/search?q="
