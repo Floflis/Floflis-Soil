@@ -86,9 +86,14 @@ $maysudo apt install unzip -y
 echo "Installing important apps:"
 # HOME LAYER -->
 if [ ! -e /1/apps ]; then echo "Creating HTML5 apps directory...";$maysudo mkdir /1/apps; fi
+echo "Installing important apps[1/2]: Installing HTML5 apps..."
 cd include/HTML5Apps/central && $maysudo bash install.sh
 cd "$SCRIPTPATH"
+#
+cd include/HTML5Apps/beepbox && $maysudo bash install.sh
+cd "$SCRIPTPATH"
 # <-- HOME LAYER
+echo "Installing native apps[2/2]..."
 echo "Installing Clock..."
 $maysudo apt install gnome-clocks -y
 echo "Installing Contacts"
