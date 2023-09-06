@@ -1,6 +1,5 @@
 # FUTURELY PROBABLY WILL BE PART OF A FLOFLIS-PACKAGER METHOD ---->
 echo "Installing BeepBox..."
-cd include/HTML5Apps/beepbox
 unzip BeepBox_4_1.zip
 rm -r __MACOSX
 mv BeepBox_4_1 beepbox
@@ -25,7 +24,7 @@ application_type="$(jq -r '.application' manifest.webapp)"
 
 cd ..
 
-rocketlaunch_dir="beepbox"
+rocketlaunch_dir="$(echo $PWD)/beepbox"
 
 proceed () {
 if [ "$application_type" = "app" ]; then
@@ -41,7 +40,7 @@ fi
 mkdir /tmp/floflis
 mkdir /tmp/floflis/packager
 mkdir /tmp/floflis/packager/application
-cp -r "$application_exportsfolder" /tmp/floflis/packager/application/$application_id
+cp -r "$(echo $PWD)/beepbox/$application_exportsfolder" /tmp/floflis/packager/application/$application_id
 cp "$rocketlaunch_dir/manifest.webapp" /tmp/floflis/packager/manifest.webapp
 cd "/tmp/floflis/packager/application/$application_id"
 rm -rf .git #tmp, this will be moved into a pre/post hook
