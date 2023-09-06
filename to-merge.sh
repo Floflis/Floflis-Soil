@@ -92,6 +92,12 @@ cd "$SCRIPTPATH"
 #
 cd include/HTML5Apps/webappforks/beepbox && $maysudo bash install.sh
 cd "$SCRIPTPATH"
+#
+cd include/HTML5Apps/lab/david/explorer && $maysudo bash install.sh
+cd "$SCRIPTPATH"
+#
+cd include/HTML5Apps/lab/browsers && $maysudo bash install.sh
+cd "$SCRIPTPATH"
 # <-- HOME LAYER
 echo "Installing important apps[2/2]: Installing native apps..."
 echo "Installing Clock..."

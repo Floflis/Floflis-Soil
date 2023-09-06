@@ -50,7 +50,7 @@ cd "/tmp/floflis/packager/application/$application_id"
 rm -rf .git #tmp, this will be moved into a pre/post hook
 rm -rf .github #tmp, this will be moved into a pre/post hook
 cd /tmp/floflis/packager
-tar -czvf $application_id.$application_extension application manifest.webapp
+tar -czvf ../$application_id.$application_extension application manifest.webapp
 mv -f $application_id.$application_extension "$rocketlaunch_dir"
 rm -rf /tmp/floflis/packager/application
 rm -f /tmp/floflis/packager/manifest.webapp
