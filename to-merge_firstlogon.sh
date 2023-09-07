@@ -174,7 +174,15 @@ if [ -e .git ]; then git pull; fi
 git checkout -f
 sudo make install
 cd "$SCRIPTPATH"
-# WinApps
+# Support for Windows' .exe/.msi/.lnk/.dll file thumbnails! ---->
+$maysudo apt install exe-thumbnailer #Need to get 79,2 kB of archives. After this operation, 423 kB of additional disk space will be used.
+# FROM https://www.reddit.com/r/linuxmint/comments/akku7e/how_to_get_wine_to_display_exe_icons/efbi475/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button (have to upvote)
+$maysudo apt --fix-broken install
+$maysudo apt install liblnk-utils #For .lnk thumbnailing: lnkinfo and Wine. Need to get 1.000 kB of archives; after this operation, 3.091 kB of additional disk space will be used.
+$maysudo apt --fix-broken install
+$maysudo apt install msitools #For .msi thumbnailing. Need to get 106 kB of archives. After this operation, 484 kB of additional disk space will be used.
+$maysudo apt --fix-broken install
+# WinApps ---->
 echo "Installing WinApps..."
 sudo apt-get install -y virt-manager #Need to get 10,1 MB of archives. After this operation, 44,4 MB of additional disk space will be used.
 echo "Have already installed KVM/virt-manager. Pending to follow the next steps: https://github.com/Fmstrat/winapps/blob/main/docs/KVM.md"
