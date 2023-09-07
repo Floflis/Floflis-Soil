@@ -7,7 +7,7 @@ cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
-chmod +x install.sh && sudo sh ./install.sh
+chmod +x install.sh && sh ./install.sh
 #rm -f install.sh #use noah to exclude everything except .git
 #rm -f README.md
 #rm -f shit
@@ -79,7 +79,7 @@ if [ -e .git ]; then git pull; fi
 git checkout -f
 #sudo bash install.sh
 #chmod +x install.sh && sudo sh ./install.sh
-chmod +x install.sh && sudo bash install.sh
+chmod +x install.sh && bash install.sh
 #rm -f install.sh #use noah to exclude everything except .git
 #rm -rf include
 cd "$SCRIPTPATH"
