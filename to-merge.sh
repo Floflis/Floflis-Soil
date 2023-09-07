@@ -428,6 +428,10 @@ currentspice="search-box@mtwebster"
 currentspicemintid="57"
 job_installSpice
 
+currentspice="ScreenShot+RecordDesktop@tech71"
+currentspicemintid="41"
+job_installSpice
+
 currentspicetype="desklet"
 cd ..
 cd "$currentspicetype""s"
