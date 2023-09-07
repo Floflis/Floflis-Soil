@@ -481,6 +481,11 @@ git checkout -f
 chmod +x patch.sh && $maysudo bash patch.sh
 cd "$SCRIPTPATH"
 
+echo "Installing the Blockchain menu category..."
+cd include/System/DE/menu-categories
+$maysudo bash menucategory.sh
+cd "$SCRIPTPATH"
+
 echo "Installing Cinnamobile..."
 cd include/System/Cinnamobile
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Cinnamobile.git .; fi

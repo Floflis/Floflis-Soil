@@ -281,7 +281,7 @@ Comment=Send ETH and tokens from Ethereum to Layer2's and vice-versa!
 Type=Application
 Exec=hop
 Icon=hop
-Categories=Finance;Ethereum;
+Categories=Blockchain;Finance;Ethereum;
 Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-chain;arbitrum;optimism
 EOF
 
@@ -322,7 +322,7 @@ Comment=Participate on Internet-native organizations/enterprises (as BTC/ETH are
 Type=Application
 Exec=aragon
 Icon=aragon
-Categories=Office;Finance;Ethereum;
+Categories=Office;Blockchain;Finance;Ethereum;
 Keywords=daos;govern;governance;organizations;decentralized;autonomous;tokens;ethereum;xdai;polygon
 EOF
 if [ ! -e /1/img/humanrepresentation ]; then sudo mkdir /1/img/humanrepresentation; fi
