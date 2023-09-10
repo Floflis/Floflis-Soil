@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns:xodm="http://www.corel.com/coreldraw/odm/2003" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 2500 2500" style="enable-background:new 0 0 2500 2500;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;}
-	.st1{fill:#1C60FF;}
-</style>
-<g id="Layer_x0020_1">
-	<polygon class="st0" points="0,0 2500,0 2500,2500 0,2500  "></polygon>
-	<g id="_1705405406368">
-		<g>
-			<polygon class="st1" points="1692,1229 1865,1503 1239,2003 2500,1234 2500,1229    "></polygon>
-			<polygon class="st1" points="1221,2013 1221,487 583,1503    "></polygon>
-		</g>
-	</g>
-</g>
-</svg>
+<svg width="919" height="919" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" overflow="hidden"><defs><clipPath id="clip0"><rect x="3109" y="77" width="919" height="919"/></clipPath></defs><g clip-path="url(#clip0)" transform="translate(-3109 -77)"><path d="M3568.5 77C3822.24 77 4028 282.764 4028 536.5 4028 790.236 3822.24 996 3568.5 996 3314.76 996 3109 790.236 3109 536.5 3109 282.764 3314.76 77 3568.5 77L3568.5 77Z" fill="#1C60FF" fill-rule="evenodd"/><path d="M3618.96 530 3676.99 621.687 3467 789 3890 531.673 3890 530Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M3461 793 3461 281 3247 621.886Z" fill="#FFFFFF" fill-rule="evenodd"/></g></svg>
