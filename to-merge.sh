@@ -496,7 +496,7 @@ cd "$SCRIPTPATH"
 
 echo "Installing bootscreen logotype..."
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
-$maysudo convert include/img/OSlogotype_maybenext.png    -resize 512x59  /usr/share/plymouth/ubuntu-logo.png # Plymouth logo
+$maysudo convert include/img/19logotypecolor.png    -resize 512x59  /usr/share/plymouth/ubuntu-logo.png # Plymouth logo
 #$maysudo cp -f include/img/floflis-logo.png /usr/share/plymouth/ubuntu-logo.png
 $maysudo cp -f include/img/floflis-logo.svg /1/img/floflis-logo.svg
 
