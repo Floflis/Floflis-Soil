@@ -648,6 +648,16 @@ $maysudo apt upgrade gnome-control-center gnome-control-center-data gnome-contro
 $maysudo apt-get install dialog #1.254 kB of additional disk space
 $maysudo apt-get install ppa-purge #Need to get 6.566 B of archives. After this operation, 24,6 kB of additional disk space will be used.
 
+if [ -e /tmp/cubicmode ]; then
+echo "Cubic mode has been detected, so let's try to fix Ubuntu 23.04's Flutter ISO thingies"
+#snap remove ubuntu-desktop-installer
+#snap install ubuntu-desktop-installer --classic
+#-
+#sudo apt-get install ubiquity ubiquity-frontend-gtk #from https://askubuntu.com/questions/995980/how-to-install-ubiquity-to-full-install-bootable-usb
+apt update
+apt install ubiquity ubiquity-casper ubiquity-frontend-gtk ubiquity-slideshow-ubuntu ubiquity-ubuntu-artwork #from https://github.com/PJ-Singh-001/Cubic/issues/151
+fi
+
 echo "Upgrading packages and distro packages..."
 $maysudo apt upgrade -y #from https://linuxhint.com/update_all_packages_ubuntu/
 $maysudo apt-get autoremove
