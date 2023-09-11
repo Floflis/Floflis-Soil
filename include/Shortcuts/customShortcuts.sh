@@ -773,7 +773,7 @@ EOF
 fi
 
 if [ -f /usr/share/applications/indicator-stickynotes.desktop ]; then
-echo "Fixing Character Map's shortcut name..."
+echo "Fixing Sticky Notes' shortcut name..."
 #$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
 cat > /usr/share/applications/indicator-stickynotes.desktop <<EOF
 [Desktop Entry]
@@ -852,5 +852,38 @@ Exec=indicator-stickynotes
 Categories=Utility;TextTools;
 Hidden=False
 X-GNOME-autostart-enabled=true
+EOF
+fi
+
+if [ -f /usr/share/applications/org.gnome.gedit.desktop ]; then
+echo "Fixing Notepad's shortcut name..."
+#$maysudo sed -i 's/^Name=" .*$/Name=" Cam"/' /usr/share/applications/org.gnome.Cheese.desktop
+cat > /usr/share/applications/org.gnome.gedit.desktop <<EOF
+[Desktop Entry]
+Name=Notepad
+Name[pt]=Bloco de Notas
+Name[pt_BR]=Bloco de Notas
+Comment=Edit text files
+Exec=gedit %U
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=text/plain;application/x-zerosize;
+Icon=org.gnome.gedit
+Categories=GNOME;GTK;Utility;TextEditor;
+Actions=new-window;new-document;
+# Translators: Do NOT translate or localize the semicolons. The list MUST also
+# end with a semicolon. It contains search terms to find this application.
+Keywords=Text;Editor;Plaintext;Write;gedit;
+DBusActivatable=true
+X-Ubuntu-Gettext-Domain=gedit
+
+[Desktop Action new-window]
+Name=New Window
+Exec=gedit --new-window
+
+[Desktop Action new-document]
+Name=New Document
+Exec=gedit --new-document
 EOF
 fi
