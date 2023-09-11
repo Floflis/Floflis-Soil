@@ -124,7 +124,7 @@ echo "Installing shortcut for Explorer..."
 cat > /usr/share/applications/csd-automount.desktop <<EOF
 [Desktop Entry]
 Type=Application
-Name=Files
+Name=File Explorer
 Name[am]=ፋይሎች
 Name[bg]=Файлове
 Name[ca]=Arxius
@@ -141,8 +141,8 @@ Name[lt]=Failai
 Name[nl]=Bestanden
 Name[pl]=Pliki
 Name[pt]=Ficheiros
-Name[pt_BR]=Arquivos
-Name[pt_PT]=Ficheiros
+Name[pt_BR]=Explorador de Arquivos
+Name[pt_PT]=Explorador de Ficheiros
 Name[ru]=Файлы
 Name[sv]=Filer
 Name[tr]=Dosyalar
@@ -159,7 +159,7 @@ fi
 if [ -f /usr/share/applications/nemo.desktop ]; then
 cat > /usr/share/applications/nemo.desktop <<EOF
 [Desktop Entry]
-Name=Files
+Name=File Explorer
 Name[am]=ፋይሎች
 Name[ar]=الملفات
 Name[bg]=Файлове
@@ -187,8 +187,8 @@ Name[ko]=파일
 Name[lt]=Failai
 Name[nl]=Bestanden
 Name[pl]=Pliki
-Name[pt]=Ficheiros
-Name[pt_BR]=Arquivos
+Name[pt]=Explorador de Ficheiros
+Name[pt_BR]=Explorador de Arquivos
 Name[ro]=Fișiere
 Name[ru]=Файлы
 Name[sk]=Súbory
