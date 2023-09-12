@@ -517,16 +517,6 @@ cd "$SCRIPTPATH"
 $maysudo update-initramfs -k all -u #from Ubuntu Cinnamon Remix scripts
 $maysudo update-initramfs -u #from https://askubuntu.com/a/1290247
 
-# Ubiquity
-#Slideshow
-cd include/System
-$maysudo bash ubiquity-slideshow.sh
-cd "$SCRIPTPATH"
-#Pixmaps
-if [ ! -e /usr/share/ubiquity/pixmaps/ubuntuoriginal ]; then $maysudo mkdir /usr/share/ubiquity/pixmaps/ubuntuoriginal; $maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu /usr/share/ubiquity/pixmaps/ubuntuoriginal/; $maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu/cd_in_tray.png /usr/share/ubiquity/pixmaps/ubuntuoriginal;$maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu/ubuntu_installed.png /usr/share/ubiquity/pixmaps/ubuntuoriginal; fi
-#-
-$maysudo rsync -av include/System/ubiquity/pixmaps/. /usr/share/ubiquity/pixmaps
-
 echo "Installing themes:"
 echo "Installing Yaru-floflis theme..."
 cd include/Theme/Yaru-floflis
@@ -658,13 +648,23 @@ $maysudo apt-get install dialog #1.254 kB of additional disk space
 $maysudo apt-get install ppa-purge #Need to get 6.566 B of archives. After this operation, 24,6 kB of additional disk space will be used.
 
 if [ -e /tmp/cubicmode ]; then
-echo "Cubic mode has been detected, so let's try to fix Ubuntu 23.04's Flutter ISO thingies"
+echo "Cubic mode has been detected, so let's try to fix Ubuntu 23.04's Flutter ISO issues"
 #snap remove ubuntu-desktop-installer
 #snap install ubuntu-desktop-installer --classic
 #-
 #sudo apt-get install ubiquity ubiquity-frontend-gtk #from https://askubuntu.com/questions/995980/how-to-install-ubiquity-to-full-install-bootable-usb
 apt update
 apt install ubiquity ubiquity-casper ubiquity-frontend-gtk ubiquity-slideshow-ubuntu ubiquity-ubuntu-artwork #from https://github.com/PJ-Singh-001/Cubic/issues/151
+#-
+# Ubiquity
+#Slideshow
+cd include/System
+$maysudo bash ubiquity-slideshow.sh
+cd "$SCRIPTPATH"
+#Pixmaps
+if [ ! -e /usr/share/ubiquity/pixmaps/ubuntuoriginal ]; then $maysudo mkdir /usr/share/ubiquity/pixmaps/ubuntuoriginal; $maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu /usr/share/ubiquity/pixmaps/ubuntuoriginal/; $maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu/cd_in_tray.png /usr/share/ubiquity/pixmaps/ubuntuoriginal;$maysudo mv -f /usr/share/ubiquity/pixmaps/ubuntu/ubuntu_installed.png /usr/share/ubiquity/pixmaps/ubuntuoriginal; fi
+#-
+$maysudo rsync -av include/System/ubiquity/pixmaps/. /usr/share/ubiquity/pixmaps
 fi
 
 echo "Upgrading packages and distro packages..."
