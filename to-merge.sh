@@ -554,6 +554,15 @@ git checkout -f
 $maysudo rsync -av . /usr/share/themes/Yaru-floflis-light
 $maysudo rm -rf /usr/share/themes/Yaru-floflis-light/.git
 cd "$SCRIPTPATH"
+#-
+echo "Installing Yaru-floflis-experience theme..."
+cd include/Theme/Yaru-floflis-experience
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Yaru-floflis-experience.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+$maysudo rsync -av . /usr/share/themes/Yaru-floflis-experience
+$maysudo rm -rf /usr/share/themes/Yaru-floflis-experience/.git
+cd "$SCRIPTPATH"
 $maysudo rm -rf /usr/share/themes/Yaru-cinnamon
 $maysudo rm -rf /usr/share/themes/Yaru-cinnamon-dark
 #task: use function and variable to reduce duplications
