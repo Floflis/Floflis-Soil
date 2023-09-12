@@ -94,10 +94,10 @@ neofetch
 #    [yY])
 #       echo "Installing git-LFS..."
 #             if [ "$flofarch" = "386" ]; then
-#          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb --refuse-downgrade
+#          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
 # fi
 #       if [ "$flofarch" = "amd64" ]; then
-#          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb --refuse-downgrade
+#          $maysudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
 # fi
 #       break ;;
 #    *)
@@ -115,18 +115,18 @@ neofetch
 #    [yY])
 #       echo "Installing GSM support..."
 #             if [ "$flofarch" = "386" ]; then
-#          $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb --refuse-downgrade
-#          $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb --refuse-downgrade
-#          $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb --refuse-downgrade
-#          $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb --refuse-downgrade
+#          $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_i386.deb
+#          $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_i386.deb
+#          $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_i386.deb
+#          $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_i386.deb
 # fi
 #       if [ "$flofarch" = "amd64" ]; then
-#          $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb --refuse-downgrade
-#          $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb --refuse-downgrade
-#          $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb --refuse-downgrade
-#          $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb --refuse-downgrade
+#          $maysudo gdebi include/GSM/ppp/ppp_2.4.6-3.1_amd64.deb
+#          $maysudo gdebi include/GSM/ofono/ofono_1.18-1+b1_amd64.deb
+#          $maysudo gdebi include/GSM/modemmanager/modemmanager_1.6.4-1_amd64.deb
+#          $maysudo gdebi include/GSM/wvdial/wvdial_1.61-4.1_amd64.deb
 # fi
-#       $maysudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb --refuse-downgrade
+#       $maysudo gdebi include/GSM/pppconfig/pppconfig_2.3.21_all.deb
 #       break ;;
 #    *)
 #       echo "${invalid}" ;;

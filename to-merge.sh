@@ -73,12 +73,12 @@ geth -h
 
 echo "Installing Hugo (you did great, elder blogspot.com)..."
 if [ "$flofarch" = "386" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb --refuse-downgrade
+   $maysudo dpkg -i --no-force-all --refuse-downgrade include/deb\ packages/hugo/hugo_0.89.2_Linux-32bit.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
    echo "Testing if Hugo works:"
    hugo -h
 fi
 if [ "$flofarch" = "amd64" ]; then
-   $maysudo dpkg -i include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb --refuse-downgrade
+   $maysudo dpkg -i --no-force-all --refuse-downgrade include/deb\ packages/hugo/hugo_extended_0.110.0_linux-amd64.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
    echo "Testing if Hugo works:"
    hugo -h
 fi
@@ -110,7 +110,7 @@ echo "Installing Contacts"
 $maysudo apt install gnome-contacts -y # 3.279 kB of additional disk space will be used.
 $maysudo apt --fix-broken install
 echo "Installing Sticky Notes..." #https://www.edivaldobrito.com.br/sticky-notes-indicator/
-$maysudo dpkg -i include/DEB/indicator-stickynotes_1.0.1-0~ppa1_all.deb --refuse-downgrade
+$maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/indicator-stickynotes_1.0.1-0~ppa1_all.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
 #$maysudo apt-add-repository ppa:umang/indicator-stickynotes
 #$maysudo apt-get update
 #$maysudo apt-get install indicator-stickynotes
@@ -137,11 +137,11 @@ echo "Installing other apps:"
 echo "Installing KeePassXC..."
 $maysudo apt install keepassxc
 echo "Installing Stacer..."
-$maysudo dpkg -i include/DEB/stacer_1.1.0_amd64.deb --refuse-downgrade #from https://askubuntu.com/a/198445 (have to login and VOTE)
+$maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/stacer_1.1.0_amd64.deb #from https://askubuntu.com/a/198445 (have to login and VOTE) # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
 $maysudo apt upgrade stacer
 $maysudo apt --fix-broken install
 echo "Installing MS Teams..."
-$maysudo dpkg -i include/DEB/teams_1.5.00.23861_amd64.deb --refuse-downgrade
+$maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/teams_1.5.00.23861_amd64.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
 $maysudo apt --fix-broken install
 #-
 echo "Installing Gnome GAMES app (465 kB download; 2,745 kB installed)..."
@@ -152,7 +152,7 @@ echo "Installing gbrainy..."
 $maysudo apt install gbrainy
 #$maysudo apt install supertux
 echo "Installing Money Manager Ex (MMEX)..."
-$maysudo dpkg -i include/DEB/mmex_1.6.3-Ubuntu.22.04.jammy_amd64.deb --refuse-downgrade
+$maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/mmex_1.6.3-Ubuntu.22.04.jammy_amd64.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
 
 #echo "Installing xdotool..."
 #$maysudo apt install xdotool
@@ -179,8 +179,8 @@ EOF
 $maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" >> /usr/share/applications/x-cinnamon-mimeapps.list
 
 echo "Installing Frame"
-$maysudo dpkg -i include/DEB/frame_0.6.6_amd64.deb --refuse-downgrade
-#- if ARM64: $maysudo dpkg -i include/DEB/frame_0.6.6_arm64.deb --refuse-downgrade
+$maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/frame_0.6.6_amd64.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
+#- if ARM64: $maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/frame_0.6.6_arm64.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
 
 echo "Installing GDevelop..."
 #      if [ "$flofarch" = "386" ]; then
@@ -338,7 +338,7 @@ cd include/img/Avatars && $maysudo bash install.sh
 cd "$SCRIPTPATH"
 
 echo "Installing sounds..."
-$maysudo dpkg -i include/sounds/ubuntu-touch-sounds_15.08_all.deb --refuse-downgrade
+$maysudo dpkg -i --no-force-all --refuse-downgrade include/sounds/ubuntu-touch-sounds_15.08_all.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
 if [ ! -e /1/sounds ]; then $maysudo mkdir /1/sounds; fi
 $maysudo cp -f include/sounds/presentation.ogg /1/sounds/presentation.ogg
 
