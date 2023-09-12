@@ -38,7 +38,7 @@ EOF
 # <-- HOME LAYER
 
 echo "Installing icon for Central..."
-cp -f central.svg /usr/share/icons/hicolor/scalable/apps/
+#cp -f central.svg /usr/share/icons/hicolor/scalable/apps/
 #cp -f scalable-max-16/ /usr/share/icons/hicolor/
-cp -f 16x16/ /usr/share/icons/hicolor/
+cp -f include/icons/. /usr/share/icons/hicolor/
 sudo gtk-update-icon-cache /usr/share/icons/hicolor/ -f
