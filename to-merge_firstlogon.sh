@@ -35,12 +35,12 @@ cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 
 echo "Installing Templates of the 'New File' context menu..."
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
-rm /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
-rm /home/${flouser}/Templates/New\ Spreadsheet.xlsx.webpresent
-rm /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
-rm /home/${flouser}/Templates/New\ Access\ Database.accdb.webpresent
-rm /home/${flouser}/Templates/"New Compressed (zipped) Folder.zip.webpresent"
-rm /home/${flouser}/Templates/New\ Publisher\ Document.pub.webpresent
+rmoriginal /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
+rmoriginal /home/${flouser}/Templates/New\ Spreadsheet.xlsx.webpresent
+rmoriginal /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
+rmoriginal /home/${flouser}/Templates/New\ Access\ Database.accdb.webpresent
+rmoriginal /home/${flouser}/Templates/"New Compressed (zipped) Folder.zip.webpresent"
+rmoriginal /home/${flouser}/Templates/New\ Publisher\ Document.pub.webpresent
 
 echo "Installing Sample Media..."
 if [ ! -e /home/${flouser}/Pictures/Sample\ Photos ]; then mkdir /home/${flouser}/Pictures/Sample\ Photos; fi
@@ -99,7 +99,7 @@ cd "$SCRIPTPATH"
 if [ "$flofarch" = "amd64" ]; then
    echo "Installing IPFS Desktop..."
    sudo snap install ipfs-desktop
-   rm -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf /usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
+   rmoriginal -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf /usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
    sudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
 ipfs-desktop
 ENDOFFILE
@@ -154,7 +154,7 @@ esac
 echo "Installing support for Windows apps..."
 sudo apt install -y software-properties-common
 sudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
-sudo apt-key add winehq.key && rm winehq.key
+sudo apt-key add winehq.key && rmoriginal winehq.key
 sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ lunar main'
 sudo apt update
 sudo dpkg --add-architecture i386
@@ -165,7 +165,7 @@ sudo apt install wine32
 sudo apt install wine64 -y # nearly 2GB!
 sudo apt install winetricks -y
 wget https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi && wine msiexec /i wine-mono-8.0.0-x86.msi #from https://askubuntu.com/a/1448770 (have to login and VOTE)
-if [ -f wine-mono-8.0.0-x86.msi ]; then rm wine-mono-8.0.0-x86.msi; fi
+if [ -f wine-mono-8.0.0-x86.msi ]; then rmoriginal wine-mono-8.0.0-x86.msi; fi
 winetricks dotnet45 #from https://askubuntu.com/a/1106750 (have to login and VOTE)
 sudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/wine-desktop-common
@@ -194,7 +194,7 @@ git checkout -f
 #sudo bash install.sh
 if [ ! -e /usr/lib/winapps ]; then sudo mkdir /usr/lib/winapps; fi
 sudo rsync -av . /usr/lib/winapps
-sudo rm -f /usr/lib/winapps/icons/windows.svg
+sudo rmoriginal -f /usr/lib/winapps/icons/windows.svg
 cat > /usr/bin/winapps << ENDOFFILE
 #!/bin/bash
 
@@ -410,4 +410,4 @@ echo "Preparing to create your ETH address..."
 bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 fi
 
-sudo rm -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
+sudo rmoriginal -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
