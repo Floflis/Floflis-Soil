@@ -31,6 +31,10 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
+if [ -e /tmp/cubicmode ]; then
+maysudo=""
+fi
+
 export maysudo
 
 echo "Building your desktop experience [part 1/2]..."

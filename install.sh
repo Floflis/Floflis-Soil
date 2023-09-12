@@ -30,6 +30,10 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
+if [ -e /tmp/cubicmode ]; then
+maysudo=""
+fi
+
 cat << "EOF"
 -. .-.   .-. .-.   .-. .-.   .
   \   \ /   \   \ /   \   \ /
