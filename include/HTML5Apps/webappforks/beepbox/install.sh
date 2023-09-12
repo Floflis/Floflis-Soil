@@ -25,7 +25,8 @@ ln -s /1/Floflis/libs/node_modules
 ln -s apple-touch-icon.png icon.png
 
 echo "Installing $application_name's icon..."
-cp -f --preserve=all apple-touch-icon.png /usr/share/icons/hicolor/scalable/apps/beepbox.png
+#cp -f --preserve=all apple-touch-icon.png /usr/share/icons/hicolor/scalable/apps/beepbox.png
+cp -f --preserve=all ../include/icons/. /usr/share/icons/hicolor/
 sudo gtk-update-icon-cache /usr/share/icons/hicolor/ -f
 
 echo "Converting $application_name's webapp to floapps..."
