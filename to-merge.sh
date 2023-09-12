@@ -357,12 +357,12 @@ $maysudo ln -sf ../../ubuntu/ringtones/Counterpoint.ogg /usr/share/sounds/freede
 # Base sounds
 $maysudo cp -f include/sounds/Base/Changing\ volume.ogg /1/sounds/Changing\ volume.ogg
 $maysudo cp -f include/sounds/Base/Inserting\ device.ogg /1/sounds/Inserting\ device.ogg
-$maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg
+if [ ! -f /1/sounds/Leaving.ogg ]; then $maysudo cp -f include/sounds/Base/Leaving.ogg /1/sounds/Leaving.ogg; fi
 $maysudo cp -f include/sounds/Base/Manipulating\ windows.ogg /1/sounds/Manipulating\ windows.ogg
 $maysudo cp -f include/sounds/Base/Notification.oga /1/sounds/Notification.oga
 $maysudo cp -f include/sounds/Base/Removing\ device.ogg /1/sounds/Removing\ device.ogg
 $maysudo cp -f include/sounds/Base/Switching\ workspace.ogg /1/sounds/Switching\ workspace.ogg
-$maysudo cp -f include/sounds/Base/Starting.oga /1/sounds/Starting.oga
+if [ ! -f /1/sounds/Starting.oga ]; then $maysudo cp -f include/sounds/Base/Starting.oga /1/sounds/Starting.oga; fi
 
 if [ ! -e /usr/share/sounds/Yaru/stereo/ubuntu ]; then $maysudo mkdir /usr/share/sounds/Yaru/stereo/ubuntu; if [ -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/desktop-login.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi; if [ -f /usr/share/sounds/Yaru/stereo/system-ready.oga ]; then $maysudo mv -f /usr/share/sounds/Yaru/stereo/system-ready.oga /usr/share/sounds/Yaru/stereo/ubuntu; fi; fi
 if [ ! -f /usr/share/sounds/Yaru/stereo/desktop-login.oga ]; then $maysudo ln -s /1/sounds/Starting.oga /usr/share/sounds/Yaru/stereo/desktop-login.oga; fi
