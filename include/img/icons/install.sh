@@ -1,6 +1,10 @@
 #!/bin/bash
 
 echo "Installing icons:"
+
+$maysudo cp -f patch/scalable/apps/goa-account-plasmmer.svg /usr/share/icons/hicolor/scalable/apps/
+$maysudo gtk-update-icon-cache /usr/share/icons/hicolor/ -f
+
 echo "Installing FloflisPNG icons..."
 cd FloflisPNG
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/icons.git .; fi
