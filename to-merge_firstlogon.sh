@@ -33,6 +33,7 @@ cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 #prompt = "starship_prompt"
 #EOF
 
+# mv to firstboot ---->
 echo "Installing Templates of the 'New File' context menu..."
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
 rmoriginal /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
@@ -41,13 +42,16 @@ rmoriginal /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
 rmoriginal /home/${flouser}/Templates/New\ Access\ Database.accdb.webpresent
 rmoriginal /home/${flouser}/Templates/"New Compressed (zipped) Folder.zip.webpresent"
 rmoriginal /home/${flouser}/Templates/New\ Publisher\ Document.pub.webpresent
+# <---- mv to firstboot
 
+# mv to firstboot ---->
 echo "Installing Sample Media..."
 if [ ! -e /home/${flouser}/Pictures/Sample\ Photos ]; then mkdir /home/${flouser}/Pictures/Sample\ Photos; fi
 if [ ! -e /home/${flouser}/Videos/Sample\ Videos ]; then mkdir /home/${flouser}/Videos/Sample\ Videos; fi
 if [ ! -e /home/${flouser}/Music/Sample\ Music ]; then mkdir /home/${flouser}/Music/Sample\ Music; fi
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
+# <---- mv to firstboot
 
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
 #-
@@ -115,42 +119,6 @@ git checkout -f
 chmod +x install.sh && bash install.sh
 cd "$SCRIPTPATH"
 
-echo "Do you want to install the MS Edge browser? [Y/n]"
-   read setedge
-   case $setedge in
-      [nN])
-         echo "Ok, not going to install MS Edge for now; anyway it should be available in Floflis' stores."
-         ;;
-      [yY])
-         echo "Important:" && echo ""
-         cat /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/TERMS && echo ""
-         echo "Privacy statement: https://go.microsoft.com/fwlink/?LinkId=521839" && echo ""
-         echo "Installing Microsoft Edge will add the Microsoft repository so your system will automatically keep Microsoft Edge up to date." && echo ""
-         echo "Scroll up to read. PLEASE READ/WRITE CAREFULLY!"
-         echo "Do you agree with the terms? [Y/n]"
-            read licenseagreement
-            case $licenseagreement in
-               [nN])
-                  exit ;;
-               [yY])
-                  echo "Installing MS Edge..."
-                  sudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/DEB/microsoft-edge-stable_110.0.1587.57-1_amd64.deb
-            esac
-esac
-
-echo "Do you want to install the \"WindOS\"🪟 Calculator? [Y/n]"
-echo "Please note Floflis do already include a basic calculator by default."
-   read setunocalc
-   case $setunocalc in
-      [nN])
-         echo "Ok, not going to install WinCalculator for now; anyway it should be available in Floflis' stores."
-         ;;
-      [yY])
-         sudo snap install uno-calculator
-esac
-#if user is an IT technician installing for a customer, don't ask and install MS Edge and Calculator right away)
-#floflis fixer should support reinstalling default calculator
-
 echo "Installing support for Windows apps..."
 sudo apt install -y software-properties-common
 sudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
@@ -185,7 +153,7 @@ sudo apt --fix-broken install
 # WinApps ---->
 echo "Installing WinApps..."
 sudo apt-get install -y virt-manager #Need to get 10,1 MB of archives. After this operation, 44,4 MB of additional disk space will be used.
-echo "Have already installed KVM/virt-manager. Pending to follow the next steps: https://github.com/Fmstrat/winapps/blob/main/docs/KVM.md"
+echo "Have already installed KVM/virt-manager. Pending to follow the next steps: https://archive.is/fhg4E#selection-4631.0-4647.93"
 sudo apt-get install -y freerdp2-x11
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/winapps
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Fmstrat/winapps.git .; fi
@@ -200,6 +168,31 @@ cat > /usr/bin/winapps << ENDOFFILE
 
 source /usr/lib/winapps/bin/winapps
 ENDOFFILE
+cd "$SCRIPTPATH"
+
+#echo "Setting autostart apps..."
+#chmod +x /home/${flouser}/.config/autostart/teams.desktop
+
+echo "Installing the Firstlogon Tour"
+sudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/Firstlogon-Tour_3.0.0_amd64.deb
+cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/firstlogon-tour_cli
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/firstlogon-tour_cli.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+#chmod +x install.sh && sudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f ethgas
+#rm -f gas-pump.svg
+#rm -f gas-pump-symbolic.svg
+#rm -f .gitmeta
+#rm -f 'SRC At ETH💎💌.txt'
+echo "Running the Firstlogon Tour"
+if [ x$DISPLAY != x ] ; then
+   cd "$SCRIPTPATH"
+   /usr/local/lib/Firstlogon-Tour/./firstlogon_tour
+else
+   bash core.sh
+fi
 cd "$SCRIPTPATH"
 
 echo "Installing ethgas..."
@@ -336,73 +329,6 @@ EOF
 if [ ! -e /1/img/humanrepresentation ]; then sudo mkdir /1/img/humanrepresentation; fi
 sudo ln -s /1/apps/aragon/action-create.ee78fef6.png /1/img/humanrepresentation/action-create.png
 sudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresentation/look-at-phone.png
-
-#echo "Setting autostart apps..."
-#chmod +x /home/${flouser}/.config/autostart/teams.desktop
-
-HEIGHT=15
-WIDTH=40
-CHOICE_HEIGHT=4
-BACKTITLE="Backtitle here"
-TITLE="Title here"
-MENU="How you prefer your mouse cursor color?"
-
-OPTIONS=(1 "⚫Black (like in \"MecOS\"🍎)"
-         2 "⚪White (like in \"WindOS\"🪟)")
-
-CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE" \
-                --title "$TITLE" \
-                --menu "$MENU" \
-                $HEIGHT $WIDTH $CHOICE_HEIGHT \
-                "${OPTIONS[@]}" \
-                2>&1 >/dev/tty)
-
-clear
-case $CHOICE in
-        1)
-            gsettings set org.cinnamon.desktop.interface cursor-theme 'DMZ-White' #from https://askubuntu.com/a/72093
-            ;;
-        2)
-            gsettings set org.cinnamon.desktop.interface cursor-theme 'Floflis' #from https://askubuntu.com/a/72093
-            ;;
-esac
-#from https://askubuntu.com/a/666179
-#in UI, will have different background as example
-
-HEIGHT=15
-WIDTH=40
-CHOICE_HEIGHT=4
-BACKTITLE="Backtitle here"
-TITLE="Title here"
-MENU="How you prefer your system theme?"
-
-OPTIONS=(1 "⚫Dark (let's save my eyes while computing in the dark)"
-         2 "🟤Normal (i have strong eyes)"
-         3 "⚪Light (i have stronger eyes, still; let's not abuse)")
-
-CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE" \
-                --title "$TITLE" \
-                --menu "$MENU" \
-                $HEIGHT $WIDTH $CHOICE_HEIGHT \
-                "${OPTIONS[@]}" \
-                2>&1 >/dev/tty)
-
-clear
-case $CHOICE in
-        1)
-            gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-dark' && gsettings set org.cinnamon.theme name 'Yaru-floflis-dark' #from https://askubuntu.com/a/72093
-            ;;
-        2)
-            gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis' && gsettings set org.cinnamon.theme name 'Yaru-floflis' #from https://askubuntu.com/a/72093
-            ;;
-        3)
-            gsettings set org.cinnamon.desktop.wm.preferences theme 'Yaru-floflis-light' && gsettings set org.cinnamon.desktop.interface gtk-theme 'Yaru-floflis-light' && gsettings set org.cinnamon.theme name 'Yaru-floflis-light' #from https://askubuntu.com/a/72093
-            ;;
-esac
-#from https://askubuntu.com/a/666179
-#in UI, will have different background as example
 
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
