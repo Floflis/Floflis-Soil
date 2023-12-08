@@ -4,7 +4,7 @@ then
 else
   desktop=$(echo "$XDG_DATA_DIRS" | sed 's/.*\(xfce\|kde\|gnome\).*/\1/')
 fi
-
+#-
 desktop=${desktop,,}  # convert to lower case
 echo "$desktop"
 #from https://unix.stackexchange.com/a/116694
