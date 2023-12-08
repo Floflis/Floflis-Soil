@@ -1,8 +1,8 @@
-if [ "$XDG_CURRENT_DESKTOP" = "" ]
+if [ $(echo "$XDG_DATA_DIRS" | sed 's/.*\(xfce\|kde\|gnome\).*/\1/') = "" ]
 then
+  desktop=$XDG_CURRENT_DESKTOP
+else
   desktop=$(echo "$XDG_DATA_DIRS" | sed 's/.*\(xfce\|kde\|gnome\).*/\1/')
-#else
-#  desktop=$XDG_CURRENT_DESKTOP
 fi
 
 desktop=${desktop,,}  # convert to lower case
