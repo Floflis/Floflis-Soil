@@ -295,6 +295,9 @@ $maysudo cp -f include/img/networks/polygonzkevm.svg /1/img/networks/polygonzkev
 #-
 $maysudo cp -f include/img/token.svg /1/img/token.svg
 
+sudo apt install libpng-dev libjpeg-dev libtiff-dev imagemagick #from https://www.linuxcapable.com/how-to-install-imagemagick-on-ubuntu-linux/
+#Need to get 4,103 kB of archives. After this operation, 15.0 MB of additional disk space will be used.
+
 echo "Deep branding replacements:"
 #/usr/share/pixmaps
 if [ ! -e /usr/share/pixmaps/ubuntu ]; then $maysudo mkdir /usr/share/pixmaps/ubuntu; if [ -f /usr/share/pixmaps/ubuntu-logo.svg ]; then $maysudo mv -f /usr/share/pixmaps/ubuntu-logo.svg /usr/share/pixmaps/ubuntu; ln -s /1/img/logo.svg /usr/share/pixmaps/ubuntu-logo.svg; fi; if [ -f /usr/share/pixmaps/ubuntu-logo-text-dark.png ]; then $maysudo mv -f /usr/share/pixmaps/ubuntu-logo-text-dark.png /usr/share/pixmaps/ubuntu; $maysudo convert include/img/floflis-logo.png    -resize 256x89  /usr/share/pixmaps/ubuntu-logo-text-dark.png; fi; if [ -f /usr/share/pixmaps/ubuntu-logo-dark.png ]; then $maysudo mv -f /usr/share/pixmaps/ubuntu-logo-dark.png /usr/share/pixmaps/ubuntu; $maysudo convert include/img/floflis-logo.png    -resize 256x89  /usr/share/pixmaps/ubuntu-logo-dark.png; fi; if [ -f /usr/share/pixmaps/ubuntu-logo-icon.png ]; then $maysudo mv -f /usr/share/pixmaps/ubuntu-logo-icon.png /usr/share/pixmaps/ubuntu; $maysudo convert include/img/pixmaps/floflis-logo-black.png    -resize 260x91  /usr/share/pixmaps/ubuntu-logo-icon.png; fi; if [ -f /usr/share/pixmaps/ubuntu-logo-text.png ]; then $maysudo mv -f /usr/share/pixmaps/ubuntu-logo-text.png /usr/share/pixmaps/ubuntu; $maysudo convert include/img/pixmaps/floflis-logo-black.png    -resize 260x91  /usr/share/pixmaps/ubuntu-logo-text.png; fi; $maysudo ln -sf ubuntu-logo-dark.png /usr/share/pixmaps/ubuntu/ubuntu-logo-text-dark.png; $maysudo ln -sf ubuntu-logo-icon.png /usr/share/pixmaps/ubuntu/ubuntu-logo-text.png; fi
