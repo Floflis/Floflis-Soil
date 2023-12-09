@@ -58,13 +58,11 @@ cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample 
 sudo apt install pipx
 pipx ensurepath
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ]
-   then
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ];then
       pipx install gnome-extensions-cli --system-site-packages
 fi
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ] #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
-   then
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
 #-
 cd buildmark
@@ -221,7 +219,7 @@ chmod +x install.sh && sudo sh ./install.sh
 #rm -f .gitmeta
 #rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 echo "Installing ethgas' Cinnamon spice..."
 cd spice
 #cd ethgas-applet@floflis

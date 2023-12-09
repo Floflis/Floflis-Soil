@@ -19,7 +19,7 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
    echo "Use these commands after/together with 'fixer' command."
    echo "  modem-disable                       If your phone tethering keeps disconnecting the Internet on your device"
    echo "  modem-enable                        If you need to use it and it will have no conflict with phone tethering"
-   echo "  cinna-rescue                        Restart Cinnamon WITHOUT LOSING YOUR OPEN WINDOWS"
+   if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then echo "  cinna-rescue                        Restart Cinnamon WITHOUT LOSING YOUR OPEN WINDOWS";fi
    echo "Available commands:"
    echo "----------------------------------------------------------"
    echo "Information:"
@@ -41,12 +41,13 @@ sudo NetworkManager
 echo "(✓) This fix is done! But please restart your device to complete this fix."
 fi
 
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 if [ "$1" = "cinna-rescue" ]; then
 w_output=$(w) # Run the 'w' command and capture its output
 value=$(echo "$w_output" | awk 'NR==3 {print $3}') # Use 'awk' to extract the value from the second line's third column
-
 (cinnamon --replace -d $value &)
 echo "(✓) This fix is done!"
+fi
 fi
 
 if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then

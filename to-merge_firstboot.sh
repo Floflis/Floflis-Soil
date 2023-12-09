@@ -11,16 +11,20 @@ do
    pure=$(echo "${D}" | tr -d "/" | tr -d ".")
    cd ${D}
    
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 # start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF
    exec dbus-run-session -- bash -c 'bash /usr/lib/cinnamobile/set_desktop.sh'
 EOF
-   
-   echo "Setting up Cinnamon data..."
+fi
+
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
+echo "Setting up Cinnamon data..."
 if [ ! -e /home/${pure}/.config/cinnamon ]; then mkdir /home/${pure}/.config/cinnamon; fi
 if [ ! -e /home/${pure}/.config/cinnamon/spices ]; then mkdir /home/${pure}/.config/cinnamon/spices; fi
 #tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
 rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${pure}/.config/cinnamon/spices
+fi
 
 echo "Building your desktop experience [part 2/2]..."
 if [ ! -e Pictures/Screenshots ]; then mkdir Pictures/Screenshots; fi
@@ -100,5 +104,5 @@ EOF
    sudo chmod -R a+rwX /1/config && sudo chown -R $pure:$pure /1/config #from https://askubuntu.com/a/693427
    sudo chmod -R a+rwX /usr/share/ubiquity-slideshow && sudo chown -R $pure:$pure /usr/share/ubiquity-slideshow
    sudo chmod -R a+rwX /usr/lib/floflis/layers/soil/to-merge && sudo chown -R $pure:$pure /usr/lib/floflis/layers/soil/to-merge
-   sudo chmod -R a+rwX /home/$pure/.config/cinnamon && sudo chown -R $pure:$pure /home/$pure/.config/cinnamon
+   if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then sudo chmod -R a+rwX /home/$pure/.config/cinnamon && sudo chown -R $pure:$pure /home/$pure/.config/cinnamon;fi
 done

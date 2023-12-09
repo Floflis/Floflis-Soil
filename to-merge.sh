@@ -40,21 +40,24 @@ export maysudo
 echo "Building your desktop experience [part 1/2]..."
 
 echo "Installing gschemes..."
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ]
-   then
-      $maysudo cp -f include/System/gschemas/GNOME/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ];then
+      $maysudo cp -f include/System/gschemas/GNOME/01_org.gnome.gschema.override /usr/share/glib-2.0/schemas/
       sudo apt update
       sudo apt install gnome-shell-extensions gnome-shell-extension-prefs
+      $maysudo cp -f include/System/gschemas/GNOME/extensions/01_org.gnome.extensions-arcmenu.gschema.override /usr/share/glib-2.0/schemas/
+      $maysudo cp -f include/System/gschemas/GNOME/extensions/01_org.gnome.extensions-blur-my-shell.gschema.override /usr/share/glib-2.0/schemas/
+      $maysudo cp -f include/System/gschemas/GNOME/extensions/01_org.gnome.extensions-dash-to-panel.gschema.override /usr/share/glib-2.0/schemas/
+      $maysudo cp -f include/System/gschemas/GNOME/extensions/01_org.gnome.extensions-ding.gschema.override /usr/share/glib-2.0/schemas/
+      $maysudo cp -f include/System/gschemas/GNOME/extensions/01_org.gnome.extensions-logo-widget.gschema.override /usr/share/glib-2.0/schemas/
 fi
 #-
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ] #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
-   then
-$maysudo cp -f include/System/gschemas/Cinnamon/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/
-$maysudo cp -f include/System/gschemas/Cinnamon/Cinnamobile/11_ubuntucinnamon-environment-desktop.gschema.override /usr/share/glib-2.0/schemas/ && $maysudo cp -f include/System/gschemas/Cinnamon/Cinnamobile/11_ubuntucinnamon-environment-mobile.gschema.override /usr/share/glib-2.0/schemas/
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
+$maysudo cp -f include/System/gschemas/Cinnamon/01_org.cinnamon.gschema.override /usr/share/glib-2.0/schemas/
+#$maysudo cp -f include/System/gschemas/Cinnamon/Cinnamobile/11_ubuntucinnamon-environment-desktop.gschema.override /usr/share/glib-2.0/schemas/ && $maysudo cp -f include/System/gschemas/Cinnamon/Cinnamobile/11_ubuntucinnamon-environment-mobile.gschema.override /usr/share/glib-2.0/schemas/
 fi
 #-
-$maysudo cp -f include/System/gschemas/10_ubuntucinnamon-lightdm-theme.gschema.override /usr/share/glib-2.0/schemas/
-$maysudo cp -f include/System/gschemas/10_ubuntucinnamon-environment_common.gschema.override /usr/share/glib-2.0/schemas/
+$maysudo cp -f include/System/gschemas/01_floflis-lightdm-theme.gschema.override /usr/share/glib-2.0/schemas/
+$maysudo cp -f include/System/gschemas/01_floflis-common.gschema.override /usr/share/glib-2.0/schemas/
 $maysudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 #$maysudo bash include/System/to-merge_deactivated.sh
@@ -187,7 +190,7 @@ StartupNotify=false
 MimeType=x-scheme-handler/ipfs;
 NoDisplay=true
 EOF
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 $maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" >> /usr/share/applications/x-cinnamon-mimeapps.list
 fi
 
@@ -394,7 +397,7 @@ $maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Celestial.ogg /1/sounds/Launch
 $maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Ubuntu.ogg /1/sounds/Call.ogg
 # <-- HOME LAYER
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 echo "Installing Cinnamon zombiespices'..."
 cd include/System/zombiespices
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/zombiespices.git .; fi
@@ -505,7 +508,7 @@ cd include/System/DE/menu-categories
 $maysudo bash menucategory.sh
 cd "$SCRIPTPATH"
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 echo "Installing Cinnamobile..."
 cd include/System/Cinnamobile
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Cinnamobile.git .; fi
@@ -651,7 +654,7 @@ cd "$SCRIPTPATH"
 echo "Testing if SharedChain works:"
 sharedchain
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 echo "Attempting to upgrade Cinnamon..."
 $maysudo apt upgrade cinnamon-desktop-environment
 $maysudo apt install ubuntucinnamon-desktop

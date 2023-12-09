@@ -78,6 +78,16 @@
       <Filename>emacs.desktop</Filename>
     </Include>
   </Menu> <!-- End Development Tools -->
+  
+  <Menu>
+    <Name>Blockchain</Name>
+    <Directory>Blockchain.directory</Directory>
+    <Include>
+      <And>
+        <Category>Blockchain</Category>
+      </And>
+    </Include>
+  </Menu>
 
   <!-- Education -->
   <Menu>
@@ -459,6 +469,7 @@
 
    <Layout>
      <Merge type="menus" />
+     <Menuname>Blockchain</Menuname>
      <Menuname>Other</Menuname>
      <Merge type="files" />
    </Layout>

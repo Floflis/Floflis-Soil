@@ -6,17 +6,8 @@ else
 fi
 #-
 # able to detect gnome even in chroot:
-command_exist() {
-    if ! command -v $1 &> /dev/null #use "&>" as in https://stackoverflow.com/a/677212/5623661
-    then
-        echo "Install '$1' and run again."
-        #exit
-    else
-        desktop="gnome"
-    fi
-}
-command_exist gnome-shell
-
+gnome_present=$(ls /usr/share/xsessions | grep -E '^gnome.*\.desktop$') && [[ -n "$gnome_present" ]] && desktop="gnome" || desktop="cinnamon" #Thanks to Google Bard and https://www.baeldung.com/linux/default-desktop-environment-start-up #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+#-
 desktop=${desktop,,}  # convert to lower case
 echo "$desktop"
 #from https://unix.stackexchange.com/a/116694

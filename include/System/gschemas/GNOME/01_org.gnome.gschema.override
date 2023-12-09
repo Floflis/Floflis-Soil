@@ -40,3 +40,7 @@ tabs-size=uint32 4
 use-default-font=true
 ensure-trailing-newline=true
 max-undo-actions=2000
+
+[org.gnome.shell]
+favorite-apps=['neurus.desktop', 'teams.desktop', 'firedoge.desktop', 'firefox.desktop', 'thunderbird.desktop', 'nemo.desktop', 'org.gnome.gedit.desktop', 'libreoffice-startcenter.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop', 'yelp.desktop']
+enabled-extensions=['arcmenu@arcmenu.com', 'dash-to-panel@jderose9.github.com', 'blur-my-shell@aunetx', 'ding@rastersoft.com', 'tiling-assistant@ubuntu.com', 'logowidget@github.com.howbea']
