@@ -2,6 +2,8 @@
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
+echo "Building your desktop experience [part 2/2]..."
+
 echo "Installing the \"Starshell\" package..."
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
@@ -53,6 +55,16 @@ cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sampl
 cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
 # <---- mv to firstboot
 
+sudo apt install pipx
+pipx ensurepath
+
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ]
+   then
+      pipx install gnome-extensions-cli --system-site-packages
+fi
+
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ] #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+   then
 cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
 #-
 cd buildmark
@@ -74,6 +86,7 @@ facevar="/home/${flouser}/.face"
 if [ ! -f "$facevar" ]; then
 #   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
    cp /usr/share/cinnamon/faces/user-generic.png "$facevar"
+fi
 fi
 
 echo "Installing floapps..."
@@ -207,6 +220,8 @@ chmod +x install.sh && sudo sh ./install.sh
 #rm -f gas-pump-symbolic.svg
 #rm -f .gitmeta
 #rm -f 'SRC At ETH💎💌.txt'
+cd "$SCRIPTPATH"
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
 echo "Installing ethgas' Cinnamon spice..."
 cd spice
 #cd ethgas-applet@floflis
@@ -215,6 +230,7 @@ cd spice
 cd ethgas-desklet@floflis
 zombiespices install
 cd "$SCRIPTPATH"
+fi
 
 # Install 1inch + Cowswap, but this feature will be region-locked and need an Internet connection before pinning ----------------------------------------------------->
 #ipfs add $(ethereal ens contenthash get --domain=1inch.eth)

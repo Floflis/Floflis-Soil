@@ -38,12 +38,23 @@ fi
 export maysudo
 
 echo "Building your desktop experience [part 1/2]..."
-$maysudo cp -f include/System/gschemas/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/ && $maysudo cp -f include/System/gschemas/10_ubuntucinnamon-lightdm-theme.gschema.override /usr/share/glib-2.0/schemas/
-#Cinnamobile: Mobile device mode
-#$maysudo cp -f include/System/gschemas/11_ubuntucinnamon-environment-mobile.gschema.override /usr/share/glib-2.0/schemas/
-#Cinnamobile: Desktop device mode
-$maysudo cp -f include/System/gschemas/11_ubuntucinnamon-environment-desktop.gschema.override /usr/share/glib-2.0/schemas/
+
+echo "Installing gschemes..."
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ]
+   then
+      $maysudo cp -f include/System/gschemas/GNOME/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/
+      sudo apt update
+      sudo apt install gnome-shell-extensions gnome-shell-extension-prefs
+fi
 #-
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ] #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+   then
+$maysudo cp -f include/System/gschemas/Cinnamon/10_ubuntucinnamon-environment.gschema.override /usr/share/glib-2.0/schemas/
+$maysudo cp -f include/System/gschemas/Cinnamon/Cinnamobile/11_ubuntucinnamon-environment-desktop.gschema.override /usr/share/glib-2.0/schemas/ && $maysudo cp -f include/System/gschemas/Cinnamon/Cinnamobile/11_ubuntucinnamon-environment-mobile.gschema.override /usr/share/glib-2.0/schemas/
+fi
+#-
+$maysudo cp -f include/System/gschemas/10_ubuntucinnamon-lightdm-theme.gschema.override /usr/share/glib-2.0/schemas/
+$maysudo cp -f include/System/gschemas/10_ubuntucinnamon-environment_common.gschema.override /usr/share/glib-2.0/schemas/
 $maysudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 #$maysudo bash include/System/to-merge_deactivated.sh
@@ -176,7 +187,9 @@ StartupNotify=false
 MimeType=x-scheme-handler/ipfs;
 NoDisplay=true
 EOF
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
 $maysudo echo "x-scheme-handler/ipfs=firedoge.desktop;firefox.desktop;" >> /usr/share/applications/x-cinnamon-mimeapps.list
+fi
 
 echo "Installing Frame"
 $maysudo dpkg -i --no-force-all --refuse-downgrade include/DEB/frame_0.6.6_amd64.deb # flags insp from https://askubuntu.com/a/441829 and https://askubuntu.com/a/442171 [HAVE TO UPVOTE]
@@ -349,7 +362,7 @@ $maysudo rm -f /usr/share/sounds/Yaru/stereo/system-ready.oga && $maysudo ln -s 
 fi
 fi
 
-# Patch alarm clock sound
+# Patch alarm clock sound for Yaru sounds
 if [ ! -e /usr/share/sounds/freedesktop/stereo/ubuntu ]; then $maysudo mkdir /usr/share/sounds/freedesktop/stereo/ubuntu; if [ -f /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga ]; then $maysudo mv -f /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga /usr/share/sounds/freedesktop/stereo/ubuntu; fi; fi
 $maysudo ln -sf ../../ubuntu/ringtones/Counterpoint.ogg /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga
 
@@ -381,7 +394,8 @@ $maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Celestial.ogg /1/sounds/Launch
 $maysudo ln -s /usr/share/sounds/ubuntu/ringtones/Ubuntu.ogg /1/sounds/Call.ogg
 # <-- HOME LAYER
 
-echo "Installing 'zombiespices'..."
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
+echo "Installing Cinnamon zombiespices'..."
 cd include/System/zombiespices
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/zombiespices.git .; fi
 if [ -e .git ]; then git pull; fi
@@ -484,12 +498,14 @@ if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x patch.sh && $maysudo bash patch.sh
 cd "$SCRIPTPATH"
+fi #begin of this fi is detecting cinnamon
 
 echo "Installing the Blockchain menu category..."
 cd include/System/DE/menu-categories
 $maysudo bash menucategory.sh
 cd "$SCRIPTPATH"
 
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
 echo "Installing Cinnamobile..."
 cd include/System/Cinnamobile
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/Cinnamobile.git .; fi
@@ -497,13 +513,13 @@ if [ -e .git ]; then git pull; fi
 git checkout -f
 chmod +x install.sh && $maysudo bash install.sh
 cd "$SCRIPTPATH"
+fi
 
 echo "Installing bootscreen logotype..."
 if [ ! -e /usr/share/plymouth/ubuntu ]; then $maysudo mkdir /usr/share/plymouth/ubuntu; $maysudo mv -f /usr/share/plymouth/ubuntu-logo.png /usr/share/plymouth/ubuntu; fi
 $maysudo convert include/img/19logotypecolor.png    -resize 512x59  /usr/share/plymouth/ubuntu-logo.png # Plymouth logo
 #$maysudo cp -f include/img/floflis-logo.png /usr/share/plymouth/ubuntu-logo.png
 $maysudo cp -f include/img/floflis-logo.svg /1/img/floflis-logo.svg
-
 
 #if [ ! -e /usr/share/plymouth/ubuntucinnamon ]; then $maysudo mkdir /usr/share/plymouth/ubuntucinnamon; $maysudo mv -f /usr/share/plymouth/ubuntucinnamon-logo.png /usr/share/plymouth/ubuntucinnamon; fi
 #if [ ! -f /usr/share/plymouth/ubuntucinnamon-logo.png ]; then $maysudo ln -s ubuntu-logo.png /usr/share/plymouth/ubuntucinnamon-logo.png; fi
@@ -635,6 +651,7 @@ cd "$SCRIPTPATH"
 echo "Testing if SharedChain works:"
 sharedchain
 
+if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) != "gnome" ];then #loosely assumes it is Cinnamon just bc not GNOME ; have to later be improved!
 echo "Attempting to upgrade Cinnamon..."
 $maysudo apt upgrade cinnamon-desktop-environment
 $maysudo apt install ubuntucinnamon-desktop
@@ -645,8 +662,8 @@ $maysudo apt --fix-broken install
 echo "Upgrading other packages..."
 $maysudo apt upgrade gir1.2-mutter-12 libmutter-12-0 mutter-common mutter-common-bin
 $maysudo apt upgrade gnome-control-center gnome-control-center-data gnome-control-center-faces gnome-shell gnome-shell-common
-
 #cinnamon patcher (cinnamon-patch) here
+fi
 
 $maysudo apt-get install dialog #1.254 kB of additional disk space
 $maysudo apt-get install ppa-purge #Need to get 6.566 B of archives. After this operation, 24,6 kB of additional disk space will be used.
