@@ -258,10 +258,9 @@ if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 $maysudo cp -f include/img/OSlogotype.svg /1/img/OSlogotype.svg
 $maysudo cp -f include/img/logo.svg /1/img/logo.svg
 
-#$maysudo apt --fix-broken install
+$maysudo apt --fix-broken install #currently required hack as mmex has f'ed our dependencies
 $maysudo apt install libpng-dev libjpeg-dev libtiff-dev imagemagick #from https://www.linuxcapable.com/how-to-install-imagemagick-on-ubuntu-linux/
 #Need to get 4,103 kB of archives. After this operation, 15.0 MB of additional disk space will be used.
-$maysudo apt --fix-broken install
 
 cd include/img/watermarkmaker
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/watermarkmaker.git .; fi
