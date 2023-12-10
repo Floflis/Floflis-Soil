@@ -258,6 +258,9 @@ if [ ! -e /1/img ]; then $maysudo mkdir /1/img; fi
 $maysudo cp -f include/img/OSlogotype.svg /1/img/OSlogotype.svg
 $maysudo cp -f include/img/logo.svg /1/img/logo.svg
 
+$maysudo apt install libpng-dev libjpeg-dev libtiff-dev imagemagick #from https://www.linuxcapable.com/how-to-install-imagemagick-on-ubuntu-linux/
+#Need to get 4,103 kB of archives. After this operation, 15.0 MB of additional disk space will be used.
+
 cd include/img/watermarkmaker
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/watermarkmaker.git .; fi
 if [ -e .git ]; then git pull; fi
@@ -294,9 +297,6 @@ $maysudo cp -f include/img/networks/dydx.svg /1/img/networks/dydx.svg
 $maysudo cp -f include/img/networks/polygonzkevm.svg /1/img/networks/polygonzkevm.svg
 #-
 $maysudo cp -f include/img/token.svg /1/img/token.svg
-
-sudo apt install libpng-dev libjpeg-dev libtiff-dev imagemagick #from https://www.linuxcapable.com/how-to-install-imagemagick-on-ubuntu-linux/
-#Need to get 4,103 kB of archives. After this operation, 15.0 MB of additional disk space will be used.
 
 echo "Deep branding replacements:"
 #/usr/share/pixmaps
