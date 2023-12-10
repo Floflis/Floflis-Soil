@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $(echo "$XDG_DATA_DIRS" | sed 's/.*\(xfce\|kde\|gnome\).*/\1/') = "" ]
 then
   desktop=$XDG_CURRENT_DESKTOP
