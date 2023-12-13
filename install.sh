@@ -58,7 +58,10 @@ $maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-
 $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
 echo "- Installing programs..."
-#$maysudo apt-get install autoconf elinks ceni gdebi udftools
+      if [ -e /usr/local/bin/*antiX* ]; then
+         #echo "- This is an antiX-based OS. Updating files..."
+         $maysudo apt-get install autoconf elinks ceni gdebi -y
+fi
 $maysudo apt-get install nodejs npm -y #&& npm i ipfs-npm -g
 
 echo "Installing neofetch..."
