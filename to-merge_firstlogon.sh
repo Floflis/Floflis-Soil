@@ -142,7 +142,7 @@ cd "$SCRIPTPATH"
 
 echo "Installing support for Windows apps..."
 sudo apt install -y software-properties-common
-sudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
 sudo apt-key add winehq.key && rmoriginal winehq.key
 sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ lunar main'
 sudo apt update
