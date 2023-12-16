@@ -50,6 +50,11 @@ echo "(✓) This fix is done!"
 fi
 fi
 
+#floflis fixer add this commented for later use:
+#cd /usr/share/xsessions
+#(only if the same files exist in /usr/share/wayland-sessions) sudo rm gnome-classic.desktop ubuntu.desktop
+#sudo ln -s /usr/share/wayland-sessions/ubuntu-wayland.desktop && sudo chmod +x ubuntu-wayland.desktop
+
 if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
    echo "$vs"
 fi
