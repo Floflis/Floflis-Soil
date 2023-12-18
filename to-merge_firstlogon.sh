@@ -45,26 +45,6 @@ cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 #prompt = "starship_prompt"
 #EOF
 
-# mv to firstboot ---->
-echo "Installing Templates of the 'New File' context menu..."
-rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
-rmoriginal /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
-rmoriginal /home/${flouser}/Templates/New\ Spreadsheet.xlsx.webpresent
-rmoriginal /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
-rmoriginal /home/${flouser}/Templates/New\ Access\ Database.accdb.webpresent
-rmoriginal /home/${flouser}/Templates/"New Compressed (zipped) Folder.zip.webpresent"
-rmoriginal /home/${flouser}/Templates/New\ Publisher\ Document.pub.webpresent
-# <---- mv to firstboot
-
-# mv to firstboot ---->
-echo "Installing Sample Media..."
-if [ ! -e /home/${flouser}/Pictures/Sample\ Photos ]; then mkdir /home/${flouser}/Pictures/Sample\ Photos; fi
-if [ ! -e /home/${flouser}/Videos/Sample\ Videos ]; then mkdir /home/${flouser}/Videos/Sample\ Videos; fi
-if [ ! -e /home/${flouser}/Music/Sample\ Music ]; then mkdir /home/${flouser}/Music/Sample\ Music; fi
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
-# <---- mv to firstboot
-
 sudo apt install pipx
 pipx ensurepath
 
