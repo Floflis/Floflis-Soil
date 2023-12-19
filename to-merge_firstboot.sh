@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "This is the first boot (Soil/to-merge)."
-#sudo mv /usr/lib/floflis/layers/core/firstlogon.sh /home
-#sudo mv /usr/lib/floflis/layers/core/firstlogonroot.sh /home
+#sudo mv "$FLOPREFIX"usr/lib/floflis/layers/core/firstlogon.sh /home
+#sudo mv "$FLOPREFIX"usr/lib/floflis/layers/core/firstlogonroot.sh /home
 #sudo chmod +x /home/firstlogon.sh
 #sudo chmod +x /home/firstlogonroot.sh
 cd /home
@@ -13,7 +13,7 @@ do
    
 # mv to firstboot ---->
 echo "Installing Templates of the 'New File' context menu..."
-rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
+rsync -av "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-Templates/. /home/${flouser}/Templates
 rmoriginal /home/${flouser}/Templates/New\ slidesPresentation.pptx.webpresent
 rmoriginal /home/${flouser}/Templates/New\ Spreadsheet.xlsx.webpresent
 rmoriginal /home/${flouser}/Templates/New\ WordWriter\ document.docx.webpresent
@@ -27,23 +27,23 @@ echo "Installing Sample Media..."
 if [ ! -e /home/${flouser}/Pictures/Sample\ Photos ]; then mkdir /home/${flouser}/Pictures/Sample\ Photos; fi
 if [ ! -e /home/${flouser}/Videos/Sample\ Videos ]; then mkdir /home/${flouser}/Videos/Sample\ Videos; fi
 if [ ! -e /home/${flouser}/Music/Sample\ Music ]; then mkdir /home/${flouser}/Music/Sample\ Music; fi
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
-cp '/usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
+cp '"$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Pictures/Sample Photos/Phabulous Pabllo Vittar 💞.jpeg' /home/${flouser}/Pictures/Sample\ Photos/
+cp '"$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Home/Videos/Sample Videos/Home Life - Animals.3gp' /home/${flouser}/Videos/Sample\ Videos/
 # <---- mv to firstboot
    
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
+if [ $(bash "$FLOPREFIX"usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 # start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF
-   exec dbus-run-session -- bash -c 'bash /usr/lib/cinnamobile/set_desktop.sh'
+   exec dbus-run-session -- bash -c 'bash "$FLOPREFIX"usr/lib/cinnamobile/set_desktop.sh'
 EOF
 fi
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
+if [ $(bash "$FLOPREFIX"usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 echo "Setting up Cinnamon data..."
 if [ ! -e /home/${pure}/.config/cinnamon ]; then mkdir /home/${pure}/.config/cinnamon; fi
 if [ ! -e /home/${pure}/.config/cinnamon/spices ]; then mkdir /home/${pure}/.config/cinnamon/spices; fi
-#tar -C /home/${flouser}/.cinnamon/configs -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
-rsync -av /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${pure}/.config/cinnamon/spices
+#tar -C /home/${flouser}/.cinnamon/configs -xzf "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs.tar.gz
+rsync -av "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-daniella-.cinnamon-configs/. /home/${pure}/.config/cinnamon/spices
 fi
 
 echo "Building your desktop experience [part 2/2]..."
@@ -59,9 +59,9 @@ exec dbus-run-session -- bash -c 'dconf write /org/blueman/general/symbolic-stat
 EOF
 
 # to-merge>
-#             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
+#             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/soil/firstlogon.sh ];then
 #                installtermfont(){
-                cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
+                cat >> "$FLOPREFIX"tmp/org-gnome-terminal-legacy-profiles <<EOF
 [/]
 custom-command='nu'
 bold-is-bright=true
@@ -76,9 +76,9 @@ use-theme-colors=false
 EOF
                 # start a new dbus session and execute the dconf command in bash shell. from https://askubuntu.com/a/1302886
 sudo  -i -u ${pure} bash <<-EOF
-   exec dbus-run-session -- bash -c 'dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles'
+   exec dbus-run-session -- bash -c 'dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < "$FLOPREFIX"tmp/org-gnome-terminal-legacy-profiles'
 EOF
-                rm -f /tmp/org-gnome-terminal-legacy-profiles
+                rm -f "$FLOPREFIX"tmp/org-gnome-terminal-legacy-profiles
 #}
 #                echo "You have to logout, so changes will take effect."
 #                echo "Save any work you did (only if you did)."
@@ -122,8 +122,8 @@ EOF
    sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
    sudo chmod -R a+rwX /1 && sudo chown $pure:$pure /1
    sudo chmod -R a+rwX /1/config && sudo chown -R $pure:$pure /1/config #from https://askubuntu.com/a/693427
-   sudo chmod -R a+rwX /usr/share/ubiquity-slideshow && sudo chown -R $pure:$pure /usr/share/ubiquity-slideshow
-   sudo chmod -R a+rwX /usr/lib/floflis/layers/soil/to-merge && sudo chown -R $pure:$pure /usr/lib/floflis/layers/soil/to-merge
-   if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then sudo chmod -R a+rwX /home/$pure/.config/cinnamon && sudo chown -R $pure:$pure /home/$pure/.config/cinnamon;fi
+   sudo chmod -R a+rwX "$FLOPREFIX"usr/share/ubiquity-slideshow && sudo chown -R $pure:$pure "$FLOPREFIX"usr/share/ubiquity-slideshow
+   sudo chmod -R a+rwX "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge && sudo chown -R $pure:$pure "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge
+   if [ $(bash "$FLOPREFIX"usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then sudo chmod -R a+rwX /home/$pure/.config/cinnamon && sudo chown -R $pure:$pure /home/$pure/.config/cinnamon;fi
 done
 

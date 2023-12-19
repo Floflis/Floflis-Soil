@@ -5,7 +5,7 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 echo "Building your desktop experience [part 2/2]..."
 
 echo "Installing the \"Starshell\" package..."
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Terminal/starshell
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/starshell.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
@@ -17,12 +17,12 @@ chmod +x install.sh && sh ./install.sh
 #cd ${D}
 cd "$SCRIPTPATH"
 #-
-sudo chmod -R a+rwX /home/${flouser}/.config/nushell && sudo chown -R ${flouser}:${flouser} /home/${flouser}/.config/nushell
+sudo chmod -R a+rwX "$FLOPREFIX"home/${flouser}/.config/nushell && sudo chown -R ${flouser}:${flouser} "$FLOPREFIX"home/${flouser}/.config/nushell
 
 # Replace Nushell's banner in Termux:
 if [[ $flofmach == "Termux" ]]; then
-cp -f /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-.config/nushell/termux-banner.txt /home/${flouser}/.config/nushell/termux-banner.txt
-cat >> /home/${flouser}/.config/nushell/config.nu <<EOF
+cp -f "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-.config/nushell/termux-banner.txt "$FLOPREFIX"home/${flouser}/.config/nushell/termux-banner.txt
+cat >> "$FLOPREFIX"home/${flouser}/.config/nushell/config.nu <<EOF
 "$env.config.show_banner = false" out> $nu.config-path
 cat ~/.config/nushell/termux-banner.txt
 EOF
@@ -32,11 +32,11 @@ fi
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/login-shell false
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-custom-command true
 #-
-cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
+cd "$FLOPREFIX"home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 #-
 #echo "Adding Starship to nushell..."
-#if [ ! -e /home/${flouser}/.config/nu ]; then mkdir /home/${flouser}/.config/nu; fi
-#cat >> /home/${flouser}/.config/nu/config.toml <<EOF
+#if [ ! -e "$FLOPREFIX"home/${flouser}/.config/nu ]; then mkdir "$FLOPREFIX"home/${flouser}/.config/nu; fi
+#cat >> "$FLOPREFIX"home/${flouser}/.config/nu/config.toml <<EOF
 #startup = [
 # "mkdir ~/.cache/starship",
 # "starship init nu | save ~/.cache/starship/init.nu",
@@ -48,12 +48,12 @@ cd /home/${flouser} && ln -sf .config/nushell/history.txt .nu_history
 sudo apt install pipx
 pipx ensurepath
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ];then
+if [ $(bash "$FLOPREFIX"usr/lib/floflis/layers/soil/tools/DEtector.sh) = "gnome" ];then
       pipx install gnome-extensions-cli --system-site-packages
 fi
 
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
+if [ $(bash "$FLOPREFIX"usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Cinnamon/usr-share-cinnamon/extensions
 #-
 cd buildmark
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/FloflisPull/buildmark.git .; fi
@@ -70,15 +70,15 @@ zombiespices install
 cd "$SCRIPTPATH"
 #cd ${D}
 
-facevar="/home/${flouser}/.face"
+facevar=""$FLOPREFIX"home/${flouser}/.face"
 if [ ! -f "$facevar" ]; then
-#   ln -s /usr/share/cinnamon/faces/user-generic.png "$facevar"
-   cp /usr/share/cinnamon/faces/user-generic.png "$facevar"
+#   ln -s "$FLOPREFIX"usr/share/cinnamon/faces/user-generic.png "$facevar"
+   cp "$FLOPREFIX"usr/share/cinnamon/faces/user-generic.png "$facevar"
 fi
 fi
 
 echo "Installing floapps..."
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/floapps
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/floapps.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
@@ -89,7 +89,7 @@ chmod +x install.sh && bash install.sh
 #rm -rf include
 cd "$SCRIPTPATH"
 
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools
 #-
 cd neurus-core
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/neurus-core.git .; fi
@@ -104,16 +104,16 @@ cd "$SCRIPTPATH"
 if [ "$flofarch" = "amd64" ]; then
    echo "Installing IPFS Desktop..."
    sudo snap install ipfs-desktop
-   rmoriginal -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf /usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
-   sudo cat >> /usr/bin/ipfsdaemon << ENDOFFILE
+   rmoriginal -f '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs/ipfs' && sudo ln -sf "$FLOPREFIX"usr/bin/ipfs '/opt/IPFS Desktop/resources/app.asar.unpacked/node_modules/go-ipfs/go-ipfs'
+   sudo cat >> "$FLOPREFIX"usr/bin/ipfsdaemon << ENDOFFILE
 ipfs-desktop
 ENDOFFILE
-   sudo chmod +x /usr/bin/ipfsdaemon
+   sudo chmod +x "$FLOPREFIX"usr/bin/ipfsdaemon
 fi
 # <-- HOME LAYER
 
 echo "Installing Firedoge browser..."
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/firedoge
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/firedoge
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Web3HQ/firedoge.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
@@ -137,7 +137,7 @@ wget https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi && wine 
 if [ -f wine-mono-8.0.0-x86.msi ]; then rmoriginal wine-mono-8.0.0-x86.msi; fi
 winetricks dotnet45 #from https://askubuntu.com/a/1106750 (have to login and VOTE)
 sudo apt install playonlinux -y # 62,2 MB of additional disk space will be used
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/wine-desktop-common
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/wine-desktop-common
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/bobwya/wine-desktop-common.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
@@ -156,27 +156,27 @@ echo "Installing WinApps..."
 sudo apt-get install -y virt-manager #Need to get 10,1 MB of archives. After this operation, 44,4 MB of additional disk space will be used.
 echo "Have already installed KVM/virt-manager. Pending to follow the next steps: https://archive.is/fhg4E#selection-4631.0-4647.93"
 sudo apt-get install -y freerdp2-x11
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/winapps
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/winapps
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Fmstrat/winapps.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
 #sudo bash install.sh
-if [ ! -e /usr/lib/winapps ]; then sudo mkdir /usr/lib/winapps; fi
-sudo rsync -av . /usr/lib/winapps
-sudo rmoriginal -f /usr/lib/winapps/icons/windows.svg
-cat > /usr/bin/winapps << ENDOFFILE
+if [ ! -e "$FLOPREFIX"usr/lib/winapps ]; then sudo mkdir "$FLOPREFIX"usr/lib/winapps; fi
+sudo rsync -av . "$FLOPREFIX"usr/lib/winapps
+sudo rmoriginal -f "$FLOPREFIX"usr/lib/winapps/icons/windows.svg
+cat > "$FLOPREFIX"usr/bin/winapps << ENDOFFILE
 #!/bin/bash
 
-source /usr/lib/winapps/bin/winapps
+source "$FLOPREFIX"usr/lib/winapps/bin/winapps
 ENDOFFILE
 cd "$SCRIPTPATH"
 
 #echo "Setting autostart apps..."
-#chmod +x /home/${flouser}/.config/autostart/teams.desktop
+#chmod +x "$FLOPREFIX"home/${flouser}/.config/autostart/teams.desktop
 
 echo "Installing the Firstlogon Tour"
-sudo dpkg -i /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/Firstlogon-Tour_3.0.0_amd64.deb
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/firstlogon-tour_cli
+sudo dpkg -i "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/Firstlogon-Tour_3.0.0_amd64.deb
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/System/firstlogon-tour_cli
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/firstlogon-tour_cli.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
@@ -190,14 +190,14 @@ git checkout -f
 echo "Running the Firstlogon Tour"
 if [ x$DISPLAY != x ] ; then
    cd "$SCRIPTPATH"
-   /usr/local/lib/Firstlogon-Tour/./firstlogon_tour
+   "$FLOPREFIX"usr/local/lib/Firstlogon-Tour/./firstlogon_tour
 else
    bash core.sh
 fi
 cd "$SCRIPTPATH"
 
 echo "Installing ethgas..."
-cd /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools/ethgas
+cd "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/Tools/ethgas
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethgas.git .; fi
 if [ -e .git ]; then git pull; fi
 git checkout -f
@@ -209,7 +209,7 @@ chmod +x install.sh && sudo sh ./install.sh
 #rm -f .gitmeta
 #rm -f 'SRC At ETH💎💌.txt'
 cd "$SCRIPTPATH"
-if [ $(bash /usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
+if [ $(bash "$FLOPREFIX"usr/lib/floflis/layers/soil/tools/DEtector.sh) = "cinnamon" ];then
 echo "Installing ethgas' Cinnamon spice..."
 cd spice
 #cd ethgas-applet@floflis
@@ -229,14 +229,14 @@ fi
 #ipfs pin add $(ethereal ens contenthash get --domain=1inch.eth)
 #ipfs ls $(ethereal ens contenthash get --domain=1inch.eth)
 # this will have to work on user side (post-install), not only when installing
-#sudo cat > /usr/bin/1inch <<EOF
+#sudo cat > "$FLOPREFIX"usr/bin/1inch <<EOF
 #!/bin/bash
 #
 #ipfs-desktop
 #xdg-open ipns://1inch.eth
 #EOF
-#sudo chmod +x /usr/bin/1inch
-#sudo cat > /usr/share/applications/1inch.desktop <<EOF
+#sudo chmod +x "$FLOPREFIX"usr/bin/1inch
+#sudo cat > "$FLOPREFIX"usr/share/applications/1inch.desktop <<EOF
 #[Desktop Entry]
 #Encoding=UTF-8
 #Name=1inch
@@ -250,9 +250,9 @@ fi
 # <----------------------------------------------------- Prepare to replace 1inch to better alternative (should also support GnosisChain)
 
 echo "Installing Hop protocol..."
-cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.svg /usr/share/icons/hicolor/scalable/apps/
-sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
-tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.tar.gz
+cp "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.svg "$FLOPREFIX"usr/share/icons/hicolor/scalable/apps/
+sudo gtk-update-icon-cache "$FLOPREFIX"usr/share/icons/gnome/ -f
+tar -xzf "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/hop.tar.gz
 mv -f hop /1/apps
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
@@ -270,15 +270,15 @@ ipfs get $(ethereal ens contenthash get --domain=hop.mirroring.eth) --output=/1/
 #ipfs pin add $(ipfs dns hop.mirroring.eth)
 #- this will have to work on user side (post-install), not only when installing
 fi
-sudo cat > /usr/bin/hop <<EOF
+sudo cat > "$FLOPREFIX"usr/bin/hop <<EOF
 #!/bin/bash
 
 #xdg-open https://app.hop.exchange/ #removed
 #xdg-open ipns://hop.exchange #not ENS
 xdg-open ipns://hop.mirroring.eth
 EOF
-sudo chmod +x /usr/bin/hop
-sudo cat > /usr/share/applications/hop.desktop <<EOF
+sudo chmod +x "$FLOPREFIX"usr/bin/hop
+sudo cat > "$FLOPREFIX"usr/share/applications/hop.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Hop protocol
@@ -291,9 +291,9 @@ Keywords=bridge;swap;exchange;tokens;ethereum;xdai;polygon;bsc;binance-smart-cha
 EOF
 
 echo "Installing Aragon..."
-cp /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.svg /usr/share/icons/hicolor/scalable/apps/
-sudo gtk-update-icon-cache /usr/share/icons/gnome/ -f
-tar -xzf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.tar.gz
+cp "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.svg "$FLOPREFIX"usr/share/icons/hicolor/scalable/apps/
+sudo gtk-update-icon-cache "$FLOPREFIX"usr/share/icons/gnome/ -f
+tar -xzf "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/aragon.tar.gz
 mv -f aragon /1/apps
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
@@ -311,15 +311,15 @@ ipfs get $(ethereal ens contenthash get --domain=aragon.plasmmer.eth) --output=/
 #ipfs pin add $(ipfs dns aragon.plasmmer.eth)
 #- this will have to work on user side (post-install), not only when installing
 fi
-sudo cat > /usr/bin/aragon <<EOF
+sudo cat > "$FLOPREFIX"usr/bin/aragon <<EOF
 #!/bin/bash
 
 ipfsdaemon
 #xdg-open ipns://aragon.plasmmer.eth
 xdg-open https://aragon.plasmmer.com #until IPFS issue is fixed
 EOF
-sudo chmod +x /usr/bin/aragon
-sudo cat > /usr/share/applications/aragon.desktop <<EOF
+sudo chmod +x "$FLOPREFIX"usr/bin/aragon
+sudo cat > "$FLOPREFIX"usr/share/applications/aragon.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Aragon
@@ -337,7 +337,7 @@ sudo ln -s /1/apps/aragon/activity-no-results.51fb2b93.png /1/img/humanrepresent
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
 echo "Preparing to create your ETH address..."
-bash /usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
+bash "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/ethgenerate.sh
 fi
 
-sudo rmoriginal -rf /usr/lib/floflis/layers/soil/to-merge/include-firstlogon
+sudo rmoriginal -rf "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon
