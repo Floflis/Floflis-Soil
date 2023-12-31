@@ -61,6 +61,11 @@ echo "- Installing Floflis Soil as init program..."
 $maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/soil/flo-init
 $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
+if [[ $flofmach == "Termux" ]]; then
+echo "Installing Starship prompt..."
+curl -sS https://starship.rs/install.sh |sh -s -- --bin-dir /data/data/com.termux/files/usr/bin
+fi
+
 echo "- Installing programs..."
       if [ -e /usr/local/bin/*antiX* ]; then
          #echo "- This is an antiX-based OS. Updating files..."
