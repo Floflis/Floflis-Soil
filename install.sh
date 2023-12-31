@@ -2,8 +2,12 @@
 
 # Layer: Soil
 
-# load definitions & settings
-. /usr/lib/floflis/./config
+#. /usr/lib/floflis/./config
+. "$FLOPREFIX"usr/lib/floflis/./config #expecting $FLOPREFIX has been successfuly imported from DNA's installer
+#export FLOPREFIX
+#fi
+#export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
@@ -136,13 +140,6 @@ neofetch
 # esac
 
 #- if ubuntu, use sudo dpkg -i 
-
-   if [ -e /tmp/cubicmode ]; then
-      echo "Detected Cubic mode 🧚"
-      echo "Installing to-merge.sh..."
-      $maysudo bash ./to-merge.sh
-      echo "Done (to-merge.sh)"
-fi
 
    echo "- Installing Floflis Fixer..."
    $maysudo mv /usr/lib/floflis/layers/soil/fixer /usr/bin
