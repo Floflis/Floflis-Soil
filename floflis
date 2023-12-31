@@ -1,13 +1,25 @@
 #!/bin/bash
 
+# load definitions & settings ---->
+if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+then
+. /data/data/com.termux/files/usr/lib/floflis/./config
+else
+. /usr/lib/floflis/./config
+fi
+export FLOPREFIX
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
+
 # displays help message with a list of commands:
 #if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
 #   echo "   --version --sound, -vs      Plays a sound which represents the current version"
 #fi
 
 if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
-   paplay /1/sounds/presentation.ogg
-   echo "presentation.ogg source: https://youtu.be/XMWmX_KXMhg"
+   paplay /1/sounds/Starting.oga
+#   paplay /1/sounds/presentation.ogg
+#   echo "presentation.ogg source: https://youtu.be/XMWmX_KXMhg"
 fi
 
 #if [ "$2" = "--sound" ] || [ "$2" = "-vs" ]; then

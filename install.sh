@@ -35,7 +35,7 @@ if [ "$is_root" = "false" ]
 fi
 
 if [ -e "$FLOPREFIX"tmp/cubicmode ]; then maysudo="";fi
-if [[ $flofmach == "Termux" ]]; then maysudo="";fi
+if [[ "$flofmach" == "Termux" ]]; then maysudo="";fi
 
 cat << "EOF"
 -. .-.   .-. .-.   .-. .-.   .
@@ -60,7 +60,7 @@ echo "- Installing Floflis Soil as init program..."
 $maysudo echo "$(cat /usr/lib/floflis/layers/soil/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/soil/flo-init
 $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
-if [[ $flofmach == "Termux" ]]; then
+if [[ "$flofmach" == "Termux" ]]; then
 echo "Installing Starship prompt..."
 curl -sS https://starship.rs/install.sh |sh -s -- --bin-dir /data/data/com.termux/files/usr/bin
 fi
