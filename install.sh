@@ -34,9 +34,8 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
-if [ -e /tmp/cubicmode ]; then
-maysudo=""
-fi
+if [ -e "$FLOPREFIX"tmp/cubicmode ]; then maysudo="";fi
+if [[ $flofmach == "Termux" ]]; then maysudo="";fi
 
 cat << "EOF"
 -. .-.   .-. .-.   .-. .-.   .
