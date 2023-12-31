@@ -6,4 +6,4 @@ export flofmach && export flofdistro && export flofarch && export osfullname && 
 flouser=$(jq -r '.name' /1/config/user.json)
 export flouser
 
-bash to-merge_firstlogon.sh
+#bash to-merge_firstlogon.sh
