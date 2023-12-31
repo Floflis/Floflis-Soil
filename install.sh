@@ -69,8 +69,10 @@ fi
 echo "- Installing programs..."
       if [ -e /usr/local/bin/*antiX* ]; then
          #echo "- This is an antiX-based OS. Updating files..."
-         $maysudo apt-get install autoconf elinks ceni gdebi -y
+         $maysudo apt-get install autoconf gdebi -y
 fi
+$maysudo apt-get install elinks ceni -y #Need to get 1.624 kB of archives. After this operation, 5.595 kB of additional disk space will be used.
+$maysudo apt-get install udftools -y
 $maysudo apt-get install nodejs npm -y #&& npm i ipfs-npm -g
 
 echo "Installing neofetch..."
